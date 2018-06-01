@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-*[Downloads](https://github.com/icyphy/ptII/downloads)
+*[Downloads](https://icyphy.github.io/ptII/downloads/index.html)
 
 ## See Also
 * [How to edit this page](edit.html)
