@@ -1,6 +1,8 @@
+Below is the copyright for the gh-pages branch of the ptII-test repository.
+
 BSD 2-Clause License
 
-Copyright (c) 2018, Industrial Cyberphysical Systems (iCyPhy)
+Copyright (c) 2018 The Regents of the University of California.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
