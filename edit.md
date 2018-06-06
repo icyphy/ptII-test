@@ -3,7 +3,7 @@ layout: default
 ---
 # How to edit the pages in https://icyphy.github.io/ptII-test/
 
-The static pages like this one are edited via the `gh-pages` branch of the [Github ptII repo](https://github.com/icyphy/ptII-test)
+The static pages like this one are edited via the `gh-pages` branch of the [Github ptII-test repo](https://github.com/icyphy/ptII-test)
 
 ```
       git clone --depth=1 --single-branch --branch=gh-pages https://github.com/icyphy/ptII-test gh-pages 
