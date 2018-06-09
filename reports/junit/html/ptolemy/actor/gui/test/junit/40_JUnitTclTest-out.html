@@ -5,15 +5,15 @@
 </head>
 <body>
 <pre>/home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/AAAConfiguration.tcl
-testDefs.tcl: setting time out to 9000 seconds at Fri Jun 08 22:59:36 UTC 2018
+testDefs.tcl: setting time out to 9000 seconds at Sat Jun 09 01:25:03 UTC 2018
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/CheckModelSize.tcl
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/CompositeActorApplication.tcl
-22 ms. Memory: 116224K Free: 96744K (83%)
-11 ms. Memory: 116224K Free: 93972K (81%)
-sleeping 2 seconds: 33 ms. Memory: 116224K Free: 88092K (76%)
-10 ms. Memory: 116224K Free: 88092K (76%)
+30 ms. Memory: 116224K Free: 96544K (83%)
+19 ms. Memory: 116224K Free: 94651K (81%)
+5 ms. Memory: 116224K Free: 90261K (78%)
+sleeping 2 seconds: 22 ms. Memory: 116224K Free: 87186K (75%)
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/CompositeActorSimpleApplication.tcl
-10 ms. Memory: 331264K Free: 119328K (36%)
+11 ms. Memory: 331264K Free: 162204K (49%)
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/ConfigurationApplication.tcl
 test 1.0: filterSize: 13, newFilterSize: 15
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/EffigyFactory.tcl
@@ -30,276 +30,13 @@ java.net.MalformedURLException: no protocol: ptolemy/configs/kepler/doc-index.ht
 java.io.IOException: File '/home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/ptolemy/configs/kepler/doc-index.htm' does not exist.
  AND:
 java.net.MalformedURLException: no protocol: ptolemy/configs/kepler/doc-index.htm
-
-
-==== $PTII/ptolemy/actor/gui/test/HTMLAbout.tcl: HTMLAbout-4.0 checkCompleteDemos
-==== Contents of test case:
- 
-    set configurationDirectory [java::call ptolemy.actor.gui.ConfigurationApplication  configurationDirectoryFullOrFirst]
-    set configurationFile [java::new java.io.File $configurationDirectory "configuration.xml"]
-    puts "Reading [$configurationFile toString]"
-    set configuration [java::call ptolemy.actor.gui.MoMLApplication readConfiguration  [$configurationFile toURL]]
-
-    set about [java::call ptolemy.actor.gui.HTMLAbout about $configuration]
-
-    # If the full configuration is present, then use completeDemos.htm
-    # Otherwise search for the configuration-specific demo file.
-    set configurationName [$configurationDirectory toString]
-    if {[regexp {full$} $configurationName]} {
-	set completeDemos "ptolemy/configs/doc/completeDemos.htm"
-    } else {
-	set completeDemosFile [java::new java.io.File $configurationDirectory "demonstrations.htm"]
-	if {[$completeDemosFile exists]} {
-	    set completeDemos [$completeDemosFile getCanonicalPath]
-	} else {
-	    puts "configurationName: $configurationName"
-	    set shortConfiguration [string range $configurationName [expr {[string last / $configurationName] + 1}] [string length $configurationName]]
-	    puts "shortConfiguration: $shortConfiguration"
-	    set shortUpcaseConfiguration "[string toupper [string range $shortConfiguration 0 0]][string range $shortConfiguration 1 [string length $shortConfiguration]]"
-	    set completeDemosFile [java::new java.io.File [$configurationDirectory getParentFile] "doc/demos${shortUpcaseConfiguration}.htm"]
-	    if {[$completeDemosFile exists]} {
-		set completeDemos [$completeDemosFile getCanonicalPath]
-	    } else {
-		error "[$completeDemosFile toString] does not exist"
-	    }
-	}
-    }
-
-    puts "Checking complete demos of $completeDemos"
-    set checkCompleteDemosReport [java::call ptolemy.actor.gui.HTMLAbout checkCompleteDemos $completeDemos]
-    
-    # Substitute $PTII
-    set ptolemyPtIIDir [java::call System getProperty {ptolemy.ptII.dir}]
-    regsub -all $ptolemyPtIIDir $checkCompleteDemosReport {XXXPTIIXXX} results
-    list $results
-
-==== Result was:
-{&lt;h1&gt;Results of checking for demos not listed in full demos&lt;/h1&gt;
-For each of the files below, we list demos that are not included in &lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm&lt;/code&gt;&lt;/a&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demos.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demos.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew11.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew11.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew10.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew10.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
- &lt;li&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/domains/continuous/lib/DCMotor.xml"&gt;file:XXXPTIIXXX/ptolemy/domains/continuous/lib/DCMotor.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/domains/continuous/lib/PWM.xml"&gt;file:XXXPTIIXXX/ptolemy/domains/continuous/lib/PWM.xml&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew8.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew8.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew7.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew7.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew6.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew6.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.1.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.1.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew4.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew4.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew3.0.2.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew3.0.2.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/bcvtb/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/bcvtb/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosBcvtb.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosBcvtb.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demosBcvtb.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demosBcvtb.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/docsBcvtb.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/docsBcvtb.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/docs.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/docs.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/demonstrations.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/demonstrations.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/tour.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/tour.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/cyphysim/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/cyphysim/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/cyphysim/demonstrations.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/cyphysim/demonstrations.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/cyphysim/docs.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/cyphysim/docs.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/docs.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/docs.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/hyvisual/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/hyvisual/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtiny.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtiny.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demosPtiny.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demosPtiny.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/doc/mainVergilPtiny.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/doc/mainVergilPtiny.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/doc/mainVergilPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/doc/mainVergilPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demosPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demosPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/docsPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/docsPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/visualsense/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/visualsense/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-}
----- Result should have been:
-{&lt;h1&gt;Results of checking for demos not listed in full demos&lt;/h1&gt;
-For each of the files below, we list demos that are not included in &lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm&lt;/code&gt;&lt;/a&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemos.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demos.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demos.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew11.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew11.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew10.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew10.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
- &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/Factorial/Factorial.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/Factorial/Factorial.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/GoogleOAuth/GoogleOAuth.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/GoogleOAuth/GoogleOAuth.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/JavaScriptShell/JavaScriptShell.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/JavaScriptShell/JavaScriptShell.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/ModelBuilder/ModelBuilder.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/ModelBuilder/ModelBuilder.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/Spontaneous/Spontaneous.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/Spontaneous/Spontaneous.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/StockPrice/StockPrice.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/StockPrice/StockPrice.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/domains/continuous/lib/DCMotor.xml"&gt;file:XXXPTIIXXX/ptolemy/domains/continuous/lib/DCMotor.xml&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/domains/continuous/lib/PWM.xml"&gt;file:XXXPTIIXXX/ptolemy/domains/continuous/lib/PWM.xml&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew8.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew8.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew7.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew7.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew6.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew6.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.1.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.1.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew5.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew4.0.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew4.0.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew3.0.2.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/whatsNew3.0.2.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/bcvtb/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/bcvtb/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosBcvtb.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosBcvtb.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demosBcvtb.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demosBcvtb.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/docsBcvtb.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/docsBcvtb.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/docs.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/docs.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/demonstrations.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/demonstrations.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/capecode/tour.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/capecode/tour.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/cyphysim/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/cyphysim/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/cyphysim/demonstrations.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/cyphysim/demonstrations.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/cyphysim/docs.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/cyphysim/docs.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/docs.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/docs.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/hyvisual/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/hyvisual/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtiny.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtiny.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demosPtiny.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demosPtiny.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/doc/mainVergilPtiny.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/doc/mainVergilPtiny.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/doc/mainVergilPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/doc/mainVergilPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/demosPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/demosPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/docsPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/docsPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtinyKepler.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/doc/completeDemosPtinyKepler.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href="file:XXXPTIIXXX/ptolemy/configs/visualsense/intro.htm"&gt;&lt;code&gt;file:XXXPTIIXXX/ptolemy/configs/visualsense/intro.htm&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;/ul&gt;
-}
-@@@@@ known results is more than 7 lines long, so we run diff
-14,19d13
-&lt;  &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/Factorial/Factorial.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/Factorial/Factorial.xml&lt;/a&gt;&lt;/li&gt;
-&lt;  &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/GoogleOAuth/GoogleOAuth.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/GoogleOAuth/GoogleOAuth.xml&lt;/a&gt;&lt;/li&gt;
-&lt;  &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/JavaScriptShell/JavaScriptShell.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/JavaScriptShell/JavaScriptShell.xml&lt;/a&gt;&lt;/li&gt;
-&lt;  &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/ModelBuilder/ModelBuilder.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/ModelBuilder/ModelBuilder.xml&lt;/a&gt;&lt;/li&gt;
-&lt;  &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/Spontaneous/Spontaneous.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/Spontaneous/Spontaneous.xml&lt;/a&gt;&lt;/li&gt;
-&lt;  &lt;li&gt;&lt;a href="file:/XXXPTIIXXX/ptolemy/actor/lib/js/demo/StockPrice/StockPrice.xml"&gt;XXXPTIIXXX/ptolemy/actor/lib/js/demo/StockPrice/StockPrice.xml&lt;/a&gt;&lt;/li&gt;
-@@@@@ Done running diffText
----- HTMLAbout-4.0 FAILED
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/HTMLViewer.tcl
 sleeping 3 seconds: /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/MoMLApplication.tcl
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/PtExecuteApplication.tcl
-13 ms. Memory: 786432K Free: 722284K (92%)
-sleeping 2 seconds: 4 ms. Memory: 851968K Free: 108567K (13%)
+15 ms. Memory: 650752K Free: 194663K (30%)
+sleeping 2 seconds: 11 ms. Memory: 756736K Free: 255648K (34%)
 .test
-sleeping 2 seconds: 3 ms. Memory: 921088K Free: 392476K (43%)
+sleeping 2 seconds: 3 ms. Memory: 832512K Free: 117289K (14%)
 &lt;?xml version="1.0" standalone="no"?&gt;
 &lt;!DOCTYPE entity PUBLIC "-//UC Berkeley//DTD MoML 1//EN"
     "http://ptolemy.eecs.berkeley.edu/xml/dtd/MoML_1.dtd"&gt;
@@ -343,8 +80,8 @@ CharacterRecognition: The tesseract module was not present.  The CharacterRecogn
 CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
 The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
 /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test/ZZZConfiguration.tcl
-06/08/18 11:01:00
-Failed: 1  Total Tests: 55  ((Passed: 54, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test
+06/09/18 01:26:31
+Failed: 0  Total Tests: 55  ((Passed: 55, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test
 No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test
 No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/gui/test
 AutoTests.java: About to close Vertx.
