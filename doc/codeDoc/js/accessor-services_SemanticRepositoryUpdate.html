@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: org/terraswarm/accessor/accessors/web/hosts/common/modules/hostHelper.js</title>
+    <title>JSDoc: Accessor: services/SemanticRepositoryUpdate</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,137 +17,453 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: org/terraswarm/accessor/accessors/web/hosts/common/modules/hostHelper.js</h1>
+    <h1 class="page-title">Accessor: services/SemanticRepositoryUpdate</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// A module to provide host functions for mocha tests where the host may not
-// be loaded yet (e.g. run with mocha testcase.js )
-//Copyright (c) 2015-2017 The Regents of the University of California.
-//All rights reserved.
-
-//Permission is hereby granted, without written agreement and without
-//license or royalty fees, to use, copy, modify, and distribute this
-//software and its documentation for any purpose, provided that the above
-//copyright notice and the following two paragraphs appear in all copies
-//of this software.
-
-//IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
-//FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
-//ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
-//THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF
-//SUCH DAMAGE.
-
-//THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
-//INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-//MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE
-//PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND THE UNIVERSITY OF
-//CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
-//ENHANCEMENTS, OR MODIFICATIONS.
-
-/**
- * A module to provide host functions for mocha tests where the host
- * may not be loaded yet (e.g. run with mocha testcase.js )
- *
- * @module @accessors-hosts/common/modules/hostHelper
- * @author Beth Osyk. Contributor: Christopher Brooks
- * @version $$Id$$   
- */
-
-/*globals Packages, console, exception, exports, instantiate, process, require, window */
-/*jshint globalstrict: true, multistr: true */
-'use strict';
-
-exports.HostHelper = function() {
-    this.mochaListener = null;
-    this.exception = null;
-    this.exceptionHandler = null;
-    this.exitHandler = null;
-    this.hostname = "default";
+        <h2>services/SemanticRepositoryUpdate</h2>
+        
     
-    if (typeof window !== 'undefined' &amp;&amp; window.hasOwnProperty('browserJSLoaded')) {
-        exports.HostHelper.prototype.instantiate = instantiate;
-        this.hostname = "BrowserHost";
-    } else if (typeof actor !== 'undefined' &amp;&amp; typeof Packages !== 'undefined' &amp;&amp; typeof Packages.java.util.Vector === 'function') {
-        exports.HostHelper.prototype.instantiate = function() {
-            console.log('The hostHelper module is not yet supported on Cape Code.');
-        };
-        this.hostname = "CapeCodeHost";
-    } else if (typeof Duktape === 'object') {
-        exports.HostHelper.prototype.instantiate = function() {
-            console.log('The hostHelper module is not yet supported on Duktape.');
-        };
-        this.hostname = "DuktapeHost";
-    } else if (typeof Packages !== 'undefined' &amp;&amp; typeof Packages.java.util.Vector === 'function') {
-        exports.HostHelper.prototype.instantiate = function() {
-            console.log('The hostHelper module is not yet supported on Nashorn.');
-        };
-        this.hostname = "NashornHost";
-    } else if (typeof process !== 'undefined' &amp;&amp; typeof process.version === 'string') {
-        this.hostname = "NodeHost";
-        var host = require('./../../node/nodeHost.js');
-        exports.HostHelper.prototype.instantiate = host.instantiate;
+</header>
+
+<article>
+    <div class="container-overview">
+    
         
-        exports.HostHelper.prototype.before = function() {
-            // Remove the mocha listener (restore later) and 
-            // use our own handlers.
-            this.mochaListener = process.listeners('uncaughtException').pop();
+            <div class="description"><p>Perform a SPARQL update on a semantic repository such as GraphDB.</p>
+<p> SPARQL is a W3C standard for querying semantic repositories,
+ playing an analogous role to SQL with respect to relational
+ databases. Semantic repositories fall within the domain of knowledge
+ representation in AI and typically are implemented as a triplestore:
+ entries in the repository have the form &quot;subject&quot;, &quot;predicate&quot;, &quot;object&quot;
+ eg. &quot;An Apple&quot; &quot;IsA&quot; &quot;Fruit&quot;</p>
+<p> An example SPARQL update to add a triple to the repository:</p>
+<p> INSERT DATA {
+     <a href="http://ptolemy.berkeley.edu/a">http://ptolemy.berkeley.edu/a</a> <a href="http://ptolemy.berkeley.edu/b">http://ptolemy.berkeley.edu/b</a> <a href="http://ptolemy.berkeley.edu/c">http://ptolemy.berkeley.edu/c</a> .
+ }</p>
+<p> Documentation for SPARQL and the SPARQL Protocol 1.1 introducing updates can be found at
+ https://<a href="http://www.w3.org/TR/sparql11-query/">www.w3.org/TR/sparql11-query/</a></p>
+<p> Information on GraphDB can be found at
+ http://graphdb.ontotext.com/</p>
+<p> SPARQL is also a protocol for communicating with RDF databases
+ Upon receiving an update input, this accessor performs an http POST
+ to the specified server and port with the body set to the
+ update input. The http status code is produced on the output with
+ a 204 response from the server indicating success.
+ If a different status code is received, this accessor throws an error. 
+ Note that an INSERT that inserts data already in the repository or
+ a DELETE that removes data already absent from the 
+ repository is treated by the respository as a
+ successful update.</p>
+<p> This accessor does not block waiting for the response, but if any additional
+ <em>update</em> input is received before a pending request has received a response
+ or timed out, then the new request will be queued and sent out only after
+ the pending request has completed. This strategy ensures that outputs are
+ produced in the same order as the input requests.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>$$Id: SemanticRepository.js 1725 2017-05-19 22:59:11Z cxh $$</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Matt Weber</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_services_SemanticRepositoryUpdate.js.html">org/terraswarm/accessor/accessors/web/services/SemanticRepositoryUpdate.js</a>, <a href="org_terraswarm_accessor_accessors_web_services_SemanticRepositoryUpdate.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    <h5>Inputs:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-            process.removeAllListeners('exit');
-            process.removeAllListeners('uncaughtException');
-        };
-        
-        exports.HostHelper.prototype.eachTestStart = function(done) {
-            this.exception = null;
-            this.exceptionHandler = null;
-            this.exitHandler = null;
+                <td class="name"><code>update</code></td>
             
-            // Treat exceptions and calls to 'exit' as failures.
-            process.once('uncaughtException', 
-                         this.exceptionHandler = function(error) { 
-                             this.exception = error;
-                             done(error);
-                         });
+
+            <td class="type">
             
-            process.once('exit', this.exitHandler = function(error) { 
-                this.exception = error;
-                done(error);
-            });
-        };
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The SPARQL update to be sent to the semantic repository.
+  Types of updates are: INSERT and DELETE</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+                                              
+
+
+    <h5>Outputs:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
         
-        exports.HostHelper.prototype.eachTestEnd = function() {
-            process.removeListener('uncaughtException', this.exceptionHandler);
-            process.removeListener('exit', this.exitHandler);
-        };
+        <th>Name</th>
         
-        exports.HostHelper.prototype.after = function() {
-            process.listeners('uncaughtException').push(this.mochaListener);
-        };
+
+        <th>Type</th>
+
         
-    }
-};
 
-// In node, a custom uncaught exception handler must be used to avoid crashing 
-// the build.  Add placeholders here.
-exports.HostHelper.prototype.after = function() {};
-exports.HostHelper.prototype.before = function() {};
-exports.HostHelper.prototype.eachTestStart = function() {};
-exports.HostHelper.prototype.eachTestEnd = function() {};
+        
 
-// Placeholder for proper instantiate function for each host.
-exports.HostHelper.prototype.instantiate = function() {
-    console.log('The hostHelper module is not yet supported on this host.');
-};
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
 
 
-</code></pre>
-        </article>
-    </section>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The status code of the http POST to the Semantic Repository.
+  A 204 code indicates success.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+                                              
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>host</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The URL for the semantic repository.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The port for the semantic repository.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>repositoryName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name of the particular repository on the host.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The amount of time (in milliseconds) to wait for a response
+  before triggering a null response and an error. This defaults to 20000.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".setup"><span class="type-signature">(static) </span>setup<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Set up the accessor by defining the inputs and outputs.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_services_SemanticRepositoryUpdate.js.html">org/terraswarm/accessor/accessors/web/services/SemanticRepositoryUpdate.js</a>, <a href="org_terraswarm_accessor_accessors_web_services_SemanticRepositoryUpdate.js.html#line63">line 63</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
