@@ -40,96 +40,35 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Module supporting TCP sockets. FIXME: NOT ALL MODULE FUNCTIONALITY HAS BEEN IMPLEMENTED.</p></div>
+            <div class="description"><p>Module supporting TCP sockets.
+This module defines three classes, SocketClient, SocketServer, and Socket.</p>
+<p>To establish a connection, create an instance of SocketServer and listen for
+connection events. When a connection request comes in, the listener will be
+passed an instance of Socket. The server can send data through that instance
+and listen for incoming data events.</p>
+<p>On another machine (or the same machine), create an instance of SocketClient.
+When the connection is established to the server, this instance will emit an
+'open' event. When data arrives from the server, it will emit a 'data' event.
+You can invoke this.send() to send data to the server.</p>
+<p>The this.send() function can accept data in many different forms.
+You can send a string, an image, a number, or an array of numbers.
+Two utility functions supportedReceiveTypes() and supportedSendTypes()
+tell you exactly which data types supported by the host.
+Arrays of numeric types are also supported.</p>
+<p>If the rawBytes option is true (the default), then data is sent without any
+message framing. As a consequence, the recipient of the data may emit only a
+portion of any sent data, or it may even coalesce data provided in separate
+invocations of this.send(). If rawBytes is false, then messages will be framed so
+that each invocation of this.send() results in exactly one data item emitted at the
+other end.  This will only work if both sides of the connection implement the
+same framing protocol, e.g. if they both are implemented with this same module.
+To communicate with external tools that do not support this message framing
+protocol, leave rawBytes set to true.</p>
+<p>The message framing protocol used here is very simple. Each message is preceded
+by one byte indicating the length of the message. If the message has length
+greater than 254, then the value of this byte will be 255 and the subsequent four
+bytes will represent the length of the message. The message then follows these bytes.</p></div>
         
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>$$Id: socket.js 76043 2017-05-06 17:44:23Z eal $$</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Matt Weber</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
             
@@ -188,6 +127,94 @@
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html">ptolemy/actor/lib/jjs/modules/socket/socket.js</a>, <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>$$Id: socket.js 76043 2017-05-06 17:44:23Z eal $$</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Matt Weber</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -1706,123 +1733,8 @@ but these will be simply be concatenated and received as a single string.</p>
     <div class="container-overview">
     
         
-            <div class="description"><p>Module supporting TCP sockets.
-This module defines three classes, SocketClient, SocketServer, and Socket.</p>
-<p>To establish a connection, create an instance of SocketServer and listen for
-connection events. When a connection request comes in, the listener will be
-passed an instance of Socket. The server can send data through that instance
-and listen for incoming data events.</p>
-<p>On another machine (or the same machine), create an instance of SocketClient.
-When the connection is established to the server, this instance will emit an
-'open' event. When data arrives from the server, it will emit a 'data' event.
-You can invoke this.send() to send data to the server.</p>
-<p>The this.send() function can accept data in many different forms.
-You can send a string, an image, a number, or an array of numbers.
-Two utility functions supportedReceiveTypes() and supportedSendTypes()
-tell you exactly which data types supported by the host.
-Arrays of numeric types are also supported.</p>
-<p>If the rawBytes option is true (the default), then data is sent without any
-message framing. As a consequence, the recipient of the data may emit only a
-portion of any sent data, or it may even coalesce data provided in separate
-invocations of this.send(). If rawBytes is false, then messages will be framed so
-that each invocation of this.send() results in exactly one data item emitted at the
-other end.  This will only work if both sides of the connection implement the
-same framing protocol, e.g. if they both are implemented with this same module.
-To communicate with external tools that do not support this message framing
-protocol, leave rawBytes set to true.</p>
-<p>The message framing protocol used here is very simple. Each message is preceded
-by one byte indicating the length of the message. If the message has length
-greater than 254, then the value of this byte will be 255 and the subsequent four
-bytes will represent the length of the message. The message then follows these bytes.</p></div>
+            <div class="description"><p>Module supporting TCP sockets. FIXME: NOT ALL MODULE FUNCTIONALITY HAS BEEN IMPLEMENTED.</p></div>
         
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>$$Id: socket.js 76043 2017-05-06 17:44:23Z eal $$</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Matt Weber</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
             
@@ -1881,6 +1793,94 @@ bytes will represent the length of the message. The message then follows these b
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html">ptolemy/actor/lib/jjs/modules/socket/socket.js</a>, <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>$$Id: socket.js 76043 2017-05-06 17:44:23Z eal $$</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Matt Weber</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
