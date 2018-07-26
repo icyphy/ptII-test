@@ -10,12 +10,13 @@ Counted to 99
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="176", height="144"} to the output image. Token is discarded.
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [22.019000000000002]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.1]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 WARNING: Invoking send() too late (probably in a callback), so WebSocketServer is not able to send the token {socketID = 0, status = "closed"} to the output connection. Token is discarded.
@@ -46,6 +47,41 @@ io.netty.channel.ConnectTimeoutException: connection timed out: /10.0.0.46:80
 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 0: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+REST: Error: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
 REST: The timeout period of 5000ms has been exceeded.
 REST: The timeout period of 5000ms has been exceeded.
 HttpClientHelper.java: Received an error for request 0: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
@@ -427,10 +463,10 @@ WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing
 WARNING: VertxSubscribe: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [10.002]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.218, 22.064, 27.254, 19.735, 25.772000000000002, 16.623, 18.608, 21.323, 20.476, 23.652, 15.244, 25.667, 18.2, 14.620000000000001, 14.724, 25.561, 18.71, 17.459, 19.629, 25.878, 19.525000000000002, 20.371000000000002, 24.497, 19.016000000000002, 22.909000000000002, 16.929000000000002, 22.275000000000002, 15.456000000000001, 22.698, 26.406000000000002, 19.842000000000002, 21.535, 21.112000000000002, 23.227, 22.804000000000002, 25.137, 16.306, 17.988, 18.506, 17.247, 23.863, 25.242, 20.582, 19.118000000000002, 24.391000000000002, 15.983, 17.353, 15.350000000000001, 23.757, 22.17, 27.36, 17.882, 14.311, 24.92, 19.948, 26.301000000000002, 23.332, 21.641000000000002, 26.089000000000002, 17.036, 22.487000000000002, 16.2, 23.969, 26.727, 21.004, 20.054000000000002, 14.206000000000001, 26.622, 14.414, 20.899, 26.832, 15.667, 20.159000000000002, 16.095, 17.776, 26.516000000000002, 23.438000000000002, 26.195, 24.814, 22.592000000000002, 21.746000000000002, 25.026, 14.927000000000001, 15.877, 24.285, 18.404, 26.937, 19.219, 21.852, 21.429000000000002, 15.561, 14.516, 16.412, 17.671, 18.914, 27.042, 15.138, 20.265, 21.958000000000002, 22.381, 20.688000000000002, 17.142, 17.565, 25.983, 27.148, 23.121000000000002, 23.544, 15.033000000000001, 20.794, 24.603, 14.826, 19.321, 25.35, 15.771, 16.726, 18.095000000000002, 16.518, 18.303, 18.812, 23.015, 24.074, 19.423000000000002, 25.455000000000002, 24.708000000000002, 16.828, 24.178]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [14.42, 17.490000000000002, 17.918, 19.412, 22.69, 12.864, 23.641000000000002, 18.984, 19.306, 23.746000000000002, 22.796, 20.152, 18.45, 25.783, 16.643, 24.79, 17.385, 14.743, 15.275, 12.968, 21.102, 21.948, 20.257, 14.849, 16.749000000000002, 21.207, 24.580000000000002, 15.486, 25.572, 13.794, 14.532, 13.582, 14.955, 18.777, 21.524, 13.374, 20.996000000000002, 23.956, 17.279, 23.852, 22.584, 20.468, 20.891000000000002, 22.161, 15.805, 22.055, 24.266000000000002, 25.678, 16.855, 24.058, 24.474, 13.688, 16.325, 13.273, 21.630000000000003, 15.381, 18.879, 20.363, 25.045, 25.149, 17.067, 23.113, 20.785, 19.835, 22.267, 17.809, 18.133, 23.218, 22.372, 19.729, 13.069, 25.36, 18.675, 25.255000000000003, 22.478, 13.171000000000001, 23.324, 18.238, 13.477, 14.111, 16.961000000000002, 12.548, 14.215, 24.16, 19.94, 16.431, 16.219, 24.368000000000002, 20.574, 14.005, 17.702, 12.653, 16.114, 20.046, 16.537, 19.623, 24.896, 15.906, 15.065000000000001, 21.737000000000002, 25.466, 23.429000000000002, 25.889, 15.169, 17.596, 15.592, 19.09, 23.007, 21.419, 17.173000000000002, 15.698, 19.196, 22.901, 21.313000000000002, 14.317, 24.686, 13.9, 18.573, 14.638, 20.679000000000002, 18.344, 12.759, 16.008, 19.517, 18.023, 23.535, 25.995, 21.843]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.4190000000000005, 5.0]
+WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.0, 5.3950000000000005]
 HttpClientHelper.java: Received an error for request 0: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
 io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
 	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
@@ -626,28 +662,13 @@ io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: 
 	at java.lang.Thread.run(Thread.java:748)
 Caused by: java.net.ConnectException: Connection refused
 	... 11 more
-HttpClientHelper.java: Received an error for request 13: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
-io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
-	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
-	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
-	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:325)
-	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:340)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:633)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.lang.Thread.run(Thread.java:748)
-Caused by: java.net.ConnectException: Connection refused
-	... 11 more
-WARNING: Clock: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [28.0]
-WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [25.008000000000003, 22.007, 28.008000000000003]
+WARNING: Clock: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [26.0]
+WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [28.007, 22.008, 25.008000000000003]
 WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [23.0]
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.0]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [25.874000000000002]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [25.396]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
