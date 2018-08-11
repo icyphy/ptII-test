@@ -19,6 +19,7 @@ created by [$PTII/bin/ptIITravisBuild.sh](https://github.com/icyphy/ptII/blob/ma
 * [test.export5.xml.txt](junit/test.export5.xml.txt) Output of `ant test.export5.xml`
 * [test.export6.xml.txt](junit/test.export6.xml.txt) Output of `ant test.export6.xml`
 * [test.export7.xml.txt](junit/test.export7.xml.txt) Output of `ant test.export7.xml`
+* [test.installers.txt](junit/test.installers.txt) Output of `ant test.installers`
 
 ---
 * [PtII-specific Travis Notes](https://wiki.eecs.berkeley.edu/ptexternal/Main/Travis)
