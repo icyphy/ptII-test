@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Accessor: cameras/Camera</title>
+    <title>JSDoc: Accessor: services/YelpSearch</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Accessor: cameras/Camera</h1>
+    <h1 class="page-title">Accessor: services/YelpSearch</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>cameras/Camera</h2>
+        <h2>services/YelpSearch</h2>
         
     
 </header>
@@ -37,15 +37,11 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>An accessor for a camera on the local host. This can be a built-in camera or
- a USB-connected camera. This accessor has two modes of operation, &quot;triggered&quot;
- and &quot;open loop.&quot; In triggered mode, it captures an image whenever a trigger
- input is received and produces that image on its output. In open-loop mode,
- it captures every image produced by the camera, at the speed of the camera,
- and produces on the output a stream of such images. It limits the number of
- outputs to maxFrameRate images per second, even if the camera produces more
- images than that. You can use the maxFrameRate parameter to avoid overwhelming
- your application.</p></div>
+            <div class="description"><p>Perform a Yelp search for local buisnesses using the Yelp API
+ https://<a href="http://www.yelp.com/developers/documentation/v3/business_search">www.yelp.com/developers/documentation/v3/business_search</a></p>
+<p> The full Yelp API allows many parameters for searching for buisness.
+ This accessor demonstrates a simple query for a particular type of
+ buisness near specific geographic coordinates.</p></div>
         
 
         
@@ -55,7 +51,7 @@
 
     
     <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>$$Id$$</li></ul></dd>
+    <dd class="tag-version"><ul class="dummy"><li>$$Id: YelpSearch.js 1725 2017-05-19 22:59:11Z cxh $$</li></ul></dd>
     
 
     
@@ -76,7 +72,7 @@
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>Edward A. Lee (eal@eecs.berkeley.edu)</li>
+            <li>Matt Weber</li>
         </ul>
     </dd>
     
@@ -90,7 +86,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html">org/terraswarm/accessor/accessors/web/cameras/Camera.js</a>, <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html#line24">line 24</a>
+        <a href="org_terraswarm_accessor_accessors_web_services_YelpSearch.js.html">org/terraswarm/accessor/accessors/web/services/YelpSearch.js</a>, <a href="org_terraswarm_accessor_accessors_web_services_YelpSearch.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -127,6 +123,75 @@
 
         <tr>
             
+                <td class="name"><code>searchTerm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The variety of local buisness to search for (eg. "Restaurants").</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>latitude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">First part of coordinates for local buisness search. Defaults to UC Berkeley's coordinates.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>longitude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Second part of coordinates for local buisness search. Defaults to UC Berkeley's coordinates.</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>trigger</code></td>
             
 
@@ -138,8 +203,7 @@
 
             
 
-            <td class="description last">A trigger input for triggered mode.
-  The value is ignored and can be anything.</td>
+            <td class="description last">An input to trigger the search.</td>
         </tr>
 
     
@@ -174,15 +238,10 @@
 
         <tr>
             
-                <td class="name"><code>image</code></td>
+                <td class="name"><code>response</code></td>
             
 
             <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
             
             </td>
 
@@ -190,7 +249,7 @@
 
             
 
-            <td class="description last">A stream of captured images.</td>
+            <td class="description last">Yelp's raw JSON response to the query.</td>
         </tr>
 
     
@@ -225,55 +284,7 @@
 
         <tr>
             
-                <td class="name"><code>triggered</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">If true, use triggered mode.
-  Otherwise, use open-loop mode. This is a boolean that defaults to false.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>maxFrameRate</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">If not triggered, this limits the output
-  to the specified number of frames per second. This is a number that defaults to 25.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>camera</code></td>
+                <td class="name"><code>APIKey</code></td>
             
 
             <td class="type">
@@ -289,23 +300,21 @@
 
             
 
-            <td class="description last">The name of the camera to use.
-  A list of available cameras is presented as options.
-  This is a string that defaults to "default camera",
-  which uses the system default, if there is one.</td>
+            <td class="description last">An authentication token provided by Yelp for using
+  their API. See https://www.yelp.com/developers/documentation/v3/authentication.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>viewSize</code></td>
+                <td class="name"><code>timeout</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">int</span>
 
 
             
@@ -315,10 +324,8 @@
 
             
 
-            <td class="description last">The view size
-  to use for capture, in pixels. A list of available view sizes for
-  the selected camara is presented as options. This is a JSON specification
-  with a "width" and "height" field, as in for example {"width":640, "height":480}.</td>
+            <td class="description last">The amount of time (in milliseconds) to wait for a response
+  before triggering a null response and an error. This defaults to 5000.</td>
         </tr>
 
     
@@ -352,96 +359,6 @@
 
     
 
-    <h4 class="name" id=".initialize"><span class="type-signature">(static) </span>initialize<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Set the view size of the camera, open it, and depending on the triggered mode, either
- set up an input handler for the trigger input or set up a handler for the 'image'
- event notification from the camera.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html">org/terraswarm/accessor/accessors/web/cameras/Camera.js</a>, <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html#line105">line 105</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id=".setup"><span class="type-signature">(static) </span>setup<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
@@ -449,7 +366,7 @@
 
 
 <div class="description">
-    <p>Create the inputs, outputs, and parameters, and update the parameters for the selected camera.</p>
+    <p>Set up the accessor by defining the inputs and outputs.</p>
 </div>
 
 
@@ -493,95 +410,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html">org/terraswarm/accessor/accessors/web/cameras/Camera.js</a>, <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html#line65">line 65</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".wrapup"><span class="type-signature">(static) </span>wrapup<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Remove handlers and close the camera.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html">org/terraswarm/accessor/accessors/web/cameras/Camera.js</a>, <a href="org_terraswarm_accessor_accessors_web_cameras_Camera.js.html#line134">line 134</a>
+        <a href="org_terraswarm_accessor_accessors_web_services_YelpSearch.js.html">org/terraswarm/accessor/accessors/web/services/YelpSearch.js</a>, <a href="org_terraswarm_accessor_accessors_web_services_YelpSearch.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
