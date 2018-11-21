@@ -143,17 +143,49 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">HlaPublisher</span>
 extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in ptolemy.actor">TypedAtomicActor</a></pre>
-<div class="block"><p>This actor implements a publisher in a HLA/CERTI federation. This
- publisher is associated to one HLA attribute. Ptolemy's tokens, received in
- the input port of this actor, are interpreted as an updated value of the
- HLA attribute. The updated value is published to the whole HLA Federation
- by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute, deployed in a Ptolemy model.
+<div class="block"><p>This actor provides the name of the class <i>C</i>, the name of the
+ attribute <i>attr</i> and the name of the instance <i>i</i> (C.attr.i) that
+ are used by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute (deployed in the same model)
+ with two goals:
+ - During initialization phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> calls the HLA services for 
+ publishing all the attributes <i>attr</i of a class  <i>C</i> and registering
+ an instance <i>i</i> of a class for this federate:
+ rtia.publishObjectClass(classHandle, _attributesLocal) and 
+ rtia.registerObjectInstance(classHandle, classInstanceName).
+ The parameter _attributesLocal is the set of all attributes <i>attr</i of a
+ class  <i>C</i> in this Ptolemy federate  model (obtained from all
+ HlaPublisher actors).
+ - During the simulation loop phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> call the UAV service
+ for updating the value of an attribute of a class instance:
+ _rtia.updateAttributeValues(objectInstanceId, suppAttributes, tag, uavTimeStamp).
+ The UAV service is send after a cycle in the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> that starts
+ with an event e(t) received at the input port of the HlaPublisher actor, and
+ when the federate eventually has advanced its time to uavTimeStamp=t'. The
+ value of t' depends on the time management (NER or TAR), see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> code.
  </p><p>
- The name of this actor is mapped to the name of the HLA attribute in the
- federation and need to match the Federate Object Model (FOM) specified for
- the Federation. The data type of the input port has to be the same type of
- the HLA attribute. The parameter <i>classObjectHandle</i> needs to match the
- attribute object class describes in the FOM.</div>
+ Parameters <i>classObjectName</i> and <i>attributeName</i> need to match the
+ name of the class and the attribute defined in the Federate Object Model
+ (FOM) specified for the Federation and indicated in the FED file.
+ The data type of the input port of this actor must have the same type of the
+ HLA attribute (defined in the FOM). 
+ </p><p>
+ The parameter <i>classInstanceName</i> is provided by the user. Each
+ federate has the ownership of the attributes of an instance of object that it
+ publishes. Suppose the FOM of a federation has a class C with 3 attributes
+ attr2, attr2 and attr3. The federation has 2 federates, F1 and F1. If F1
+ publishes C.attr1 and C.attr3 and F2 publishes
+ C.attr2, then the name of the instance of class C must be different in both
+ federates. Federate F1 has 2 HlaPublisher actors: C.attr1.i1 and C.attr3.i1
+ (it publishes two attributes of a same class instance); Federate F2 has one
+ HlaPublisher actor: C.attr3.i2 (it publishes one attribute of a class
+ instance, whose name is different from the the one published by F1).
+ </p><p>
+ The parameter <i>useCertiMessageBuffer</i> is chosen by the user. It 
+ indicates if the event is wrapped in a CERTI message buffer,
+ certi.communication.MessageBuffer, see <a href="../../../org/hlacerti/lib/MessageProcessing.html" title="class in org.hlacerti.lib"><code>MessageProcessing</code></a>. All
+ HlaSubscriber actors with parameters <i>C.attr.i</i> must have the same
+ choice for this parameter.
+ </p><p></div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>Ptolemy II 11.0</dd>
@@ -326,8 +358,8 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaPublisher.html#getClassObjectName--">getClassObjectName</a></span>()</code>
-<div class="block">Return the HLA class object name (in FOM) of the HLA attribute handled
-  by the HlaPublisher.</div>
+<div class="block">Return the HLA class object name (in the FED file) of the HLA attribute
+ handled by the HlaPublisher.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -541,7 +573,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <pre>public&nbsp;void&nbsp;attributeChanged(<a href="../../../ptolemy/kernel/util/Attribute.html" title="class in ptolemy.kernel.util">Attribute</a>&nbsp;attribute)
                       throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Call the attributeChanged method of the parent. Check if the
-  user as set all information relative to HLA to publish.</div>
+  user has set all information related to HLA to publish.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/NamedObj.html#attributeChanged-ptolemy.kernel.util.Attribute-">attributeChanged</a></code>&nbsp;in class&nbsp;<code><a href="../../../ptolemy/kernel/util/NamedObj.html" title="class in ptolemy.kernel.util">NamedObj</a></code></dd>
@@ -588,8 +620,9 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
                 throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Retrieve and check if there is one and only one <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a>
   deployed in the Ptolemy model. The <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> provides the
-  method to publish an updated value of a HLA attribute to the HLA/CERTI
-  Federation.</div>
+  method to publish the attributes of a class, register an instance of a
+  class and update the value of a HLA attribute of a class instance to
+  the HLA/CERTI Federation.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/Initializable.html#initialize--">initialize</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/Initializable.html" title="interface in ptolemy.actor">Initializable</a></code></dd>
@@ -663,8 +696,8 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>getClassObjectName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getClassObjectName()
                                     throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA class object name (in FOM) of the HLA attribute handled
-  by the HlaPublisher.</div>
+<div class="block">Return the HLA class object name (in the FED file) of the HLA attribute
+ handled by the HlaPublisher.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the HLA object class name.</dd>
