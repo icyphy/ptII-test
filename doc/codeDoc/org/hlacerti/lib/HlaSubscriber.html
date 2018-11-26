@@ -143,20 +143,68 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">HlaSubscriber</span>
 extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in ptolemy.actor">TypedAtomicActor</a></pre>
-<div class="block">This actor implements a subscriber in a HLA/CERTI federation.
+<div class="block">This actor provides information to subscribe, discover and reflect (i.e.,
+ receive) updated values in the Ptolemy-HLA/CERTI framework.
 
- <p> This subscriber is associated to one HLA attribute. Reflected
- values of the HLA attribute are received from the HLA/CERTI
- Federation by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute. The <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> invokes the putReflectedAttribute() to put the received
- value in the subscriber tokens queue and to program its next firing
- times, using the _fireAt() method.</p>
-
- <p>The parameter <i>attributeName</i> of this actor is mapped to
- the name of the HLA attribute of an HLA object class in the federation.
- This parameter needs to match the Federate Object Model (FOM) specified
- for this federation. The data type of the output port has to be the same
- type of the HLA attribute. The parameter <i>classObjectName</i> needs to
- match the object class describes in the FOM.</div>
+ <p> This actor is associated with a unique HLA attribute of a given object 
+ instance. Reflected values of this HLA attribute are received from the HLA
+ Federation by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute deployed in the same model. 
+ The <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> invokes the putReflectedAttribute() to put the 
+ received value in the HlaSubscriber actor token queue and to program its 
+ firing time, using the _fireAt() method.
+ 
+  </p><p>
+ Parameters <i>classObjectName</i> and <i>attributeName</i> need to match the
+ name of the class and the name of the attribute defined in the Federate 
+ Object Model (FOM) specified for the Federation and indicated in the FED file.
+ The data type of the output port of this actor must have the same type of the
+ HLA attribute (defined in the FOM, not present in the FED file). 
+ </p><p>
+ The parameter <i>classInstanceName</i> is chosen by the user. 
+ 
+ </p><p>
+ Entering in more details:
+ This actor provides 3 information: a class name <i>C</i>, an attribute
+ name <i>attr</i> and an instance name <i>i</i>. To each HlaSubscriber actor
+ in a Ptolemy model (federate) corresponds a unique <a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib"><code>HlaPublisher</code></a>
+ actor in a (unique) federate with the same information.
+ Let us recall some terms:
+ - FOM: Federation Object Model
+ - FED: Federation Execution Data, contains classes and attributes defined
+   in the FOM and, for each attribute, if it is timestamped and its QoS 
+ - RTI: Run-Time Infrastructure. The RTI has a Central RTI Component (CRC)
+   and one or more Local RTI Components (LRC). The LRC has a numerical 
+   representation (handle) for all object classes and object class attributes
+   contained in the FED file.
+ 
+ The information supplied in this actor by the user is used in the following
+ way by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute (deployed in the same model):
+ 
+ 1. During the initialization phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a>: 
+  - Subscribes to all the <i>k</i attributes <i>attr-k</i of a class  <i>C</i>
+    (gathered from <i>k</i HlaSubscriber actors) by calling
+    _rtia.subscribeObjectClassAttributes(classHandle, _attributesLocal), 
+    where <i>classHandle</i is obtained by calling the HLA service 
+    rtia.getObjectClassHandle() for  <i>C</i>;
+    _attributesLocal is the set constructed by calling rtia.getAttributeHandle()
+    for each <i>attr</i in this Ptolemy federate  model (the set is obtained
+    from all HlaSubscriber actors that has the same class  <i>C</i>); 
+    - Receives the HLA callback informing the discovering of an instance of
+    class <i>C</i> named <i>i</i>:
+    rtia.discoverObjectInstance(objectInstanceId, classHandle, someName), with 
+    someName = <i>i</i>; objectInstanceId and classHandle are handles provided
+    by the RTI.
+    
+ 2. During the simulation loop phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> receives the RAV
+ callback from the RTI with the new value of an attribute of a class instance. Each 
+ HlaSubscriber  actor is related to one RAV callback:
+ rtia.reflectAttributeValues(objectInstanceId, suppAttributes, tag, ravTimeStamp).
+ The RAV callback, with a timestamp t'=<i>ravTimeStamp<\i> is received at the
+ input port of the HlaPublisher actor, during the advance time phase that
+ starts when the federate wants to advanced its time to <i>t<\i> (using NER or
+ TAR time management, see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> code).
+ The optional parameter <i>tag</i> is not used in the current implementation.
+ </p><p></div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>Ptolemy II 11.0</dd>
@@ -316,8 +364,9 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#fire--">fire</a></span>()</code>
-<div class="block">Send each update value of the HLA attribute (mapped to this actor) as
-  token when its time.</div>
+<div class="block">Put in the Ptolemy queue the token (with time-stamp t) corresponding to
+  the RAV (with time-stamp t'=<i>ravTimeStamp<\i> related to the HLA
+  attribute of an instance (mapped to this actor).</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -329,7 +378,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#getAttributeName--">getAttributeName</a></span>()</code>
-<div class="block">Return the HLA attribute name mapped to this HlaSubscriber.</div>
+<div class="block">Return the HLA attribute name provided by this HlaSubscriber actor.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -341,14 +390,13 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#getClassInstanceName--">getClassInstanceName</a></span>()</code>
-<div class="block">Return HLA class instance name this HlaSubscriber belongs to.</div>
+<div class="block">Return HLA class instance name provided by this HlaSubscriber actor.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#getClassObjectName--">getClassObjectName</a></span>()</code>
-<div class="block">Return the HLA class object name (in FOM) of the HLA attribute handled
-  by the HlaSubscriber.</div>
+<div class="block">Return the HLA class object name provided by this HlaSubscriber actor.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -368,7 +416,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#putReflectedHlaAttribute-org.hlacerti.lib.HlaTimedEvent-">putReflectedHlaAttribute</a></span>(<a href="../../../org/hlacerti/lib/HlaTimedEvent.html" title="class in org.hlacerti.lib">HlaTimedEvent</a>&nbsp;event)</code>
 <div class="block">Store each updated value of the HLA attribute (mapped to this actor) in
-  the tokens queue.</div>
+  the token queue.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
@@ -609,7 +657,8 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <pre>public&nbsp;void&nbsp;attributeChanged(<a href="../../../ptolemy/kernel/util/Attribute.html" title="class in ptolemy.kernel.util">Attribute</a>&nbsp;attribute)
                       throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Call the attributeChanged method of the parent. Check if the
-  user as set all information relative to HLA to subscribe to.</div>
+  user as set all information relative to HLA to subscribe to, for
+  discovering instances and receive (reflect) updated values.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/NamedObj.html#attributeChanged-ptolemy.kernel.util.Attribute-">attributeChanged</a></code>&nbsp;in class&nbsp;<code><a href="../../../ptolemy/kernel/util/NamedObj.html" title="class in ptolemy.kernel.util">NamedObj</a></code></dd>
@@ -675,8 +724,10 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>fire</h4>
 <pre>public&nbsp;void&nbsp;fire()
           throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Send each update value of the HLA attribute (mapped to this actor) as
-  token when its time.</div>
+<div class="block">Put in the Ptolemy queue the token (with time-stamp t) corresponding to
+  the RAV (with time-stamp t'=<i>ravTimeStamp<\i> related to the HLA
+  attribute of an instance (mapped to this actor). The value of t depends
+  on t' and the time management used (NER or TAR, see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> code).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/Executable.html#fire--">fire</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/Executable.html" title="interface in ptolemy.actor">Executable</a></code></dd>
@@ -792,12 +843,12 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <pre>public&nbsp;void&nbsp;putReflectedHlaAttribute(<a href="../../../org/hlacerti/lib/HlaTimedEvent.html" title="class in org.hlacerti.lib">HlaTimedEvent</a>&nbsp;event)
                               throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Store each updated value of the HLA attribute (mapped to this actor) in
-  the tokens queue. Then, program the next firing time of this actor to
+  the token queue. Then, program the next firing time of this actor to
   send the token at its expected time. This method is called by the
   <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>event</code> - The event containing the updated value of the HLA
+<dd><code>event</code> - The event containing the new value of the HLA
   attribute and its time-stamp.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - Not thrown here.</dd>
@@ -828,7 +879,8 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>getAttributeName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getAttributeName()
                                   throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA attribute name mapped to this HlaSubscriber.</div>
+<div class="block">Return the HLA attribute name provided by this HlaSubscriber actor.
+ It must match the attribute name defined in the FOM for a class classObjectName.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the HLA attribute name.</dd>
@@ -845,7 +897,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>getClassInstanceName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getClassInstanceName()
                                       throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return HLA class instance name this HlaSubscriber belongs to.</div>
+<div class="block">Return HLA class instance name provided by this HlaSubscriber actor.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The HLA class instance name.</dd>
@@ -862,8 +914,9 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>getClassObjectName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getClassObjectName()
                                     throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA class object name (in FOM) of the HLA attribute handled
-  by the HlaSubscriber.</div>
+<div class="block">Return the HLA class object name provided by this HlaSubscriber actor.
+ It must match the class name defined in the FOM (that has the attribute
+ attributeName of this actor).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The HLA class object name.</dd>
