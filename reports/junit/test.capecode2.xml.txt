@@ -155,7 +155,7 @@ ptdoc:
      [echo] 
      [echo]     
      [exec] Generating output files...
-     [exec] Finished running in 5.12 seconds.
+     [exec] Finished running in 5.17 seconds.
 
 build-project:
      [echo] ptII: /home/travis/build/icyphy/ptII/build.xml
@@ -341,20 +341,20 @@ build-bin:
      [exec] ./makebat -q "`basename startjini.gui.bat .bat`"
      [exec] rm -f "vergil.bat"
      [exec] ./makebat -q "`basename vergil.bat .bat`"
+     [exec] Cloning into 'universalJavaApplicationStub'...
      [exec] rm -f makeapp
      [exec] ln -s ptinvoke makeapp
      [exec] chmod a+x ptinvoke makeapp
      [exec] ./makeapp CapeCode.app CAPECODE -capecode
      [exec] ./makeapp: /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub does not exist, creating it from GitHub.
-     [exec] Cloning into 'universalJavaApplicationStub'...
      [exec] Updating universalJavaApplicationStub from /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub
-     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Fri Dec 14 02:45:03 UTC 2018
+     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sat Dec 15 02:47:11 UTC 2018
      [exec] ./makeapp: Installation of /home/travis/build/icyphy/ptII/jdk succeeded.
      [exec] ./makeapp: copying /home/travis/build/icyphy/ptII/vendors/jogl to /home/travis/build/icyphy/ptII/bin
      [exec] touch CapeCode.app
      [exec] ./makeapp Vergil.app FULL -full
      [exec] Updating universalJavaApplicationStub from /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub
-     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Fri Dec 14 02:45:06 UTC 2018
+     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sat Dec 15 02:47:14 UTC 2018
      [exec] ./makeapp: Installation of /home/travis/build/icyphy/ptII/jdk succeeded.
      [exec] touch Vergil.app
      [exec] chmod a+x ant cyphysim hyvisual startjini mkjnlp mkl4j mkosgi mkptdemo mkptlivelinkdemo mkpttest node npm ptjunit ptIITravisBuild.sh reloadAllAccessors updateFmu viptos 
@@ -377,6 +377,10 @@ test.capecode2.xml:
     [junit] Running ptolemy.actor.lib.jjs.modules.serial.test.junit.JUnitTclTest
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test
     [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/knownFailedTests/SerialHelloWorld.xml
+    [junit] JavaScript: Closing serial port. (Thread[SerialHelloWorld,1,main])
+    [junit] 2537 ms. Memory: 243712K Free: 107690K (44%)
+    [junit] Known Failure: java.lang.reflect.InvocationTargetException
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test
     [junit] java.lang.RuntimeException: Execution failed
     [junit] 	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
     [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Failure executing the initialize function: ptolemy.kernel.util.IllegalActionException: No such port: /dev/tty.NOT_A_PORT
@@ -488,33 +492,29 @@ test.capecode2.xml:
     [junit] 	at gnu.io.CommPortIdentifier.getPortIdentifier(CommPortIdentifier.java:273)
     [junit] 	at ptolemy.actor.lib.jjs.modules.serial.SerialHelper.open(SerialHelper.java:224)
     [junit] 	... 19 more
-    [junit] JavaScript: Closing serial port. (Thread[SerialHelloWorld,1,main])
-    [junit] 2470 ms. Memory: 284672K Free: 191985K (67%)
-    [junit] Known Failure: java.lang.reflect.InvocationTargetException
-    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:45:17 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
-    [junit] ----------------- Fri Dec 14 02:45:17 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
+    [junit] ----------------- testing Sat Dec 15 02:47:26 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
+    [junit] ----------------- Sat Dec 15 02:47:26 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
     [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackIntToString,1,main])
-    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
-    [junit] 13808 ms. Memory: 984064K Free: 857446K (87%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5709c47f
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5709c47f
-    [junit] reloadAllAccessors: .SerialLoopbackIntToString
-    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-10,1,main])
+    [junit] 13654 ms. Memory: 711168K Free: 355985K (50%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@41aded95
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@41aded95
+    [junit] reloadAllAccessors: .SerialLoopbackIntToString
+    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-11,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:45:43 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:47:52 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:45:43 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
-    [junit] ----------------- Fri Dec 14 02:45:43 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
+    [junit] ----------------- testing Sat Dec 15 02:47:52 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
+    [junit] ----------------- Sat Dec 15 02:47:52 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
     [junit] SerialPort: SerialPort: invalid data: a, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
@@ -625,123 +625,138 @@ test.capecode2.xml:
     [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
     [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     [junit] ^ (Thread[Thread-15,1,main])
-    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [4.6000000000000005]
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackInvalid,1,main])
-    [junit] 10858 ms. Memory: 1252352K Free: 605916K (48%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@650ba067
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@650ba067
+    [junit] 10772 ms. Memory: 1018880K Free: 135639K (13%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1736f1e6
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1736f1e6
     [junit] reloadAllAccessors: .SerialLoopbackInvalid
+    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [4.6000000000000005]
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-15,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-16,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:46:05 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:48:14 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:46:05 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
-    [junit] ----------------- Fri Dec 14 02:46:05 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
+    [junit] ----------------- testing Sat Dec 15 02:48:14 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
+    [junit] ----------------- Sat Dec 15 02:48:14 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackJSON,1,main])
     [junit] JavaScriptJSON: JavaScriptTrueToken.wrapup() (Thread[SerialLoopbackJSON,1,main])
-    [junit] 11502 ms. Memory: 1552384K Free: 182025K (12%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2c1d0a2b
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2c1d0a2b
-    [junit] reloadAllAccessors: .SerialLoopbackJSON
     [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
+    [junit] 11521 ms. Memory: 1459200K Free: 143688K (10%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2338c40e
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2338c40e
+    [junit] reloadAllAccessors: .SerialLoopbackJSON
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-20,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-21,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:46:27 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:48:36 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:46:27 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
-    [junit] ----------------- Fri Dec 14 02:46:27 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
+    [junit] ----------------- testing Sat Dec 15 02:48:36 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
+    [junit] ----------------- Sat Dec 15 02:48:36 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackNumber,1,main])
     [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
-    [junit] 11944 ms. Memory: 1817600K Free: 1695491K (93%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1c4fd855
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1c4fd855
+    [junit] 11450 ms. Memory: 1713152K Free: 949919K (55%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@a0bba38
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@a0bba38
     [junit] reloadAllAccessors: .SerialLoopbackNumber
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-25,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-26,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:46:48 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:48:58 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:46:48 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
-    [junit] ----------------- Fri Dec 14 02:46:48 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
+    [junit] ----------------- testing Sat Dec 15 02:48:58 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
+    [junit] ----------------- Sat Dec 15 02:48:58 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackShort,1,main])
-    [junit] 11094 ms. Memory: 1811456K Free: 1211756K (67%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5319444c
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5319444c
+    [junit] 10891 ms. Memory: 1872384K Free: 872111K (47%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b6dd99e
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b6dd99e
     [junit] reloadAllAccessors: .SerialLoopbackShort
     [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-30,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-31,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:47:09 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:49:18 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:47:09 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
-    [junit] ----------------- Fri Dec 14 02:47:09 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
+    [junit] ----------------- testing Sat Dec 15 02:49:18 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
+    [junit] ----------------- Sat Dec 15 02:49:18 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackString,1,main])
-    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
-    [junit] 10558 ms. Memory: 1847808K Free: 1041035K (56%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@71999579
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@71999579
+    [junit] 11353 ms. Memory: 1878528K Free: 759700K (40%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@526cd4a
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@526cd4a
     [junit] reloadAllAccessors: .SerialLoopbackString
+    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-35,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-36,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:47:30 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:49:40 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:47:30 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
-    [junit] ----------------- Fri Dec 14 02:47:30 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
+    [junit] ----------------- testing Sat Dec 15 02:49:40 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
+    [junit] ----------------- Sat Dec 15 02:49:40 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackUnsignedByte,1,main])
-    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
-    [junit] 10865 ms. Memory: 1875968K Free: 835243K (45%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@32cee0fb
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@32cee0fb
+    [junit] 11038 ms. Memory: 1860096K Free: 256893K (14%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@40c75727
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@40c75727
     [junit] reloadAllAccessors: .SerialLoopbackUnsignedByte
+    [junit] WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.6000000000000005]
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-40,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-41,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:47:51 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:50:00 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 160.843 sec
+    [junit] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 162.624 sec
     [junit] Output:
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test
     [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/knownFailedTests/SerialHelloWorld.xml
     [junit] JavaScript: Closing serial port. (Thread[SerialHelloWorld,1,main])
-    [junit] 2470 ms. Memory: 284672K Free: 191985K (67%)
+    [junit] 2537 ms. Memory: 243712K Free: 107690K (44%)
     [junit] Known Failure: java.lang.reflect.InvocationTargetException
     [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:45:17 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
-    [junit] ----------------- Fri Dec 14 02:45:17 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
+    [junit] ----------------- testing Sat Dec 15 02:47:26 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
+    [junit] ----------------- Sat Dec 15 02:47:26 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
     [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackIntToString,1,main])
-    [junit] 13808 ms. Memory: 984064K Free: 857446K (87%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5709c47f
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5709c47f
+    [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-10,1,main])
+    [junit] 13654 ms. Memory: 711168K Free: 355985K (50%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@41aded95
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@41aded95
     [junit] reloadAllAccessors: .SerialLoopbackIntToString
     [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
-    [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-10,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-11,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:45:43 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:47:52 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackIntToString.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:45:43 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
-    [junit] ----------------- Fri Dec 14 02:45:43 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
+    [junit] ----------------- testing Sat Dec 15 02:47:52 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
+    [junit] ----------------- Sat Dec 15 02:47:52 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
     [junit] SerialPort: SerialPort: invalid data: a, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
@@ -852,85 +867,100 @@ test.capecode2.xml:
     [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
     [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
+    [junit] SerialPort: SerialPort: invalid data: abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, error: SyntaxError: Invalid JSON: <json>:1:0 Expected json literal but found a
+    [junit] abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    [junit] ^ (Thread[Thread-15,1,main])
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackInvalid,1,main])
-    [junit] 10858 ms. Memory: 1252352K Free: 605916K (48%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@650ba067
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@650ba067
+    [junit] 10772 ms. Memory: 1018880K Free: 135639K (13%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1736f1e6
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1736f1e6
     [junit] reloadAllAccessors: .SerialLoopbackInvalid
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-15,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-16,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:46:05 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:48:14 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackInvalid.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:46:05 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
-    [junit] ----------------- Fri Dec 14 02:46:05 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
+    [junit] ----------------- testing Sat Dec 15 02:48:14 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
+    [junit] ----------------- Sat Dec 15 02:48:14 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackJSON,1,main])
     [junit] JavaScriptJSON: JavaScriptTrueToken.wrapup() (Thread[SerialLoopbackJSON,1,main])
-    [junit] 11502 ms. Memory: 1552384K Free: 182025K (12%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2c1d0a2b
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2c1d0a2b
+    [junit] 11521 ms. Memory: 1459200K Free: 143688K (10%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2338c40e
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2338c40e
     [junit] reloadAllAccessors: .SerialLoopbackJSON
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-20,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-21,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:46:27 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:48:36 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackJSON.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:46:27 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
-    [junit] ----------------- Fri Dec 14 02:46:27 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
+    [junit] ----------------- testing Sat Dec 15 02:48:36 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
+    [junit] ----------------- Sat Dec 15 02:48:36 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackNumber,1,main])
-    [junit] 11944 ms. Memory: 1817600K Free: 1695491K (93%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1c4fd855
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1c4fd855
+    [junit] 11450 ms. Memory: 1713152K Free: 949919K (55%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@a0bba38
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@a0bba38
     [junit] reloadAllAccessors: .SerialLoopbackNumber
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-25,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-26,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:46:48 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:48:58 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackNumber.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:46:48 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
-    [junit] ----------------- Fri Dec 14 02:46:48 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
+    [junit] ----------------- testing Sat Dec 15 02:48:58 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
+    [junit] ----------------- Sat Dec 15 02:48:58 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackShort,1,main])
-    [junit] 11094 ms. Memory: 1811456K Free: 1211756K (67%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5319444c
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5319444c
+    [junit] 10891 ms. Memory: 1872384K Free: 872111K (47%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b6dd99e
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b6dd99e
     [junit] reloadAllAccessors: .SerialLoopbackShort
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-30,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-31,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:47:09 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:49:18 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackShort.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:47:09 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
-    [junit] ----------------- Fri Dec 14 02:47:09 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
+    [junit] ----------------- testing Sat Dec 15 02:49:18 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
+    [junit] ----------------- Sat Dec 15 02:49:18 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackString,1,main])
-    [junit] 10558 ms. Memory: 1847808K Free: 1041035K (56%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@71999579
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@71999579
+    [junit] 11353 ms. Memory: 1878528K Free: 759700K (40%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@526cd4a
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@526cd4a
     [junit] reloadAllAccessors: .SerialLoopbackString
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-35,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-36,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:47:30 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:49:40 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackString.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:47:30 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
-    [junit] ----------------- Fri Dec 14 02:47:30 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
+    [junit] ----------------- testing Sat Dec 15 02:49:40 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
+    [junit] ----------------- Sat Dec 15 02:49:40 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
     [junit] SerialPort: Closing serial port. (Thread[SerialLoopbackUnsignedByte,1,main])
-    [junit] 10865 ms. Memory: 1875968K Free: 835243K (45%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@32cee0fb
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@32cee0fb
+    [junit] 11038 ms. Memory: 1860096K Free: 256893K (14%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@40c75727
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@40c75727
     [junit] reloadAllAccessors: .SerialLoopbackUnsignedByte
     [junit] SerialPort: Serial port reader thread exiting. (Thread[Thread-40,1,main])
     [junit] SerialPort: Serial port writer thread exiting. (Thread[Thread-41,1,main])
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:47:51 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:50:00 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/serial/test/auto/SerialLoopbackUnsignedByte.xml
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
     [junit] 
@@ -1062,20 +1092,20 @@ test.capecode2.xml:
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:47:52 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
-    [junit] ----------------- Fri Dec 14 02:47:52 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
+    [junit] ----------------- testing Sat Dec 15 02:50:01 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
+    [junit] ----------------- Sat Dec 15 02:50:01 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
     [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
-    [junit] 3007 ms. Memory: 214016K Free: 115666K (54%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1dbec926
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1dbec926
+    [junit] 3435 ms. Memory: 210432K Free: 107008K (51%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@44a8360d
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@44a8360d
     [junit] reloadAllAccessors: .PassthroughTest
     [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:48:04 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:50:14 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.479 sec
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.167 sec
     [junit] Output:
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test
     [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test
@@ -1084,17 +1114,17 @@ test.capecode2.xml:
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:47:52 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
-    [junit] ----------------- Fri Dec 14 02:47:52 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
+    [junit] ----------------- testing Sat Dec 15 02:50:01 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
+    [junit] ----------------- Sat Dec 15 02:50:01 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
     [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
-    [junit] 3007 ms. Memory: 214016K Free: 115666K (54%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1dbec926
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1dbec926
+    [junit] 3435 ms. Memory: 210432K Free: 107008K (51%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@44a8360d
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@44a8360d
     [junit] reloadAllAccessors: .PassthroughTest
     [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:48:04 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:50:14 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/shell/test/auto/PassthroughTest.xml
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
     [junit] 
@@ -1103,11 +1133,57 @@ test.capecode2.xml:
     [junit] Running ptolemy.actor.lib.jjs.modules.socket.test.junit.JUnitTclTest
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test
     [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/knownFailedTests/SocketLong.xml
-    [junit] Dec 14, 2018 2:48:15 AM io.vertx.core.impl.ContextImpl
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
     [junit] SEVERE: Unhandled exception
     [junit] java.lang.IllegalArgumentException: Invalid send data type: long
     [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1076$13304A$require.L:1#_opened(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:296)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1076$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1074$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$2(SocketHelper.java:394)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.lambda$connected$11(NetServerImpl.java:457)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.connected(NetServerImpl.java:453)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.access$200(NetServerImpl.java:57)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl$1.initChannel(NetServerImpl.java:209)
+    [junit] 	at io.netty.channel.ChannelInitializer.initChannel(ChannelInitializer.java:113)
+    [junit] 	at io.netty.channel.ChannelInitializer.handlerAdded(ChannelInitializer.java:105)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.access$000(DefaultChannelPipeline.java:46)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$PendingHandlerAddedTask.execute(DefaultChannelPipeline.java:1412)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAddedForAllHandlers(DefaultChannelPipeline.java:1131)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.invokeHandlerAddedIfNeeded(DefaultChannelPipeline.java:656)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:510)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:476)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+    [junit] 	at io.vertx.core.net.impl.VertxEventLoopGroup.register(VertxEventLoopGroup.java:53)
+    [junit] 	at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+    [junit] 	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.lang.Thread.run(Thread.java:748)
+    [junit] 
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalArgumentException: Invalid send data type: long
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1078$13304A$require.L:1#_opened(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:296)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
@@ -1142,11 +1218,11 @@ test.capecode2.xml:
     [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
     [junit] 	at java.lang.Thread.run(Thread.java:748)
     [junit] 
-    [junit] Dec 14, 2018 2:48:15 AM io.vertx.core.impl.ContextImpl
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
     [junit] SEVERE: Unhandled exception
     [junit] java.lang.IllegalArgumentException: Invalid send data type: long
     [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1075$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1076$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
     [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1074$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
@@ -1188,53 +1264,7 @@ test.capecode2.xml:
     [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
     [junit] 	at java.lang.Thread.run(Thread.java:748)
     [junit] 
-    [junit] Dec 14, 2018 2:48:16 AM io.vertx.core.impl.ContextImpl
-    [junit] SEVERE: Unhandled exception
-    [junit] java.lang.IllegalArgumentException: Invalid send data type: long
-    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1075$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1074$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
-    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
-    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
-    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
-    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
-    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$2(SocketHelper.java:394)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl.lambda$connected$11(NetServerImpl.java:457)
-    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
-    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl.connected(NetServerImpl.java:453)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl.access$200(NetServerImpl.java:57)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl$1.initChannel(NetServerImpl.java:209)
-    [junit] 	at io.netty.channel.ChannelInitializer.initChannel(ChannelInitializer.java:113)
-    [junit] 	at io.netty.channel.ChannelInitializer.handlerAdded(ChannelInitializer.java:105)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.access$000(DefaultChannelPipeline.java:46)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline$PendingHandlerAddedTask.execute(DefaultChannelPipeline.java:1412)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAddedForAllHandlers(DefaultChannelPipeline.java:1131)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.invokeHandlerAddedIfNeeded(DefaultChannelPipeline.java:656)
-    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:510)
-    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:476)
-    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
-    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
-    [junit] 	at io.vertx.core.net.impl.VertxEventLoopGroup.register(VertxEventLoopGroup.java:53)
-    [junit] 	at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
-    [junit] 	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
-    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
-    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-    [junit] 	at java.lang.Thread.run(Thread.java:748)
-    [junit] 
-    [junit] Dec 14, 2018 2:48:16 AM io.vertx.core.impl.ContextImpl
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
     [junit] SEVERE: Unhandled exception
     [junit] java.lang.IllegalArgumentException: Invalid send data type: long
     [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
@@ -1273,9 +1303,6 @@ test.capecode2.xml:
     [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
     [junit] 	at java.lang.Thread.run(Thread.java:748)
     [junit] 
-    [junit] 6780 ms. Memory: 376832K Free: 304149K (81%)
-    [junit] Known Failure: java.lang.reflect.InvocationTargetException
-    [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/knownFailedTests/SocketUnsignedInt.xml
     [junit] java.lang.RuntimeException: Execution failed
     [junit] 	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
     [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Exceptions occurred during wrapup:
@@ -1343,7 +1370,95 @@ test.capecode2.xml:
     [junit] 	at ptolemy.actor.lib.NonStrictTest.wrapup(NonStrictTest.java:394)
     [junit] 	at ptolemy.actor.Director.wrapup(Director.java:1722)
     [junit] 	... 6 more
-    [junit] 5864 ms. Memory: 641536K Free: 412537K (64%)
+    [junit] 6963 ms. Memory: 423936K Free: 314118K (74%)
+    [junit] Known Failure: java.lang.reflect.InvocationTargetException
+    [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/knownFailedTests/SocketUnsignedInt.xml
+    [junit] Dec 15, 2018 2:50:34 AM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalArgumentException: Invalid send data type: unsignedint
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$2169$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$2167$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$2(SocketHelper.java:394)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.lambda$connected$11(NetServerImpl.java:457)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.connected(NetServerImpl.java:453)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.access$200(NetServerImpl.java:57)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl$1.initChannel(NetServerImpl.java:209)
+    [junit] 	at io.netty.channel.ChannelInitializer.initChannel(ChannelInitializer.java:113)
+    [junit] 	at io.netty.channel.ChannelInitializer.handlerAdded(ChannelInitializer.java:105)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.access$000(DefaultChannelPipeline.java:46)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$PendingHandlerAddedTask.execute(DefaultChannelPipeline.java:1412)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAddedForAllHandlers(DefaultChannelPipeline.java:1131)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.invokeHandlerAddedIfNeeded(DefaultChannelPipeline.java:656)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:510)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:476)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+    [junit] 	at io.vertx.core.net.impl.VertxEventLoopGroup.register(VertxEventLoopGroup.java:53)
+    [junit] 	at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+    [junit] 	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.lang.Thread.run(Thread.java:748)
+    [junit] 
+    [junit] Dec 15, 2018 2:50:34 AM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalArgumentException: Invalid send data type: unsignedint
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$2168$13304A$require.L:1#_opened(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:296)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$0(SocketHelper.java:219)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$connect$2(NetClientImpl.java:113)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$null$9(NetClientImpl.java:251)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$connected$10(NetClientImpl.java:247)
+    [junit] 	at io.vertx.core.net.impl.VertxHandler.setConnection(VertxHandler.java:46)
+    [junit] 	at io.vertx.core.net.impl.VertxNetHandler.handlerAdded(VertxNetHandler.java:39)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.addLast(DefaultChannelPipeline.java:235)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.addLast(DefaultChannelPipeline.java:201)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.connected(NetClientImpl.java:257)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$doConnect$7(NetClientImpl.java:212)
+    [junit] 	at io.vertx.core.net.impl.ChannelProvider.lambda$connect$0(ChannelProvider.java:52)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:500)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:479)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+    [junit] 	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:82)
+    [junit] 	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:306)
+    [junit] 	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:341)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:633)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.lang.Thread.run(Thread.java:748)
+    [junit] 
+    [junit] 5988 ms. Memory: 580096K Free: 391697K (68%)
     [junit] Known Failure: java.lang.reflect.InvocationTargetException
     [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test
     [junit] AutoTests.java: About to close Vertx.
@@ -1417,14 +1532,14 @@ test.capecode2.xml:
     [junit] 	... 6 more
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:48:25 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
-    [junit] ----------------- Fri Dec 14 02:48:25 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
+    [junit] ----------------- testing Sat Dec 15 02:50:36 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
+    [junit] ----------------- Sat Dec 15 02:50:36 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
     [junit] Client: Sending data: -1,0,1,128,256 (Thread[Message1,1,main])
-    [junit] 4093 ms. Memory: 796160K Free: 668121K (84%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@c1ef969
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@c1ef969
+    [junit] 4225 ms. Memory: 709120K Free: 139611K (20%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@58be04ca
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@58be04ca
     [junit] reloadAllAccessors: .Message1
     [junit] 
     [junit] ===========================================================================================
@@ -1503,28 +1618,28 @@ test.capecode2.xml:
     [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/TCPSocketUnsignedShortSimple.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.683 sec
+    [junit] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.215 sec
     [junit] Output:
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test
     [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/knownFailedTests/SocketLong.xml
-    [junit] 6780 ms. Memory: 376832K Free: 304149K (81%)
+    [junit] 6963 ms. Memory: 423936K Free: 314118K (74%)
     [junit] Known Failure: java.lang.reflect.InvocationTargetException
     [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/knownFailedTests/SocketUnsignedInt.xml
-    [junit] 5864 ms. Memory: 641536K Free: 412537K (64%)
+    [junit] 5988 ms. Memory: 580096K Free: 391697K (68%)
     [junit] Known Failure: java.lang.reflect.InvocationTargetException
     [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:48:25 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
-    [junit] ----------------- Fri Dec 14 02:48:25 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
+    [junit] ----------------- testing Sat Dec 15 02:50:36 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
+    [junit] ----------------- Sat Dec 15 02:50:36 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/socket/test/auto/Message1.xml
     [junit] Client: Sending data: -1,0,1,128,256 (Thread[Message1,1,main])
-    [junit] 4093 ms. Memory: 796160K Free: 668121K (84%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@c1ef969
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@c1ef969
+    [junit] 4225 ms. Memory: 709120K Free: 139611K (20%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@58be04ca
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@58be04ca
     [junit] reloadAllAccessors: .Message1
     [junit] 
     [junit] ===========================================================================================
@@ -1605,11 +1720,57 @@ test.capecode2.xml:
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] Error: 
-    [junit] Dec 14, 2018 2:48:15 AM io.vertx.core.impl.ContextImpl
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
     [junit] SEVERE: Unhandled exception
     [junit] java.lang.IllegalArgumentException: Invalid send data type: long
     [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1076$13304A$require.L:1#_opened(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:296)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1076$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1074$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$2(SocketHelper.java:394)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.lambda$connected$11(NetServerImpl.java:457)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.connected(NetServerImpl.java:453)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.access$200(NetServerImpl.java:57)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl$1.initChannel(NetServerImpl.java:209)
+    [junit] 	at io.netty.channel.ChannelInitializer.initChannel(ChannelInitializer.java:113)
+    [junit] 	at io.netty.channel.ChannelInitializer.handlerAdded(ChannelInitializer.java:105)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.access$000(DefaultChannelPipeline.java:46)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$PendingHandlerAddedTask.execute(DefaultChannelPipeline.java:1412)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAddedForAllHandlers(DefaultChannelPipeline.java:1131)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.invokeHandlerAddedIfNeeded(DefaultChannelPipeline.java:656)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:510)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:476)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+    [junit] 	at io.vertx.core.net.impl.VertxEventLoopGroup.register(VertxEventLoopGroup.java:53)
+    [junit] 	at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+    [junit] 	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.lang.Thread.run(Thread.java:748)
+    [junit] 
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalArgumentException: Invalid send data type: long
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1078$13304A$require.L:1#_opened(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:296)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
@@ -1644,11 +1805,11 @@ test.capecode2.xml:
     [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
     [junit] 	at java.lang.Thread.run(Thread.java:748)
     [junit] 
-    [junit] Dec 14, 2018 2:48:15 AM io.vertx.core.impl.ContextImpl
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
     [junit] SEVERE: Unhandled exception
     [junit] java.lang.IllegalArgumentException: Invalid send data type: long
     [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1075$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1076$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
     [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1074$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
     [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
@@ -1690,53 +1851,7 @@ test.capecode2.xml:
     [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
     [junit] 	at java.lang.Thread.run(Thread.java:748)
     [junit] 
-    [junit] Dec 14, 2018 2:48:16 AM io.vertx.core.impl.ContextImpl
-    [junit] SEVERE: Unhandled exception
-    [junit] java.lang.IllegalArgumentException: Invalid send data type: long
-    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1075$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
-    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$1074$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
-    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
-    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
-    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
-    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
-    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$2(SocketHelper.java:394)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl.lambda$connected$11(NetServerImpl.java:457)
-    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
-    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl.connected(NetServerImpl.java:453)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl.access$200(NetServerImpl.java:57)
-    [junit] 	at io.vertx.core.net.impl.NetServerImpl$1.initChannel(NetServerImpl.java:209)
-    [junit] 	at io.netty.channel.ChannelInitializer.initChannel(ChannelInitializer.java:113)
-    [junit] 	at io.netty.channel.ChannelInitializer.handlerAdded(ChannelInitializer.java:105)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.access$000(DefaultChannelPipeline.java:46)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline$PendingHandlerAddedTask.execute(DefaultChannelPipeline.java:1412)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAddedForAllHandlers(DefaultChannelPipeline.java:1131)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.invokeHandlerAddedIfNeeded(DefaultChannelPipeline.java:656)
-    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:510)
-    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:476)
-    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
-    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
-    [junit] 	at io.vertx.core.net.impl.VertxEventLoopGroup.register(VertxEventLoopGroup.java:53)
-    [junit] 	at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
-    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
-    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
-    [junit] 	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
-    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
-    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
-    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-    [junit] 	at java.lang.Thread.run(Thread.java:748)
-    [junit] 
-    [junit] Dec 14, 2018 2:48:16 AM io.vertx.core.impl.ContextImpl
+    [junit] Dec 15, 2018 2:50:26 AM io.vertx.core.impl.ContextImpl
     [junit] SEVERE: Unhandled exception
     [junit] java.lang.IllegalArgumentException: Invalid send data type: long
     [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
@@ -1840,6 +1955,91 @@ test.capecode2.xml:
     [junit] 	at ptolemy.actor.lib.NonStrictTest.wrapup(NonStrictTest.java:394)
     [junit] 	at ptolemy.actor.Director.wrapup(Director.java:1722)
     [junit] 	... 6 more
+    [junit] Dec 15, 2018 2:50:34 AM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalArgumentException: Invalid send data type: unsignedint
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$2169$27606AAAAAA$require.L:1#Socket(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:630)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$2167$25670A$require.L:1#_socketCreated(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:582)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$2(SocketHelper.java:394)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.lambda$connected$11(NetServerImpl.java:457)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.connected(NetServerImpl.java:453)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl.access$200(NetServerImpl.java:57)
+    [junit] 	at io.vertx.core.net.impl.NetServerImpl$1.initChannel(NetServerImpl.java:209)
+    [junit] 	at io.netty.channel.ChannelInitializer.initChannel(ChannelInitializer.java:113)
+    [junit] 	at io.netty.channel.ChannelInitializer.handlerAdded(ChannelInitializer.java:105)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.access$000(DefaultChannelPipeline.java:46)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$PendingHandlerAddedTask.execute(DefaultChannelPipeline.java:1412)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAddedForAllHandlers(DefaultChannelPipeline.java:1131)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.invokeHandlerAddedIfNeeded(DefaultChannelPipeline.java:656)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register0(AbstractChannel.java:510)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:476)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+    [junit] 	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+    [junit] 	at io.vertx.core.net.impl.VertxEventLoopGroup.register(VertxEventLoopGroup.java:53)
+    [junit] 	at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+    [junit] 	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.lang.Thread.run(Thread.java:748)
+    [junit] 
+    [junit] Dec 15, 2018 2:50:34 AM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalArgumentException: Invalid send data type: unsignedint
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper$SocketWrapper.<init>(SocketHelper.java:566)
+    [junit] 	at jdk.nashorn.internal.scripts.Script$Recompilation$2168$13304A$require.L:1#_opened(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:296)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:639)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+    [junit] 	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+    [junit] 	at jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:199)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.socket.SocketHelper.lambda$null$0(SocketHelper.java:219)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$connect$2(NetClientImpl.java:113)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$null$9(NetClientImpl.java:251)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$connected$10(NetClientImpl.java:247)
+    [junit] 	at io.vertx.core.net.impl.VertxHandler.setConnection(VertxHandler.java:46)
+    [junit] 	at io.vertx.core.net.impl.VertxNetHandler.handlerAdded(VertxNetHandler.java:39)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.callHandlerAdded0(DefaultChannelPipeline.java:606)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.addLast(DefaultChannelPipeline.java:235)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.addLast(DefaultChannelPipeline.java:201)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.connected(NetClientImpl.java:257)
+    [junit] 	at io.vertx.core.net.impl.NetClientImpl.lambda$doConnect$7(NetClientImpl.java:212)
+    [junit] 	at io.vertx.core.net.impl.ChannelProvider.lambda$connect$0(ChannelProvider.java:52)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:500)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:479)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+    [junit] 	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+    [junit] 	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:82)
+    [junit] 	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:306)
+    [junit] 	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:341)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:633)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.lang.Thread.run(Thread.java:748)
+    [junit] 
     [junit] java.lang.RuntimeException: Execution failed
     [junit] 	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
     [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Exceptions occurred during wrapup:
@@ -1916,8 +2116,8 @@ test.capecode2.xml:
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:48:37 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
-    [junit] ----------------- Fri Dec 14 02:48:37 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
+    [junit] ----------------- testing Sat Dec 15 02:50:48 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
+    [junit] ----------------- Sat Dec 15 02:50:48 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
     [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
@@ -1951,16 +2151,16 @@ test.capecode2.xml:
     [junit]  </testsuite>
     [junit]  </testsuites>
     [junit]  (Thread[TestNestedSuites,1,main])
-    [junit] 5649 ms. Memory: 424448K Free: 283341K (67%)
+    [junit] 6137 ms. Memory: 425984K Free: 296087K (70%)
     [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@28de4fc7
     [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@28de4fc7
     [junit] reloadAllAccessors: .TestNestedSuites
     [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:48:54 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:51:06 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:48:54 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
-    [junit] ----------------- Fri Dec 14 02:48:54 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
+    [junit] ----------------- testing Sat Dec 15 02:51:06 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
+    [junit] ----------------- Sat Dec 15 02:51:06 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
     [junit] MochaTest: Start of Common host: Basic (Thread[Testing,1,main])
@@ -2009,14 +2209,14 @@ test.capecode2.xml:
     [junit]  </testsuite>
     [junit]  </testsuites>
     [junit]  (Thread[Testing,1,main])
-    [junit] 16992 ms. Memory: 784384K Free: 462540K (59%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3f25392c
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3f25392c
+    [junit] 17561 ms. Memory: 808960K Free: 546840K (68%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4425d85d
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4425d85d
     [junit] reloadAllAccessors: .Testing
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:49:19 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:51:31 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 42.831 sec
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 44.24 sec
     [junit] Output:
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test
     [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test
@@ -2025,8 +2225,8 @@ test.capecode2.xml:
     [junit] AutoTests.java: Vertx closed.
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:48:37 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
-    [junit] ----------------- Fri Dec 14 02:48:37 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
+    [junit] ----------------- testing Sat Dec 15 02:50:48 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
+    [junit] ----------------- Sat Dec 15 02:50:48 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
     [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
@@ -2060,16 +2260,16 @@ test.capecode2.xml:
     [junit]  </testsuite>
     [junit]  </testsuites>
     [junit]  (Thread[TestNestedSuites,1,main])
-    [junit] 5649 ms. Memory: 424448K Free: 283341K (67%)
+    [junit] 6137 ms. Memory: 425984K Free: 296087K (70%)
     [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@28de4fc7
     [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@28de4fc7
     [junit] reloadAllAccessors: .TestNestedSuites
     [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:48:54 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:51:06 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/TestNestedSuites.xml
     [junit] 
     [junit] ===========================================================================================
-    [junit] ----------------- testing Fri Dec 14 02:48:54 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
-    [junit] ----------------- Fri Dec 14 02:48:54 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
+    [junit] ----------------- testing Sat Dec 15 02:51:06 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
+    [junit] ----------------- Sat Dec 15 02:51:06 UTC 2018 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
     [junit] Done sleeping
     [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
     [junit] MochaTest: Start of Common host: Basic (Thread[Testing,1,main])
@@ -2118,11 +2318,11 @@ test.capecode2.xml:
     [junit]  </testsuite>
     [junit]  </testsuites>
     [junit]  (Thread[Testing,1,main])
-    [junit] 16992 ms. Memory: 784384K Free: 462540K (59%)
-    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3f25392c
-    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3f25392c
+    [junit] 17561 ms. Memory: 808960K Free: 546840K (68%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4425d85d
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4425d85d
     [junit] reloadAllAccessors: .Testing
-    [junit] -------------- Reloaded accessors, but skipping rerun for now. Fri Dec 14 02:49:19 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Sat Dec 15 02:51:31 UTC 2018 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/testing/test/auto/Testing.xml
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
     [junit] 
@@ -2145,7 +2345,7 @@ test.capecode2.xml:
     [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/udpSocket/test/auto/UDPSocketString.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.499 sec
+    [junit] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.543 sec
     [junit] Output:
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/udpSocket/test
     [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/udpSocket/test
@@ -2175,7 +2375,7 @@ test.capecode2.xml:
     [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/xbee/test
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.441 sec
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.515 sec
     [junit] Output:
     [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/xbee/test
     [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/xbee/test
@@ -2188,4 +2388,4 @@ test.capecode2.xml:
     [junit] 
 
 BUILD SUCCESSFUL
-Total time: 5 minutes 27 seconds
+Total time: 5 minutes 30 seconds
