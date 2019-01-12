@@ -37,9 +37,12 @@
     <div class="container-overview">
     
         
-            <div class="description"><h3>.false</h3><p>Asserts that the target is <code>false</code>.</p>
-<pre class="prettyprint source"><code>expect(false).to.be.false;
-expect(0).to.not.be.false;</code></pre></div>
+            <div class="description"><h3>.change(function)</h3><p>Asserts that a function changes an object property</p>
+<pre class="prettyprint source"><code>var obj = { val: 10 };
+var fn = function() { obj.val += 3 };
+var noChangeFn = function() { return 'foo' + 'bar'; }
+expect(fn).to.change(obj, 'val');
+expect(noChangeFn).to.not.change(obj, 'val')</code></pre></div>
         
 
         
@@ -74,7 +77,7 @@ expect(0).to.not.be.false;</code></pre></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line575">line 575</a>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1908">line 1908</a>
     </li></ul></dd>
     
 
@@ -136,9 +139,13 @@ expect(0).to.not.be.false;</code></pre></div>
     <div class="container-overview">
     
         
-            <div class="description"><h3>.null</h3><p>Asserts that the target is <code>null</code>.</p>
-<pre class="prettyprint source"><code>expect(null).to.be.null;
-expect(undefined).to.not.be.null;</code></pre></div>
+            <div class="description"><h3>.below(value)</h3><p>Asserts that the target is less than <code>value</code>.</p>
+<pre class="prettyprint source"><code>expect(5).to.be.below(10);</code></pre><p>Can also be used in conjunction with <code>length</code> to
+assert a maximum length. The benefit being a
+more informative error message than if the length
+was supplied directly.</p>
+<pre class="prettyprint source"><code>expect('foo').to.have.length.below(4);
+expect([ 1, 2, 3 ]).to.have.length.below(4);</code></pre></div>
         
 
         
@@ -173,309 +180,7 @@ expect(undefined).to.not.be.null;</code></pre></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line597">line 597</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.undefined</h3><p>Asserts that the target is <code>undefined</code>.</p>
-<pre class="prettyprint source"><code>expect(undefined).to.be.undefined;
-expect(null).to.not.be.undefined;</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line618">line 618</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.NaN</h3><p>Asserts that the target is <code>NaN</code>.</p>
-<pre class="prettyprint source"><code>expect('foo').to.be.NaN;
-expect(4).not.to.be.NaN;</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line639">line 639</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.exist</h3><p>Asserts that the target is neither <code>null</code> nor <code>undefined</code>.</p>
-<pre class="prettyprint source"><code>var foo = 'hi'
-  , bar = null
-  , baz;
-
-expect(foo).to.exist;
-expect(bar).to.not.exist;
-expect(baz).to.not.exist;</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line659">line 659</a>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line920">line 920</a>
     </li></ul></dd>
     
 
@@ -1087,2631 +792,6 @@ expect([ 1, 2, 3 ]).to.have.length.of.at.least(3);</code></pre></div>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line872">line 872</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.below(value)</h3><p>Asserts that the target is less than <code>value</code>.</p>
-<pre class="prettyprint source"><code>expect(5).to.be.below(10);</code></pre><p>Can also be used in conjunction with <code>length</code> to
-assert a maximum length. The benefit being a
-more informative error message than if the length
-was supplied directly.</p>
-<pre class="prettyprint source"><code>expect('foo').to.have.length.below(4);
-expect([ 1, 2, 3 ]).to.have.length.below(4);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line920">line 920</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.most(value)</h3><p>Asserts that the target is less than or equal to <code>value</code>.</p>
-<pre class="prettyprint source"><code>expect(5).to.be.at.most(5);</code></pre><p>Can also be used in conjunction with <code>length</code> to
-assert a maximum length. The benefit being a
-more informative error message than if the length
-was supplied directly.</p>
-<pre class="prettyprint source"><code>expect('foo').to.have.length.of.at.most(4);
-expect([ 1, 2, 3 ]).to.have.length.of.at.most(3);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line970">line 970</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.within(start, finish)</h3><p>Asserts that the target is within a range.</p>
-<pre class="prettyprint source"><code>expect(7).to.be.within(5,10);</code></pre><p>Can also be used in conjunction with <code>length</code> to
-assert a length range. The benefit being a
-more informative error message than if the length
-was supplied directly.</p>
-<pre class="prettyprint source"><code>expect('foo').to.have.length.within(2,4);
-expect([ 1, 2, 3 ]).to.have.length.within(2,4);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1018">line 1018</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.instanceof(constructor)</h3><p>Asserts that the target is an instance of <code>constructor</code>.</p>
-<pre class="prettyprint source"><code>var Tea = function (name) { this.name = name; }
-  , Chai = new Tea('chai');
-
-expect(Chai).to.be.an.instanceof(Tea);
-expect([ 1, 2, 3 ]).to.be.instanceof(Array);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1062">line 1062</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.property(name, [value])</h3><p>Asserts that the target has a property <code>name</code>, optionally asserting that
-the value of that property is strictly equal to  <code>value</code>.
-If the <code>deep</code> flag is set, you can use dot- and bracket-notation for deep
-references into objects and arrays.</p>
-<pre class="prettyprint source"><code>// simple referencing
-var obj = { foo: 'bar' };
-expect(obj).to.have.property('foo');
-expect(obj).to.have.property('foo', 'bar');
-
-// deep referencing
-var deepObj = {
-    green: { tea: 'matcha' }
-  , teas: [ 'chai', 'matcha', { tea: 'konacha' } ]
-};
-
-expect(deepObj).to.have.deep.property('green.tea', 'matcha');
-expect(deepObj).to.have.deep.property('teas[1]', 'matcha');
-expect(deepObj).to.have.deep.property('teas[2].tea', 'konacha');</code></pre><p>You can also use an array as the starting point of a <code>deep.property</code>
-assertion, or traverse nested arrays.</p>
-<pre class="prettyprint source"><code>var arr = [
-    [ 'chai', 'matcha', 'konacha' ]
-  , [ { tea: 'chai' }
-    , { tea: 'matcha' }
-    , { tea: 'konacha' } ]
-];
-
-expect(arr).to.have.deep.property('[0][1]', 'matcha');
-expect(arr).to.have.deep.property('[1][2].tea', 'konacha');</code></pre><p>Furthermore, <code>property</code> changes the subject of the assertion
-to be the value of that property from the original object. This
-permits for further chainable assertions on that property.</p>
-<pre class="prettyprint source"><code>expect(obj).to.have.property('foo')
-  .that.is.a('string');
-expect(deepObj).to.have.property('green')
-  .that.is.an('object')
-  .that.deep.equals({ tea: 'matcha' });
-expect(deepObj).to.have.property('teas')
-  .that.is.an('array')
-  .with.deep.property('[2]')
-    .that.deep.equals({ tea: 'konacha' });</code></pre><p>Note that dots and bracket in <code>name</code> must be backslash-escaped when
-the <code>deep</code> flag is set, while they must NOT be escaped when the <code>deep</code>
-flag is not set.</p>
-<pre class="prettyprint source"><code>// simple referencing
-var css = { '.link[target]': 42 };
-expect(css).to.have.property('.link[target]', 42);
-
-// deep referencing
-var deepCss = { '.link': { '[target]': 42 }};
-expect(deepCss).to.have.deep.property('\\.link.\\[target\\]', 42);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1094">line 1094</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.ownProperty(name)</h3><p>Asserts that the target has an own property <code>name</code>.</p>
-<pre class="prettyprint source"><code>expect('test').to.have.ownProperty('length');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1207">line 1207</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.ownPropertyDescriptor(name[, descriptor[, message]])</h3><p>Asserts that the target has an own property descriptor <code>name</code>, that optionally matches <code>descriptor</code>.</p>
-<pre class="prettyprint source"><code>expect('test').to.have.ownPropertyDescriptor('length');
-expect('test').to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 4 });
-expect('test').not.to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 3 });
-expect('test').ownPropertyDescriptor('length').to.have.property('enumerable', false);
-expect('test').ownPropertyDescriptor('length').to.have.keys('value');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1235">line 1235</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.lengthOf(value[, message])</h3><p>Asserts that the target's <code>length</code> property has
-the expected value.</p>
-<pre class="prettyprint source"><code>expect([ 1, 2, 3]).to.have.lengthOf(3);
-expect('foobar').to.have.lengthOf(6);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1308">line 1308</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.length</h3><p>Sets the <code>doLength</code> flag later used as a chain precursor to a value
-comparison for the <code>length</code> property.</p>
-<pre class="prettyprint source"><code>expect('foo').to.have.length.above(2);
-expect([ 1, 2, 3 ]).to.have.length.above(2);
-expect('foo').to.have.length.below(4);
-expect([ 1, 2, 3 ]).to.have.length.below(4);
-expect('foo').to.have.length.within(2,4);
-expect([ 1, 2, 3 ]).to.have.length.within(2,4);</code></pre><p><em>Deprecation notice:</em> Using <code>length</code> as an assertion will be deprecated
-in version 2.4.0 and removed in 3.0.0. Code using the old style of
-asserting for <code>length</code> property value using <code>length(value)</code> should be
-switched to use <code>lengthOf(value)</code> instead.</p></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1285">line 1285</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.match(regexp)</h3><p>Asserts that the target matches a regular expression.</p>
-<pre class="prettyprint source"><code>expect('foobar').to.match(/^foo/);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1346">line 1346</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.string(string)</h3><p>Asserts that the string target contains another string.</p>
-<pre class="prettyprint source"><code>expect('foobar').to.have.string('bar');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1373">line 1373</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.keys(key1, [key2], [...])</h3><p>Asserts that the target contains any or all of the passed-in keys.
-Use in combination with <code>any</code>, <code>all</code>, <code>contains</code>, or <code>have</code> will affect
-what will pass.</p>
-<p>When used in conjunction with <code>any</code>, at least one key that is passed
-in must exist in the target object. This is regardless whether or not
-the <code>have</code> or <code>contain</code> qualifiers are used. Note, either <code>any</code> or <code>all</code>
-should be used in the assertion. If neither are used, the assertion is
-defaulted to <code>all</code>.</p>
-<p>When both <code>all</code> and <code>contain</code> are used, the target object must have at
-least all of the passed-in keys but may have more keys not listed.</p>
-<p>When both <code>all</code> and <code>have</code> are used, the target object must both contain
-all of the passed-in keys AND the number of keys in the target object must
-match the number of keys passed in (in other words, a target object must
-have all and only all of the passed-in keys).</p>
-<pre class="prettyprint source"><code>expect({ foo: 1, bar: 2 }).to.have.any.keys('foo', 'baz');
-expect({ foo: 1, bar: 2 }).to.have.any.keys('foo');
-expect({ foo: 1, bar: 2 }).to.contain.any.keys('bar', 'baz');
-expect({ foo: 1, bar: 2 }).to.contain.any.keys(['foo']);
-expect({ foo: 1, bar: 2 }).to.contain.any.keys({'foo': 6});
-expect({ foo: 1, bar: 2 }).to.have.all.keys(['bar', 'foo']);
-expect({ foo: 1, bar: 2 }).to.have.all.keys({'bar': 6, 'foo': 7});
-expect({ foo: 1, bar: 2, baz: 3 }).to.contain.all.keys(['bar', 'foo']);
-expect({ foo: 1, bar: 2, baz: 3 }).to.contain.all.keys({'bar': 6});</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1400">line 1400</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.throw(constructor)</h3><p>Asserts that the function target will throw a specific error, or specific type of error
-(as determined using <code>instanceof</code>), optionally with a RegExp or string inclusion test
-for the error's message.</p>
-<pre class="prettyprint source"><code>var err = new ReferenceError('This is a bad function.');
-var fn = function () { throw err; }
-expect(fn).to.throw(ReferenceError);
-expect(fn).to.throw(Error);
-expect(fn).to.throw(/bad function/);
-expect(fn).to.not.throw('good function');
-expect(fn).to.throw(ReferenceError, /bad function/);
-expect(fn).to.throw(err);</code></pre><p>Please note that when a throw expectation is negated, it will check each
-parameter independently, starting with error constructor type. The appropriate way
-to check for the existence of a type of error but for a message that does not match
-is to use <code>and</code>.</p>
-<pre class="prettyprint source"><code>expect(fn).to.throw(ReferenceError)
-   .and.not.throw(/good function/);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1523">line 1523</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.respondTo(method)</h3><p>Asserts that the object or class target will respond to a method.</p>
-<pre class="prettyprint source"><code>Klass.prototype.bar = function(){};
-expect(Klass).to.respondTo('bar');
-expect(obj).to.respondTo('bar');</code></pre><p>To check if a constructor will respond to a static function,
-set the <code>itself</code> flag.</p>
-<pre class="prettyprint source"><code>Klass.baz = function(){};
-expect(Klass).itself.to.respondTo('baz');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1680">line 1680</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.itself</h3><p>Sets the <code>itself</code> flag, later used by the <code>respondTo</code> assertion.</p>
-<pre class="prettyprint source"><code>function Foo() {}
-Foo.bar = function() {}
-Foo.prototype.baz = function() {}
-
-expect(Foo).itself.to.respondTo('bar');
-expect(Foo).itself.not.to.respondTo('baz');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1721">line 1721</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.satisfy(method)</h3><p>Asserts that the target passes a given truth test.</p>
-<pre class="prettyprint source"><code>expect(1).to.satisfy(function(num) { return num > 0; });</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1742">line 1742</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.closeTo(expected, delta)</h3><p>Asserts that the target is equal <code>expected</code>, to within a +/- <code>delta</code> range.</p>
-<pre class="prettyprint source"><code>expect(1.5).to.be.closeTo(1, 0.5);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1773">line 1773</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.members(set)</h3><p>Asserts that the target is a superset of <code>set</code>,
-or that the target and <code>set</code> have the same strictly-equal (===) members.
-Alternately, if the <code>deep</code> flag is set, set members are compared for deep
-equality.</p>
-<pre class="prettyprint source"><code>expect([1, 2, 3]).to.include.members([3, 2]);
-expect([1, 2, 3]).to.not.include.members([3, 2, 8]);
-
-expect([4, 2]).to.have.members([2, 4]);
-expect([5, 2]).to.not.have.members([5, 2, 1]);
-
-expect([{ id: 1 }]).to.deep.include.members([{ id: 1 }]);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1818">line 1818</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.oneOf(list)</h3><p>Assert that a value appears somewhere in the top level of array <code>list</code>.</p>
-<pre class="prettyprint source"><code>expect('a').to.be.oneOf(['a', 'b', 'c']);
-expect(9).to.not.be.oneOf(['z']);
-expect([3]).to.not.be.oneOf([1, 2, [3]]);
-
-var three = [3];
-// for object-types, contents are not compared
-expect(three).to.not.be.oneOf([1, 2, [3]]);
-// comparing references works
-expect(three).to.be.oneOf([1, 2, three]);</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1869">line 1869</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.change(function)</h3><p>Asserts that a function changes an object property</p>
-<pre class="prettyprint source"><code>var obj = { val: 10 };
-var fn = function() { obj.val += 3 };
-var noChangeFn = function() { return 'foo' + 'bar'; }
-expect(fn).to.change(obj, 'val');
-expect(noChangeFn).to.not.change(obj, 'val')</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1908">line 1908</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.increase(function)</h3><p>Asserts that a function increases an object property</p>
-<pre class="prettyprint source"><code>var obj = { val: 10 };
-var fn = function() { obj.val = 15 };
-expect(fn).to.increase(obj, 'val');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1948">line 1948</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.decrease(function)</h3><p>Asserts that a function decreases an object property</p>
-<pre class="prettyprint source"><code>var obj = { val: 10 };
-var fn = function() { obj.val = 5 };
-expect(fn).to.decrease(obj, 'val');</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1986">line 1986</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.extensible</h3><p>Asserts that the target is extensible (can have new properties added to
-it).</p>
-<pre class="prettyprint source"><code>var nonExtensibleObject = Object.preventExtensions({});
-var sealedObject = Object.seal({});
-var frozenObject = Object.freeze({});
-
-expect({}).to.be.extensible;
-expect(nonExtensibleObject).to.not.be.extensible;
-expect(sealedObject).to.not.be.extensible;
-expect(frozenObject).to.not.be.extensible;</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line2024">line 2024</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.sealed</h3><p>Asserts that the target is sealed (cannot have new properties added to it
-and its existing properties cannot be removed).</p>
-<pre class="prettyprint source"><code>var sealedObject = Object.seal({});
-var frozenObject = Object.freeze({});
-
-expect(sealedObject).to.be.sealed;
-expect(frozenObject).to.be.sealed;
-expect({}).to.not.be.sealed;</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line2068">line 2068</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>BDD</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h3>.frozen</h3><p>Asserts that the target is frozen (cannot have new properties added to it
-and its existing properties cannot be modified).</p>
-<pre class="prettyprint source"><code>var frozenObject = Object.freeze({});
-
-expect(frozenObject).to.be.frozen;
-expect({}).to.not.be.frozen;</code></pre></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line2110">line 2110</a>
     </li></ul></dd>
     
 
@@ -4649,6 +1729,2926 @@ expect(1).to.not.be.true;</code></pre></div>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line553">line 553</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.false</h3><p>Asserts that the target is <code>false</code>.</p>
+<pre class="prettyprint source"><code>expect(false).to.be.false;
+expect(0).to.not.be.false;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line575">line 575</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.null</h3><p>Asserts that the target is <code>null</code>.</p>
+<pre class="prettyprint source"><code>expect(null).to.be.null;
+expect(undefined).to.not.be.null;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line597">line 597</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.undefined</h3><p>Asserts that the target is <code>undefined</code>.</p>
+<pre class="prettyprint source"><code>expect(undefined).to.be.undefined;
+expect(null).to.not.be.undefined;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line618">line 618</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.NaN</h3><p>Asserts that the target is <code>NaN</code>.</p>
+<pre class="prettyprint source"><code>expect('foo').to.be.NaN;
+expect(4).not.to.be.NaN;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line639">line 639</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.frozen</h3><p>Asserts that the target is frozen (cannot have new properties added to it
+and its existing properties cannot be modified).</p>
+<pre class="prettyprint source"><code>var frozenObject = Object.freeze({});
+
+expect(frozenObject).to.be.frozen;
+expect({}).to.not.be.frozen;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line2110">line 2110</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.sealed</h3><p>Asserts that the target is sealed (cannot have new properties added to it
+and its existing properties cannot be removed).</p>
+<pre class="prettyprint source"><code>var sealedObject = Object.seal({});
+var frozenObject = Object.freeze({});
+
+expect(sealedObject).to.be.sealed;
+expect(frozenObject).to.be.sealed;
+expect({}).to.not.be.sealed;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line2068">line 2068</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.extensible</h3><p>Asserts that the target is extensible (can have new properties added to
+it).</p>
+<pre class="prettyprint source"><code>var nonExtensibleObject = Object.preventExtensions({});
+var sealedObject = Object.seal({});
+var frozenObject = Object.freeze({});
+
+expect({}).to.be.extensible;
+expect(nonExtensibleObject).to.not.be.extensible;
+expect(sealedObject).to.not.be.extensible;
+expect(frozenObject).to.not.be.extensible;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line2024">line 2024</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.decrease(function)</h3><p>Asserts that a function decreases an object property</p>
+<pre class="prettyprint source"><code>var obj = { val: 10 };
+var fn = function() { obj.val = 5 };
+expect(fn).to.decrease(obj, 'val');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1986">line 1986</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.increase(function)</h3><p>Asserts that a function increases an object property</p>
+<pre class="prettyprint source"><code>var obj = { val: 10 };
+var fn = function() { obj.val = 15 };
+expect(fn).to.increase(obj, 'val');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1948">line 1948</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.most(value)</h3><p>Asserts that the target is less than or equal to <code>value</code>.</p>
+<pre class="prettyprint source"><code>expect(5).to.be.at.most(5);</code></pre><p>Can also be used in conjunction with <code>length</code> to
+assert a maximum length. The benefit being a
+more informative error message than if the length
+was supplied directly.</p>
+<pre class="prettyprint source"><code>expect('foo').to.have.length.of.at.most(4);
+expect([ 1, 2, 3 ]).to.have.length.of.at.most(3);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line970">line 970</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.oneOf(list)</h3><p>Assert that a value appears somewhere in the top level of array <code>list</code>.</p>
+<pre class="prettyprint source"><code>expect('a').to.be.oneOf(['a', 'b', 'c']);
+expect(9).to.not.be.oneOf(['z']);
+expect([3]).to.not.be.oneOf([1, 2, [3]]);
+
+var three = [3];
+// for object-types, contents are not compared
+expect(three).to.not.be.oneOf([1, 2, [3]]);
+// comparing references works
+expect(three).to.be.oneOf([1, 2, three]);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1869">line 1869</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.members(set)</h3><p>Asserts that the target is a superset of <code>set</code>,
+or that the target and <code>set</code> have the same strictly-equal (===) members.
+Alternately, if the <code>deep</code> flag is set, set members are compared for deep
+equality.</p>
+<pre class="prettyprint source"><code>expect([1, 2, 3]).to.include.members([3, 2]);
+expect([1, 2, 3]).to.not.include.members([3, 2, 8]);
+
+expect([4, 2]).to.have.members([2, 4]);
+expect([5, 2]).to.not.have.members([5, 2, 1]);
+
+expect([{ id: 1 }]).to.deep.include.members([{ id: 1 }]);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1818">line 1818</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.closeTo(expected, delta)</h3><p>Asserts that the target is equal <code>expected</code>, to within a +/- <code>delta</code> range.</p>
+<pre class="prettyprint source"><code>expect(1.5).to.be.closeTo(1, 0.5);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1773">line 1773</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.satisfy(method)</h3><p>Asserts that the target passes a given truth test.</p>
+<pre class="prettyprint source"><code>expect(1).to.satisfy(function(num) { return num > 0; });</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1742">line 1742</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.itself</h3><p>Sets the <code>itself</code> flag, later used by the <code>respondTo</code> assertion.</p>
+<pre class="prettyprint source"><code>function Foo() {}
+Foo.bar = function() {}
+Foo.prototype.baz = function() {}
+
+expect(Foo).itself.to.respondTo('bar');
+expect(Foo).itself.not.to.respondTo('baz');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1721">line 1721</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.respondTo(method)</h3><p>Asserts that the object or class target will respond to a method.</p>
+<pre class="prettyprint source"><code>Klass.prototype.bar = function(){};
+expect(Klass).to.respondTo('bar');
+expect(obj).to.respondTo('bar');</code></pre><p>To check if a constructor will respond to a static function,
+set the <code>itself</code> flag.</p>
+<pre class="prettyprint source"><code>Klass.baz = function(){};
+expect(Klass).itself.to.respondTo('baz');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1680">line 1680</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.throw(constructor)</h3><p>Asserts that the function target will throw a specific error, or specific type of error
+(as determined using <code>instanceof</code>), optionally with a RegExp or string inclusion test
+for the error's message.</p>
+<pre class="prettyprint source"><code>var err = new ReferenceError('This is a bad function.');
+var fn = function () { throw err; }
+expect(fn).to.throw(ReferenceError);
+expect(fn).to.throw(Error);
+expect(fn).to.throw(/bad function/);
+expect(fn).to.not.throw('good function');
+expect(fn).to.throw(ReferenceError, /bad function/);
+expect(fn).to.throw(err);</code></pre><p>Please note that when a throw expectation is negated, it will check each
+parameter independently, starting with error constructor type. The appropriate way
+to check for the existence of a type of error but for a message that does not match
+is to use <code>and</code>.</p>
+<pre class="prettyprint source"><code>expect(fn).to.throw(ReferenceError)
+   .and.not.throw(/good function/);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1523">line 1523</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.keys(key1, [key2], [...])</h3><p>Asserts that the target contains any or all of the passed-in keys.
+Use in combination with <code>any</code>, <code>all</code>, <code>contains</code>, or <code>have</code> will affect
+what will pass.</p>
+<p>When used in conjunction with <code>any</code>, at least one key that is passed
+in must exist in the target object. This is regardless whether or not
+the <code>have</code> or <code>contain</code> qualifiers are used. Note, either <code>any</code> or <code>all</code>
+should be used in the assertion. If neither are used, the assertion is
+defaulted to <code>all</code>.</p>
+<p>When both <code>all</code> and <code>contain</code> are used, the target object must have at
+least all of the passed-in keys but may have more keys not listed.</p>
+<p>When both <code>all</code> and <code>have</code> are used, the target object must both contain
+all of the passed-in keys AND the number of keys in the target object must
+match the number of keys passed in (in other words, a target object must
+have all and only all of the passed-in keys).</p>
+<pre class="prettyprint source"><code>expect({ foo: 1, bar: 2 }).to.have.any.keys('foo', 'baz');
+expect({ foo: 1, bar: 2 }).to.have.any.keys('foo');
+expect({ foo: 1, bar: 2 }).to.contain.any.keys('bar', 'baz');
+expect({ foo: 1, bar: 2 }).to.contain.any.keys(['foo']);
+expect({ foo: 1, bar: 2 }).to.contain.any.keys({'foo': 6});
+expect({ foo: 1, bar: 2 }).to.have.all.keys(['bar', 'foo']);
+expect({ foo: 1, bar: 2 }).to.have.all.keys({'bar': 6, 'foo': 7});
+expect({ foo: 1, bar: 2, baz: 3 }).to.contain.all.keys(['bar', 'foo']);
+expect({ foo: 1, bar: 2, baz: 3 }).to.contain.all.keys({'bar': 6});</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1400">line 1400</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.string(string)</h3><p>Asserts that the string target contains another string.</p>
+<pre class="prettyprint source"><code>expect('foobar').to.have.string('bar');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1373">line 1373</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.match(regexp)</h3><p>Asserts that the target matches a regular expression.</p>
+<pre class="prettyprint source"><code>expect('foobar').to.match(/^foo/);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1346">line 1346</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.length</h3><p>Sets the <code>doLength</code> flag later used as a chain precursor to a value
+comparison for the <code>length</code> property.</p>
+<pre class="prettyprint source"><code>expect('foo').to.have.length.above(2);
+expect([ 1, 2, 3 ]).to.have.length.above(2);
+expect('foo').to.have.length.below(4);
+expect([ 1, 2, 3 ]).to.have.length.below(4);
+expect('foo').to.have.length.within(2,4);
+expect([ 1, 2, 3 ]).to.have.length.within(2,4);</code></pre><p><em>Deprecation notice:</em> Using <code>length</code> as an assertion will be deprecated
+in version 2.4.0 and removed in 3.0.0. Code using the old style of
+asserting for <code>length</code> property value using <code>length(value)</code> should be
+switched to use <code>lengthOf(value)</code> instead.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1285">line 1285</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.lengthOf(value[, message])</h3><p>Asserts that the target's <code>length</code> property has
+the expected value.</p>
+<pre class="prettyprint source"><code>expect([ 1, 2, 3]).to.have.lengthOf(3);
+expect('foobar').to.have.lengthOf(6);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1308">line 1308</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.ownPropertyDescriptor(name[, descriptor[, message]])</h3><p>Asserts that the target has an own property descriptor <code>name</code>, that optionally matches <code>descriptor</code>.</p>
+<pre class="prettyprint source"><code>expect('test').to.have.ownPropertyDescriptor('length');
+expect('test').to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 4 });
+expect('test').not.to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 3 });
+expect('test').ownPropertyDescriptor('length').to.have.property('enumerable', false);
+expect('test').ownPropertyDescriptor('length').to.have.keys('value');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1235">line 1235</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.ownProperty(name)</h3><p>Asserts that the target has an own property <code>name</code>.</p>
+<pre class="prettyprint source"><code>expect('test').to.have.ownProperty('length');</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1207">line 1207</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.property(name, [value])</h3><p>Asserts that the target has a property <code>name</code>, optionally asserting that
+the value of that property is strictly equal to  <code>value</code>.
+If the <code>deep</code> flag is set, you can use dot- and bracket-notation for deep
+references into objects and arrays.</p>
+<pre class="prettyprint source"><code>// simple referencing
+var obj = { foo: 'bar' };
+expect(obj).to.have.property('foo');
+expect(obj).to.have.property('foo', 'bar');
+
+// deep referencing
+var deepObj = {
+    green: { tea: 'matcha' }
+  , teas: [ 'chai', 'matcha', { tea: 'konacha' } ]
+};
+
+expect(deepObj).to.have.deep.property('green.tea', 'matcha');
+expect(deepObj).to.have.deep.property('teas[1]', 'matcha');
+expect(deepObj).to.have.deep.property('teas[2].tea', 'konacha');</code></pre><p>You can also use an array as the starting point of a <code>deep.property</code>
+assertion, or traverse nested arrays.</p>
+<pre class="prettyprint source"><code>var arr = [
+    [ 'chai', 'matcha', 'konacha' ]
+  , [ { tea: 'chai' }
+    , { tea: 'matcha' }
+    , { tea: 'konacha' } ]
+];
+
+expect(arr).to.have.deep.property('[0][1]', 'matcha');
+expect(arr).to.have.deep.property('[1][2].tea', 'konacha');</code></pre><p>Furthermore, <code>property</code> changes the subject of the assertion
+to be the value of that property from the original object. This
+permits for further chainable assertions on that property.</p>
+<pre class="prettyprint source"><code>expect(obj).to.have.property('foo')
+  .that.is.a('string');
+expect(deepObj).to.have.property('green')
+  .that.is.an('object')
+  .that.deep.equals({ tea: 'matcha' });
+expect(deepObj).to.have.property('teas')
+  .that.is.an('array')
+  .with.deep.property('[2]')
+    .that.deep.equals({ tea: 'konacha' });</code></pre><p>Note that dots and bracket in <code>name</code> must be backslash-escaped when
+the <code>deep</code> flag is set, while they must NOT be escaped when the <code>deep</code>
+flag is not set.</p>
+<pre class="prettyprint source"><code>// simple referencing
+var css = { '.link[target]': 42 };
+expect(css).to.have.property('.link[target]', 42);
+
+// deep referencing
+var deepCss = { '.link': { '[target]': 42 }};
+expect(deepCss).to.have.deep.property('\\.link.\\[target\\]', 42);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1094">line 1094</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.instanceof(constructor)</h3><p>Asserts that the target is an instance of <code>constructor</code>.</p>
+<pre class="prettyprint source"><code>var Tea = function (name) { this.name = name; }
+  , Chai = new Tea('chai');
+
+expect(Chai).to.be.an.instanceof(Tea);
+expect([ 1, 2, 3 ]).to.be.instanceof(Array);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1062">line 1062</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.within(start, finish)</h3><p>Asserts that the target is within a range.</p>
+<pre class="prettyprint source"><code>expect(7).to.be.within(5,10);</code></pre><p>Can also be used in conjunction with <code>length</code> to
+assert a length range. The benefit being a
+more informative error message than if the length
+was supplied directly.</p>
+<pre class="prettyprint source"><code>expect('foo').to.have.length.within(2,4);
+expect([ 1, 2, 3 ]).to.have.length.within(2,4);</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line1018">line 1018</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>BDD</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h3>.exist</h3><p>Asserts that the target is neither <code>null</code> nor <code>undefined</code>.</p>
+<pre class="prettyprint source"><code>var foo = 'hi'
+  , bar = null
+  , baz;
+
+expect(foo).to.exist;
+expect(bar).to.not.exist;
+expect(baz).to.not.exist;</code></pre></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html">ptolemy/actor/lib/jjs/modules/testing/chai/chai.js</a>, <a href="ptolemy_actor_lib_jjs_modules_testing_chai_chai.js.html#line659">line 659</a>
     </li></ul></dd>
     
 
