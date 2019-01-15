@@ -220,6 +220,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
  A time-regulating federate at logical time t with lookahead lah cannot send any
  event with a time-stamp t' < t+lah.
  </p><p>
+ FIXME: Update documentation:
  The parameters <i>requireSynchronization</i>, <i>synchronizationPointName</i>
  and <i>isCreatorSyncPt</i> are used to configure HLA synchronization point.
  This mechanism is usually used to synchronize the Federates, during their
@@ -369,18 +370,18 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#enableHlaReporter">enableHlaReporter</a></span></code>
-<div class="block">Boolean value, 'true' if the generation of HLA reports is enabled
-  'false' if not.</div>
+<div class="block">A boolean indicating whether a log file should be written to the
+  location defined by the hlaReportPath parameter.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#federateName">federateName</a></span></code>
 <div class="block">Name of the Ptolemy Federate.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#federationName">federationName</a></span></code>
 <div class="block">Name of the federation.</div>
 </td>
@@ -388,72 +389,81 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/FileParameter.html" title="class in ptolemy.data.expr">FileParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#fedFile">fedFile</a></span></code>
-<div class="block">Path and name of the Federation Object Model (FOM) file (which should have
-  extension .fed).</div>
+<div class="block">Path and name of the Federation Execution Data (FED) file (which should have
+  extension .fed) on the local machine.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#fedFileOnRTIG">fedFileOnRTIG</a></span></code>
+<div class="block">Name or path and name of the FED file on the machine that is running the
+  RTIG.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#hlaLookAHead">hlaLookAHead</a></span></code>
-<div class="block">Value of the lookahead of the HLA ptII federate.</div>
+<div class="block">Value of the lookahead of this federate.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/FileParameter.html" title="class in ptolemy.data.expr">FileParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#hlaReportPath">hlaReportPath</a></span></code>
-<div class="block">Path and name of the HLA folder to store reports.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#hlaTimeStep">hlaTimeStep</a></span></code>
-<div class="block">Value of the time step of the Federate.</div>
+<div class="block">Path and name of the folder to store log files that are generated
+  if the enableHlaReporter parameter is true.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#hlaTimeUnit">hlaTimeUnit</a></span></code>
-<div class="block">Double value for representing how much is a unit of time in the simulation.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#hlaTimeStep">hlaTimeStep</a></span></code>
+<div class="block">Value of the time step of this Federate.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#isCreator">isCreator</a></span></code>
-<div class="block">Boolean value, 'true' if the Federate is the creator of the
-  synchronization point 'false' if not.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#hlaTimeUnit">hlaTimeUnit</a></span></code>
+<div class="block">Double value representing how many HLA time units there are in one
+  second.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#isTimeConstrained">isTimeConstrained</a></span></code>
-<div class="block">Boolean value, 'true' if the Federate is declared time constrained
-  'false' if not.</div>
+<div class="block">A boolean indicating that time advance in this federate is regulated
+  by other federates in the federation.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#isTimeRegulator">isTimeRegulator</a></span></code>
-<div class="block">Boolean value, 'true' if the Federate is declared time regulator
-  'false' if not.</div>
+<div class="block">A boolean indicating that this federate regulates the time advance of
+  other federates in the federation.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#requireSynchronization">requireSynchronization</a></span></code>
-<div class="block">Boolean value, 'true' if the Federate is synchronised with other
-  Federates using a HLA synchronization point, 'false' if not.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#killRTIG">killRTIG</a></span></code>
+<div class="block">If true, kill the HLA runtime infrastructure gateway (RTIG)
+  in wrapup that was created in preinitialize.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#synchronizationPointName">synchronizationPointName</a></span></code>
-<div class="block">Name of the synchronization point (if required).</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#launchRTIG">launchRTIG</a></span></code>
+<div class="block">If true, launch an HLA runtime infrastructure gateway (RTIG) in preinitialize.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#synchronizeStartTo">synchronizeStartTo</a></span></code>
+<div class="block">The name of a synchronization point to which this federate should
+  synchronize its start.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/ChoiceParameter.html" title="class in ptolemy.data.expr">ChoiceParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#timeManagementService">timeManagementService</a></span></code>
-<div class="block">Choice of time advancement service (NER or exclusive TAR).</div>
+<div class="block">Choice of time advancement service.</div>
 </td>
 </tr>
 </table>
@@ -605,9 +615,10 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <ul class="blockList">
 <li class="blockList">
 <h4>federateName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> federateName</pre>
-<div class="block">Name of the Ptolemy Federate. This parameter must contain an
-  StringToken.</div>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> federateName</pre>
+<div class="block">Name of the Ptolemy Federate. This is a string that defaults
+  to "Federate". Note that it is required that every federate in
+  a federation has to have a unique name.</div>
 </li>
 </ul>
 <a name="federationName">
@@ -616,8 +627,9 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <ul class="blockList">
 <li class="blockList">
 <h4>federationName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> federationName</pre>
-<div class="block">Name of the federation. This parameter must contain an StringToken.</div>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> federationName</pre>
+<div class="block">Name of the federation. This is a string that default to
+  "HLAFederation".</div>
 </li>
 </ul>
 <a name="fedFile">
@@ -627,8 +639,36 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>fedFile</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/FileParameter.html" title="class in ptolemy.data.expr">FileParameter</a> fedFile</pre>
-<div class="block">Path and name of the Federation Object Model (FOM) file (which should have
-  extension .fed).</div>
+<div class="block">Path and name of the Federation Execution Data (FED) file (which should have
+  extension .fed) on the local machine. This is not necessarily the file that
+  is used by the RTIG because the RTIG may not be running on the local machine.
+  It is expected that if these two files are on different machines, they are
+  nevertheless the same.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>fedFileOnRTIG</code></dd>
+</dl>
+</li>
+</ul>
+<a name="fedFileOnRTIG">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fedFileOnRTIG</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> fedFileOnRTIG</pre>
+<div class="block">Name or path and name of the FED file on the machine that is running the
+  RTIG. Unfortunately, that file may not be the same as the FED file
+  on the local machine, pointed to by the fedFile parameter. By
+  default, this string is set to "$fedFile", indicating that the default
+  value should match the value of the fedFile parameter. But note that
+  if the RTIG is running on a remote machine, this may need to be different
+  from the value of fedFile. Note also that the remote FED file and the
+  local FED file need to be the same, but there is no way to enforce that.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>fedFile</code></dd>
+</dl>
 </li>
 </ul>
 <a name="hlaTimeUnit">
@@ -638,20 +678,14 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>hlaTimeUnit</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> hlaTimeUnit</pre>
-<div class="block">Double value for representing how much is a unit of time in the simulation.
-  Has an impact on TAR/NER/RAV/UAV.</div>
-</li>
-</ul>
-<a name="isCreator">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isCreator</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> isCreator</pre>
-<div class="block">Boolean value, 'true' if the Federate is the creator of the
-  synchronization point 'false' if not. This parameter must contain
-  an BooleanToken.</div>
+<div class="block">Double value representing how many HLA time units there are in one
+  second. An HLA federation runs in arbitrary time units, where each
+  unit can represent any amount of time. This parameter gives an interpretation
+  of those time units and has units of HLA time units per second.
+  For example, if the HLA time unit is 1 millisecond, then the value of
+  this parameter should be 1,000. Ptolemy uses units of seconds, so
+  the value of this parameter affects the mapping from HLA time units to
+  time stamps in Ptolemy.</div>
 </li>
 </ul>
 <a name="isTimeConstrained">
@@ -661,8 +695,8 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>isTimeConstrained</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> isTimeConstrained</pre>
-<div class="block">Boolean value, 'true' if the Federate is declared time constrained
-  'false' if not. This parameter must contain an BooleanToken.</div>
+<div class="block">A boolean indicating that time advance in this federate is regulated
+  by other federates in the federation. This defaults to true.</div>
 </li>
 </ul>
 <a name="isTimeRegulator">
@@ -672,8 +706,8 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>isTimeRegulator</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> isTimeRegulator</pre>
-<div class="block">Boolean value, 'true' if the Federate is declared time regulator
-  'false' if not. This parameter must contain an BooleanToken.</div>
+<div class="block">A boolean indicating that this federate regulates the time advance of
+  other federates in the federation. This defaults to true.</div>
 </li>
 </ul>
 <a name="hlaTimeStep">
@@ -683,8 +717,12 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>hlaTimeStep</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> hlaTimeStep</pre>
-<div class="block">Value of the time step of the Federate. This parameter must contain
-  an DoubleToken.</div>
+<div class="block">Value of the time step of this Federate. This is a double that
+  defaults to 1.0. This is used only if you select TAR in the
+  timeManagementService parameter. The units here are HLA logical
+  time, not seconds. See the hlaTimeUnit parameter.
+  Normally, hlaTimeStep is larger than or equal to hlaLookAHead
+  when using TAR.</div>
 </li>
 </ul>
 <a name="hlaLookAHead">
@@ -694,31 +732,35 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>hlaLookAHead</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> hlaLookAHead</pre>
-<div class="block">Value of the lookahead of the HLA ptII federate. This parameter
-  must contain an DoubleToken.</div>
+<div class="block">Value of the lookahead of this federate. This is a double that
+  default to 0.1. The units here are HLA logical logical
+  time, not seconds. See the hlaTimeUnit parameter.
+  Normally, hlaLookAhead is smaller than or equal to hlaTimeStep
+  when using TAR.</div>
 </li>
 </ul>
-<a name="requireSynchronization">
+<a name="killRTIG">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>requireSynchronization</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> requireSynchronization</pre>
-<div class="block">Boolean value, 'true' if the Federate is synchronised with other
-  Federates using a HLA synchronization point, 'false' if not. This
-  parameter must contain an BooleanToken.</div>
+<h4>killRTIG</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> killRTIG</pre>
+<div class="block">If true, kill the HLA runtime infrastructure gateway (RTIG)
+  in wrapup that was created in preinitialize. If no RTIG was created
+  in preinitialize, then ignore this.  This is a boolean that
+  defaults to the value of launchRTIG.</div>
 </li>
 </ul>
-<a name="synchronizationPointName">
+<a name="launchRTIG">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>synchronizationPointName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> synchronizationPointName</pre>
-<div class="block">Name of the synchronization point (if required). This parameter must
-  contain an StringToken.</div>
+<h4>launchRTIG</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> launchRTIG</pre>
+<div class="block">If true, launch an HLA runtime infrastructure gateway (RTIG) in preinitialize.
+  This is a boolean that defaults to false.</div>
 </li>
 </ul>
 <a name="timeManagementService">
@@ -728,7 +770,10 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>timeManagementService</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/ChoiceParameter.html" title="class in ptolemy.data.expr">ChoiceParameter</a> timeManagementService</pre>
-<div class="block">Choice of time advancement service (NER or exclusive TAR).</div>
+<div class="block">Choice of time advancement service. This is a string that is one of
+  "Next Event Request (NER)" or "Time Advancement Request (TAR)".
+  If TAR is selected, then you need to also provide a time step
+  in the hlaTimeStep parameter.</div>
 </li>
 </ul>
 <a name="enableHlaReporter">
@@ -738,8 +783,9 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>enableHlaReporter</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> enableHlaReporter</pre>
-<div class="block">Boolean value, 'true' if the generation of HLA reports is enabled
-  'false' if not. This parameter must contain an BooleanToken.</div>
+<div class="block">A boolean indicating whether a log file should be written to the
+  location defined by the hlaReportPath parameter. This defaults to
+  false.</div>
 </li>
 </ul>
 <a name="hlaReportPath">
@@ -749,8 +795,34 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <li class="blockList">
 <h4>hlaReportPath</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/FileParameter.html" title="class in ptolemy.data.expr">FileParameter</a> hlaReportPath</pre>
-<div class="block">Path and name of the HLA folder to store reports. This parameter
-  must contain a String.</div>
+<div class="block">Path and name of the folder to store log files that are generated
+  if the enableHlaReporter parameter is true. This is a string that
+  defaults to "$HOME/HLATestResults".</div>
+</li>
+</ul>
+<a name="synchronizeStartTo">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>synchronizeStartTo</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> synchronizeStartTo</pre>
+<div class="block">The name of a synchronization point to which this federate should
+  synchronize its start. If the name given here is the name of this
+  federate, then this federate registers itself as a
+  synchronization point to which other federates can synchronize
+  their start. The name of this federate will be the name of the
+  synchronization point, and this federate needs to be the last one
+  launched. If this parameter contains an empty string,
+  then this federate starts right away without waiting for any other
+  federate.  This parameter defaults to an empty string, indicating
+  that there is no synchronization.
+  
+  NOTE: All federates in a federation must use the same name here.
+  If two federates use two different names, then both will block
+  on initialization. If any one federate uses a blank here, then it
+  will block the execution of all other federates until it resigns
+  the federation after completing its execution.</div>
 </li>
 </ul>
 <a name="Z:Z_hlaAttributesToPublish">
@@ -957,8 +1029,8 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
                    throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Launch the HLA/CERTI RTIG process as subprocess. The RTIG has to be
   launched before the initialization of a Federate.
-  NOTE: if another HlaManager (e.g. Federate) has already launched a RTIG,
-  the subprocess creates here is no longer required, then we destroy it.</div>
+  NOTE: if another HlaManager (e.g. Federate) has already launched an RTIG,
+  the subprocess created here is no longer required, so we destroy it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/Initializable.html#preinitialize--">preinitialize</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/Initializable.html" title="interface in ptolemy.actor">Initializable</a></code></dd>
