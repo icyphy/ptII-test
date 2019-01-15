@@ -5,7 +5,7 @@
 </head>
 <body>
 <pre>/home/travis/build/icyphy/ptII/doc/test/docManager.tcl
-testDefs.tcl: setting time out to 9000 seconds at Mon Jan 14 03:12:51 UTC 2019
+testDefs.tcl: setting time out to 9000 seconds at Tue Jan 15 03:16:01 UTC 2019
  Force everything to get expanded ptolemy/configs/bcvtb/configuration.xml
     (Skipping certain optional packages)
     If you get a 'X connection to xxx:11.0 broken' message, then
@@ -69,18 +69,348 @@ Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/acces
 Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
 No physical cameras found, using WebcamDummyDriver.
 Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
-CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
-CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
-The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+Loading accessor failed: GraphComponent.js
+
+
+==== $PTII/doc/test/docManager.tcl: capecode/configuration.xml-6.1 Test docClassNameToURL
+==== Contents of test case:
+
+	# In general, if we call getName on a public field in an actor,
+	# then the name that is returned should be the same as the name
+	# of the field.
+	set entityList [$configuration allAtomicEntityList]
+	set results {}
+	for {set iterator [$entityList iterator]}  {[$iterator hasNext] == 1} {} {
+		set entity [$iterator next]
+		if [java::instanceof $entity ptolemy.actor.TypedAtomicActor] {
+		    set actor [java::cast ptolemy.actor.TypedAtomicActor $entity]
+		    set className [$actor getClassName]
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  true false false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find ptdoc for $className.  Try doing (cd $PTII/doc; rm codeDoc/ptolemy/actor/lib/Ramp.xml codeDoc/ptolemy/actor/lib/RampIdx.xml; make docs)"
+		    }
+
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find javadoc for $className"
+		    }
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find source for $className"
+		    }
+
+
+		    # For actor index, it is ok to return null
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false false false true]
+		}
+	    }
+    list $results	
+    
+==== Test generated error:
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.Accessors.dashboard
+Because:
+Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:307)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	... 78 more
+Caused by: java.io.FileNotFoundException: https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+	at java.net.URL.openStream(URL.java:1045)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirectsReturningBoth(FileUtilities.java:1012)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirects(FileUtilities.java:952)
+	at org.terraswarm.accessor.JSAccessor._accessorToMoML(JSAccessor.java:1100)
+	at org.terraswarm.accessor.JSAccessor.accessorToMoML(JSAccessor.java:293)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:191)
+	... 78 more
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: java.io.FileNotFoundException: https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+	at java.net.URL.openStream(URL.java:1045)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirectsReturningBoth(FileUtilities.java:1012)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirects(FileUtilities.java:952)
+	at org.terraswarm.accessor.JSAccessor._accessorToMoML(JSAccessor.java:1100)
+	at org.terraswarm.accessor.JSAccessor.accessorToMoML(JSAccessor.java:293)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:191)
+	... 78 more
+Caused by: java.io.FileNotFoundException: https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+	at java.net.URL.openStream(URL.java:1045)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirectsReturningBoth(FileUtilities.java:1012)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirects(FileUtilities.java:952)
+	at org.terraswarm.accessor.JSAccessor._accessorToMoML(JSAccessor.java:1100)
+	at org.terraswarm.accessor.JSAccessor.accessorToMoML(JSAccessor.java:293)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:191)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.Accessors.dashboard
+Because:
+Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+    while executing
+"$configuration allAtomicEntityList"
+    invoked from within
+"set entityList [$configuration allAtomicEntityList]"
+    ("uplevel" body line 5)
+    invoked from within
+"uplevel $contents_of_test"
  Force everything to get expanded ptolemy/configs/full/configuration.xml
     (Skipping certain optional packages)
     If you get a 'X connection to xxx:11.0 broken' message, then
@@ -92,18 +422,354 @@ Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/acces
 Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
 Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
 Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
-CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
-CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
-Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
-The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+Loading accessor failed: GraphComponent.js
+
+
+==== $PTII/doc/test/docManager.tcl: full/configuration.xml-6.1 Test docClassNameToURL
+==== Contents of test case:
+
+	# In general, if we call getName on a public field in an actor,
+	# then the name that is returned should be the same as the name
+	# of the field.
+	set entityList [$configuration allAtomicEntityList]
+	set results {}
+	for {set iterator [$entityList iterator]}  {[$iterator hasNext] == 1} {} {
+		set entity [$iterator next]
+		if [java::instanceof $entity ptolemy.actor.TypedAtomicActor] {
+		    set actor [java::cast ptolemy.actor.TypedAtomicActor $entity]
+		    set className [$actor getClassName]
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  true false false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find ptdoc for $className.  Try doing (cd $PTII/doc; rm codeDoc/ptolemy/actor/lib/Ramp.xml codeDoc/ptolemy/actor/lib/RampIdx.xml; make docs)"
+		    }
+
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find javadoc for $className"
+		    }
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find source for $className"
+		    }
+
+
+		    # For actor index, it is ok to return null
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false false false true]
+		}
+	    }
+    list $results	
+    
+==== Test generated error:
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.MoreLibraries.Accessors.dashboard
+Because:
+Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.MoreLibraries.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:307)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.MoreLibraries.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	... 80 more
+Caused by: java.io.FileNotFoundException: https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+	at java.net.URL.openStream(URL.java:1045)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirectsReturningBoth(FileUtilities.java:1012)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirects(FileUtilities.java:952)
+	at org.terraswarm.accessor.JSAccessor._accessorToMoML(JSAccessor.java:1100)
+	at org.terraswarm.accessor.JSAccessor.accessorToMoML(JSAccessor.java:293)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:191)
+	... 80 more
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.MoreLibraries.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: java.io.FileNotFoundException: https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+	at java.net.URL.openStream(URL.java:1045)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirectsReturningBoth(FileUtilities.java:1012)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirects(FileUtilities.java:952)
+	at org.terraswarm.accessor.JSAccessor._accessorToMoML(JSAccessor.java:1100)
+	at org.terraswarm.accessor.JSAccessor.accessorToMoML(JSAccessor.java:293)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:191)
+	... 80 more
+Caused by: java.io.FileNotFoundException: https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+	at java.net.URL.openStream(URL.java:1045)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirectsReturningBoth(FileUtilities.java:1012)
+	at ptolemy.util.FileUtilities.openStreamFollowingRedirects(FileUtilities.java:952)
+	at org.terraswarm.accessor.JSAccessor._accessorToMoML(JSAccessor.java:1100)
+	at org.terraswarm.accessor.JSAccessor.accessorToMoML(JSAccessor.java:293)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:191)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.MoreLibraries.Accessors.dashboard
+Because:
+Loading accessor failed: GraphComponent.js
+  in .configuration.actor library.MoreLibraries.Accessors.dashboard
+Because:
+https://ptolemy.berkeley.edu/accessors/dashboard/GraphComponent.js
+    while executing
+"$configuration allAtomicEntityList"
+    invoked from within
+"set entityList [$configuration allAtomicEntityList]"
+    ("uplevel" body line 5)
+    invoked from within
+"uplevel $contents_of_test"
  Force everything to get expanded ptolemy/configs/ptinyViewer/configuration.xml
     (Skipping certain optional packages)
     If you get a 'X connection to xxx:11.0 broken' message, then
@@ -147,8 +813,8 @@ Skipping jxta/configuration.xml, running vergil -jxta brings up a window
     Or, under Solaris, run java -verbose -classpath 
            ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
            tcl.lang.Shell xxx.tcl
-01/14/19 03:15:46
-Failed: 0  Total Tests: 15  ((Passed: 15, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/doc/test
+01/15/19 03:17:13
+Failed: 2  Total Tests: 15  ((Passed: 13, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/doc/test
 No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/doc/test
 No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/doc/test
 AutoTests.java: About to close Vertx.
