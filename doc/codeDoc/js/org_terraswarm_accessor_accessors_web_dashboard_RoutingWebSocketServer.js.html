@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: ptolemy/actor/lib/jjs/modules/motionDetector/motionDetector.js</title>
+    <title>JSDoc: Source: org/terraswarm/accessor/accessors/web/dashboard/RoutingWebSocketServer.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: ptolemy/actor/lib/jjs/modules/motionDetector/motionDetector.js</h1>
+    <h1 class="page-title">Source: org/terraswarm/accessor/accessors/web/dashboard/RoutingWebSocketServer.js</h1>
 
     
 
@@ -26,9 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// Below is the copyright agreement for the Ptolemy II system.
-//
-// Copyright (c) 2015-2016 The Regents of the University of California.
+            <pre class="prettyprint source linenums"><code>// Copyright (c) 2016-2017 The Regents of the University of California.
 // All rights reserved.
 //
 // Permission is hereby granted, without written agreement and without
@@ -50,88 +48,150 @@
 // CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 // ENHANCEMENTS, OR MODIFICATIONS.
 //
-//
-// Ptolemy II includes the work of others, to see those copyrights, follow
-// the copyright link on the splash page or see copyright.htm.
-/** Module to detect motion in a sequence of images.'
- *  This module provides an interface to a motion detection implementation
- *  taken from the webcam-capture package by Bartosz Firyn (SarXos), available from:
- *  [https://github.com/sarxos/webcam-capture](https://github.com/sarxos/webcam-capture).
- *  The webcam-capture package is licensed under the MIT License.
+
+/** This accessor is an extension of the WebSocketServer, which wraps
+ *  the functionality of the base class with the additional feature of
+ *  tracking the ID attribute of JSON messages received from the network
+ *  and automatically directing messages outgoing from the swarmlet with
+ *  corresponding message ID parameters for the matching socketID number.
  *
- *  The filter architecture follows the pattern defined by Jerry Huxtable
- *  in the JH Labs Java Image Processing library, available from:
- *    http://www.jhlabs.com/ip/filters
- *  and licensed under the Apache License, Version 2.0
- *  (http://www.apache.org/licenses/LICENSE-2.0).
+ *  This accessor assumes messages sent over the web socket have the form
+ *  of stringified JSON, where the JSON has a string attribute named "ID"
+ *  (a message ID). When a message is received from the network, this 
+ *  accessor updates an internal mapping of message IDs to socketIDs
+ *  to reflect the socket on which the message ID was received. When a
+ *  JSON message is received on this accessor's routingSend input,
+ *  it will be stringified and sent over the web socket to the socketID
+ *  matching the outgoing message's ID attribute. Note: Outgoing messages
+ *  without an ID attribute or without an established mapping to a socketID
+ *  will be treated as errors and discarded! 
  *
- *  @module motionDetector
- *  @author Edward A. Lee
+ *  To use this mode of communication, outgoing messages from the swarmlet
+ *  should be directed to the "routingSend" input instead of the base class's
+ *  "toSend" input.
+ *
+ *  Refer to the documentation of WebSocketServer for a more complete
+ *  description of the extended accessor.
+ *
+ *  @accessor dashboard/RoutingWebSocketServer
+ *  @parameter {string} hostInterface The IP address or domain name of the
+ *    network interface to listen to.
+ *  @parameter {int} port The port to listen to for connections.
+ *  @parameter {string} pfxKeyCertPassword If sslTls is set to true, then this option needs
+ *   to specify the password for the pfx key-cert file specified by pfxKeyCertPath.
+ *  @parameter {string} pfxKeyCertPath If sslTls is set to true, then this option needs to
+ *   specify the fully qualified filename for the file that stores the private key and certificate
+ *   that this server will use to identify itself. This path can be any of those understood by the
+ *   Ptolemy host, e.g. paths beginning with $CLASSPATH/.
+ *  @parameter {string} receiveType The MIME type for incoming messages,
+ *    which defaults to 'text/plain'.
+ *  @parameter {string} sendType The MIME type for outgoing messages,
+ *    which defaults to 'text/plain'.
+ *  @parameter {boolean} sslTls Whether SSL/TLS is enabled. This defaults to false.
+ *  @input routingSend JSON data with an 'ID' attribute to be stringified and sent
+ *    over the open socket upon which this accessor has prior received a network message with a matching
+ *    'ID' attribute.
+ *  @input toSend The data to be sent to open sockets.
+ *    If this is an object with 'socketID' field and a 'message' field,
+ *    then send the value of the message field to the socket identified
+ *    by the socketID field. If the input has any other form, then the
+ *    message is broadcast to all open socket connections.
+ *  @output {int} listening When the server is listening for connections, this output
+ *    will produce the port number that the server is listening on
+ *  @output connection An output produced when a connection opens or closes.
+ *    The output is an object with two fields, a 'socketID',
+ *    which is a unique ID for this client connection, and a 'status' field,
+ *    which is the string 'open' or 'closed'.
+ *  @output received A message received a client in the form of an object with two fields,
+ *    a 'socketID', which is a unique ID for this client connection, and a 'message' field,
+ *    which is the message received from the client.
+ *  @author Hokeun Kim, Edward Lee
  *  @version $$Id$$
  */
 
-// Stop extra messages from jslint.  Note that there should be no
-// space between the / and the * and global.
-/*globals exports, Java */
-/*jshint globalstrict: true */
-"use strict";
+// Stop extra messages from jslint and jshint.  Note that there should
+// be no space between the / and the * and global. See
+// https://chess.eecs.berkeley.edu/ptexternal/wiki/Main/JSHint */
+/*globals console, error, exports, require */
+/*jshint globalstrict: true*/
+'use strict';
+/*jslint plusplus: true */
 
-////////////////////////////////////////////////////////////
-//// Private variables.
+/** Sets up the accessor by defining inputs and outputs. */
+exports.setup = function () {
+    this.extend('net/WebSocketServer');
+    this.parameter('receiveType', {
+        value: 'text/plain'
+    });
+    this.parameter('sendType', {
+        value: 'text/plain'
+    });
+    //Port defaults to 8095
+    this.parameter('port',{
+        value: 8095
+    });
+    this.input('routingSend');
+};
 
-var Filter = Java.type('com.jhlabs.image.MotionDetectorFilter');
-var filter = new Filter();
-
-////////////////////////////////////////////////////////////
-//// Functions provided in this module.
-
-/** Invoke the motion detector on the specified image with the specified
- *  options and return the result.
- *  Any unrecognized options are ignored.
- *  Note that previously applied options for a given filter will still be
- *  used, even if they are not set in this call.
- *  If this is the first image provided, then
- *  no motion is detected. Otherwise, the image is compared against the one
- *  previously passed to this same function.
- *  @param image The image to filter.
- *  @param options An object whose fields specify filter options.
- *  @return The filtered image.
+/** Adds an input handler on routingSend that converts the input into a message delivered
+ * to the toSend input of the superclass.
  */
-exports.filter = function (image, options) {
-    image = image.asAWTImage();
-    if (options) {
-        for (var optionName in options) {
-            // Look for a setter function for the option.
-            var setter = 'set' + optionName;
-            if (typeof filter[setter] === 'function') {
-                // Invoke the setter function.
-                filter[setter](options[optionName]);
-            }
+exports.initialize = function () {
+    this.routingTable = {};
+    exports.ssuper.initialize.call(this);
+
+    //Find the matching socketID for the messageID in the routing table, construct a toSend input
+    //to WebSocketServer, and send it.
+    this.addInputHandler('routingSend', function(){
+        var routingIn = this.get('routingSend');
+        if(routingIn &amp;&amp; routingIn.id){
+            var wrappedMsg = {
+                "message": JSON.stringify(routingIn),
+                "socketID": this.routingTable[routingIn.id]
+            };
+            this.send('toSend', wrappedMsg);
+        } else {
+            error('Input to RoutingSend must be JSON with an id property');
+        }
+    });
+};
+
+//Override
+//Find the messageID corresponding to the closed socketID and delete it from the mapping 
+exports.notifyClose = function(socketID){
+    for(var messageID in this.routingTable){
+        if(this.routingTable.hasOwnProperty(messageID) &amp;&amp; this.routingTable[messageID] == socketID){
+            delete this.routingTable[messageID];
         }
     }
-    // The second (null) argument declines to give a destination image.
-    return filter.filter(image, null);
+    return;
 };
 
-/** Return a percentage of area covered by motion in the most recently provided
- *  image, where 0 means no motion and 100 means full image motion.
- *  @return The percentage of area covered by motion.
- */
-exports.area = function () {
-    return filter.getMotionArea();
-};
-
-/** Return an array of two numbers giving the center of gravity of
- *  the detected motion in pixel coordinates, or return null if no
- *  motion has been detected.
- *  @return The center of gravity of motion.
- */
-exports.cog = function () {
-    var cog = filter.getCOG();
-    if (cog) {
-        return [cog.x, cog.y];
+//Override
+//Establish a mapping between the received messageID and socketID.
+//TODO Perhaps this function should close sockets when the messageID
+//is reassigned to a new socket?
+exports.filterReceived = function (message, socketID) {
+    var messageID;
+    try{
+        var parsed = JSON.parse(message);
+        if(parsed &amp;&amp; parsed.id){
+            this.routingTable[parsed.id] = socketID;
+        } else {
+            console.log("WARNING: RoutingWebSocketServer expects messages to be stringified JSON with an ID attribute.");
+            console.log("The received message is stringified JSON but does not have an ID attribute.");
+            return message;
+        }
+    } catch (err) {
+        console.log("WARNING: RoutingWebSocketServer expects messages to be stringified JSON with an ID attribute.");
+        console.log("The received message is not stringified JSON.");
+        return message;
     }
-    return null;
+    return message;
+};
+
+exports.wrapup = function() {
+    exports.ssuper.wrapup.call(this);
 };
 </code></pre>
         </article>

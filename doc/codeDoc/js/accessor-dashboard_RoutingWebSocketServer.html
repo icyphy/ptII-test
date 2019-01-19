@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: ptolemy/actor/lib/jjs/modules/motionDetector/motionDetector.js</title>
+    <title>JSDoc: Accessor: dashboard/RoutingWebSocketServer</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,125 +17,666 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: ptolemy/actor/lib/jjs/modules/motionDetector/motionDetector.js</h1>
+    <h1 class="page-title">Accessor: dashboard/RoutingWebSocketServer</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// Below is the copyright agreement for the Ptolemy II system.
-//
-// Copyright (c) 2015-2016 The Regents of the University of California.
-// All rights reserved.
-//
-// Permission is hereby granted, without written agreement and without
-// license or royalty fees, to use, copy, modify, and distribute this
-// software and its documentation for any purpose, provided that the above
-// copyright notice and the following two paragraphs appear in all copies
-// of this software.
-//
-// IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
-// FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
-// ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
-// THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF
-// SUCH DAMAGE.
-//
-// THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
-// INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE
-// PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND THE UNIVERSITY OF
-// CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
-// ENHANCEMENTS, OR MODIFICATIONS.
-//
-//
-// Ptolemy II includes the work of others, to see those copyrights, follow
-// the copyright link on the splash page or see copyright.htm.
-/** Module to detect motion in a sequence of images.'
- *  This module provides an interface to a motion detection implementation
- *  taken from the webcam-capture package by Bartosz Firyn (SarXos), available from:
- *  [https://github.com/sarxos/webcam-capture](https://github.com/sarxos/webcam-capture).
- *  The webcam-capture package is licensed under the MIT License.
- *
- *  The filter architecture follows the pattern defined by Jerry Huxtable
- *  in the JH Labs Java Image Processing library, available from:
- *    http://www.jhlabs.com/ip/filters
- *  and licensed under the Apache License, Version 2.0
- *  (http://www.apache.org/licenses/LICENSE-2.0).
- *
- *  @module motionDetector
- *  @author Edward A. Lee
- *  @version $$Id$$
- */
+        <h2>dashboard/RoutingWebSocketServer</h2>
+        
+    
+</header>
 
-// Stop extra messages from jslint.  Note that there should be no
-// space between the / and the * and global.
-/*globals exports, Java */
-/*jshint globalstrict: true */
-"use strict";
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>This accessor is an extension of the WebSocketServer, which wraps
+ the functionality of the base class with the additional feature of
+ tracking the ID attribute of JSON messages received from the network
+ and automatically directing messages outgoing from the swarmlet with
+ corresponding message ID parameters for the matching socketID number.</p>
+<p> This accessor assumes messages sent over the web socket have the form
+ of stringified JSON, where the JSON has a string attribute named &quot;ID&quot;
+ (a message ID). When a message is received from the network, this 
+ accessor updates an internal mapping of message IDs to socketIDs
+ to reflect the socket on which the message ID was received. When a
+ JSON message is received on this accessor's routingSend input,
+ it will be stringified and sent over the web socket to the socketID
+ matching the outgoing message's ID attribute. Note: Outgoing messages
+ without an ID attribute or without an established mapping to a socketID
+ will be treated as errors and discarded! </p>
+<p> To use this mode of communication, outgoing messages from the swarmlet
+ should be directed to the &quot;routingSend&quot; input instead of the base class's
+ &quot;toSend&quot; input.</p>
+<p> Refer to the documentation of WebSocketServer for a more complete
+ description of the extended accessor.</p></div>
+        
 
-////////////////////////////////////////////////////////////
-//// Private variables.
+        
 
-var Filter = Java.type('com.jhlabs.image.MotionDetectorFilter');
-var filter = new Filter();
 
-////////////////////////////////////////////////////////////
-//// Functions provided in this module.
+<dl class="details">
 
-/** Invoke the motion detector on the specified image with the specified
- *  options and return the result.
- *  Any unrecognized options are ignored.
- *  Note that previously applied options for a given filter will still be
- *  used, even if they are not set in this call.
- *  If this is the first image provided, then
- *  no motion is detected. Otherwise, the image is compared against the one
- *  previously passed to this same function.
- *  @param image The image to filter.
- *  @param options An object whose fields specify filter options.
- *  @return The filtered image.
- */
-exports.filter = function (image, options) {
-    image = image.asAWTImage();
-    if (options) {
-        for (var optionName in options) {
-            // Look for a setter function for the option.
-            var setter = 'set' + optionName;
-            if (typeof filter[setter] === 'function') {
-                // Invoke the setter function.
-                filter[setter](options[optionName]);
-            }
-        }
-    }
-    // The second (null) argument declines to give a destination image.
-    return filter.filter(image, null);
-};
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>$$Id$$</li></ul></dd>
+    
 
-/** Return a percentage of area covered by motion in the most recently provided
- *  image, where 0 means no motion and 100 means full image motion.
- *  @return The percentage of area covered by motion.
- */
-exports.area = function () {
-    return filter.getMotionArea();
-};
+    
 
-/** Return an array of two numbers giving the center of gravity of
- *  the detected motion in pixel coordinates, or return null if no
- *  motion has been detected.
- *  @return The center of gravity of motion.
- */
-exports.cog = function () {
-    var cog = filter.getCOG();
-    if (cog) {
-        return [cog.x, cog.y];
-    }
-    return null;
-};
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Hokeun Kim, Edward Lee</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_dashboard_RoutingWebSocketServer.js.html">org/terraswarm/accessor/accessors/web/dashboard/RoutingWebSocketServer.js</a>, <a href="org_terraswarm_accessor_accessors_web_dashboard_RoutingWebSocketServer.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    <h5>Inputs:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>routingSend</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">JSON data with an 'ID' attribute to be stringified and sent
+   over the open socket upon which this accessor has prior received a network message with a matching
+   'ID' attribute.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>toSend</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data to be sent to open sockets.
+   If this is an object with 'socketID' field and a 'message' field,
+   then send the value of the message field to the socket identified
+   by the socketID field. If the input has any other form, then the
+   message is broadcast to all open socket connections.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+                                              
+
+
+    <h5>Outputs:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>listening</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">When the server is listening for connections, this output
+   will produce the port number that the server is listening on</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>connection</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An output produced when a connection opens or closes.
+   The output is an object with two fields, a 'socketID',
+   which is a unique ID for this client connection, and a 'status' field,
+   which is the string 'open' or 'closed'.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>received</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A message received a client in the form of an object with two fields,
+   a 'socketID', which is a unique ID for this client connection, and a 'message' field,
+   which is the message received from the client.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+                                              
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hostInterface</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The IP address or domain name of the
+   network interface to listen to.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The port to listen to for connections.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pfxKeyCertPassword</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">If sslTls is set to true, then this option needs
+  to specify the password for the pfx key-cert file specified by pfxKeyCertPath.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pfxKeyCertPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">If sslTls is set to true, then this option needs to
+  specify the fully qualified filename for the file that stores the private key and certificate
+  that this server will use to identify itself. This path can be any of those understood by the
+  Ptolemy host, e.g. paths beginning with $CLASSPATH/.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>receiveType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The MIME type for incoming messages,
+   which defaults to 'text/plain'.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sendType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The MIME type for outgoing messages,
+   which defaults to 'text/plain'.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sslTls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether SSL/TLS is enabled. This defaults to false.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".initialize"><span class="type-signature">(static) </span>initialize<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Adds an input handler on routingSend that converts the input into a message delivered
+to the toSend input of the superclass.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_dashboard_RoutingWebSocketServer.js.html">org/terraswarm/accessor/accessors/web/dashboard/RoutingWebSocketServer.js</a>, <a href="org_terraswarm_accessor_accessors_web_dashboard_RoutingWebSocketServer.js.html#line111">line 111</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".setup"><span class="type-signature">(static) </span>setup<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Sets up the accessor by defining inputs and outputs.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_dashboard_RoutingWebSocketServer.js.html">org/terraswarm/accessor/accessors/web/dashboard/RoutingWebSocketServer.js</a>, <a href="org_terraswarm_accessor_accessors_web_dashboard_RoutingWebSocketServer.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
