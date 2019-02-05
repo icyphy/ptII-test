@@ -5,7 +5,32 @@
 </head>
 <body>
 <pre>/home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/ActorIndex.tcl
-testDefs.tcl: setting time out to 9000 seconds at Mon Feb 04 03:35:10 UTC 2019
+testDefs.tcl: setting time out to 9000 seconds at Tue Feb 05 03:38:09 UTC 2019
+
+
+==== $PTII/ptolemy/moml/filter/test/ActorIndex.tcl: ActorIndex-1.1 Run the ActorIndex on some test files 
+==== Contents of test case:
+
+    # This test will fail if the network is not available because
+    # testModels.txt refers to 
+    # $CLASSPATH/ptolemy/moml/demo/Networked/Networked.xml
+    # which downloads an actor from http://ptolemy.eecs.berkeley.edu
+
+    # Explicitly set the ptolemy.ptII.batchMode property so that we don't hang here.
+    java::call System setProperty ptolemy.ptII.batchMode true
+
+    file delete -force codeDoc
+    file mkdir codeDoc
+
+    set args [java::new {String[]} 3 [list testNamedObjs.txt testModels.txt codeDoc]]
+    java::call ptolemy.moml.filter.ActorIndex main $args
+    list  [file exists codeDoc/ptolemy/actor/lib/gui/SequencePlotterIdx.htm]  [file exists codeDoc/ptolemy/actor/lib/MultiplyDivideIdx.htm]
+
+==== Result was:
+0 0
+---- Result should have been:
+1 1
+---- ActorIndex-1.1 FAILED
 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/AddEditorFactory.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/AddIcon.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/AddMissingParameter.tcl
@@ -55,13 +80,13 @@ compat directory does not exist.  This could happen If you do not have access to
     Or, under Solaris, run java -verbose -classpath 
            ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
            tcl.lang.Shell xxx.tcl
-14 ms. Memory: 146944K Free: 118665K (81%)
+30 ms. Memory: 145920K Free: 120802K (83%)
     If you get a 'X connection to xxx:11.0 broken' message, then
     see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
     Or, under Solaris, run java -verbose -classpath 
            ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
            tcl.lang.Shell xxx.tcl
-83 ms. Memory: 146944K Free: 111458K (76%)
+57 ms. Memory: 145920K Free: 114903K (79%)
 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/RemoveGraphicalClasses.tcl
     If you get a 'X connection to xxx:11.0 broken' message, then
     see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
@@ -78,51 +103,51 @@ compat directory does not exist.  This could happen If you do not have access to
     Or, under Solaris, run java -verbose -classpath 
            ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
            tcl.lang.Shell xxx.tcl
-3 ms. Memory: 146944K Free: 105455K (72%)
+4 ms. Memory: 145920K Free: 107817K (74%)
     If you get a 'X connection to xxx:11.0 broken' message, then
     see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
     Or, under Solaris, run java -verbose -classpath 
            ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
            tcl.lang.Shell xxx.tcl
-51 ms. Memory: 146944K Free: 98048K (67%)
+41 ms. Memory: 145920K Free: 101917K (70%)
 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/RemoveGraphicalClassesApplication.tcl
-02/04/19 03:35:14
-Failed: 0  Total Tests: 57  ((Passed: 56, Newly Passed: 0)  Known Failed: 1) /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test
+02/05/19 03:41:44
+Failed: 1  Total Tests: 57  ((Passed: 55, Newly Passed: 0)  Known Failed: 1) /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test
 No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test
 No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test
 AutoTests.java: About to close Vertx.
 AutoTests.java: Vertx closed.
 
 ===========================================================================================
------------------ testing Mon Feb 04 03:35:14 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/TimeGap.xml
+----------------- testing Tue Feb 05 03:41:44 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/TimeGap.xml
 ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/TimeGap.xml
-30 ms. Memory: 124416K Free: 103162K (83%)
------------------ Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@24c1a4f4
------------------ Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@24c1a4f4
+21 ms. Memory: 146944K Free: 125969K (86%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2cc0c7fa
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2cc0c7fa
 reloadAllAccessors: .TimeGap
 
 ===========================================================================================
------------------ testing Mon Feb 04 03:35:14 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/VariableDelay.xml
+----------------- testing Tue Feb 05 03:41:44 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/VariableDelay.xml
 ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/VariableDelay.xml
-6 ms. Memory: 124416K Free: 101491K (82%)
------------------ Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@15423cd5
------------------ Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@15423cd5
+2 ms. Memory: 146944K Free: 124299K (85%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5c613460
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5c613460
 reloadAllAccessors: .
 
 ===========================================================================================
------------------ testing Mon Feb 04 03:35:14 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/expression.xml
+----------------- testing Tue Feb 05 03:41:44 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/expression.xml
 ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/expression.xml
-9 ms. Memory: 124416K Free: 99395K (80%)
------------------ Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@42464f47
------------------ Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@42464f47
+3 ms. Memory: 146944K Free: 122203K (83%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2694c419
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2694c419
 reloadAllAccessors: .model
 
 ===========================================================================================
------------------ testing Mon Feb 04 03:35:14 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/modulation2.xml
+----------------- testing Tue Feb 05 03:41:44 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/modulation2.xml
 ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/moml/filter/test/auto/modulation2.xml
-80 ms. Memory: 124416K Free: 84256K (68%)
------------------ Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6195afc6
------------------ Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6195afc6
+58 ms. Memory: 146944K Free: 107192K (73%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4c4440d1
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4c4440d1
 reloadAllAccessors: .modulation2
 AutoTests.java: About to close Vertx.
 AutoTests.java: Vertx closed.
