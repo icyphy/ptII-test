@@ -666,6 +666,201 @@ to send data to the server. If the socket is not opened yet,
 then data will be discarded or queued to be sent later,
 depending on the value of the discardMessagesBeforeOpen option
 (which defaults to false).</p>
+<p>FIXME: No options (including discardMessagesBeforeOpen) 
+have been implemented for this Cordova module!!!</p>
+<p>The event 'close' will be emitted when the socket is closed, and 'error' if an
+an error occurs (with an error message as an argument).</p>
+<p>A simple example that sends a message, and closes the socket on receiving a reply.</p>
+<p>  var socket = require('socket');
+  var client = new socket.SocketClient();
+  client.on('open', function() {</p>
+<pre class="prettyprint source"><code>  client.send('hello world');</code></pre><p>  });
+  client.on('data', function onData(data) {</p>
+<pre class="prettyprint source"><code>  print('Received from socket: ' + data);
+  client.close();</code></pre><p>  });
+  socket.open();</p>
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The remote port to connect to.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>host</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The remote host to connect to.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".SocketClient"><span class="type-signature">(static) </span>SocketClient<span class="signature">(port, host, options)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Construct an instance of a socket client that can send or receive messages
+ to a server at the specified host and port.
+ The returned object subclasses EventEmitter and emits the following events:</p>
+<ul>
+<li>open: Emitted with no arguments when the socket has been successfully opened.</li>
+<li>data: Emitted with the data as an argument when data arrives on the socket.</li>
+<li>close: Emitted with no arguments when the socket is closed.</li>
+<li><p>error: Emitted with an error message when an error occurs.</p>
+<p>You can invoke the this.send() function of this SocketClient object
+to send data to the server. If the socket is not opened yet,
+then data will be discarded or queued to be sent later,
+depending on the value of the discardMessagesBeforeOpen option
+(which defaults to false).</p>
 <p>The event 'close' will be emitted when the socket is closed, and 'error' if an
 an error occurs (with an error message as an argument).</p>
 <p>A simple example that sends a message, and closes the socket on receiving a reply.</p>
@@ -881,201 +1076,6 @@ and 'host' equal to the port and host options passed to the constructor.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html">ptolemy/actor/lib/jjs/modules/socket/socket.js</a>, <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html#line252">line 252</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".SocketClient"><span class="type-signature">(static) </span>SocketClient<span class="signature">(port, host, options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Construct an instance of a socket client that can send or receive messages
- to a server at the specified host and port.
- The returned object subclasses EventEmitter and emits the following events:</p>
-<ul>
-<li>open: Emitted with no arguments when the socket has been successfully opened.</li>
-<li>data: Emitted with the data as an argument when data arrives on the socket.</li>
-<li>close: Emitted with no arguments when the socket is closed.</li>
-<li><p>error: Emitted with an error message when an error occurs.</p>
-<p>You can invoke the this.send() function of this SocketClient object
-to send data to the server. If the socket is not opened yet,
-then data will be discarded or queued to be sent later,
-depending on the value of the discardMessagesBeforeOpen option
-(which defaults to false).</p>
-<p>FIXME: No options (including discardMessagesBeforeOpen) 
-have been implemented for this Cordova module!!!</p>
-<p>The event 'close' will be emitted when the socket is closed, and 'error' if an
-an error occurs (with an error message as an argument).</p>
-<p>A simple example that sends a message, and closes the socket on receiving a reply.</p>
-<p>  var socket = require('socket');
-  var client = new socket.SocketClient();
-  client.on('open', function() {</p>
-<pre class="prettyprint source"><code>  client.send('hello world');</code></pre><p>  });
-  client.on('data', function onData(data) {</p>
-<pre class="prettyprint source"><code>  print('Received from socket: ' + data);
-  client.close();</code></pre><p>  });
-  socket.open();</p>
-</li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>port</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The remote port to connect to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>host</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The remote host to connect to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The options.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -2332,6 +2332,201 @@ to send data to the server. If the socket is not opened yet,
 then data will be discarded or queued to be sent later,
 depending on the value of the discardMessagesBeforeOpen option
 (which defaults to false).</p>
+<p>FIXME: No options (including discardMessagesBeforeOpen) 
+have been implemented for this Cordova module!!!</p>
+<p>The event 'close' will be emitted when the socket is closed, and 'error' if an
+an error occurs (with an error message as an argument).</p>
+<p>A simple example that sends a message, and closes the socket on receiving a reply.</p>
+<p>  var socket = require('socket');
+  var client = new socket.SocketClient();
+  client.on('open', function() {</p>
+<pre class="prettyprint source"><code>  client.send('hello world');</code></pre><p>  });
+  client.on('data', function onData(data) {</p>
+<pre class="prettyprint source"><code>  print('Received from socket: ' + data);
+  client.close();</code></pre><p>  });
+  socket.open();</p>
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The remote port to connect to.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>host</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The remote host to connect to.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".SocketClient"><span class="type-signature">(static) </span>SocketClient<span class="signature">(port, host, options)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Construct an instance of a socket client that can send or receive messages
+ to a server at the specified host and port.
+ The returned object subclasses EventEmitter and emits the following events:</p>
+<ul>
+<li>open: Emitted with no arguments when the socket has been successfully opened.</li>
+<li>data: Emitted with the data as an argument when data arrives on the socket.</li>
+<li>close: Emitted with no arguments when the socket is closed.</li>
+<li><p>error: Emitted with an error message when an error occurs.</p>
+<p>You can invoke the this.send() function of this SocketClient object
+to send data to the server. If the socket is not opened yet,
+then data will be discarded or queued to be sent later,
+depending on the value of the discardMessagesBeforeOpen option
+(which defaults to false).</p>
 <p>The event 'close' will be emitted when the socket is closed, and 'error' if an
 an error occurs (with an error message as an argument).</p>
 <p>A simple example that sends a message, and closes the socket on receiving a reply.</p>
@@ -2547,201 +2742,6 @@ and 'host' equal to the port and host options passed to the constructor.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html">ptolemy/actor/lib/jjs/modules/socket/socket.js</a>, <a href="ptolemy_actor_lib_jjs_modules_socket_socket.js.html#line252">line 252</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".SocketClient"><span class="type-signature">(static) </span>SocketClient<span class="signature">(port, host, options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Construct an instance of a socket client that can send or receive messages
- to a server at the specified host and port.
- The returned object subclasses EventEmitter and emits the following events:</p>
-<ul>
-<li>open: Emitted with no arguments when the socket has been successfully opened.</li>
-<li>data: Emitted with the data as an argument when data arrives on the socket.</li>
-<li>close: Emitted with no arguments when the socket is closed.</li>
-<li><p>error: Emitted with an error message when an error occurs.</p>
-<p>You can invoke the this.send() function of this SocketClient object
-to send data to the server. If the socket is not opened yet,
-then data will be discarded or queued to be sent later,
-depending on the value of the discardMessagesBeforeOpen option
-(which defaults to false).</p>
-<p>FIXME: No options (including discardMessagesBeforeOpen) 
-have been implemented for this Cordova module!!!</p>
-<p>The event 'close' will be emitted when the socket is closed, and 'error' if an
-an error occurs (with an error message as an argument).</p>
-<p>A simple example that sends a message, and closes the socket on receiving a reply.</p>
-<p>  var socket = require('socket');
-  var client = new socket.SocketClient();
-  client.on('open', function() {</p>
-<pre class="prettyprint source"><code>  client.send('hello world');</code></pre><p>  });
-  client.on('data', function onData(data) {</p>
-<pre class="prettyprint source"><code>  print('Received from socket: ' + data);
-  client.close();</code></pre><p>  });
-  socket.open();</p>
-</li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>port</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The remote port to connect to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>host</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The remote host to connect to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The options.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/modules/socket/socket.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_modules_socket_socket.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
