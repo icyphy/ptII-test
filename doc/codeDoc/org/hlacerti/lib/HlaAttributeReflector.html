@@ -152,14 +152,16 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
  This actor assumes that there is exactly one HlaManager in the model
  that contains this actor.
  <p>
- The attribute that this actor reflects is specified using three parameters.
- The <i>className</i> parameter is used to discover an instance of the
- specified class whose name matches the <i>instanceName</i> parameter.
- When such an instance is discovered, this actor begins reflecting any
- updates to the attribute, specified by <i>attributeName</i>, of that
- instance of that class.  The <i>className</i> and <i>attributeName</i>
- are required to match a class and attribute specified in the FED file
- that is specified in the HlaManager.
+ The attribute that this actor reflects is specified using three parameters:
+ <i>attributeName</i>, <i>className</i>, and <i>instanceName</i>.
+ These three parameters specify the attribute to which this actor listens
+ for updates.  Those updates could be produced, for example, by an
+ <a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib"><code>HlaPublisher</code></a> whose three parameters match those of this actor.
+ The <i>className</i> and <i>attributeName</i> are required to match
+ a class and attribute specified in the FED file
+ that is specified in the HlaManager. The <i>instanceName</i> is an arbitrary
+ name chosen by the designer for the instance of the class. It is required
+ to be unique across the federation.
  <p>
  FIXME: Explain the data types.
  
@@ -294,7 +296,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#typeSelector">typeSelector</a></span></code>
-<div class="block">The type of the output port specified through the user interface.</div>
+<div class="block">The type of the attribute that this actor is listening to.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -613,7 +615,9 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <li class="blockList">
 <h4>typeSelector</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> typeSelector</pre>
-<div class="block">The type of the output port specified through the user interface.</div>
+<div class="block">The type of the attribute that this actor is listening to.
+  This will be used to set the type of the output port.
+  This is a string that defaults to</div>
 </li>
 </ul>
 <a name="useCertiMessageBuffer">
