@@ -129,12 +129,9 @@ and value are sent.</li>
 <h2> Mutable Accessors</h2><p> Mutable accessors are a particular type of composite accessors. They have the ability
  to dynamically change their behavior by substituting a contained accessor X by another
  accessor X'. The Mutable accessor can be used as a placeholder where a designer can
- plug in a discovered accessor. In this version, reification mechanism is quit open,
- assuming that the correctness is checked by third party (such as a Broker accessor...).
- Nevertheless, reification condition, in the sense of interface refinement, as pointed 
- out in 'Introduction to Embedded Systems' textbook (by Lee &amp; Seshia) can be called as
- a commomHost function, that is isReifyableBy(). </p>
-<p> When calling 'reify' function on a particular accessor X, the Mutable Accessor
+ plug in a discovered accessor. In this version, the reification mechanism is quite open;
+ very little checking is done for correctness. </p>
+<p> When calling the 'reify' function on a particular accessor X, the Mutable Accessor
  will connect to X, making it equivalent to X itself. This is enabled by the composition
  mechanism. And this is done on runtime. If there is a previous reified accessor, it is
  unreified.</p>
@@ -230,7 +227,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line37">line 37</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -318,7 +315,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line37">line 37</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -417,7 +414,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line3250">line 3250</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line3245">line 3245</a>
     </li></ul></dd>
     
 
@@ -489,7 +486,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line3245">line 3245</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line3250">line 3250</a>
     </li></ul></dd>
     
 
@@ -884,7 +881,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2634">line 2634</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2631">line 2631</a>
     </li></ul></dd>
     
 
@@ -1017,306 +1014,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2631">line 2631</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~Accessor"><span class="type-signature">(inner) </span>Accessor<span class="signature">(accessorName, code, getAccessorCode, bindings, extendedBy, implementedBy)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Create (using new) an accessor instance whose interface and functionality is given by
- the specified code. This will evaluate the specified code, and if it exports a
- setup() function, invoke that function. The created object includes at least the
- following properties:</p>
-<ul>
-<li><strong>accessorName</strong>: The name of the instance provided to the constructor.</li>
-<li><strong>exports</strong>: An object that includes any properties that have have been
-explicitly added to the exports property in the specified code.</li>
-<li><strong>inputList</strong>: An array of input names (see below).</li>
-<li><strong>inputs</strong>: An object with one property per input (see below).</li>
-<li><strong>outputList</strong>: An array of output names (see below).</li>
-<li><strong>outputs</strong>: An object with one property per output (see below).</li>
-<li><strong>parameterList</strong>: An array of parameter names (see below).</li>
-<li><strong>parameters</strong>: An object with one property per parameter (see below).</li>
-<li><strong>inputHandlers</strong>: An object indexed by input name with
-an array of input handlers, each of which is a function.</li>
-<li><strong>anyInputHandlers</strong>: An array of input handlers to be invoked
-when any input arrives (the name argument of addInputHandler is null).</li>
-<li><p><strong>inputHandlersIndex</strong>: An object indexed by handler id (returned
-by this.addInputHandler()) that contains objects of the form
-{'name': nameOfInput, 'index': arrayIndexOfHandler}.
-This is used by this.removeInputHandler(). If the handler is one
-for any input, then nameOfInput is null and arrayIndexOfHandler
-specifies the position of the handler in the anyInputHandlers array.</p>
-<p>Inputs, outputs, and parameters have a defined order. The <code>inputList</code> 
-property is an array giving the name of each input in the order in which it 
-is defined in the setup() function. For each entry in that array, there is 
-a property by that name in the <code>inputs</code> object, indexed by the name. 
-The value of that property is the options object given to the <code>input()</code> 
-function, possibly with additional properties such as 'destination', which 
-is used for composite accessors. Similarly, parameters and outputs are 
-represented in the data structure by an array of names and an object with the 
-options values.</p>
-<p>The returned instance may also include the following properties:</p>
-</li>
-<li><p><strong>accessorClass</strong>: The class name of the accessor, if not anonymous.</p>
-</li>
-<li><strong>containedAccessors</strong>: A list of contained accessors, if this is a composite
-accessor or a mutable Accessor.</li>
-<li><strong>container</strong>: A reference to the containing accessor, if this instance is
-instantiated by a composite accessor.</li>
-<li><strong>extendedBy</strong>: A reference to the accessor that this is extended by, if there is
-one.</li>
-<li><strong>extending</strong>: A reference to the accessor that this extends, if it extends one.</li>
-<li><strong>implementedInterfaces</strong>: An array of interfaces that this accessor implements.</li>
-<li><strong>root</strong>: The root of the extend/implement tree. This is the accessor instance
-being invoked in a swarmlet, and each of the instances it extends or implements
-will reference it in their root property.</li>
-<li><p><strong>ssuper</strong>: If this accessor extends another, this is a reference to the instance
-of the accessor it extends.</p>
-<p>If the returned instance is a mutable accessor, then it will include these additional
-properties:</p>
-</li>
-<li><strong>isMutable</strong>: set to true if the accessor is a mutable one.</li>
-<li><strong>state</strong>: indicates the current state of the mutable accessor. It can be 'reified' or
-'unreified'.</li>
-<li><strong>inputsMap</strong>: An object that maps the mutable accessor inputs to the reifying accessor
-inputs.</li>
-<li><strong>outputsMap</strong>: An object that maps the mutable accessor outputs to the reifying accessor
-outputs.</li>
-<li><p><strong>reifyingAccessor</strong>: reference to the reifying accessor among all possible contained 
-accessors.
-Notes: (i) When a mutable accessor is reified, the attribute containedAccessors will contain
-the selected accessor for reification (ii) A mutable accessor cannot extend another accessor.</p>
-<p>The bindings parameter provides function bindings for functions that are used by
-accessors.  Any that are not provided will be provided with defaults.
-Any that are provided will override the defaults.</p>
-</li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>accessorName</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A name to give to the accessor.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>code</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The accessor source code.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>getAccessorCode</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A function that will retrieve the source code of a specified
-  accessor (used to implement the this.extend() and this.implement() functions), or null if
-  the host does not support accessors that extend other accessors.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>bindings</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The functhis.emittion bindings to be used by the accessor.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>extendedBy</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An optional argument specifying what accessor is extending
-  this new instance. Pass null or no argument if this accessor is not being extended.
-  If this argument is present, then the getAccessorCode and bindings arguments are
-  ignored (the instance inherits those properties from the extender).</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>implementedBy</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An optional argument specifying what accessor is implementing
-  this new instance. Pass null or no argument if this accessor is not being
-  implemented.
-  If this argument is present, then the getAccessorCode and bindings arguments are
-  ignored (the instance inherits those properties from the implementer).</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line333">line 333</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2634">line 2634</a>
     </li></ul></dd>
     
 
@@ -1616,6 +1314,305 @@ Any that are provided will override the defaults.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line330">line 330</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~Accessor"><span class="type-signature">(inner) </span>Accessor<span class="signature">(accessorName, code, getAccessorCode, bindings, extendedBy, implementedBy)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Create (using new) an accessor instance whose interface and functionality is given by
+ the specified code. This will evaluate the specified code, and if it exports a
+ setup() function, invoke that function. The created object includes at least the
+ following properties:</p>
+<ul>
+<li><strong>accessorName</strong>: The name of the instance provided to the constructor.</li>
+<li><strong>exports</strong>: An object that includes any properties that have have been
+explicitly added to the exports property in the specified code.</li>
+<li><strong>inputList</strong>: An array of input names (see below).</li>
+<li><strong>inputs</strong>: An object with one property per input (see below).</li>
+<li><strong>outputList</strong>: An array of output names (see below).</li>
+<li><strong>outputs</strong>: An object with one property per output (see below).</li>
+<li><strong>parameterList</strong>: An array of parameter names (see below).</li>
+<li><strong>parameters</strong>: An object with one property per parameter (see below).</li>
+<li><strong>inputHandlers</strong>: An object indexed by input name with
+an array of input handlers, each of which is a function.</li>
+<li><strong>anyInputHandlers</strong>: An array of input handlers to be invoked
+when any input arrives (the name argument of addInputHandler is null).</li>
+<li><p><strong>inputHandlersIndex</strong>: An object indexed by handler id (returned
+by this.addInputHandler()) that contains objects of the form
+{'name': nameOfInput, 'index': arrayIndexOfHandler}.
+This is used by this.removeInputHandler(). If the handler is one
+for any input, then nameOfInput is null and arrayIndexOfHandler
+specifies the position of the handler in the anyInputHandlers array.</p>
+<p>Inputs, outputs, and parameters have a defined order. The <code>inputList</code> 
+property is an array giving the name of each input in the order in which it 
+is defined in the setup() function. For each entry in that array, there is 
+a property by that name in the <code>inputs</code> object, indexed by the name. 
+The value of that property is the options object given to the <code>input()</code> 
+function, possibly with additional properties such as 'destination', which 
+is used for composite accessors. Similarly, parameters and outputs are 
+represented in the data structure by an array of names and an object with the 
+options values.</p>
+<p>The returned instance may also include the following properties:</p>
+</li>
+<li><p><strong>accessorClass</strong>: The class name of the accessor, if not anonymous.</p>
+</li>
+<li><strong>containedAccessors</strong>: A list of contained accessors, if this is a composite
+accessor or a mutable Accessor.</li>
+<li><strong>container</strong>: A reference to the containing accessor, if this instance is
+instantiated by a composite accessor.</li>
+<li><strong>extendedBy</strong>: A reference to the accessor that this is extended by, if there is
+one.</li>
+<li><strong>extending</strong>: A reference to the accessor that this extends, if it extends one.</li>
+<li><strong>implementedInterfaces</strong>: An array of interfaces that this accessor implements.</li>
+<li><strong>root</strong>: The root of the extend/implement tree. This is the accessor instance
+being invoked in a swarmlet, and each of the instances it extends or implements
+will reference it in their root property.</li>
+<li><p><strong>ssuper</strong>: If this accessor extends another, this is a reference to the instance
+of the accessor it extends.</p>
+<p>If the returned instance is a mutable accessor, then it will include these additional
+properties:</p>
+</li>
+<li><strong>isMutable</strong>: set to true if the accessor is a mutable one.</li>
+<li><strong>state</strong>: indicates the current state of the mutable accessor. It can be 'reified' or
+'unreified'.</li>
+<li><strong>inputsMap</strong>: An object that maps the mutable accessor inputs to the reifying accessor
+inputs.</li>
+<li><strong>outputsMap</strong>: An object that maps the mutable accessor outputs to the reifying accessor
+outputs.</li>
+<li><p><strong>reifyingAccessor</strong>: reference to the reifying accessor among all possible contained 
+accessors.
+Notes: (i) When a mutable accessor is reified, the attribute containedAccessors will contain
+the selected accessor for reification (ii) A mutable accessor cannot extend another accessor.</p>
+<p>The bindings parameter provides function bindings for functions that are used by
+accessors.  Any that are not provided will be provided with defaults.
+Any that are provided will override the defaults.</p>
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>accessorName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A name to give to the accessor.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The accessor source code.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>getAccessorCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A function that will retrieve the source code of a specified
+  accessor (used to implement the this.extend() and this.implement() functions), or null if
+  the host does not support accessors that extend other accessors.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bindings</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The functhis.emittion bindings to be used by the accessor.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>extendedBy</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional argument specifying what accessor is extending
+  this new instance. Pass null or no argument if this accessor is not being extended.
+  If this argument is present, then the getAccessorCode and bindings arguments are
+  ignored (the instance inherits those properties from the extender).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>implementedBy</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional argument specifying what accessor is implementing
+  this new instance. Pass null or no argument if this accessor is not being
+  implemented.
+  If this argument is present, then the getAccessorCode and bindings arguments are
+  ignored (the instance inherits those properties from the implementer).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line333">line 333</a>
     </li></ul></dd>
     
 
@@ -2521,7 +2518,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2752">line 2752</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2749">line 2749</a>
     </li></ul></dd>
     
 
@@ -2619,7 +2616,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2749">line 2749</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2752">line 2752</a>
     </li></ul></dd>
     
 
@@ -3317,177 +3314,6 @@ Any that are provided will override the defaults.</p>
 
 
 <div class="description">
-    <p>Evaluates whether a mutable is reifiable by the accessor given as parameters.
- It is reifiable if: 
- <strong> the set of accessor inputs are included in the set of mutable accessor'
-    inputs.
- </strong> and the set of outputs of mutable accessor are included in the set of
-    outputs of accessor.
- For port inclusion to hold, the following conditions are checked:
- <strong> Same port name
- </strong> If the ports contain an attribute called 'type', then they need to be
-    checked for equality.
- FIXME: augment type checking with subtyping.
- FIXME: augment the function to accept interface names, urls, ontologies...</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mutable</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An instantiated Accessor that is mutable.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accessor</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An instantiated Accessor object.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2830">line 2830</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>false if the mutable is not reifiable by the accessor, otherwise true.</p>
-</div>
-
-
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~isReifiableBy"><span class="type-signature">(inner) </span>isReifiableBy<span class="signature">(mutable, accessor)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
     <p>Evaluates if mutable is reifiable by the accessor given as parameters.
  Reification conditions are based on interface refinement theory. The conditions are: 
  <strong> the set of accessor inputs are included in the set of 'mutable accessor'
@@ -3652,17 +3478,25 @@ Any that are provided will override the defaults.</p>
 
     
 
-    <h4 class="name" id="~mergeObjects"><span class="type-signature">(inner) </span>mergeObjects<span class="signature">(first, second)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~isReifiableBy"><span class="type-signature">(inner) </span>isReifiableBy<span class="signature">(mutable, accessor)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Merge the specified objects. If the two have common properties, the merged object
- will have the properties of the second argument. If the first argument is null,
- then the returned object will equal the second argument, unless it too is null,
- in which case the returned object will be an empty object.</p>
+    <p>Evaluates whether a mutable is reifiable by the accessor given as parameters.
+ It is reifiable if: 
+ <strong> the set of accessor inputs are included in the set of mutable accessor'
+    inputs.
+ </strong> and the set of outputs of mutable accessor are included in the set of
+    outputs of accessor.
+ For port inclusion to hold, the following conditions are checked:
+ <strong> Same port name
+ </strong> If the ports contain an attribute called 'type', then they need to be
+    checked for equality.
+ FIXME: augment type checking with subtyping.
+ FIXME: augment the function to accept interface names, urls, ontologies...</p>
 </div>
 
 
@@ -3698,7 +3532,7 @@ Any that are provided will override the defaults.</p>
 
         <tr>
             
-                <td class="name"><code>first</code></td>
+                <td class="name"><code>mutable</code></td>
             
 
             <td class="type">
@@ -3709,14 +3543,14 @@ Any that are provided will override the defaults.</p>
 
             
 
-            <td class="description last"><p>The first argument, giving default properties.</p></td>
+            <td class="description last"><p>An instantiated Accessor that is mutable.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>second</code></td>
+                <td class="name"><code>accessor</code></td>
             
 
             <td class="type">
@@ -3727,7 +3561,7 @@ Any that are provided will override the defaults.</p>
 
             
 
-            <td class="description last"><p>The second argument.</p></td>
+            <td class="description last"><p>An instantiated Accessor object.</p></td>
         </tr>
 
     
@@ -3768,7 +3602,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2894">line 2894</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2830">line 2830</a>
     </li></ul></dd>
     
 
@@ -3797,6 +3631,16 @@ Any that are provided will override the defaults.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>false if the mutable is not reifiable by the accessor, otherwise true.</p>
+</div>
+
+
+
+    
 
 
 
@@ -3958,15 +3802,17 @@ Any that are provided will override the defaults.</p>
 
     
 
-    <h4 class="name" id="~nullHandlerFunction"><span class="type-signature">(inner) </span>nullHandlerFunction<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~mergeObjects"><span class="type-signature">(inner) </span>mergeObjects<span class="signature">(first, second)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Default empty function to use if the function argument to
- addInputHandler is null.</p>
+    <p>Merge the specified objects. If the two have common properties, the merged object
+ will have the properties of the second argument. If the first argument is null,
+ then the returned object will equal the second argument, unless it too is null,
+ in which case the returned object will be an empty object.</p>
 </div>
 
 
@@ -3975,6 +3821,68 @@ Any that are provided will override the defaults.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>first</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The first argument, giving default properties.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>second</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The second argument.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -4010,7 +3918,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2922">line 2922</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2894">line 2894</a>
     </li></ul></dd>
     
 
@@ -4100,6 +4008,95 @@ Any that are provided will override the defaults.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2917">line 2917</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~nullHandlerFunction"><span class="type-signature">(inner) </span>nullHandlerFunction<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Default empty function to use if the function argument to
+ addInputHandler is null.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2922">line 2922</a>
     </li></ul></dd>
     
 
@@ -5424,9 +5421,12 @@ and value are sent.</li>
 <h2> Mutable Accessors</h2><p> Mutable accessors are a particular type of composite accessors. They have the ability
  to dynamically change their behavior by substituting a contained accessor X by another
  accessor X'. The Mutable accessor can be used as a placeholder where a designer can
- plug in a discovered accessor. In this version, the reification mechanism is quite open;
- very little checking is done for correctness. </p>
-<p> When calling the 'reify' function on a particular accessor X, the Mutable Accessor
+ plug in a discovered accessor. In this version, reification mechanism is quit open,
+ assuming that the correctness is checked by third party (such as a Broker accessor...).
+ Nevertheless, reification condition, in the sense of interface refinement, as pointed 
+ out in 'Introduction to Embedded Systems' textbook (by Lee &amp; Seshia) can be called as
+ a commomHost function, that is isReifyableBy(). </p>
+<p> When calling 'reify' function on a particular accessor X, the Mutable Accessor
  will connect to X, making it equivalent to X itself. This is enabled by the composition
  mechanism. And this is done on runtime. If there is a previous reified accessor, it is
  unreified.</p>
@@ -5522,7 +5522,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line37">line 37</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -5610,7 +5610,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line37">line 37</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -5709,7 +5709,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line3250">line 3250</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line3245">line 3245</a>
     </li></ul></dd>
     
 
@@ -5781,7 +5781,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line3245">line 3245</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line3250">line 3250</a>
     </li></ul></dd>
     
 
@@ -6176,7 +6176,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2634">line 2634</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2631">line 2631</a>
     </li></ul></dd>
     
 
@@ -6309,306 +6309,7 @@ and value are sent.</li>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2631">line 2631</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~Accessor"><span class="type-signature">(inner) </span>Accessor<span class="signature">(accessorName, code, getAccessorCode, bindings, extendedBy, implementedBy)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Create (using new) an accessor instance whose interface and functionality is given by
- the specified code. This will evaluate the specified code, and if it exports a
- setup() function, invoke that function. The created object includes at least the
- following properties:</p>
-<ul>
-<li><strong>accessorName</strong>: The name of the instance provided to the constructor.</li>
-<li><strong>exports</strong>: An object that includes any properties that have have been
-explicitly added to the exports property in the specified code.</li>
-<li><strong>inputList</strong>: An array of input names (see below).</li>
-<li><strong>inputs</strong>: An object with one property per input (see below).</li>
-<li><strong>outputList</strong>: An array of output names (see below).</li>
-<li><strong>outputs</strong>: An object with one property per output (see below).</li>
-<li><strong>parameterList</strong>: An array of parameter names (see below).</li>
-<li><strong>parameters</strong>: An object with one property per parameter (see below).</li>
-<li><strong>inputHandlers</strong>: An object indexed by input name with
-an array of input handlers, each of which is a function.</li>
-<li><strong>anyInputHandlers</strong>: An array of input handlers to be invoked
-when any input arrives (the name argument of addInputHandler is null).</li>
-<li><p><strong>inputHandlersIndex</strong>: An object indexed by handler id (returned
-by this.addInputHandler()) that contains objects of the form
-{'name': nameOfInput, 'index': arrayIndexOfHandler}.
-This is used by this.removeInputHandler(). If the handler is one
-for any input, then nameOfInput is null and arrayIndexOfHandler
-specifies the position of the handler in the anyInputHandlers array.</p>
-<p>Inputs, outputs, and parameters have a defined order. The <code>inputList</code> 
-property is an array giving the name of each input in the order in which it 
-is defined in the setup() function. For each entry in that array, there is 
-a property by that name in the <code>inputs</code> object, indexed by the name. 
-The value of that property is the options object given to the <code>input()</code> 
-function, possibly with additional properties such as 'destination', which 
-is used for composite accessors. Similarly, parameters and outputs are 
-represented in the data structure by an array of names and an object with the 
-options values.</p>
-<p>The returned instance may also include the following properties:</p>
-</li>
-<li><p><strong>accessorClass</strong>: The class name of the accessor, if not anonymous.</p>
-</li>
-<li><strong>containedAccessors</strong>: A list of contained accessors, if this is a composite
-accessor or a mutable Accessor.</li>
-<li><strong>container</strong>: A reference to the containing accessor, if this instance is
-instantiated by a composite accessor.</li>
-<li><strong>extendedBy</strong>: A reference to the accessor that this is extended by, if there is
-one.</li>
-<li><strong>extending</strong>: A reference to the accessor that this extends, if it extends one.</li>
-<li><strong>implementedInterfaces</strong>: An array of interfaces that this accessor implements.</li>
-<li><strong>root</strong>: The root of the extend/implement tree. This is the accessor instance
-being invoked in a swarmlet, and each of the instances it extends or implements
-will reference it in their root property.</li>
-<li><p><strong>ssuper</strong>: If this accessor extends another, this is a reference to the instance
-of the accessor it extends.</p>
-<p>If the returned instance is a mutable accessor, then it will include these additional
-properties:</p>
-</li>
-<li><strong>isMutable</strong>: set to true if the accessor is a mutable one.</li>
-<li><strong>state</strong>: indicates the current state of the mutable accessor. It can be 'reified' or
-'unreified'.</li>
-<li><strong>inputsMap</strong>: An object that maps the mutable accessor inputs to the reifying accessor
-inputs.</li>
-<li><strong>outputsMap</strong>: An object that maps the mutable accessor outputs to the reifying accessor
-outputs.</li>
-<li><p><strong>reifyingAccessor</strong>: reference to the reifying accessor among all possible contained 
-accessors.
-Notes: (i) When a mutable accessor is reified, the attribute containedAccessors will contain
-the selected accessor for reification (ii) A mutable accessor cannot extend another accessor.</p>
-<p>The bindings parameter provides function bindings for functions that are used by
-accessors.  Any that are not provided will be provided with defaults.
-Any that are provided will override the defaults.</p>
-</li>
-</ul>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>accessorName</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A name to give to the accessor.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>code</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The accessor source code.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>getAccessorCode</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A function that will retrieve the source code of a specified
-  accessor (used to implement the this.extend() and this.implement() functions), or null if
-  the host does not support accessors that extend other accessors.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>bindings</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The functhis.emittion bindings to be used by the accessor.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>extendedBy</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An optional argument specifying what accessor is extending
-  this new instance. Pass null or no argument if this accessor is not being extended.
-  If this argument is present, then the getAccessorCode and bindings arguments are
-  ignored (the instance inherits those properties from the extender).</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>implementedBy</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An optional argument specifying what accessor is implementing
-  this new instance. Pass null or no argument if this accessor is not being
-  implemented.
-  If this argument is present, then the getAccessorCode and bindings arguments are
-  ignored (the instance inherits those properties from the implementer).</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line333">line 333</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2634">line 2634</a>
     </li></ul></dd>
     
 
@@ -6908,6 +6609,305 @@ Any that are provided will override the defaults.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line330">line 330</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~Accessor"><span class="type-signature">(inner) </span>Accessor<span class="signature">(accessorName, code, getAccessorCode, bindings, extendedBy, implementedBy)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Create (using new) an accessor instance whose interface and functionality is given by
+ the specified code. This will evaluate the specified code, and if it exports a
+ setup() function, invoke that function. The created object includes at least the
+ following properties:</p>
+<ul>
+<li><strong>accessorName</strong>: The name of the instance provided to the constructor.</li>
+<li><strong>exports</strong>: An object that includes any properties that have have been
+explicitly added to the exports property in the specified code.</li>
+<li><strong>inputList</strong>: An array of input names (see below).</li>
+<li><strong>inputs</strong>: An object with one property per input (see below).</li>
+<li><strong>outputList</strong>: An array of output names (see below).</li>
+<li><strong>outputs</strong>: An object with one property per output (see below).</li>
+<li><strong>parameterList</strong>: An array of parameter names (see below).</li>
+<li><strong>parameters</strong>: An object with one property per parameter (see below).</li>
+<li><strong>inputHandlers</strong>: An object indexed by input name with
+an array of input handlers, each of which is a function.</li>
+<li><strong>anyInputHandlers</strong>: An array of input handlers to be invoked
+when any input arrives (the name argument of addInputHandler is null).</li>
+<li><p><strong>inputHandlersIndex</strong>: An object indexed by handler id (returned
+by this.addInputHandler()) that contains objects of the form
+{'name': nameOfInput, 'index': arrayIndexOfHandler}.
+This is used by this.removeInputHandler(). If the handler is one
+for any input, then nameOfInput is null and arrayIndexOfHandler
+specifies the position of the handler in the anyInputHandlers array.</p>
+<p>Inputs, outputs, and parameters have a defined order. The <code>inputList</code> 
+property is an array giving the name of each input in the order in which it 
+is defined in the setup() function. For each entry in that array, there is 
+a property by that name in the <code>inputs</code> object, indexed by the name. 
+The value of that property is the options object given to the <code>input()</code> 
+function, possibly with additional properties such as 'destination', which 
+is used for composite accessors. Similarly, parameters and outputs are 
+represented in the data structure by an array of names and an object with the 
+options values.</p>
+<p>The returned instance may also include the following properties:</p>
+</li>
+<li><p><strong>accessorClass</strong>: The class name of the accessor, if not anonymous.</p>
+</li>
+<li><strong>containedAccessors</strong>: A list of contained accessors, if this is a composite
+accessor or a mutable Accessor.</li>
+<li><strong>container</strong>: A reference to the containing accessor, if this instance is
+instantiated by a composite accessor.</li>
+<li><strong>extendedBy</strong>: A reference to the accessor that this is extended by, if there is
+one.</li>
+<li><strong>extending</strong>: A reference to the accessor that this extends, if it extends one.</li>
+<li><strong>implementedInterfaces</strong>: An array of interfaces that this accessor implements.</li>
+<li><strong>root</strong>: The root of the extend/implement tree. This is the accessor instance
+being invoked in a swarmlet, and each of the instances it extends or implements
+will reference it in their root property.</li>
+<li><p><strong>ssuper</strong>: If this accessor extends another, this is a reference to the instance
+of the accessor it extends.</p>
+<p>If the returned instance is a mutable accessor, then it will include these additional
+properties:</p>
+</li>
+<li><strong>isMutable</strong>: set to true if the accessor is a mutable one.</li>
+<li><strong>state</strong>: indicates the current state of the mutable accessor. It can be 'reified' or
+'unreified'.</li>
+<li><strong>inputsMap</strong>: An object that maps the mutable accessor inputs to the reifying accessor
+inputs.</li>
+<li><strong>outputsMap</strong>: An object that maps the mutable accessor outputs to the reifying accessor
+outputs.</li>
+<li><p><strong>reifyingAccessor</strong>: reference to the reifying accessor among all possible contained 
+accessors.
+Notes: (i) When a mutable accessor is reified, the attribute containedAccessors will contain
+the selected accessor for reification (ii) A mutable accessor cannot extend another accessor.</p>
+<p>The bindings parameter provides function bindings for functions that are used by
+accessors.  Any that are not provided will be provided with defaults.
+Any that are provided will override the defaults.</p>
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>accessorName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A name to give to the accessor.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The accessor source code.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>getAccessorCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A function that will retrieve the source code of a specified
+  accessor (used to implement the this.extend() and this.implement() functions), or null if
+  the host does not support accessors that extend other accessors.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bindings</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The functhis.emittion bindings to be used by the accessor.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>extendedBy</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional argument specifying what accessor is extending
+  this new instance. Pass null or no argument if this accessor is not being extended.
+  If this argument is present, then the getAccessorCode and bindings arguments are
+  ignored (the instance inherits those properties from the extender).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>implementedBy</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An optional argument specifying what accessor is implementing
+  this new instance. Pass null or no argument if this accessor is not being
+  implemented.
+  If this argument is present, then the getAccessorCode and bindings arguments are
+  ignored (the instance inherits those properties from the implementer).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line333">line 333</a>
     </li></ul></dd>
     
 
@@ -7813,7 +7813,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2752">line 2752</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2749">line 2749</a>
     </li></ul></dd>
     
 
@@ -7911,7 +7911,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2749">line 2749</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2752">line 2752</a>
     </li></ul></dd>
     
 
@@ -8609,177 +8609,6 @@ Any that are provided will override the defaults.</p>
 
 
 <div class="description">
-    <p>Evaluates whether a mutable is reifiable by the accessor given as parameters.
- It is reifiable if: 
- <strong> the set of accessor inputs are included in the set of mutable accessor'
-    inputs.
- </strong> and the set of outputs of mutable accessor are included in the set of
-    outputs of accessor.
- For port inclusion to hold, the following conditions are checked:
- <strong> Same port name
- </strong> If the ports contain an attribute called 'type', then they need to be
-    checked for equality.
- FIXME: augment type checking with subtyping.
- FIXME: augment the function to accept interface names, urls, ontologies...</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mutable</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An instantiated Accessor that is mutable.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accessor</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An instantiated Accessor object.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2830">line 2830</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>false if the mutable is not reifiable by the accessor, otherwise true.</p>
-</div>
-
-
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~isReifiableBy"><span class="type-signature">(inner) </span>isReifiableBy<span class="signature">(mutable, accessor)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
     <p>Evaluates if mutable is reifiable by the accessor given as parameters.
  Reification conditions are based on interface refinement theory. The conditions are: 
  <strong> the set of accessor inputs are included in the set of 'mutable accessor'
@@ -8944,17 +8773,25 @@ Any that are provided will override the defaults.</p>
 
     
 
-    <h4 class="name" id="~mergeObjects"><span class="type-signature">(inner) </span>mergeObjects<span class="signature">(first, second)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~isReifiableBy"><span class="type-signature">(inner) </span>isReifiableBy<span class="signature">(mutable, accessor)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Merge the specified objects. If the two have common properties, the merged object
- will have the properties of the second argument. If the first argument is null,
- then the returned object will equal the second argument, unless it too is null,
- in which case the returned object will be an empty object.</p>
+    <p>Evaluates whether a mutable is reifiable by the accessor given as parameters.
+ It is reifiable if: 
+ <strong> the set of accessor inputs are included in the set of mutable accessor'
+    inputs.
+ </strong> and the set of outputs of mutable accessor are included in the set of
+    outputs of accessor.
+ For port inclusion to hold, the following conditions are checked:
+ <strong> Same port name
+ </strong> If the ports contain an attribute called 'type', then they need to be
+    checked for equality.
+ FIXME: augment type checking with subtyping.
+ FIXME: augment the function to accept interface names, urls, ontologies...</p>
 </div>
 
 
@@ -8990,7 +8827,7 @@ Any that are provided will override the defaults.</p>
 
         <tr>
             
-                <td class="name"><code>first</code></td>
+                <td class="name"><code>mutable</code></td>
             
 
             <td class="type">
@@ -9001,14 +8838,14 @@ Any that are provided will override the defaults.</p>
 
             
 
-            <td class="description last"><p>The first argument, giving default properties.</p></td>
+            <td class="description last"><p>An instantiated Accessor that is mutable.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>second</code></td>
+                <td class="name"><code>accessor</code></td>
             
 
             <td class="type">
@@ -9019,7 +8856,7 @@ Any that are provided will override the defaults.</p>
 
             
 
-            <td class="description last"><p>The second argument.</p></td>
+            <td class="description last"><p>An instantiated Accessor object.</p></td>
         </tr>
 
     
@@ -9060,7 +8897,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2894">line 2894</a>
+        <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2830">line 2830</a>
     </li></ul></dd>
     
 
@@ -9089,6 +8926,16 @@ Any that are provided will override the defaults.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>false if the mutable is not reifiable by the accessor, otherwise true.</p>
+</div>
+
+
+
+    
 
 
 
@@ -9250,15 +9097,17 @@ Any that are provided will override the defaults.</p>
 
     
 
-    <h4 class="name" id="~nullHandlerFunction"><span class="type-signature">(inner) </span>nullHandlerFunction<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~mergeObjects"><span class="type-signature">(inner) </span>mergeObjects<span class="signature">(first, second)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Default empty function to use if the function argument to
- addInputHandler is null.</p>
+    <p>Merge the specified objects. If the two have common properties, the merged object
+ will have the properties of the second argument. If the first argument is null,
+ then the returned object will equal the second argument, unless it too is null,
+ in which case the returned object will be an empty object.</p>
 </div>
 
 
@@ -9267,6 +9116,68 @@ Any that are provided will override the defaults.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>first</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The first argument, giving default properties.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>second</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The second argument.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -9302,7 +9213,7 @@ Any that are provided will override the defaults.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2922">line 2922</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2894">line 2894</a>
     </li></ul></dd>
     
 
@@ -9392,6 +9303,95 @@ Any that are provided will override the defaults.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="ptolemy_actor_lib_jjs_commonHost.js.html">ptolemy/actor/lib/jjs/commonHost.js</a>, <a href="ptolemy_actor_lib_jjs_commonHost.js.html#line2917">line 2917</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~nullHandlerFunction"><span class="type-signature">(inner) </span>nullHandlerFunction<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Default empty function to use if the function argument to
+ addInputHandler is null.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html">org/terraswarm/accessor/accessors/web/hosts/common/commonHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_common_commonHost.js.html#line2922">line 2922</a>
     </li></ul></dd>
     
 
