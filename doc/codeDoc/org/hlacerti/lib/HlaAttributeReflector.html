@@ -160,77 +160,43 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
  The <i>className</i> and <i>attributeName</i> are required to match
  a class and attribute specified in the FED file
  that is specified in the HlaManager. The <i>instanceName</i> is an arbitrary
- name chosen by the designer for the instance of the class. It is required
- to be unique across the federation.
+ name chosen by the designer for the instance of the class. It specifies
+ the instance of the specified class whose attribute this actor reflects.
  <p>
- FIXME: Explain the data types.
- 
- This actor is associated with a unique HLA attribute of a given object 
- instance. Reflected values of this HLA attribute are received from the HLA
- Federation by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute deployed in the same model. 
- The <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> invokes the putReflectedAttribute() to put the 
- received value in the HlaAttributeReflector actor token queue and to program its 
- firing time, using the _fireAt() method.
- 
-  </p><p>
- Parameters <i>className</i> and <i>attributeName</i> need to match the
- name of the class and the name of the attribute defined in the Federate 
- Object Model (FOM) specified for the Federation and indicated in the FED file.
- The data type of the output port of this actor must have the same type of the
- HLA attribute (defined in the FOM, not present in the FED file). 
- </p><p>
- The parameter <i>instanceName</i> is chosen by the user. 
- 
- </p><p>
- Entering in more details:
- This actor provides 3 information: a class name <i>C</i>, an attribute
- name <i>attr</i> and an instance name <i>i</i>. To each HlaAttributeReflector actor
- in a Ptolemy model (federate) corresponds a unique <a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib"><code>HlaPublisher</code></a>
- actor in a (unique) federate with the same information.
- Let us recall some terms:
- - FOM: Federation Object Model
- - FED: Federation Execution Data, contains classes and attributes defined
-   in the FOM and, for each attribute, if it is timestamped and its QoS 
- - RTI: Run-Time Infrastructure. The RTI has a Central RTI Component (CRC)
-   and one or more Local RTI Components (LRC). The LRC has a numerical 
-   representation (handle) for all object classes and object class attributes
-   contained in the FED file.
- 
- The information supplied in this actor by the user is used in the following
- way by the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute (deployed in the same model):
- 
- 1. During the initialization phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a>: 
-  - Subscribes to all the <i>k</i attributes <i>attr-k</i of a class  <i>C</i>
-    (gathered from <i>k</i HlaAttributeReflector actors) by calling
-    _rtia.subscribeObjectClassAttributes(classHandle, _attributesLocal), 
-    where <i>classHandle</i is obtained by calling the HLA service 
-    rtia.getObjectClassHandle() for  <i>C</i>;
-    _attributesLocal is the set constructed by calling rtia.getAttributeHandle()
-    for each <i>attr</i in this Ptolemy federate  model (the set is obtained
-    from all HlaAttributeReflector actors that has the same class  <i>C</i>); 
-    - Receives the HLA callback informing the discovering of an instance of
-    class <i>C</i> named <i>i</i>:
-    rtia.discoverObjectInstance(objectInstanceId, classHandle, someName), with 
-    someName = <i>i</i>; objectInstanceId and classHandle are handles provided
-    by the RTI.
-    
- 2. During the simulation loop phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> receives the RAV
- callback from the RTI with the new value of an attribute of a class instance. Each 
- HlaAttributeReflector  actor is related to one RAV callback:
- rtia.reflectAttributeValues(objectInstanceId, suppAttributes, tag, ravTimeStamp).
- The RAV callback, with a timestamp t'=<i>ravTimeStamp<\i> is received at the
- input port of the HlaPublisher actor, during the advance time phase that
- starts when the federate wants to advanced its time to <i>t<\i> (using NER or
- TAR time management, see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> code).
- The optional parameter <i>tag</i> is not used in the current implementation.
- </p><p></div>
+ If there is no instance with the specified <i>instanceName</i>, then this actor
+ produces no output. If a matching instance is later created, then this
+ actor will begin producing outputs when that instance's attribute is updated.
+ If the specified class does not have an attribute with the specified
+ <i>attributeName</i>, as defined in the FED file, or there is no class
+ matching <i>className</i> in the FED file, then an exception will be thrown.
+ <p>
+ The <i>attributeType</i> parameter specifies the data type of the attribute
+ to which this actor listens. This parameter has two effects. First, it sets
+ the type of the <i>output</i> port. Second, it specifies how to interpret
+ the bytes that are transported via the HLA runtime infrastructure (RTI).
+ Currently, only a small set of primitive data types are supported.
+ <p>
+ The <i>useCertiMessageBuffer</i> parameter works together with the
+ <i>attributeType</i> parameter to interpret the bits that are transported
+ over the RTI. Specifically, an HLA RTI will transport arbitrary byte sequences
+ regardless of what they represent.  CERTI, the particular RTI that Ptolemy II
+ uses, provides a convenience feature that packs and unpacks the message bytes
+ for a small set of data types.  This feature takes into account the annoyance
+ that the byte order can be different on different platforms (big endian or
+ little endian). If the attribute that this actor is listening to is updated
+ by a "foreign" federate (not implemented in Ptolemy II), then this
+ <i>useCertiMessageBuffer</i> parameter should be set to true to ensure that
+ byte order changes are handled. And in this case, only the small set of data
+ types supported by CERTI can be used.  On the other hand, if the attribute
+ is updated by a Ptolemy II model, and that update does not not specify
+ to use the CERTI message buffer, then this parameter should be false.</div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>Ptolemy II 11.0</dd>
 <dt><span class="simpleTagLabel">Version:</span></dt>
 <dd>$Id: HlaAttributeReflector.java 214 2018-04-01 13:32:02Z j.cardoso $</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
-<dd>Gilles Lasnier, Contributors: Patricia Derler, David Come</dd>
+<dd>Gilles Lasnier, Janette Cardoso, Edward A. Lee. Contributors: Patricia Derler, David Come</dd>
 <dt><span class="simpleTagLabel">Pt.AcceptedRating:</span></dt>
 <dd>Red (glasnier)</dd>
 <dt><span class="simpleTagLabel">Pt.ProposedRating:</span></dt>
@@ -270,39 +236,43 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#attributeName">attributeName</a></span></code>
-<div class="block">The HLA attribute name the HlaAttributeReflector is mapped to.</div>
+<div class="block">The name of the attribute to which this actor listens for updates.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#className">className</a></span></code>
-<div class="block">The object class of the HLA attribute to subscribe to.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#instanceName">instanceName</a></span></code>
-<div class="block">The name of the HLA class instance for this HlaAttributeReflector.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../ptolemy/actor/TypedIOPort.html" title="class in ptolemy.actor">TypedIOPort</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#output">output</a></span></code>
-<div class="block">The output port.</div>
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#attributeType">attributeType</a></span></code>
+<div class="block">The type of the attribute that this actor is listening to.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#typeSelector">typeSelector</a></span></code>
-<div class="block">The type of the attribute that this actor is listening to.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#className">className</a></span></code>
+<div class="block">The name of the class whose attribute this actor listens for updates.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#instanceName">instanceName</a></span></code>
+<div class="block">The name of the instance of the class to whose attribute this actor
+  listens for updates.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../ptolemy/actor/TypedIOPort.html" title="class in ptolemy.actor">TypedIOPort</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#output">output</a></span></code>
+<div class="block">The output port through which the new value of each
+  update to the specified attribute of the specified instance
+  are sent.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#useCertiMessageBuffer">useCertiMessageBuffer</a></span></code>
-<div class="block">Indicate if the event is wrapped in a CERTI message buffer.</div>
+<div class="block">Indicate whether the attribute value is conveyed through
+  a CERTI message buffer.</div>
 </td>
 </tr>
 </table>
@@ -403,19 +373,19 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#getHlaAttributeName--">getHlaAttributeName</a></span>()</code>
-<div class="block">Return the HLA attribute name provided by this HlaAttributeReflector actor.</div>
+<div class="block">Return the value of the <i>attributeName</i> parameter.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#getHlaClassName--">getHlaClassName</a></span>()</code>
-<div class="block">Return the HLA class object name provided by this HlaAttributeReflector actor.</div>
+<div class="block">Return the value of the <i>className</i> parameter.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#getHlaInstanceName--">getHlaInstanceName</a></span>()</code>
-<div class="block">Return HLA class instance name provided by this HlaAttributeReflector actor.</div>
+<div class="block">Return the value of the <i>instanceName</i> parameter.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -574,8 +544,23 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <ul class="blockList">
 <li class="blockList">
 <h4>attributeName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> attributeName</pre>
-<div class="block">The HLA attribute name the HlaAttributeReflector is mapped to.</div>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> attributeName</pre>
+<div class="block">The name of the attribute to which this actor listens for updates.
+  This defaults to an empty string, but it must be non-empty to run the model.</div>
+</li>
+</ul>
+<a name="attributeType">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>attributeType</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> attributeType</pre>
+<div class="block">The type of the attribute that this actor is listening to.
+  This will be used to set the type of the output port.
+  This is a string that defaults to "int".
+  Currently, the only supported types are "int", "double", "string",
+  and "boolean".</div>
 </li>
 </ul>
 <a name="className">
@@ -584,8 +569,9 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <ul class="blockList">
 <li class="blockList">
 <h4>className</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> className</pre>
-<div class="block">The object class of the HLA attribute to subscribe to.</div>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> className</pre>
+<div class="block">The name of the class whose attribute this actor listens for updates.
+  This defaults to an empty string, but it must be non-empty to run the model.</div>
 </li>
 </ul>
 <a name="instanceName">
@@ -594,8 +580,10 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <ul class="blockList">
 <li class="blockList">
 <h4>instanceName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> instanceName</pre>
-<div class="block">The name of the HLA class instance for this HlaAttributeReflector.</div>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> instanceName</pre>
+<div class="block">The name of the instance of the class to whose attribute this actor
+  listens for updates.
+  This defaults to an empty string, but it must be non-empty to run the model.</div>
 </li>
 </ul>
 <a name="output">
@@ -605,19 +593,9 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <li class="blockList">
 <h4>output</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/actor/TypedIOPort.html" title="class in ptolemy.actor">TypedIOPort</a> output</pre>
-<div class="block">The output port.</div>
-</li>
-</ul>
-<a name="typeSelector">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>typeSelector</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> typeSelector</pre>
-<div class="block">The type of the attribute that this actor is listening to.
-  This will be used to set the type of the output port.
-  This is a string that defaults to</div>
+<div class="block">The output port through which the new value of each
+  update to the specified attribute of the specified instance
+  are sent. The type of this port is given by <i>attributeType</a>.</div>
 </li>
 </ul>
 <a name="useCertiMessageBuffer">
@@ -627,7 +605,13 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <li class="blockList">
 <h4>useCertiMessageBuffer</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> useCertiMessageBuffer</pre>
-<div class="block">Indicate if the event is wrapped in a CERTI message buffer.</div>
+<div class="block">Indicate whether the attribute value is conveyed through
+  a CERTI message buffer. This is a boolean that defaults to false.
+  It should be set to true if the attribute to which this actor
+  listens is updated by a foreign simulator. It can be false
+  if the attribute is updated by a federate implemented in Ptolemy II,
+  and if this corresponding parameter in the actor doing the updating
+  is also false.</div>
 </li>
 </ul>
 </li>
@@ -900,30 +884,12 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>getHlaAttributeName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getHlaAttributeName()
                                      throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA attribute name provided by this HlaAttributeReflector actor.
- It must match the attribute name defined in the FOM for a class className.</div>
+<div class="block">Return the value of the <i>attributeName</i> parameter.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the HLA attribute name.</dd>
+<dd>The value of the <i>attributeName</i> parameter.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - if a bad token string value is provided.</dd>
-</dl>
-</li>
-</ul>
-<a name="getHlaInstanceName--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getHlaInstanceName</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getHlaInstanceName()
-                                    throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return HLA class instance name provided by this HlaAttributeReflector actor.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The HLA class instance name.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - if a bad token string value is provided.</dd>
+<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the class name is empty.</dd>
 </dl>
 </li>
 </ul>
@@ -935,14 +901,29 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>getHlaClassName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getHlaClassName()
                                  throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA class object name provided by this HlaAttributeReflector actor.
- It must match the class name defined in the FOM (that has the attribute
- attributeName of this actor).</div>
+<div class="block">Return the value of the <i>className</i> parameter.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The HLA class object name.</dd>
+<dd>The value of the <i>className</i> parameter.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - if a bad token string value is provided.</dd>
+<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the class name is empty.</dd>
+</dl>
+</li>
+</ul>
+<a name="getHlaInstanceName--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHlaInstanceName</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getHlaInstanceName()
+                                    throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
+<div class="block">Return the value of the <i>instanceName</i> parameter.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The value of the <i>instanceName</i> parameter.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the class name is empty.</dd>
 </dl>
 </li>
 </ul>
