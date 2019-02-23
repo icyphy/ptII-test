@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: org/terraswarm/accessor/accessors/web/hosts/duktape/duktapeHost.js</title>
+    <title>JSDoc: Source: org/terraswarm/accessor/accessors/web/hosts/cordova/modules/web-socket-server/web-socket-server.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: org/terraswarm/accessor/accessors/web/hosts/duktape/duktapeHost.js</h1>
+    <h1 class="page-title">Source: org/terraswarm/accessor/accessors/web/hosts/cordova/modules/web-socket-server/web-socket-server.js</h1>
 
     
 
@@ -26,16 +26,11 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// The modSearch function is based on code from http://wiki.duktape.org/HowtoModules.html
-// The license is at https://github.com/svaarala/duktape-wiki, which refers to
-// https://github.com/svaarala/duktape/blob/master/LICENSE.txt, which is reproduced below
-
-//    ===============
-//    Duktape license
-//    ===============
-
-// (http://opensource.org/licenses/MIT)
-// Copyright (c) 2016-2017 The Regents of the University of California.
+            <pre class="prettyprint source linenums"><code>// web-socket-server module for cordova accessors host.
+// 
+// Below is the copyright agreement for the Ptolemy II system.
+//
+// Copyright (c) 2018-2019 The Regents of the University of California.
 // All rights reserved.
 //
 // Permission is hereby granted, without written agreement and without
@@ -57,331 +52,294 @@
 // CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 // ENHANCEMENTS, OR MODIFICATIONS.
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE
 
-/** An accessor host for small embedded systems that uses the Duktape JavaScript
- *  interpreter.
+/**
+ *  Module for running a local web socket server. This server does not run as a service
+ *  This is not a background service. When the cordova view is destroyed/terminated, the server is stopped.
+ *  This module is based on the cordova-plugin-websocket-server plugin
+ *  at https://github.com/becvert/cordova-plugin-websocket-server. This is a minimalistic plugin
+ *  so read the warnings below.
  *
- *  See [https://accessors.org/accessors/wiki/Main/DuktapeHost](https://accessors.org/wiki/Main/DuktapeHost).
+ *  WARNING: The plugin used for this module does not support any other network
+ *  interface than 0.0.0.0 (binds to all network interfaces). Any interface specification
+ *  in this Cordova module is ignored!
  *
- *  @module @accessors-hosts/duktapeHost
- *  @author Christopher Brooks
- *  @version $$Id$$
+ *  WARNING: The plugin used for this module doesn't support any specified MIME type.
+ *  This module provides 'application/json' parsing on incoming messages. 
+ *
+ *  @module web-socket-server
+ *  @author Matt Weber
+ *  @version $$Id: web-socket-server.js 75980 2017-07-18 00:19:25Z chadlia.jerad $$
  */
-// FIXME: Move the Duktape code elsewhere so as to avoid copyright issues.
-/** Search for a module.
+
+// Stop extra messages from jslint and jshint.  Note that there should
+// be no space between the / and the * and global. See
+// https://chess.eecs.berkeley.edu/ptexternal/wiki/Main/JSHint */
+/*globals addInputHandler, console, get, getParameter, getResource, error, exports, extend, get, input, output, parameter, require, send */
+/*jshint globalstrict: true*/
+
+'use strict';
+var EventEmitter = require('events').EventEmitter;
+var util = require('util');
+var debug = false;
+
+exports.requiredPlugins = ['cordova-plugin-websocket-server'];
+
+//Cordova plugin: https://github.com/becvert/cordova-plugin-websocket-server
+var wsserver = cordova.plugins.wsserver;
+
+//An example connection:
+/* conn: {
+ 'uuid' : '8e176b14-a1af-70a7-3e3d-8b341977a16e',
+ 'remoteAddr' : '192.168.1.10',
+ 'httpFields' : {...},
+ 'resource' : '/?param1=value1&amp;param2=value2'
+ } */
+
+//Open sockets are inserted into this associative array, keyed as (conn.uuid, socket)
+var activeSockets = {};
+
+///////////////////////////////////////////////////////////////////////////////
+//// supportedReceiveTypes
+
+/** Return an array of the types supported by the current host for
+ *  receiveType arguments.
  */
-Duktape.modSearch = function (id, require, exports, module) {
-    /* readFile(): as above.
-     * loadAndInitDll(): load DLL, call its init function, return true/false.
-     */
-    var name;
-    var src;
-    var found = false;
+exports.supportedReceiveTypes = function () {
+    // WARNING The cordova plugin does not make it possible to specify a MIME type.
+    // I have verified you can send and receive text. 
+    return ['application/json', 'text/plain'];
+};
 
-    // print('loading module: ' + id);
+///////////////////////////////////////////////////////////////////////////////
+//// supportedSendTypes
 
-    /* DLL check.  DLL init function is platform specific.  It gets 'exports'
-     * but also 'require' so that it can require further modules if necessary.
-     */
-    // name = '/modules/' + id + '.so';
-    // if (loadAndInitDll(name, require, exports, module)) {
-    //     print('loaded DLL:', name);
-    //     found = true;
-    // }
+/** Return an array of the types supported by the current host for
+ *  sendType arguments.
+ */
+exports.supportedSendTypes = function () {
+    // WARNING The cordova plugin does not make it possible to specify a MIME type.
+    // I have verified you can send and receive text.  
+    return ['application/json', 'text/plain'];
+};
 
-    /* Ecmascript check. */
-    //name = 'modules/' + id + '.js';
-    if (id.indexOf(".js", id.length - 3) !== -1) {
-        name = id;
+///////////////////////////////////////////////////////////////////////////////
+//// Server
+
+/** Construct an instance of WebSocket Server.
+ *  After invoking this constructor (using new), the user script should set up listeners
+ *  and then invoke the start() function on this Server.
+ *  This will create an HTTP server on the local host.
+ *  The options argument is a JSON object containing the following optional fields:
+ *  * hostInterface: WARNING: The host interface cannot be set with this cordova plugin.
+ *    This parameter is ignored and is automatically set to 0.0.0.0 (all interfaces)
+ *  * port: The port on which to listen for connections (the default is 80,
+ *    which is the default HTTP port). Setting port 0 means any free port.
+ *  * receiveType: The MIME type for incoming messages, which defaults to application/json'.
+ *    See the Client documentation for supported types.
+ *  * sendType: The MIME type for outgoing messages, which defaults to 'application/json'.
+ *    See the Client documentation for supported types.
+ * 
+ *  This subclasses EventEmitter, emitting events 'listening' and 'connection'.
+ *  A typical usage pattern looks like this:
+ * 
+ *  &lt;pre>
+ *     var webSocket = require('webSocketServer');
+ *     var server = new webSocket.Server({'port':8082});
+ *     server.on('listening', onListening);
+ *     server.on('connection', onConnection);
+ *     server.start();
+ *  &lt;/pre>
+ * 
+ *  where onListening is a handler for an event that this Server emits
+ *  when it is listening for connections, and onConnection is a handler
+ *  for an event that this Server emits when a client requests a websocket
+ *  connection and the socket has been successfully established.
+ *  When the 'connection' event is emitted, it will be passed a Socket object,
+ *  and the onConnection handler can register a listener for 'message' events
+ *  on that Socket object, as follows:
+ * 
+ *  &lt;pre>
+ *    server.on('connection', function(socket) {
+ *        socket.on('message', function(message) {
+ *            console.log(message);
+ *            socket.send('Reply message');
+ *        });
+ *     });
+ *  &lt;/pre>
+ * 
+ *  The Socket object also has a close() function that allows the server to close
+ *  the connection.
+ * 
+ *  FIXME: Should provide a mechanism to validate the "Origin" header during the
+ *    connection establishment process on the serverside (against the expected origins)
+ *    to avoid Cross-Site WebSocket Hijacking attacks.
+ *
+ *  @param options The options.
+ */
+exports.Server = function (options) {
+    if (typeof options.port === 'undefined' || options.port === null) {
+        this.port = 80;
     } else {
-        name = id + '.js';
+        this.port = options.port;
     }
+    this.hostInterface = options.hostInterface || 'localhost';
+    this.sslTls = options.sslTls || false;
+    this.pfxKeyCertPassword = options.pfxKeyCertPassword || '';
+    this.pfxKeyCertPath = options.pfxKeyCertPath || '';
+    this.receiveType = options.receiveType || 'application/json';
+    this.sendType = options.sendType || 'application/json';
+    this._serverInstance = this;
+};
+util.inherits(exports.Server, EventEmitter);
 
-    if (name.indexOf('@accessors-modules/') !== -1) {
-        name = name.substring(19);
-    }
 
-    // Iterate through a series of search paths.
-    // common/modules is needed for common/modules/events.js.
-    var prefixes = [ '', 'modules/', 'common/modules/' ];
-    for (var i = 0; i &lt; prefixes.length; i++) {
-        var prefixName = prefixes[i] + name;
-        // console.log('duktapeHost.js: about to look for ' + prefixName);
-        try {
-            // Use NoFileIo instead of FileIo because small embedded systems
-            // don't have file systems.
-            src = NoFileIo.readfile(prefixName);
-        } catch (error) {
-            try {
-                // Rusteduk has FileIo, not NoFileIo.
-                src = FileIo.readfile(prefixName);
-            } catch (error) {
-                // Ignore.
+/** Start the server. */
+exports.Server.prototype.start = function () {
+
+    var self = this;
+
+    wsserver.start(this.port, {
+        // WebSocket Server handlers
+        'onFailure' :  function(addr, port, reason) {
+            console.log('Error in web-socket-server. Failed to start server on addr: '
+                + addr + ', port: ' + port + ", reason: " + reason);
+        },
+        // WebSocket Connection handlers
+        'onOpen' : function(conn) {
+            //Check to see if a socket already exists for this connection.
+            //This is a new connection, so create a new socket.
+
+            //activeConnections[conn.uuid] = conn;
+            if (debug) {
+                console.log('A user connected from ' + conn.remoteAddr);
             }
-        }
-        if (typeof src !== 'undefined' &amp;&amp; src.length > 0) {
-            break;
-        }
-    }
+            var socket = new exports.Socket(self._serverInstance, conn, self._serverInstance.receiveType, self._serverInstance.sendType);
+            activeSockets[conn.uuid] = socket;
+            self._serverInstance.emit('connection', socket);
+        },
+        'onMessage' : function(conn, msg) {
 
-    // print('readFile returned', src);
-    // print('src is of type', typeof src);
-    if (typeof src === 'string') {
-        // print('loaded Ecmascript:', name);
-        return src;
-    } else if (typeof src === 'buffer') {
-        // print('loaded Ecmascript:', name);
-        return src.toString();
-    } else if (typeof src === 'object') {
-        // Duktape 2.0 returns objects.
-        // print('loaded Ecmascript:' + name + ", src is of type object");
-        // print('loaded Ecmascript:' + name + ", src.length(): " + src.length);
-        return src;
-    }
-
-    /* Must find either a DLL or an Ecmascript file (or both) */
-    if (!found) {
-        throw new Error('module not found: ' + id);
-    }
-
-    /* For pure C modules, 'src' may be undefined which is OK. */
-    return src;
-};
-
-// We expect to run duk from the hosts directory.  See
-// https://www.icyphy.org/accessors/wiki/Main/DuktapeHost#RequireModuleID
-var commonHost = require("common/commonHost");
-
-// This host allows trusted accessors, which means that any
-// accessor whose class name begins with 'trusted/' can invoke the
-// function getTopLevelAccessors().
-commonHost.allowTrustedAccessors(true);
-
-// Duktape does not have path nor fs modules.
-//var path = require('path');
-//var fs = require('fs');
-
-/** Module variable giving the paths to search for accessors.
- *  By default this module assumes that accessors are stored in
- *  __dirname/../.., where __dirname is the directory where this
- *  script is located.
- */
-//var accessorPath = [path.join(__dirname, '..', '..')];
-var accessorPath = ['.', '..', '../..'];
-/** Return the source code for an accessor from its fully qualified name.
- *  This will throw an exception if there is no such accessor on the accessor
- *  search path.
- *  @param name Fully qualified accessor name, e.g. 'net/REST'.
- */
-function getAccessorCode(name) {
-    var code;
-    // Append a '.js' to the name, if needed.
-    if (name.indexOf('.js') !== name.length - 3) {
-        name += '.js';
-    }
-    for (var i = 0; i &lt; accessorPath.length; i++) {
-        //var location = path.join(accessorPath[i], name);
-        var location = accessorPath[i] + "/" + name;
-        try {
-            //print('Reading accessor at: ' + location);
-            //code = fs.readFileSync(location, 'utf8');
-            //print("duktapeHost.js getAccessorCode(\"" + name + "\"): Reading using NoFileIo" + location);
-            code = NoFileIo.readfile(location);
-            break;
-        } catch (error) {
-            // Rusteduk has FileIo
-            try {
-                code = FileIo.readfile(location);
-            } catch (error) {
-                //print("duktapeHost.js getAccessorCode(\"" + name + "\"): error reading " + location + ": " + error);
-                continue;
+            if (debug) {
+                console.log('Received message from: ' + conn.remoteAddr);
             }
+            var socket = activeSockets[conn.uuid];
+            socket._notifyIncoming(msg);
+            //Call notifyIncoming on the message's socket.
+        },
+        'onClose' : function(conn, code, reason, wasClean) {
+            if(debug){
+                console.log('A user disconnected from ' + conn.remoteAddr + " with code: "
+                    + code + ", reason: " + reason + ", and wasClean: " + wasClean);
+            }
+            //No need to call close on the socket because it is already closed.
+            var connUUID = conn.uuid;
+            delete activeSockets.connUUID;
+        },
+        // Other options
+        // 'origins' : [ 'file://' ], // validates the 'Origin' HTTP Header.
+        // 'protocols' : [ 'my-protocol-v1', 'my-protocol-v2' ], // validates the 'Sec-WebSocket-Protocol' HTTP Header.
+        // 'tcpNoDelay' : true // disables Nagle's algorithm.
+    }, function onStart(addr, port) {
+        console.log('web-socket-server module listening on ' + addr + ' and port:' + port);
+        // if(debug || self.port == 0){
+        //     console.log('web-socket-server module listening on ' + addr + ' and port:' + port);            
+        // }
+    }, function onDidNotStart(reason) {
+        console.log('web-socket-server module did not start. Reason: ' + reason);
+    });
+};
+
+exports.Server.prototype.stop = function () {
+    wsserver.stop(function onStop(addr, port) {
+    if(debug){
+        console.log('Stopped listening on addr: ' + addr + 'and port: ' + port);
+    }
+    });
+};
+
+
+//NOTE: A socket helper in Cordova is the connection object.
+/** Construct (using new) a Socket object for the server side of a new connection.
+ *  This is called by the socketCreated function above whenever a new connection is
+ *  established at the request of a client. It should not normally be called by
+ *  the JavaScript programmer. The returned Socket is an event emitter that emits
+ *  'message' events.
+ *  @param serverWebSocket The Java ServerWebSocket object. NOTE: In this host, the object is the global
+ *         server object.
+ *  @param helper NOTE: A socket helper in Cordova is the connection object.
+ *  @param receiveType The MIME type for incoming messages, which defaults to 'application/json'.
+ *  @param sendType The MIME type for outgoing messages, which defaults to 'application/json'.
+ */
+exports.Socket = function (serverWebSocket, helper, receiveType, sendType) {
+    //Helper is the conn object in this module.
+    this.helper = helper; 
+    this.serverWebSocket = serverWebSocket;
+    //serverWebSocket is ignored here because The Cordova plugin can only start one webSocketServer,
+    //and there's no point associating that (global) server instance with the connection.
+    this.receiveType = receiveType;
+    this.sendType = sendType;
+};
+util.inherits(exports.Socket, EventEmitter);
+
+/** Close the socket. Normally, this would be called on the client side,
+ *  not on the server side. But the server can also close the connection.
+ */
+exports.Socket.prototype.close = function () {
+    //Note, according to https://github.com/becvert/cordova-plugin-websocket-server#closeconn-code-reason
+    //this function could be called close(conn, code, reason), but close event code and reason are optional.
+    var connUUID = this.helper.uuid;
+    delete activeSockets.connUIID;
+    wsserver.close(this.helper);
+    if(debug){
+        console.log("Closing connection: " + connUUID);
+    }
+};
+
+/** Return true if the socket is open.
+ */
+exports.Socket.prototype.isOpen = function () {
+    var connUUID = this.helper.uuid;
+    if(activeSockets.hasOwnProperty(connUUID)){
+        return true;
+    } else {
+        return false;
+    }
+};
+
+/** Notify this object of a received message from the socket.
+ *  This function attempts to parse the message as JSON and then
+ *  emits a "message" event with the message as an argument.
+ *  This function is called by the helper and should not be called
+ *  by the user of this module.
+ *  @param message The incoming message.
+ */
+exports.Socket.prototype._notifyIncoming = function (message) {
+    if (this.receiveType == 'application/json') {
+        try {
+            message = JSON.parse(message);
+        } catch (error) {
+            this.emit('error', error);
+            return;
         }
     }
-    if (!code) {
-        throw ('Accessor ' + name + ' not found on path: ' + accessorPath);
-    }
-    return code;
-}
+    // Assume the helper has already provided the correct type.
+    this.emit("message", message);
+};
 
-/** Get a resource.
- *
- *  @param uri A specification for the resource.
+/** Send data over the web socket.
+ *  The data can be anything that has a JSON representation.
+ *  @param data The data to send.
  */
-getResource = function (uri) {
-    // See nodeHost.js for an implementation.
-    throw new Error('getResource(' + uri + ') not yet implemented');
-};
-
-/** Return the name of this host.
- *
- *  Return the string "Duktape".
- *
- *  @return In duktapeHost.js, return "Duktape".
- */ 
-getHostName = function() {
-    return "Duktape";
-};
-
-/** Instantiate and return an accessor.
- *  This will throw an exception if there is no such accessor class on the accessor
- *  search path.
- *  @param accessorName The name to give to the instance.
- *  @param accessorClass Fully qualified accessor class name, e.g. 'net/REST'.
- */
-instantiate = function (accessorName, accessorClass) {
-    // FIXME: The bindings should be a bindings object where require == a requireLocal
-    // function that searches first for local modules.
-    var bindings = {
-        'require': require,
-        'clearInterval': clearInterval,
-        'clearTimeout': clearTimeout,
-        'setInterval': setInterval,
-        'setTimeout': setTimeout,
-    };
-    var result = new commonHost.instantiateAccessor(
-        accessorName, accessorClass, getAccessorCode, bindings);
-    //print('duktapeHost.js: instantiate() done: Instantiated accessor ' + accessorName + ' with class ' + accessorClass);
-    return result;
-};
-
-/** If there are one or more arguments after duktapeHostInvoke.js, then
- * assume that each argument names a file defining an accessor.  Each
- * accessor is instantiated and initialized.
- *
- * See duktapeHostInvoke.js for a file that requires duktapeHost.js
- * and then invokes this method.
- *
- * Sample usage:
- *
- * duktapeHostInvoke.js contains:
- * &lt;pre>
- * var commonHost = require('./duktapeHost.js');
- * // Remove "node.js" from the array of command line arguments.
- * process.argv.shift();
- * // Remove "duktapeHostInvoke.js" from the array of command line arguments.
- * process.argv.shift();
- * instantiateAndInitialize(process.argv);
- * &lt;/pre>
- *
- * To invoke:
- * &lt;pre>
- *   node duktapeHostInvoke.js test/TestComposite
- * &lt;/pre>
- *
- * @param accessorNames An array of accessor names in a format suitable
- * for getAccessorCode(name).
- */
-instantiateAndInitialize = function (accessorNames) {
-    // console.log("duktapeHost.js: instantiateAndInitialize() start: " + accessorNames + " " + accessorNames.length);
-
-    var length = accessorNames.length;
-    for (index = 0; index &lt; length; ++index) {
-        // The name of the accessor is basename of the accessorClass.
-        var accessorClass = accessorNames[index];
-        // print("duktapeHost.js: instantiateAndInitialize(): about to handle " + accessorClass);
-
-        // For example, if the accessorClass is
-        // test/TestComposite, then the accessorName will be
-        // TestComposite.
-
-        // FIXME: this will cause problems under Windows
-        var startIndex = accessorClass.lastIndexOf('/');
-        var accessorName = accessorClass.substring(startIndex);
-        if (accessorName.indexOf('\\') === 0 || accessorName.indexOf('/') === 0) {
-            accessorName = accessorName.substring(1);
-        }
-        // If the same accessorClass appears more than once in the
-        // list of arguments, then use different names.
-        // To replicate: duk duktape/duktapeHostInvoke.js test/TestComposite test/TestComposite
-        if (index > 0) {
-            accessorName += "_" + (index - 1);
-        }
-        // print("duktapeHost.js: instantiateAndInitialize(): about to call instantiate(" + accessorName + ", " + accessorClass + ")");
-        var accessor = instantiate(accessorName, accessorClass);
-        // print("duktapeHost.js: instantiateAndInitialize(): about to call initialize on " + accessor);
-        accessor.initialize();
-        // print("duktapeHost.js: instantiateAndInitialize(): done with " + accessorClass);
+exports.Socket.prototype.send = function (data) {
+    if (this.sendType == 'application/json') {
+        wsserver.send(this.helper, JSON.stringify(data));
+    } else if (this.sendType.search(/text\//) === 0) {
+        wsserver.send(this.helper, data.toString());
+    } else {
+        wsserver.send(this.helper, data);
     }
-    // print("duktapeHost.js: instantiateAndInitialize() done");
-};
-
-// Make the Accessor constructor visible so that we may use it in the
-// Cape Code Accessor Code Generator.
-// See https://www.icyphy.org/accessors/wiki/Main/ResourcesForHostAuthors#ExportAccessor
-Accessor = commonHost.Accessor;
-
-// Define additional functions that should appear in the global scope
-// so that they can be invoked on the command line.
-provideInput = commonHost.provideInput;
-setParameter = commonHost.setParameter;
-isReifiableBy = commonHost.isReifiableBy;
-
-////////////////////////////////////////
-// Duktape host-specific require() calls and functions should go below here.
-
-// Note that the version of ecma_eventloop.js that ships with duktape
-// was modified so that clearInterval, clearTimer, setInterval and
-// setTimer are all in the global scope.
-//
-// FIXME: It would be nice if we could use the unmodified version of
-// ecma_eventloop.js.  How do we make functions declared in that file
-// visible in the global scope?
-//
-
-// If ecma_eventloop is required here, then using c_eventloop.js will fail.
-//var ecma_eventloop = require('duktape/duktape/examples/eventloop/ecma_eventloop');
-
-console = {
-    log: function () {
-        print(Array.prototype.join.call(arguments, ' '));
-    }
-};
-
-// To print the contents of an object in Duktape, download json2.js
-//   cd hosts/duktape
-//   wget https://raw.githubusercontent.com/douglascrockford/JSON-js/master/json2.js
-// and then uncomment the code below:
-// var json = require("duktape/json2");
-// console.log("commonHost is: " + JSON.stringify(commonHost));
-
-// In case this gets used a module, create an exports object.
-exports = {
-    'Accessor': Accessor,
-    // Don't export clearInterval, setInterval and setTimeout here because
-    // we no longer require ecma_eventloop.js above.
-    //'clearInterval': clearInterval,
-    'getTopLevelAccessors': commonHost.getTopLevelAccessors,
-    'getHostName': getHostName,
-    'instantiate': instantiate,
-    'instantiateAndInitialize': instantiateAndInitialize,
-    'provideInput': commonHost.provideInput,
-    'setParameter': commonHost.setParameter,
-
-    //'setInterval': setInterval,
-    //'setTimeout': setTimeout,
-};
-
-
-
-</code></pre>
+};</code></pre>
         </article>
     </section>
 
