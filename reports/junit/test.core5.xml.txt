@@ -155,7 +155,7 @@ ptdoc:
      [echo] 
      [echo]     
      [exec] Generating output files...
-     [exec] Finished running in 18.50 seconds.
+     [exec] Finished running in 18.13 seconds.
 
 build-project:
      [echo] ptII: /home/travis/build/icyphy/ptII/build.xml
@@ -169,9 +169,6 @@ build-project:
     [javac] /home/travis/build/icyphy/ptII/ptolemy/util/StringUtilities.java:48: warning: Unsafe is internal proprietary API and may be removed in a future release
     [javac] import sun.misc.Unsafe;
     [javac]                ^
-    [javac] /home/travis/build/icyphy/ptII/org/hlacerti/lib/HlaAttributeUpdater.java:290: error: incompatible types: HlaAttributeUpdater cannot be converted to HlaPublisher
-    [javac]                 _hlaManager.updateHlaAttribute(this, in);
-    [javac]                                                ^
     [javac] /home/travis/build/icyphy/ptII/ptolemy/copernicus/applet/JarSigner.java:320: warning: ManifestDigester is internal proprietary API and may be removed in a future release
     [javac]         ManifestDigester manifestDigester = new ManifestDigester(
     [javac]         ^
@@ -200,11 +197,920 @@ build-project:
     [javac] Note: Recompile with -Xlint:deprecation for details.
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
-    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
-    [javac] 1 error
     [javac] 11 warnings
 
-BUILD FAILED
-/home/travis/build/icyphy/ptII/build.xml:792: Compile failed; see the compiler error output for details.
+-check-ptII-mk-file:
 
-Total time: 57 seconds
+-check-bin-vergil:
+
+-check-make-bin-vergil:
+
+build-bin-not:
+
+build-not-bin-vergil:
+     [echo] 
+     [echo] 	$PTII/bin/vergil does not exist, perhaps (cd $PTII/bin; make) has not been run?
+     [echo] 	This can happen if the make binary cannot be found in the path or if $PTII/mk/ptII.mk
+     [echo] 	is not present.
+     [echo] 	Skipping running make in $PTII/bin, which creates scripts like $PTII/bin/vergil.
+     [echo] 	This is only an issue if you want to invoke "$PTII/bin/vergil" instead of "ant vergil".
+     [echo] 	However, $PTII/bin does include other scripts that may be of use.
+     [echo]       
+
+build-bin:
+     [exec] for file in .momllib-util .nc2moml-util .ncapp2moml-util capecode convertToLazy copernicus decompile emachine giottoc histogram homer jode mescal moml obfuscate ptcg ptcodegen ptexecute ptjacl ptjaclapp ptplot ptstartjini ptolemy ptweb pxgraph soot tinicomm tinic tiniconverter startjini.gui vergil; do \
+     [exec] 		echo "$file"; \
+     [exec] 		rm -f "$file"; \
+     [exec] 		ln -s ptinvoke "$file"; \
+     [exec] 		chmod a+x "$file"; \
+     [exec] 	done
+     [exec] .momllib-util
+     [exec] .nc2moml-util
+     [exec] .ncapp2moml-util
+     [exec] capecode
+     [exec] convertToLazy
+     [exec] copernicus
+     [exec] decompile
+     [exec] emachine
+     [exec] giottoc
+     [exec] histogram
+     [exec] homer
+     [exec] jode
+     [exec] mescal
+     [exec] moml
+     [exec] obfuscate
+     [exec] ptcg
+     [exec] ptcodegen
+     [exec] ptexecute
+     [exec] ptjacl
+     [exec] ptjaclapp
+     [exec] ptplot
+     [exec] ptstartjini
+     [exec] ptolemy
+     [exec] ptweb
+     [exec] pxgraph
+     [exec] soot
+     [exec] tinicomm
+     [exec] tinic
+     [exec] tiniconverter
+     [exec] startjini.gui
+     [exec] vergil
+     [exec] rm -f makebat
+     [exec] ln -s ptinvoke makebat
+     [exec] rm -f ".momllib-util.bat"
+     [exec] ./makebat -q "`basename .momllib-util.bat .bat`"
+     [exec] rm -f ".nc2moml-util.bat"
+     [exec] ./makebat -q "`basename .nc2moml-util.bat .bat`"
+     [exec] rm -f ".ncapp2moml-util.bat"
+     [exec] ./makebat -q "`basename .ncapp2moml-util.bat .bat`"
+     [exec] rm -f "capecode.bat"
+     [exec] ./makebat -q "`basename capecode.bat .bat`"
+     [exec] rm -f "convertToLazy.bat"
+     [exec] ./makebat -q "`basename convertToLazy.bat .bat`"
+     [exec] rm -f "copernicus.bat"
+     [exec] ./makebat -q "`basename copernicus.bat .bat`"
+     [exec] rm -f "decompile.bat"
+     [exec] ./makebat -q "`basename decompile.bat .bat`"
+     [exec] rm -f "emachine.bat"
+     [exec] ./makebat -q "`basename emachine.bat .bat`"
+     [exec] rm -f "giottoc.bat"
+     [exec] ./makebat -q "`basename giottoc.bat .bat`"
+     [exec] rm -f "histogram.bat"
+     [exec] ./makebat -q "`basename histogram.bat .bat`"
+     [exec] rm -f "homer.bat"
+     [exec] ./makebat -q "`basename homer.bat .bat`"
+     [exec] rm -f "jode.bat"
+     [exec] ./makebat -q "`basename jode.bat .bat`"
+     [exec] rm -f "mescal.bat"
+     [exec] ./makebat -q "`basename mescal.bat .bat`"
+     [exec] LD_LIBRARY_PATH = /home/travis/build/icyphy/ptII/mescal/lib:/home/travis/build/icyphy/ptII/mescal/bin:/usr/local/lib:/home/travis/build/icyphy/ptII/lib:/home/travis/pthla/certi-tools/lib:/home/travis/pthla/certi-tools/lib:/usr/lib/jni:/usr/local/share/OpenCV/java/:/usr/share/OpenCV/java:
+     [exec] rm -f "moml.bat"
+     [exec] ./makebat -q "`basename moml.bat .bat`"
+     [exec] rm -f "obfuscate.bat"
+     [exec] ./makebat -q "`basename obfuscate.bat .bat`"
+     [exec] rm -f "ptcg.bat"
+     [exec] ./makebat -q "`basename ptcg.bat .bat`"
+     [exec] rm -f "ptcodegen.bat"
+     [exec] ./makebat -q "`basename ptcodegen.bat .bat`"
+     [exec] rm -f "ptexecute.bat"
+     [exec] ./makebat -q "`basename ptexecute.bat .bat`"
+     [exec] rm -f "ptjacl.bat"
+     [exec] ./makebat -q "`basename ptjacl.bat .bat`"
+     [exec] rm -f "ptjaclapp.bat"
+     [exec] ./makebat -q "`basename ptjaclapp.bat .bat`"
+     [exec] rm -f "ptplot.bat"
+     [exec] ./makebat -q "`basename ptplot.bat .bat`"
+     [exec] rm -f "ptstartjini.bat"
+     [exec] ./makebat -q "`basename ptstartjini.bat .bat`"
+     [exec] rm -f "ptolemy.bat"
+     [exec] ./makebat -q "`basename ptolemy.bat .bat`"
+     [exec] rm -f "ptweb.bat"
+     [exec] ./makebat -q "`basename ptweb.bat .bat`"
+     [exec] rm -f "pxgraph.bat"
+     [exec] ./makebat -q "`basename pxgraph.bat .bat`"
+     [exec] rm -f "soot.bat"
+     [exec] ./makebat -q "`basename soot.bat .bat`"
+     [exec] rm -f "tinicomm.bat"
+     [exec] ./makebat -q "`basename tinicomm.bat .bat`"
+     [exec] rm -f "tinic.bat"
+     [exec] ./makebat -q "`basename tinic.bat .bat`"
+     [exec] rm -f "tiniconverter.bat"
+     [exec] ./makebat -q "`basename tiniconverter.bat .bat`"
+     [exec] rm -f "startjini.gui.bat"
+     [exec] ./makebat -q "`basename startjini.gui.bat .bat`"
+     [exec] Cloning into 'universalJavaApplicationStub'...
+     [exec] rm -f "vergil.bat"
+     [exec] ./makebat -q "`basename vergil.bat .bat`"
+     [exec] rm -f makeapp
+     [exec] ln -s ptinvoke makeapp
+     [exec] chmod a+x ptinvoke makeapp
+     [exec] ./makeapp CapeCode.app CAPECODE -capecode
+     [exec] ./makeapp: /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub does not exist, creating it from GitHub.
+     [exec] Updating universalJavaApplicationStub from /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub
+     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sun Feb 24 12:26:25 UTC 2019
+     [exec] ./makeapp: Installation of /home/travis/build/icyphy/ptII/jdk succeeded.
+     [exec] ./makeapp: copying /home/travis/build/icyphy/ptII/vendors/jogl to /home/travis/build/icyphy/ptII/bin
+     [exec] touch CapeCode.app
+     [exec] ./makeapp Vergil.app FULL -full
+     [exec] Updating universalJavaApplicationStub from /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub
+     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sun Feb 24 12:26:28 UTC 2019
+     [exec] ./makeapp: Installation of /home/travis/build/icyphy/ptII/jdk succeeded.
+     [exec] touch Vergil.app
+     [exec] chmod a+x ant cyphysim hyvisual startjini mkjnlp mkl4j mkosgi mkptdemo mkptlivelinkdemo mkpttest node npm ptjunit ptIITravisBuild.sh reloadAllAccessors updateFmu viptos 
+
+build:
+
+initReports:
+    [mkdir] Created dir: /home/travis/build/icyphy/ptII/reports/doccheck
+    [mkdir] Created dir: /home/travis/build/icyphy/ptII/reports/ojdcheck
+
+test.core5.xml:
+     [echo] 
+     [echo]       ==test.core5.xml ==
+     [echo]       This target runs the fifth batch of core tests
+     [echo]       and generates JUnit xml output.
+     [echo]       timeout = 4000000 milliseconds
+     [echo]     
+    [junit] javachdir: directory = ptolemy/configs/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/configs/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.configs.test.junit.JUnitTclTest
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl
+    [junit] testDefs.tcl: setting time out to 9000 seconds at Sun Feb 24 12:26:32 UTC 2019
+    [junit] 1551011192738 ms. Memory: 116224K Free: 95306K (82%)
+    [junit]  Force everything to get expanded ptolemy/configs/bcvtb/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011204923 ms. Memory: 736768K Free: 168984K (23%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011205390 ms. Memory: 765440K Free: 694788K (91%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptiny/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011216497 ms. Memory: 1055232K Free: 489761K (46%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011217204 ms. Memory: 1060352K Free: 938388K (88%)
+    [junit]  Force everything to get expanded ptolemy/configs/space/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] Warning: space/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011217402 ms. Memory: 1060352K Free: 869003K (82%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011217836 ms. Memory: 1110528K Free: 988552K (89%)
+    [junit]  Force everything to get expanded ptolemy/configs/dsp/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Warning: dsp/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011221346 ms. Memory: 1219072K Free: 989669K (81%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011221821 ms. Memory: 1178624K Free: 1033741K (88%)
+    [junit] Skipping viptos/configuration.xml, PtinyOS is not typically installed.
+    [junit]  Force everything to get expanded ptolemy/configs/pn/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Warning: pn/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011228252 ms. Memory: 1346048K Free: 732529K (54%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011228860 ms. Memory: 1355776K Free: 1186134K (87%)
+    [junit]  Force everything to get expanded ptolemy/configs/cyphysim/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Warning: cyphysim/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011239380 ms. Memory: 1522688K Free: 360022K (24%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011240657 ms. Memory: 1605120K Free: 1359885K (85%)
+    [junit]  Force everything to get expanded ptolemy/configs/capecode/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Xlib:  extension "RANDR" missing on display ":99.0".
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] [main] INFO com.github.sarxos.webcam.Webcam - WebcamDefaultDriver capture driver will be used
+    [junit] No physical cameras found, using WebcamDummyDriver.
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] libdc1394 error: Failed to initialize libdc1394
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Warning: capecode/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011346323 ms. Memory: 2191360K Free: 1132286K (52%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011348682 ms. Memory: 2168832K Free: 1469742K (68%)
+    [junit]  Force everything to get expanded ptolemy/configs/full/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping drop test of tm.kernel.SchedulePlotter because it must be dropped into a container that has a TMDirector
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011448670 ms. Memory: 2857984K Free: 841215K (29%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011453549 ms. Memory: 2718720K Free: 1520922K (56%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptinyViewer/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] Warning: ptinyViewer/configuration.xml has no 'actor library'?  (this is ok for ptinyViewer)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011453582 ms. Memory: 2718720K Free: 1520922K (56%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011455729 ms. Memory: 2873344K Free: 1693239K (59%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptserver/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011461416 ms. Memory: 2863104K Free: 1266287K (44%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011464684 ms. Memory: 2840064K Free: 1618974K (57%)
+    [junit]  Force everything to get expanded ptolemy/configs/visualsense/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011470135 ms. Memory: 2870272K Free: 915879K (32%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011473183 ms. Memory: 2539520K Free: 1269088K (50%)
+    [junit] Skipping jxta/configuration.xml, running vergil -jxta brings up a window
+    [junit]  Force everything to get expanded ptolemy/configs/fullViewer/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] Warning: fullViewer/configuration.xml has no 'actor library'?  (this is ok for ptinyViewer)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011473254 ms. Memory: 2539520K Free: 1235529K (49%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011476644 ms. Memory: 2841600K Free: 1574658K (55%)
+    [junit]  Force everything to get expanded ptolemy/configs/hyvisual/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011479354 ms. Memory: 2847744K Free: 1554445K (55%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011482429 ms. Memory: 2567680K Free: 1270795K (49%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptinyKepler/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011487714 ms. Memory: 2854400K Free: 704400K (25%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011490930 ms. Memory: 2672128K Free: 1339612K (50%)
+    [junit] allConfigs.tcl done!
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allDemos.tcl
+    [junit] Skipping allDemos-1.0, use cd /home/travis/build/icyphy/ptII/ptolemy/configs/test/../../..; ant test.single -Dtest.name=ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTest
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/checkFullConstraints.tcl
+    [junit] FIXME FIXME FIXME FIXME FIXME FIXME
+    [junit] ptolemy/configs/test/checkFullConstraints.tcl: FIXME: Invoking Configuration.check() 
+    [junit] results in a memory leak that consumes
+    [junit] more than 4gig of memory and causes problems under Travis.
+    [junit] so, we check the constraints only of the full configuration.
+    [junit] FIXME FIXME FIXME FIXME FIXME FIXME
+    [junit]  Force everything to get expanded ptolemy/configs/configurationFile
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] ####################################################################################################################################################################################################################################################################################################################################################Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] ###Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] ##Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] ########Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] #######Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] ########Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] #####################Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] ######Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] ###Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] ###############Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] #Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] ################Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] ####################################################################################################################################################################################################################################################################################---- Second call to Configuration.check
+    [junit] #########################################################################################################################################################################################################################################################################################################################################################################CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] #########################################################################################################################################################################################################################################################################################################################################################1551011805643 ms. Memory: 4670464K Free: 618079K (13%)
+    [junit] Setting containers of atomic entities to null
+    [junit] checkFullConstraints.tcl done!
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/cloneTest.tcl
+    [junit] Simple standalone clone test
+    [junit] The constraints of the master:
+    [junit]   1. (TypeConstant, arrayType(double,2)) <= (variable .Top.Map.origin: arrayType(double))
+    [junit]   2. (TypeConstant, double) <= (variable .Top.Map.resolution: double)
+    [junit]   3. (TypeConstant, {grid = arrayType(int,2), height = int, width = int}) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   4. (port .Top.Map.map: unknown) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   5. (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int}) <= (port .Top.Map.map: unknown)
+    [junit] The constraints of the clone:
+    [junit]   1. (TypeConstant, arrayType(double,2)) <= (variable .Top.Map.origin: arrayType(double))
+    [junit]   2. (TypeConstant, double) <= (variable .Top.Map.resolution: double)
+    [junit]   3. (TypeConstant, {grid = arrayType(int,2), height = int, width = int}) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   4. (port .Top.Map.map: unknown) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   5. (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int}) <= (port .Top.Map.map: unknown)
+    [junit] Congrats, the constraints are the same.
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/configurationTools.tcl
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/missingDemos.tcl
+    [junit] Updating /home/travis/build/icyphy/ptII/ptolemy/configs/test/../../../ptolemy/configs/doc/models.txt.  This could take a minute.
+    [junit] Done updating /home/travis/build/icyphy/ptII/ptolemy/configs/test/../../../ptolemy/configs/doc/models.txt
+    [junit] Stderr for 'make -C ../doc missingDemos' was
+    [junit] --start--
+    [junit] 
+    [junit] --end--
+    [junit] Stderr for '/home/travis/build/icyphy/ptII/ptolemy/configs/test/../../../ptolemy/configs/test/missingDemos' was
+    [junit] --start--
+    [junit] 
+    [junit] --end--
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/validDemos.tcl
+    [junit] Validating the xml in /auto/ xml files after removing the configure blocks
+    [junit] ...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Checked 2915 demos from configs/doc/models.txt
+    [junit] Validating the xml in demo xml files after removing the configure blocks
+    [junit] ...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Checked 755 demos from configs/doc/models.txt
+    [junit] 02/24/19 12:41:19
+    [junit] Failed: 0  Total Tests: 3759  ((Passed: 3759, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 887.014 sec
+    [junit] Output:
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl
+    [junit] testDefs.tcl: setting time out to 9000 seconds at Sun Feb 24 12:26:32 UTC 2019
+    [junit] 1551011192738 ms. Memory: 116224K Free: 95306K (82%)
+    [junit]  Force everything to get expanded ptolemy/configs/bcvtb/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011204923 ms. Memory: 736768K Free: 168984K (23%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011205390 ms. Memory: 765440K Free: 694788K (91%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptiny/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011216497 ms. Memory: 1055232K Free: 489761K (46%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011217204 ms. Memory: 1060352K Free: 938388K (88%)
+    [junit]  Force everything to get expanded ptolemy/configs/space/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] Warning: space/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011217402 ms. Memory: 1060352K Free: 869003K (82%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011217836 ms. Memory: 1110528K Free: 988552K (89%)
+    [junit]  Force everything to get expanded ptolemy/configs/dsp/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Warning: dsp/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011221346 ms. Memory: 1219072K Free: 989669K (81%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011221821 ms. Memory: 1178624K Free: 1033741K (88%)
+    [junit] Skipping viptos/configuration.xml, PtinyOS is not typically installed.
+    [junit]  Force everything to get expanded ptolemy/configs/pn/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Warning: pn/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011228252 ms. Memory: 1346048K Free: 732529K (54%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011228860 ms. Memory: 1355776K Free: 1186134K (87%)
+    [junit]  Force everything to get expanded ptolemy/configs/cyphysim/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Warning: cyphysim/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011239380 ms. Memory: 1522688K Free: 360022K (24%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011240657 ms. Memory: 1605120K Free: 1359885K (85%)
+    [junit]  Force everything to get expanded ptolemy/configs/capecode/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] No physical cameras found, using WebcamDummyDriver.
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Warning: capecode/configuration.xml has no 'actor library.Directors'? (this is ok for dsp, viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011346323 ms. Memory: 2191360K Free: 1132286K (52%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011348682 ms. Memory: 2168832K Free: 1469742K (68%)
+    [junit]  Force everything to get expanded ptolemy/configs/full/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping StateSpaceModel as this test iterates through the attributes and calls attributeChanged, which triggers a ConcurrentModificationException.  See org/ptolemy/ssm/test/SSMTest.java
+    [junit] Skipping drop test of tm.kernel.SchedulePlotter because it must be dropped into a container that has a TMDirector
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011448670 ms. Memory: 2857984K Free: 841215K (29%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011453549 ms. Memory: 2718720K Free: 1520922K (56%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptinyViewer/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] Warning: ptinyViewer/configuration.xml has no 'actor library'?  (this is ok for ptinyViewer)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011453582 ms. Memory: 2718720K Free: 1520922K (56%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011455729 ms. Memory: 2873344K Free: 1693239K (59%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptserver/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011461416 ms. Memory: 2863104K Free: 1266287K (44%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011464684 ms. Memory: 2840064K Free: 1618974K (57%)
+    [junit]  Force everything to get expanded ptolemy/configs/visualsense/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011470135 ms. Memory: 2870272K Free: 915879K (32%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011473183 ms. Memory: 2539520K Free: 1269088K (50%)
+    [junit] Skipping jxta/configuration.xml, running vergil -jxta brings up a window
+    [junit]  Force everything to get expanded ptolemy/configs/fullViewer/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] Warning: fullViewer/configuration.xml has no 'actor library'?  (this is ok for ptinyViewer)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011473254 ms. Memory: 2539520K Free: 1235529K (49%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011476644 ms. Memory: 2841600K Free: 1574658K (55%)
+    [junit]  Force everything to get expanded ptolemy/configs/hyvisual/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011479354 ms. Memory: 2847744K Free: 1554445K (55%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011482429 ms. Memory: 2567680K Free: 1270795K (49%)
+    [junit]  Force everything to get expanded ptolemy/configs/ptinyKepler/configuration.xml
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 
+    [junit] Warning: In 'ptolemy.actor.lib.io.FileReader'
+    [junit]   The getName() method returns
+    [junit]    'fileOrURL' but the  field is named
+    [junit]    'fileOrURLPort'
+    [junit]    This is technically a violation  of the coding standard,
+    [junit]    but permissible because the name  ends in 'Port'
+    [junit] -------> Before clone
+    [junit] -------> after clone
+    [junit] 1551011487714 ms. Memory: 2854400K Free: 704400K (25%)
+    [junit] Setting containers of atomic entities to null
+    [junit] 1551011490930 ms. Memory: 2672128K Free: 1339612K (50%)
+    [junit] allConfigs.tcl done!
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allDemos.tcl
+    [junit] Skipping allDemos-1.0, use cd /home/travis/build/icyphy/ptII/ptolemy/configs/test/../../..; ant test.single -Dtest.name=ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTest
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/checkFullConstraints.tcl
+    [junit] FIXME FIXME FIXME FIXME FIXME FIXME
+    [junit] ptolemy/configs/test/checkFullConstraints.tcl: FIXME: Invoking Configuration.check() 
+    [junit] results in a memory leak that consumes
+    [junit] more than 4gig of memory and causes problems under Travis.
+    [junit] so, we check the constraints only of the full configuration.
+    [junit] FIXME FIXME FIXME FIXME FIXME FIXME
+    [junit]  Force everything to get expanded ptolemy/configs/configurationFile
+    [junit]     (Skipping certain optional packages, jxta and viptos)
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] ####################################################################################################################################################################################################################################################################################################################################################Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+    [junit] Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+    [junit] ###Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+    [junit] ##Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+    [junit] ########Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+    [junit] #######Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] ########Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+    [junit] #####################Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+    [junit] ######Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+    [junit] ###Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+    [junit] ###############Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+    [junit] #Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+    [junit] ################Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+    [junit] The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+    [junit] ####################################################################################################################################################################################################################################################################################---- Second call to Configuration.check
+    [junit] #########################################################################################################################################################################################################################################################################################################################################################################CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+    [junit] #########################################################################################################################################################################################################################################################################################################################################################1551011805643 ms. Memory: 4670464K Free: 618079K (13%)
+    [junit] Setting containers of atomic entities to null
+    [junit] checkFullConstraints.tcl done!
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/cloneTest.tcl
+    [junit] Simple standalone clone test
+    [junit] The constraints of the master:
+    [junit]   1. (TypeConstant, arrayType(double,2)) <= (variable .Top.Map.origin: arrayType(double))
+    [junit]   2. (TypeConstant, double) <= (variable .Top.Map.resolution: double)
+    [junit]   3. (TypeConstant, {grid = arrayType(int,2), height = int, width = int}) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   4. (port .Top.Map.map: unknown) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   5. (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int}) <= (port .Top.Map.map: unknown)
+    [junit] The constraints of the clone:
+    [junit]   1. (TypeConstant, arrayType(double,2)) <= (variable .Top.Map.origin: arrayType(double))
+    [junit]   2. (TypeConstant, double) <= (variable .Top.Map.resolution: double)
+    [junit]   3. (TypeConstant, {grid = arrayType(int,2), height = int, width = int}) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   4. (port .Top.Map.map: unknown) <= (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int})
+    [junit]   5. (variable .Top.Map.map: {grid = arrayType(int), height = int, width = int}) <= (port .Top.Map.map: unknown)
+    [junit] Congrats, the constraints are the same.
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/configurationTools.tcl
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/missingDemos.tcl
+    [junit] Updating /home/travis/build/icyphy/ptII/ptolemy/configs/test/../../../ptolemy/configs/doc/models.txt.  This could take a minute.
+    [junit] Done updating /home/travis/build/icyphy/ptII/ptolemy/configs/test/../../../ptolemy/configs/doc/models.txt
+    [junit] Stderr for 'make -C ../doc missingDemos' was
+    [junit] --start--
+    [junit] 
+    [junit] --end--
+    [junit] Stderr for '/home/travis/build/icyphy/ptII/ptolemy/configs/test/../../../ptolemy/configs/test/missingDemos' was
+    [junit] --start--
+    [junit] 
+    [junit] --end--
+    [junit] /home/travis/build/icyphy/ptII/ptolemy/configs/test/validDemos.tcl
+    [junit] Validating the xml in /auto/ xml files after removing the configure blocks
+    [junit] ...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Checked 2915 demos from configs/doc/models.txt
+    [junit] Validating the xml in demo xml files after removing the configure blocks
+    [junit] ...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Checked 755 demos from configs/doc/models.txt
+    [junit] 02/24/19 12:41:19
+    [junit] Failed: 0  Total Tests: 3759  ((Passed: 3759, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/configs/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] Error: 
+    [junit] [main] INFO com.github.sarxos.webcam.Webcam - WebcamDefaultDriver capture driver will be used
+    [junit] 
+
+BUILD SUCCESSFUL
+Total time: 16 minutes 3 seconds
