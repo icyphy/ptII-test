@@ -194,6 +194,15 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
  Ptolemy II model, and the corresponding <a href="../../../org/hlacerti/lib/HlaAttributeReflector.html" title="class in org.hlacerti.lib"><code>HlaAttributeReflector</code></a> does
  not not specify to use the CERTI message buffer, then this parameter should
  be false.
+  
+ FIXMEjc: took from publisher actor description. Keep it or not?
+ In a federation implemented only with Ptolemy II federates, 
+ an HlaAttributeUpdater is linked to a unique HlaAttributeReflector; any data
+ dependencies that the director might assume on a regular "wired" connection
+ will also be assumed across HlaAttributeUpdater-HlaAttributeReflector pairs.
+ Similarly, type constraints will propagate across publisher-subscriber pairs. 
+ That is, the type of the HlaAttributeReflector output must match the type of
+ the HlaAttributeUpdater input.
    
  (Check if we can reuse this sentences:) Each class has attributes, and this
  actor sends updates to an attribute of an instance of a class when it
@@ -210,7 +219,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>Ptolemy II 11.0</dd>
 <dt><span class="simpleTagLabel">Version:</span></dt>
-<dd>$Id: HlaPublisher.java 214 2018-04-01 13:32:02Z j.cardoso $</dd>
+<dd>$Id: HlaAttributeUpdater.java 214 2018-04-01 13:32:02Z j.cardoso $</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Gilles Lasnier, Contributors: Patricia Derler, David Come</dd>
 <dt><span class="simpleTagLabel">Pt.AcceptedRating:</span></dt>
@@ -252,33 +261,34 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#attributeName">attributeName</a></span></code>
-<div class="block">The HLA attribute name the HLASubscriber is mapped to.</div>
+<div class="block">The name of the attribute this actor updates.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#classInstanceName">classInstanceName</a></span></code>
-<div class="block">The name of the HLA class instance for this HlaSubscriber.</div>
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#className">className</a></span></code>
+<div class="block">The name of the class whose attribute this actor updates.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#classObjectName">classObjectName</a></span></code>
-<div class="block">The object class of the HLA attribute to publish.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../ptolemy/actor/TypedIOPort.html" title="class in ptolemy.actor">TypedIOPort</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#input">input</a></span></code>
 <div class="block">The input port.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#instanceName">instanceName</a></span></code>
+<div class="block">The name of the instance of the class to whose attribute this actor updates.</div>
+</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#useCertiMessageBuffer">useCertiMessageBuffer</a></span></code>
-<div class="block">Indicate if the event is wrapped in a CERTI message buffer.</div>
+<div class="block">Indicate whether the attribute value is conveyed through
+  a CERTI message buffer.</div>
 </td>
 </tr>
 </table>
@@ -326,7 +336,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#HlaAttributeUpdater-ptolemy.kernel.CompositeEntity-java.lang.String-">HlaAttributeUpdater</a></span>(<a href="../../../ptolemy/kernel/CompositeEntity.html" title="class in ptolemy.kernel">CompositeEntity</a>&nbsp;container,
                    java.lang.String&nbsp;name)</code>
-<div class="block">Construct the HlaPublisher actor.</div>
+<div class="block">Construct the HlaAttributeUpdater actor.</div>
 </td>
 </tr>
 </table>
@@ -365,22 +375,20 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#getAttributeName--">getAttributeName</a></span>()</code>
-<div class="block">Return the HLA attribute name indicated in the HlaPublisher actor
- that will be used by HLA services (publish and update).</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#getHlaAttributeName--">getHlaAttributeName</a></span>()</code>
+<div class="block">Return the value of the <i>attributeName</i> parameter.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#getClassInstanceName--">getClassInstanceName</a></span>()</code>
-<div class="block">Return the name of the HLA class instance indicated in the HlaPublisher
-  actor that will be used by HLA services (register and update).</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#getHlaClassName--">getHlaClassName</a></span>()</code>
+<div class="block">Return the value of the <i>className</i> parameter.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#getClassObjectName--">getClassObjectName</a></span>()</code>
-<div class="block">Return the HLA class object name indicated in the HlaPublisher actor.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#getHlaInstanceName--">getHlaInstanceName</a></span>()</code>
+<div class="block">Return the value of the <i>instanceName</i> parameter.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -502,28 +510,31 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <ul class="blockList">
 <li class="blockList">
 <h4>attributeName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> attributeName</pre>
-<div class="block">The HLA attribute name the HLASubscriber is mapped to.</div>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> attributeName</pre>
+<div class="block">The name of the attribute this actor updates.
+  This defaults to an empty string, but it must be non-empty to run the model.</div>
 </li>
 </ul>
-<a name="classObjectName">
+<a name="className">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>classObjectName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> classObjectName</pre>
-<div class="block">The object class of the HLA attribute to publish.</div>
+<h4>className</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> className</pre>
+<div class="block">The name of the class whose attribute this actor updates.
+  This defaults to an empty string, but it must be non-empty to run the model.</div>
 </li>
 </ul>
-<a name="classInstanceName">
+<a name="instanceName">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>classInstanceName</h4>
-<pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> classInstanceName</pre>
-<div class="block">The name of the HLA class instance for this HlaSubscriber.</div>
+<h4>instanceName</h4>
+<pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> instanceName</pre>
+<div class="block">The name of the instance of the class to whose attribute this actor updates.
+  This defaults to an empty string, but it must be non-empty to run the model.</div>
 </li>
 </ul>
 <a name="input">
@@ -543,7 +554,13 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <li class="blockList">
 <h4>useCertiMessageBuffer</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/Parameter.html" title="class in ptolemy.data.expr">Parameter</a> useCertiMessageBuffer</pre>
-<div class="block">Indicate if the event is wrapped in a CERTI message buffer.</div>
+<div class="block">Indicate whether the attribute value is conveyed through
+  a CERTI message buffer. This is a boolean that defaults to false.
+  It should be set to true if the attribute to which this actor
+  listens is updated by a foreign simulator. It can be false
+  if the attribute is reflected by a federate implemented in Ptolemy II,
+  and if this corresponding parameter in the actor doing the reflecting
+  is also false.</div>
 </li>
 </ul>
 </li>
@@ -564,7 +581,7 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
                            java.lang.String&nbsp;name)
                     throws <a href="../../../ptolemy/kernel/util/NameDuplicationException.html" title="class in ptolemy.kernel.util">NameDuplicationException</a>,
                            <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Construct the HlaPublisher actor.</div>
+<div class="block">Construct the HlaAttributeUpdater actor.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>container</code> - The container.</dd>
@@ -594,7 +611,8 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <pre>public&nbsp;void&nbsp;attributeChanged(<a href="../../../ptolemy/kernel/util/Attribute.html" title="class in ptolemy.kernel.util">Attribute</a>&nbsp;attribute)
                       throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Call the attributeChanged method of the parent. Check if the
-  user has set all information related to HLA to publish.</div>
+  user has set all information related to HLA to publish, for registering
+  instances</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/NamedObj.html#attributeChanged-ptolemy.kernel.util.Attribute-">attributeChanged</a></code>&nbsp;in class&nbsp;<code><a href="../../../ptolemy/kernel/util/NamedObj.html" title="class in ptolemy.kernel.util">NamedObj</a></code></dd>
@@ -675,60 +693,54 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 </dl>
 </li>
 </ul>
-<a name="getAttributeName--">
+<a name="getHlaAttributeName--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAttributeName</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getAttributeName()
-                                  throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA attribute name indicated in the HlaPublisher actor
- that will be used by HLA services (publish and update). The attribute
- must be defined in the FED file. It belongs to the class classObjectName.</div>
+<h4>getHlaAttributeName</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getHlaAttributeName()
+                                     throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
+<div class="block">Return the value of the <i>attributeName</i> parameter.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the HLA Attribute name.</dd>
+<dd>The value of the <i>attributeName</i> parameter.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - if a bad token string value is provided</dd>
+<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the class name is empty.</dd>
 </dl>
 </li>
 </ul>
-<a name="getClassInstanceName--">
+<a name="getHlaClassName--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getClassInstanceName</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getClassInstanceName()
-                                      throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the name of the HLA class instance indicated in the HlaPublisher
-  actor that will be used by HLA services (register and update). It is
-  chosen by the user.</div>
+<h4>getHlaClassName</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getHlaClassName()
+                                 throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
+<div class="block">Return the value of the <i>className</i> parameter.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the HLA class instance name.</dd>
+<dd>The value of the <i>className</i> parameter.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - if a bad token string value is provided.</dd>
+<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the class name is empty.</dd>
 </dl>
 </li>
 </ul>
-<a name="getClassObjectName--">
+<a name="getHlaInstanceName--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getClassObjectName</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getClassObjectName()
+<h4>getHlaInstanceName</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getHlaInstanceName()
                                     throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Return the HLA class object name indicated in the HlaPublisher actor.
- The class must be defined in the FED file and has the attribute
- attributeName.</div>
+<div class="block">Return the value of the <i>instanceName</i> parameter.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the HLA object class name.</dd>
+<dd>The value of the <i>instanceName</i> parameter.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - if a bad token string value is provided.</dd>
+<dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the class name is empty.</dd>
 </dl>
 </li>
 </ul>
