@@ -143,8 +143,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">HlaAttributeUpdater</span>
 extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in ptolemy.actor">TypedAtomicActor</a></pre>
-<div class="block">/**
- This actor is a kind-of output port that sends the data on its input to the
+<div class="block">This actor is a kind-of output port that sends the data on its input to the
  federation through the network. In HLA, the terminology is that this actor
  "updates" the specified attribute value of the specified instance whenever
  there is a data on its input. This attribute value will be "reflected" by
@@ -194,21 +193,21 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
  Ptolemy II model, and the corresponding <a href="../../../org/hlacerti/lib/HlaAttributeReflector.html" title="class in org.hlacerti.lib"><code>HlaAttributeReflector</code></a> does
  not not specify to use the CERTI message buffer, then this parameter should
  be false.
-  
+ <p>
  FIXMEjc: took from publisher actor description. Keep it or not?
  In a federation implemented only with Ptolemy II federates, 
- an HlaAttributeUpdater is linked to a unique HlaAttributeReflector; any data
+ an HlaAttributeUpdater is linked to a unique HlaAttributeReflector. Any data
  dependencies that the director might assume on a regular "wired" connection
  will also be assumed across HlaAttributeUpdater-HlaAttributeReflector pairs.
- Similarly, type constraints will propagate across publisher-subscriber pairs. 
- That is, the type of the HlaAttributeReflector output must match the type of
- the HlaAttributeUpdater input.
-   
+ Similarly, the type of the HlaAttributeReflector output must match the type
+ of the HlaAttributeUpdater input.
+ <p> 
  (Check if we can reuse this sentences:) Each class has attributes, and this
  actor sends updates to an attribute of an instance of a class when it
  receives data on its input.  If there are instances of <a href="../../../org/hlacerti/lib/HlaAttributeReflector.html" title="class in org.hlacerti.lib"><code>HlaAttributeReflector</code></a>
  that refer to the same attribute of the same instance, then those will be
  notified of the update. 
+ <p> 
  If an instance with the specified name does not already exist, it will be
  created during initialization of the model. 
  
@@ -275,7 +274,8 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../ptolemy/actor/TypedIOPort.html" title="class in ptolemy.actor">TypedIOPort</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#input">input</a></span></code>
-<div class="block">The input port.</div>
+<div class="block">The input port providing the new value that will update the specified
+  attribute of the specified instance.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -369,8 +369,10 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeUpdater.html#fire--">fire</a></span>()</code>
-<div class="block">All tokens, received in the input port, are transmitted to the
-  <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> for a publication to the HLA/CERTI Federation.</div>
+<div class="block">Ask the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> for updating the event in the input port 
+ (with time-stamp t) to the federation, by calling the UAV service (with
+ time-stamp t') related to the HLA attribute of an instance (mapped to
+ this actor).</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -544,7 +546,11 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <li class="blockList">
 <h4>input</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/actor/TypedIOPort.html" title="class in ptolemy.actor">TypedIOPort</a> input</pre>
-<div class="block">The input port.</div>
+<div class="block">The input port providing the new value that will update the specified
+  attribute of the specified instance.
+  The type of the input port corresponds to the type of the attribute
+  (that would be defined in the FOM, but is not described in the FED file).
+  This type  must be the same as <i>attributeType</a> in <a href="../../../org/hlacerti/lib/HlaAttributeReflector.html" title="class in org.hlacerti.lib"><code>HlaAttributeReflector</code></a>.</div>
 </li>
 </ul>
 <a name="useCertiMessageBuffer">
@@ -681,8 +687,11 @@ extends <a href="../../../ptolemy/actor/TypedAtomicActor.html" title="class in p
 <h4>fire</h4>
 <pre>public&nbsp;void&nbsp;fire()
           throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">All tokens, received in the input port, are transmitted to the
-  <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> for a publication to the HLA/CERTI Federation.</div>
+<div class="block">Ask the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> for updating the event in the input port 
+ (with time-stamp t) to the federation, by calling the UAV service (with
+ time-stamp t') related to the HLA attribute of an instance (mapped to
+ this actor). The value of t' depends on t and the time management
+ parameters used (NER or TAR, see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> code).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/Executable.html#fire--">fire</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/Executable.html" title="interface in ptolemy.actor">Executable</a></code></dd>
