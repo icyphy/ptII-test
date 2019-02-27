@@ -83,7 +83,7 @@
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>Chadlia Jerad, Edward A. Lee, Marten Lohstroh, Elizabeth Osyk, Victor Nouvellet</li>
+            <li>Chadlia Jerad, Edward A. Lee, Marten Lohstroh, Elizabeth Osyk, Victor Nouvellet, Matt Weber</li>
         </ul>
     </dd>
     
@@ -845,7 +845,7 @@ The &quot;.js&quot; extension of the accessor class is optional. This is a block
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/cordovaFiles/cordovaHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html#line229">line 229</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/cordovaFiles/cordovaHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html#line380">line 380</a>
     </li></ul></dd>
     
 
@@ -1058,6 +1058,226 @@ operation was unsuccessful (and will be null otherwise).</p>
 
     
 
+    <h4 class="name" id="~getResource"><span class="type-signature">(inner) </span>getResource<span class="signature">(uri, options, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get a resource using XMLHttpRequest or cordova-plugin-file as needed. </p>
+<p> Unlike other hosts, this implementation is exclusively asynchronous. A null callback argument
+ will generate an error.</p>
+<p> FIXME: complete this implementation for more resource types such as binary files
+ (see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/index.html#store-an-existing-binary-file-)
+ FIXME: figure out a good way to restrict file system access to particular directories
+ FIXME: process $KEYSTORE as a path element
+ FIXME: implement timeouts
+ FIXME: there is an inconsistency in how error messages are reported for remote and local files and timeouts.
+   Particularly, resolveFileFailure produces some unknown kind of object. The documentation doesn't help.
+   It would be good to standardize the cases.
+ WARNING: the encoding parameter in options is currently ignored</p>
+<p> Below are the types of resources that are handled
+ all other resources will cause an error.</p>
+<ul>
+<li>Text (UTF-8)</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uri</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A specification for the resource. If the uri starts with http or https,
+   this function will attempt to load the resource from the web. If the uri is an
+   absolute path on mobile (starts with file:///), this function will attempt to load it
+   with cordova-plugin-file. If the uri is a relative path, this function will attempt to
+   load it relative to this app's www folder (located at cordova.file.applicationDirectory/www/)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>FXIME: Until more than UTF-8 resources are supported, encoding inputs are ignored
+   is ignored. The below documentation is copied from the GetResource accessor.
+   The options parameter may have the following values:</p>
+<ul>
+<li>If the type of the options parameter is a Number, then it is assumed
+to be the timeout in milliseconds. Timeout defaults to 5000ms.</li>
+<li>If the type of the options parameter is a String, then it is assumed
+to be the encoding, for example &quot;UTF-8&quot;.  If the value is &quot;Raw&quot; or &quot;raw&quot;
+then the data is returned as an unsigned array of bytes.
+The default encoding is the default encoding of the system.</li>
+<li>If the type of the options parameter is an Object, then it may
+have the following fields:
+  <strong> encoding  The encoding of the file, see above for values.
+  </strong> timeout {number} The timeout in milliseconds.</li>
+</ul></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A callback function which will be called with two arguments:
+    1) The first argument is null if the resource was successfully
+    acquired and a non-null error code if wasn't. The error message will be
+    an http status message https://<a href="http://www.w3schools.com/tags/ref_httpmessages.asp">www.w3schools.com/tags/ref_httpmessages.asp</a>
+    if a web resource was sought, and a cordova-plugin-file error code
+    (see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/#list-of-error-codes-and-meanings)
+    if a local resource was sought.
+    2) The second argument is the desired resource, if successfully acquired
+    and null otherwise.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/cordovaFiles/cordovaHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html#line268">line 268</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="~instantiate"><span class="type-signature">(inner) </span>instantiate<span class="signature">(accessorName, accessorClass)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
@@ -1183,7 +1403,7 @@ operation was unsuccessful (and will be null otherwise).</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/cordovaFiles/cordovaHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html#line240">line 240</a>
+        <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html">org/terraswarm/accessor/accessors/web/hosts/cordova/cordovaFiles/cordovaHost.js</a>, <a href="org_terraswarm_accessor_accessors_web_hosts_cordova_cordovaFiles_cordovaHost.js.html#line391">line 391</a>
     </li></ul></dd>
     
 
