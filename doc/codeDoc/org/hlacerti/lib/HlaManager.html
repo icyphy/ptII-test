@@ -169,12 +169,12 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
  name, then a federation with that name will be automatically created.
  Otherwise, the federate will join the pre-existing federation.
  </p><p>
- Federates can exchange information using the <a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib"><code>HlaPublisher</code></a>
- and <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a> actors. When a time-stamped event in one
- federate is fed into an HlaPublisher, then a corresponding time-stamped
- event will pop out of any HlaSubscriber elsewhere in the federation
- if the parameters of that HlaSubscriber match those of the
- HlaPublisher. These parameters conform to a
+ Federates can exchange information using the <a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib"><code>HlaUpdatable</code></a>
+ and <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib"><code>HlaReflectable</code></a> actors. When a time-stamped event in one
+ federate is fed into an HlaUpdatable, then a corresponding time-stamped
+ event will pop out of any HlaReflectable elsewhere in the federation
+ if the parameters of that HlaReflectable match those of the
+ HlaUpdatable. These parameters conform to a
  Federation Object Model (FOM) that is an important part of the
  definition of a federation and is described in a file called a
  Federation Execution Data (FED) file that needs to be
@@ -260,7 +260,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
  In HLA, the data that is sent from one federate to another through
  the RTI is viewed
  as an update to an attribute of an instance of a class.
- <a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib"><code>HlaPublisher</code></a> and <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a> actors specify
+ <a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib"><code>HlaUpdatable</code></a> and <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib"><code>HlaReflectable</code></a> actors specify
  which attribute of which instance of which class they update
  or are notified of updates.
  See the documentation for those two actors.
@@ -348,7 +348,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
  The DEDirector in the model is required to have a finite <i>stopTime</i>
  parameter set. It is usually also a good idea to set its
  <i>stopWhenQueueIsEmpty</i> parameter to false, particularly if it
- is relying on an HlaSubscriber actor to provide it with events to process.
+ is relying on an HlaReflectable actor to provide it with events to process.
  Otherwise, the federate may prematurely finish its simulation.
  </p><p>
  When the simulation ends, the federate resigns from the federation.
@@ -443,7 +443,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <td class="colFirst"><code>protected java.util.HashMap&lt;java.lang.String,java.util.LinkedList&lt;<a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in ptolemy.actor.util">TimedEvent</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#Z:Z_fromFederationEvents">_fromFederationEvents</a></span></code>
 <div class="block">List of events received from the HLA/CERTI Federation and indexed by the
-  <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a> actors present in the model.</div>
+  <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib"><code>HlaReflectable</code></a> actors present in the model.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -653,7 +653,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#updateHlaAttribute-org.hlacerti.lib.HlaPublisher-ptolemy.data.Token-">updateHlaAttribute</a></span>(<a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib">HlaPublisher</a>&nbsp;hp,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#updateHlaAttribute-org.hlacerti.lib.HlaUpdatable-ptolemy.data.Token-">updateHlaAttribute</a></span>(<a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib">HlaUpdatable</a>&nbsp;hp,
                   <a href="../../../ptolemy/data/Token.html" title="class in ptolemy.data">Token</a>&nbsp;in)</code>
 <div class="block">Update the HLA attribute <i>attributeName</i> with the containment of
   the token <i>in</i>.</div>
@@ -940,7 +940,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <pre>protected&nbsp;java.util.HashMap&lt;java.lang.String,java.lang.Object[]&gt; _hlaAttributesToPublish</pre>
 <div class="block">Table of HLA attributes (and their HLA information) that are published
   by the current <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> to the HLA/CERTI Federation. This
-  table is indexed by the <a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib"><code>HlaPublisher</code></a> actors present in the model.</div>
+  table is indexed by the <a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib"><code>HlaUpdatable</code></a> actors present in the model.</div>
 </li>
 </ul>
 <a name="Z:Z_hlaAttributesToSubscribeTo">
@@ -952,7 +952,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <pre>protected&nbsp;java.util.HashMap&lt;java.lang.String,java.lang.Object[]&gt; _hlaAttributesToSubscribeTo</pre>
 <div class="block">Table of HLA attributes (and their HLA information) that the current
   <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> is subscribed to. This table is indexed by the
-  <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a> actors present in the model.</div>
+  <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib"><code>HlaReflectable</code></a> actors present in the model.</div>
 </li>
 </ul>
 <a name="Z:Z_fromFederationEvents">
@@ -963,7 +963,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <h4>_fromFederationEvents</h4>
 <pre>protected&nbsp;java.util.HashMap&lt;java.lang.String,java.util.LinkedList&lt;<a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in ptolemy.actor.util">TimedEvent</a>&gt;&gt; _fromFederationEvents</pre>
 <div class="block">List of events received from the HLA/CERTI Federation and indexed by the
-  <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a> actors present in the model.</div>
+  <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib"><code>HlaReflectable</code></a> actors present in the model.</div>
 </li>
 </ul>
 <a name="Z:Z_objectIdToClassHandle">
@@ -1185,13 +1185,13 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 </dl>
 </li>
 </ul>
-<a name="updateHlaAttribute-org.hlacerti.lib.HlaPublisher-ptolemy.data.Token-">
+<a name="updateHlaAttribute-org.hlacerti.lib.HlaUpdatable-ptolemy.data.Token-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>updateHlaAttribute</h4>
-<pre>public&nbsp;void&nbsp;updateHlaAttribute(<a href="../../../org/hlacerti/lib/HlaPublisher.html" title="class in org.hlacerti.lib">HlaPublisher</a>&nbsp;hp,
+<pre>public&nbsp;void&nbsp;updateHlaAttribute(<a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib">HlaUpdatable</a>&nbsp;hp,
                                <a href="../../../ptolemy/data/Token.html" title="class in ptolemy.data">Token</a>&nbsp;in)
                         throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Update the HLA attribute <i>attributeName</i> with the containment of
