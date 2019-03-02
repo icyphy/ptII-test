@@ -1156,22 +1156,24 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <h4>proposeTime</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/actor/util/Time.html" title="class in ptolemy.actor.util">Time</a>&nbsp;proposeTime(<a href="../../../ptolemy/actor/util/Time.html" title="class in ptolemy.actor.util">Time</a>&nbsp;proposedTime)
                  throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Propose a time to advance to. This method is the one implementing the
-  TimeRegulator interface and using the HLA/CERTI Time Management services
-  (if required). Following HLA and CERTI recommendations, if the Time
-  Management is required then we have the following behavior:
-  Case 1: If lookahead = 0
-   -a) if time-stepped Federate, then the timeAdvanceRequestAvailable()
-       (TARA) service is used;
-   -b) if event-based Federate, then the nextEventRequestAvailable()
-       (NERA) service is used
-  Case 2: If lookahead &gt; 0
-   -c) if time-stepped Federate, then timeAdvanceRequest() (TAR) is used;
-   -d) if event-based Federate, then the nextEventRequest() (NER) is used;
-  Otherwise the proposedTime is returned.
-  NOTE: For the Ptolemy II - HLA/CERTI cooperation the default (and correct)
-  behavior is the case 1 and CERTI has to be compiled with the option
-  "CERTI_USE_NULL_PRIME_MESSAGE_PROTOCOL".</div>
+<div class="block">Propose a time to advance to. This method implements the
+  TimeRegulator interface and call HLA/CERTI Time Management services for
+  a time advance request. The time advance phase in HLA is a two-step
+  process: 1) a federate sends a time advance request service, and 
+  2) waits for the time to be granted, provided by the timeAdvanceGrant
+  (TAG) service. Two services, both with  lookahead &gt; 0 are proposed:
+  - timeAdvanceRequest() (TAR) for implementing time-stepped Federates;
+  - nextEventRequest() (NER) for implementing event-based Federates.
+  When RAV are received in a time advance phase, the  proposedTime 
+  returned depends on which service is called, NER or TAR.
+  - When using TAR: proposedTime has the same value the federate has 
+  asked to advance to;
+  - When using NER: proposedTime returns the value of the time-stamp of
+  the received RAV.
+  
+  NOTE: CERTI offers also the Null Prime Message Protocol that improves
+  the performance of the distributed simulation, see FIXME cite paper. 
+  When compiling set to ON the option CERTI_USE_NULL_PRIME_MESSAGE_PROTOCOL.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/TimeRegulator.html#proposeTime-ptolemy.actor.util.Time-">proposeTime</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/TimeRegulator.html" title="interface in ptolemy.actor">TimeRegulator</a></code></dd>
