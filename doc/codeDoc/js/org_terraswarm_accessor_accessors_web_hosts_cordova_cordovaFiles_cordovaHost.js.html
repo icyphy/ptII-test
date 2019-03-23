@@ -62,10 +62,13 @@
 // Module variables.
 
 /** Full path to the root (www). */
-var _root = document.location + '/..';
+var _rootStr = document.location + "";
+var _root = _rootStr.substring(0, (_rootStr.lastIndexOf("/")+1) );
+// var _root = document.location + '/..';
+//var _root = document.location + '/..';
 
 /** Relative path (from www) to the include directory. */
-var _includePath = '/js/include/';
+var _includePath = 'js/include/';
 
 /** Relative path (from www) to the accessors directory. */
 var _accessorPath = _includePath + 'accessors/';
@@ -245,21 +248,35 @@ function getJavaScript(path, callback) { // FIXME: try to merge with browser ver
     }
 }
 
-/** Get a resource using XMLHttpRequest or cordova-plugin-file as needed. 
+/** Get a resource using XMLHttpRequest for remote files and window.resolveLocalFileSystemURL
+ *  for local files.
+ *  
+ *  The reason for using a different function for local files is subtle, and has to do with
+ *  how mobile apps are sandboxed differently than web apps.
+ *  XMLHttpRequest will load local files, but is restricted by the domain name and top level domain name
+ *  of the current URI, which can change from the app's www directory if the user navigates to another
+ *  page of the app and interfere with file loading. Not only does 
+ *  window.resolveLocalFileSystemURL not have this issue
+ *  it provides access to other files in the app sandbox which may not be in the
+ *  app's www directory. For example both Android and iOS provide persistant and private data
+ *  storage (see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/) outside
+ *  of the app's www directory.
  *
- *  Unlike other hosts, this implementation is exclusively asynchronous. A null callback argument
- *  will generate an error.
+ *  Unlike other hosts, this implementation is exclusively asynchronous.
+ *  Although getJavaScript above shows synchronous loading, this is to be avoided because 
+ *  a synchronous call to getResource during execution would make the swarmlet freeze.
+ *  Therefore a null callback argument will generate an error.
+ *
+ *   *  $KEYSTORE is replaced with _root + "keystore/"
+ *  This means each cordova swarmlet on a phone is assumed to have
+ *  its own app-specific read-only keystore.
  * 
  *  FIXME: complete this implementation for more resource types such as binary files
  *  (see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/index.html#store-an-existing-binary-file-)
- *  FIXME: figure out a good way to restrict file system access to particular directories
- *  FIXME: process $KEYSTORE as a path element
- *  FIXME: implement timeouts
- *  FIXME: there is an inconsistency in how error messages are reported for remote and local files and timeouts.
- *    Particularly, resolveFileFailure produces some unknown kind of object. The documentation doesn't help.
- *    It would be good to standardize the cases.
  *  WARNING: the encoding parameter in options is currently ignored
+ *  FIXME: print file errors with more informative messages than "[object]". 
  * 
+ *
  *  Below are the types of resources that are handled
  *  all other resources will cause an error.
  * 
@@ -267,9 +284,9 @@ function getJavaScript(path, callback) { // FIXME: try to merge with browser ver
  *
  *  @param uri {string} A specification for the resource. If the uri starts with http or https,
  *    this function will attempt to load the resource from the web. If the uri is an
- *    absolute path on mobile (starts with file:///), this function will attempt to load it
- *    with cordova-plugin-file. If the uri is a relative path, this function will attempt to
- *    load it relative to this app's www folder (located at cordova.file.applicationDirectory/www/)
+ *    absolute path on mobile (starts with file:///) it will attempt to load it locally.
+ *    If the uri is a relative path, this function will attempt to load it relative to this app's www
+ *    directory (located at _root).
  *  @param options FXIME: Until more than UTF-8 resources are supported, encoding inputs are ignored
  *    is ignored. The below documentation is copied from the GetResource accessor.
  *    The options parameter may have the following values:
@@ -311,7 +328,9 @@ function getResource(uri, options, callback) {
         return;         
     }
 
-    if(uri.startsWith("http://") || uri.startsWith("https://") ){
+    var path = "";
+    if(uri.startsWith("http://") || uri.startsWith("https://")){
+        path = uri;
         var request = new XMLHttpRequest();
         var complete = false;
 
@@ -344,15 +363,18 @@ function getResource(uri, options, callback) {
             }
         }
     } else {
-        //Resource is a local file.
-
-        var path = "";
         if(uri.startsWith("file:///")){
-            //Resource is an absolute path.
+            //Absolute path. Starting with "/" is not a valid path on mobile.
             path = uri;
+
+        } else if(uri.startsWith("$KEYSTORE")){
+            //On other hosts this is a hidden directory, but Cordova doesn't seem to load hidden files.
+            // path = _root + "keystore/" + uri.substring(10);
+            path = _root + "keystore/" + uri.substring(10);
+
         } else {
-            //Resource is a relative path.
-            path = cordova.file.applicationDirectory + 'www/' + uri;
+            //Relative path
+            path = _root + uri;
         }
 
         function resolveFileFail(e) {
@@ -396,6 +418,7 @@ function getResource(uri, options, callback) {
         }
         window.resolveLocalFileSystemURL(path, resolveFileSuccess, resolveFileFail);
     }
+    
 };
 
 /** Return the name of this host.
@@ -440,8 +463,7 @@ console.log = function(txt) {
     if (txt) {
         x.innerHTML += "&lt;br/>" + "\> "  + txt;
     }
-};
-</code></pre>
+};</code></pre>
         </article>
     </section>
 
