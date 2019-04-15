@@ -119,10 +119,14 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">HlaTimedEvent</span>
 extends <a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in ptolemy.actor.util">TimedEvent</a></pre>
 <div class="block"><p>This class extends the TimedEvent class to add specific information
- relative to HLA "events" received from HLA/CERTI.
- The <i>objectInstanceID</i> parameter give information on who
- is responsible of an UAV (Update Attribute Value). An UAV is an update
- value of a HLA attribute which belongs to a HLA class instance.
+ relative to HLA "events" (also called messages) received from HLA/CERTI.
+ The <i>hlaInstanceHandle</i> is a numeric handle used by the discovering
+ federate to uniquely refer to the object instance.
+ The existence of this object instance is informed by the callback 
+ discoverObjectInstance(className,instanceName) to the federates that
+ subscribed to className. The updates of an attribute of the
+ instanceName will be delivered to these federates using the callback
+ reflectAttributeValues().
 
  See the <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a> for its usage and more information.</div>
 <dl>
@@ -187,9 +191,9 @@ extends <a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in pt
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaTimedEvent.html#HlaTimedEvent-ptolemy.actor.util.Time-java.lang.Object-int-">HlaTimedEvent</a></span>(<a href="../../../ptolemy/actor/util/Time.html" title="class in ptolemy.actor.util">Time</a>&nbsp;time,
              java.lang.Object&nbsp;obj,
-             int&nbsp;hlaObjectInstanceId)</code>
+             int&nbsp;hlaInstanceHandle)</code>
 <div class="block">Constructs a HLA event with the specified time stamp, contents
-  and HLA object instance ID.</div>
+  and HLA instance handle.</div>
 </td>
 </tr>
 </table>
@@ -215,8 +219,8 @@ extends <a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in pt
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaTimedEvent.html#getHlaObjectInstanceId--">getHlaObjectInstanceId</a></span>()</code>
-<div class="block">Return the HLA object instance ID value.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaTimedEvent.html#getHlaInstanceHandle--">getHlaInstanceHandle</a></span>()</code>
+<div class="block">Return the HLA instance handle value.</div>
 </td>
 </tr>
 </table>
@@ -256,14 +260,14 @@ extends <a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in pt
 <h4>HlaTimedEvent</h4>
 <pre>public&nbsp;HlaTimedEvent(<a href="../../../ptolemy/actor/util/Time.html" title="class in ptolemy.actor.util">Time</a>&nbsp;time,
                      java.lang.Object&nbsp;obj,
-                     int&nbsp;hlaObjectInstanceId)</pre>
+                     int&nbsp;hlaInstanceHandle)</pre>
 <div class="block">Constructs a HLA event with the specified time stamp, contents
-  and HLA object instance ID.</div>
+  and HLA instance handle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>time</code> - The time stamp.</dd>
 <dd><code>obj</code> - The contents.</dd>
-<dd><code>hlaObjectInstanceId</code> - The HLA object instance ID.</dd>
+<dd><code>hlaInstanceHandle</code> - The HLA instance handle.</dd>
 </dl>
 </li>
 </ul>
@@ -275,17 +279,17 @@ extends <a href="../../../ptolemy/actor/util/TimedEvent.html" title="class in pt
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getHlaObjectInstanceId--">
+<a name="getHlaInstanceHandle--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getHlaObjectInstanceId</h4>
-<pre>public&nbsp;int&nbsp;getHlaObjectInstanceId()</pre>
-<div class="block">Return the HLA object instance ID value.</div>
+<h4>getHlaInstanceHandle</h4>
+<pre>public&nbsp;int&nbsp;getHlaInstanceHandle()</pre>
+<div class="block">Return the HLA instance handle value.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The HLA object instance ID as int.</dd>
+<dd>The HLA instance handle as int.</dd>
 </dl>
 </li>
 </ul>

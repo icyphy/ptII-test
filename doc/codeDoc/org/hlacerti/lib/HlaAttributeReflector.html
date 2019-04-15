@@ -164,7 +164,15 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
  name chosen by the designer for the instance of the class. It specifies
  the instance of the specified class whose attribute this actor reflects.
  <p>
- If there is no instance with the specified <i>instanceName</i>, then this actor
+ A federate may not need to know the name of the instances, because all
+ instances are treated the same way, or because it is not important to know
+ their names. In these cases, the wildcard  <i>joker_N</i>, N being any integer,
+ may be used in the parameter <i>instanceName</i>. As the order in which the
+ instances are discovered is not known before the run, the wildcard must be
+ used with caution, see the manual and <code>HlaAManager</code> code.
+ <p>
+ If there is no instance with the specified <i>instanceName</i>, or no
+ updated attribute for the instance binded to a wildcard, then this actor
  produces no output. If a matching instance is later created, then this
  actor will begin producing outputs when that instance's attribute is updated.
  If the specified class does not have an attribute with the specified
@@ -355,7 +363,7 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#fire--">fire</a></span>()</code>
 <div class="block">Put in the Ptolemy queue the token (with time-stamp t) corresponding to
-  the RAV (with time-stamp t'=<i>ravTimeStamp<\i> related to the HLA
+  the RAV callback, with time-stamp t'=ravTimeStamp, related to the HLA
   attribute of an instance (mapped to this actor).</div>
 </td>
 </tr>
@@ -391,8 +399,8 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#getObjectInstanceId--">getObjectInstanceId</a></span>()</code>
-<div class="block">Returns the HLA object instance.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#getInstanceHandle--">getInstanceHandle</a></span>()</code>
+<div class="block">Returns the HLA object instance handle.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -429,14 +437,14 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#setObjectInstanceId-int-">setObjectInstanceId</a></span>(int&nbsp;objectInstanceId)</code>
-<div class="block">Set the HLA object instance.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#setInstanceHandle-int-">setInstanceHandle</a></span>(int&nbsp;instanceHandle)</code>
+<div class="block">Set the HLA object instance handle only when wildcard (joker_) is used.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaAttributeReflector.html#useCertiMessageBuffer--">useCertiMessageBuffer</a></span>()</code>
-<div class="block">Indicate if the HLA subscriber actor uses the CERTI message
+<div class="block">Indicate if the HLA attribute reflector actor uses the CERTI message
   buffer API.</div>
 </td>
 </tr>
@@ -589,7 +597,8 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 <h4>instanceName</h4>
 <pre>public&nbsp;<a href="../../../ptolemy/data/expr/StringParameter.html" title="class in ptolemy.data.expr">StringParameter</a> instanceName</pre>
 <div class="block">The name of the instance of the class to whose attribute this actor
-  listens for updates.
+  listens for updates. If this name does not need to be known, then a
+  wildcard can be used.
   This defaults to an empty string, but it must be non-empty to run the model.</div>
 </li>
 </ul>
@@ -737,7 +746,7 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 <pre>public&nbsp;void&nbsp;fire()
           throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Put in the Ptolemy queue the token (with time-stamp t) corresponding to
-  the RAV (with time-stamp t'=<i>ravTimeStamp<\i> related to the HLA
+  the RAV callback, with time-stamp t'=ravTimeStamp, related to the HLA
   attribute of an instance (mapped to this actor). The value of t depends
   on t' and the time management used (NER or TAR, see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> code).</div>
 <dl>
@@ -786,21 +795,21 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </dl>
 </li>
 </ul>
-<a name="getObjectInstanceId--">
+<a name="getInstanceHandle--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getObjectInstanceId</h4>
-<pre>public&nbsp;int&nbsp;getObjectInstanceId()</pre>
-<div class="block">Returns the HLA object instance.</div>
+<h4>getInstanceHandle</h4>
+<pre>public&nbsp;int&nbsp;getInstanceHandle()</pre>
+<div class="block">Returns the HLA object instance handle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#getObjectInstanceId--">getObjectInstanceId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
+<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#getInstanceHandle--">getInstanceHandle</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The HLA object instance handle.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>#setObjectInstanceId.</code></dd>
+<dd><code>#setInstanceHandle.</code></dd>
 </dl>
 </li>
 </ul>
@@ -854,21 +863,21 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </dl>
 </li>
 </ul>
-<a name="setObjectInstanceId-int-">
+<a name="setInstanceHandle-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setObjectInstanceId</h4>
-<pre>public&nbsp;void&nbsp;setObjectInstanceId(int&nbsp;objectInstanceId)</pre>
-<div class="block">Set the HLA object instance.</div>
+<h4>setInstanceHandle</h4>
+<pre>public&nbsp;void&nbsp;setInstanceHandle(int&nbsp;instanceHandle)</pre>
+<div class="block">Set the HLA object instance handle only when wildcard (joker_) is used.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#setObjectInstanceId-int-">setObjectInstanceId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
+<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#setInstanceHandle-int-">setInstanceHandle</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>objectInstanceId</code> - The HLA object instance to set.</dd>
+<dd><code>_instanceHandle</code> - The HLA object instance handle to set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>#getObjectInstanceHandle.</code></dd>
+<dd><code>#getInstanceHandle.</code></dd>
 </dl>
 </li>
 </ul>
@@ -882,14 +891,16 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
                               throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Store each updated value of the HLA attribute (mapped to this actor) in
   the token queue. Then, program the next firing time of this actor to
-  send the token at its expected time. This method is called by the
-  <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute.</div>
+  send the token at its expected time t. This method is called by the
+  <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> attribute. The timestamp t can be different from 
+  the ravTimeStamp if TAR time management is used (see <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a>
+  code).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#putReflectedHlaAttribute-org.hlacerti.lib.HlaTimedEvent-">putReflectedHlaAttribute</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>event</code> - The event containing the new value of the HLA
-  attribute and its time-stamp.</dd>
+  attribute and its time-stamp t.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - Not thrown here.</dd>
 </dl>
@@ -902,14 +913,14 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 <li class="blockList">
 <h4>useCertiMessageBuffer</h4>
 <pre>public&nbsp;boolean&nbsp;useCertiMessageBuffer()</pre>
-<div class="block">Indicate if the HLA subscriber actor uses the CERTI message
+<div class="block">Indicate if the HLA attribute reflector actor uses the CERTI message
   buffer API.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#useCertiMessageBuffer--">useCertiMessageBuffer</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if the HLA actor uses the CERTI message and false if
-  it doesn't.</dd>
+<dd>true if the HLA actor uses the CERTI message buffer and false
+  if it doesn't.</dd>
 </dl>
 </li>
 </ul>
@@ -979,7 +990,7 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 <pre>public&nbsp;void&nbsp;wrapup()
             throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Manage the correct termination of the <a href="../../../org/hlacerti/lib/HlaAttributeReflector.html" title="class in org.hlacerti.lib"><code>HlaAttributeReflector</code></a>. Reset
-  HLA handles and object instance ID.</div>
+  HLA attribute handle, class handle, and instance handle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/Initializable.html#wrapup--">wrapup</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/Initializable.html" title="interface in ptolemy.actor">Initializable</a></code></dd>

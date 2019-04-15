@@ -192,14 +192,14 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
     from all HlaSubscriber actors that has the same class  <i>C</i>); 
     - Receives the HLA callback informing the discovering of an instance of
     class <i>C</i> named <i>i</i>:
-    rtia.discoverObjectInstance(objectInstanceId, classHandle, someName), with 
-    someName = <i>i</i>; objectInstanceId and classHandle are handles provided
+    rtia.discoverObjectInstance(instanceHandle, classHandle, someName), with 
+    someName = <i>i</i>; instanceHandle and classHandle are handles provided
     by the RTI.
     
  2. During the simulation loop phase, the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a> receives the RAV
  callback from the RTI with the new value of an attribute of a class instance. Each 
  HlaSubscriber  actor is related to one RAV callback:
- rtia.reflectAttributeValues(objectInstanceId, suppAttributes, tag, ravTimeStamp).
+ rtia.reflectAttributeValues(instanceHandle, suppAttributes, tag, ravTimeStamp).
  The RAV callback, with a timestamp t'=<i>ravTimeStamp<\i> is received at the
  input port of the HlaPublisher actor, during the advance time phase that
  starts when the federate wants to advanced its time to <i>t<\i> (using NER or
@@ -402,7 +402,7 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#getObjectInstanceId--">getObjectInstanceId</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#getInstanceHandle--">getInstanceHandle</a></span>()</code>
 <div class="block">Returns the HLA object instance.</div>
 </td>
 </tr>
@@ -440,7 +440,7 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#setObjectInstanceId-int-">setObjectInstanceId</a></span>(int&nbsp;objectInstanceId)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaSubscriber.html#setInstanceHandle-int-">setInstanceHandle</a></span>(int&nbsp;instanceHandle)</code>
 <div class="block">Set the HLA object instance.</div>
 </td>
 </tr>
@@ -781,21 +781,21 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </dl>
 </li>
 </ul>
-<a name="getObjectInstanceId--">
+<a name="getInstanceHandle--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getObjectInstanceId</h4>
-<pre>public&nbsp;int&nbsp;getObjectInstanceId()</pre>
+<h4>getInstanceHandle</h4>
+<pre>public&nbsp;int&nbsp;getInstanceHandle()</pre>
 <div class="block">Returns the HLA object instance.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#getObjectInstanceId--">getObjectInstanceId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
+<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#getInstanceHandle--">getInstanceHandle</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The HLA object instance handle.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>#setObjectInstanceId.</code></dd>
+<dd><code>#setInstanceHandle.</code></dd>
 </dl>
 </li>
 </ul>
@@ -835,21 +835,21 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 </dl>
 </li>
 </ul>
-<a name="setObjectInstanceId-int-">
+<a name="setInstanceHandle-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setObjectInstanceId</h4>
-<pre>public&nbsp;void&nbsp;setObjectInstanceId(int&nbsp;objectInstanceId)</pre>
+<h4>setInstanceHandle</h4>
+<pre>public&nbsp;void&nbsp;setInstanceHandle(int&nbsp;instanceHandle)</pre>
 <div class="block">Set the HLA object instance.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#setObjectInstanceId-int-">setObjectInstanceId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
+<dd><code><a href="../../../org/hlacerti/lib/HlaReflectable.html#setInstanceHandle-int-">setInstanceHandle</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interface in org.hlacerti.lib">HlaReflectable</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>objectInstanceId</code> - The HLA object instance to set.</dd>
+<dd><code>instanceHandle</code> - The HLA object instance to set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>#getObjectInstanceHandle.</code></dd>
+<dd><code>#getInstanceHandle.</code></dd>
 </dl>
 </li>
 </ul>
@@ -977,7 +977,7 @@ implements <a href="../../../org/hlacerti/lib/HlaReflectable.html" title="interf
 <pre>public&nbsp;void&nbsp;wrapup()
             throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Manage the correct termination of the <a href="../../../org/hlacerti/lib/HlaSubscriber.html" title="class in org.hlacerti.lib"><code>HlaSubscriber</code></a>. Reset
-  HLA handles and object instance ID.</div>
+  HLA attribute handle, class handler and instance handler.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../ptolemy/actor/Initializable.html#wrapup--">wrapup</a></code>&nbsp;in interface&nbsp;<code><a href="../../../ptolemy/actor/Initializable.html" title="interface in ptolemy.actor">Initializable</a></code></dd>
