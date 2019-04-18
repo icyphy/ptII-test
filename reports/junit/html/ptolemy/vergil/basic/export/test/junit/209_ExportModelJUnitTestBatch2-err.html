@@ -9,6 +9,7 @@
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.1]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 WARNING: Invoking send() too late (probably in a callback), so WebSocketServer is not able to send the token {socketID = 0, status = "closed"} to the output connection. Token is discarded.
@@ -110,6 +111,25 @@ io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: S
 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.lang.Thread.run(Thread.java:748)
 REST: Error: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+Apr 18, 2019 4:51:10 AM sun.awt.X11.XToolkit processException
+WARNING: Exception on Toolkit thread
+java.lang.NullPointerException
+	at java.awt.Component$BltBufferStrategy.contentsLost(Component.java:4479)
+	at java.awt.Component$BltSubRegionBufferStrategy.showIfNotLost(Component.java:4542)
+	at javax.swing.BufferStrategyPaintManager.show(BufferStrategyPaintManager.java:252)
+	at javax.swing.RepaintManager.show(RepaintManager.java:1379)
+	at javax.swing.SwingPaintEventDispatcher.createPaintEvent(SwingPaintEventDispatcher.java:61)
+	at sun.awt.X11.XWindow.postPaintEvent(XWindow.java:564)
+	at sun.awt.X11.XContentWindow.postPaintEvent(XContentWindow.java:163)
+	at sun.awt.X11.XWindow.handleExposeEvent(XWindow.java:558)
+	at sun.awt.X11.XContentWindow.handleExposeEvent(XContentWindow.java:45)
+	at sun.awt.X11.XBaseWindow.dispatchEvent(XBaseWindow.java:1110)
+	at sun.awt.X11.XBaseWindow.dispatchToWindow(XBaseWindow.java:1086)
+	at sun.awt.X11.XToolkit.dispatchEvent(XToolkit.java:502)
+	at sun.awt.X11.XToolkit.run(XToolkit.java:616)
+	at sun.awt.X11.XToolkit.run(XToolkit.java:532)
+	at java.lang.Thread.run(Thread.java:748)
+
 HttpClientHelper.java: Received an error for request 0: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
 io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
 	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
@@ -453,12 +473,11 @@ io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: S
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.0]
 WARNING: VertxSubscribe: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.0]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [17.093, 16.989, 24.309, 16.039, 23.359, 25.886, 19.683, 22.721, 18.953, 23.149, 21.03, 13.93, 15.829, 14.983, 23.996000000000002, 20.403000000000002, 20.925, 24.101000000000003, 24.937, 15.088000000000001, 15.934000000000001, 21.135, 19.058, 17.304000000000002, 23.89, 25.571, 18.534, 18.431, 24.206, 26.869, 22.826, 18.637, 26.553, 25.676000000000002, 16.883, 20.506, 25.042, 17.199, 25.147000000000002, 15.404, 20.198, 26.974, 26.343, 21.555, 27.815, 16.355, 27.184, 21.66, 15.299000000000001, 18.046, 23.043, 23.466, 14.562000000000001, 26.448, 23.571, 20.301000000000002, 25.781000000000002, 15.194, 22.191000000000003, 14.457, 17.830000000000002, 16.46, 22.938000000000002, 27.079, 15.723, 20.82, 21.766000000000002, 27.5, 25.254, 24.628, 26.027, 24.418, 13.821, 21.976, 17.725, 26.237000000000002, 22.508, 27.605, 20.095000000000002, 22.297, 14.351, 27.289, 26.132, 14.667, 22.613, 17.943, 21.871000000000002, 27.71, 24.731, 14.246, 19.478, 27.394000000000002, 19.374000000000002, 24.523, 15.509, 17.619, 17.409, 18.845000000000002, 16.778000000000002, 25.466, 19.89, 24.834, 14.141, 14.772, 16.249000000000002, 19.993000000000002, 13.713000000000001, 16.568, 20.609, 19.163, 21.45, 23.785, 22.081, 18.220000000000002, 23.679000000000002, 18.324, 14.035, 18.739, 19.580000000000002, 20.711000000000002, 16.144000000000002, 21.240000000000002, 19.787, 26.658, 19.269000000000002, 17.514, 25.361, 21.345000000000002, 22.403000000000002, 15.614, 16.673000000000002, 14.877, 23.254, 26.763]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [26.387, 16.436, 17.282, 15.38, 22.074, 17.072, 17.938000000000002, 26.816000000000003, 18.044, 22.179000000000002, 20.915, 15.275, 14.325000000000001, 22.919, 14.964, 21.969, 16.967000000000002, 26.921, 15.591000000000001, 23.235, 26.282, 17.387, 18.254, 16.541, 21.021, 22.389, 20.382, 16.862000000000002, 18.149, 23.34, 15.066, 23.024, 24.082, 20.277, 15.486, 17.833000000000002, 26.175, 17.728, 26.071, 27.026, 17.602, 23.445, 23.549, 18.359, 27.236, 14.219000000000001, 14.642000000000001, 23.655, 14.748000000000001, 22.284000000000002, 24.504, 25.336000000000002, 18.465, 20.810000000000002, 16.222, 17.177, 19.418, 20.705000000000002, 24.93, 25.232, 27.131, 14.114, 19.854, 16.117, 21.442, 25.035, 19.96, 19.208000000000002, 25.755000000000003, 24.293, 14.853, 21.547, 26.601000000000003, 23.865000000000002, 25.651, 21.652, 27.657, 25.965, 16.012, 18.675, 24.398, 25.861, 18.57, 25.441000000000003, 16.328, 19.313000000000002, 24.824, 15.907, 27.446, 21.337, 23.76, 19.53, 22.810000000000002, 26.496000000000002, 27.342000000000002, 20.065, 25.546, 20.599, 14.537, 21.231, 21.758, 19.748, 24.719, 18.997, 15.169, 19.643, 20.494, 15.696, 14.432, 18.886, 24.187, 22.495, 16.651, 20.172, 16.756, 23.130000000000003, 22.6, 27.551000000000002, 22.705000000000002, 24.614, 18.78, 19.102, 17.493000000000002, 21.864, 21.126, 15.801, 23.971, 26.711000000000002]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.3740000000000006, 5.0]
+WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.0, 5.38]
 HttpClientHelper.java: Received an error for request 0: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
 io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
 	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
@@ -670,19 +689,12 @@ io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: 
 Caused by: java.net.ConnectException: Connection refused
 	... 11 more
 WARNING: Clock: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [28.0]
-WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [25.007, 28.007, 22.011]
+WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [28.007, 22.013, 25.008000000000003]
 WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [23.0]
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.0]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
@@ -694,15 +706,6 @@ WARNING: Invoking send() too late (probably in a callback), so Camera is not abl
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.269000000000002, 20.552, 20.962, 20.245, 21.166, 20.654, 20.041, 20.347, 21.064, 20.757, 20.45, 20.143, 20.859]
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [22.405, 22.302, 22.087, 22.195, 22.61, 22.508]
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
@@ -710,7 +713,21 @@ WARNING: Camera: Model stopped before executing actions (e.g. producing outputs)
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.198, 20.096, 20.506, 20.301000000000002, 20.404, 20.609]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.226, 20.919, 20.163, 20.611, 21.124000000000002, 21.021, 20.714000000000002, 20.372, 20.48, 20.268, 20.061, 21.329, 20.816000000000003]
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.198, 21.018, 22.25, 21.326, 20.301000000000002, 20.711000000000002, 21.223000000000003, 21.633, 22.043, 20.403000000000002, 20.813000000000002, 20.096, 20.506, 21.121000000000002, 21.531000000000002, 21.941000000000003, 20.916, 21.838, 20.609, 21.428, 22.153000000000002, 21.735]
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.483, 20.893, 20.142, 20.586000000000002, 20.995, 20.688000000000002, 20.247, 20.38, 20.039, 20.79]
 </pre>
 </body>
 </html>
