@@ -371,20 +371,15 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
  tick(min,max) and tick2(). When a federate calls the tick() method, any
  callbacks that are pending are invoked, and then the tick() returns.
  If there are no pending callbacks, then it returns immediately.
- This HLAManager, unfortunately, uses a busy wait pattern, where if no
- callback occurred, it simply calls tick() again.
+ This HLAManager, uses tick(min, max), which is not documented and we can't
+ be sure what it does, but it seems that the min argument specifies the
+ maximum real time to block waiting for a callback
+ before returning, and the second argument is not used. But we really can't
+ be sure without carefully evaluating all the C++ code.
  The alternative, tick2(), is not an attractive alternative because it
  blocks until a callback occurs, and a callback may never occur.
  This results in the HLAManager freezing, which freezes the Ptolemy model
  and Vergil, the user interface.
- There is another method, tick(min, max), that is not documented and we can't
- figure out what it does, so we aren't using it. It may be that the min
- argument specifies the maximum real time to block waiting for a callback
- before returning, and the second argument is not used, but we really can't
- be sure without carefully evaluating all the C++ code.
- HLA IEEE 1516 has two methods, evokeMultipleCallback(min,max) and
- evokeCallback(min), where the "supplied wall-clock time arguments shall have a
- precision of at least one millisecond" [9].
  </p>
  <p><b>References</b>:</p>
 
