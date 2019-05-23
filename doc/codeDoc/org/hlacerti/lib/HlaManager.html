@@ -684,10 +684,10 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#updateHlaAttribute-org.hlacerti.lib.HlaUpdatable-ptolemy.data.Token-">updateHlaAttribute</a></span>(<a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib">HlaUpdatable</a>&nbsp;hp,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/hlacerti/lib/HlaManager.html#updateHlaAttribute-org.hlacerti.lib.HlaUpdatable-ptolemy.data.Token-">updateHlaAttribute</a></span>(<a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib">HlaUpdatable</a>&nbsp;updater,
                   <a href="../../../ptolemy/data/Token.html" title="class in ptolemy.data">Token</a>&nbsp;in)</code>
-<div class="block">Update the HLA attribute <i>attributeName</i> to the value given by
-  the token <i>in</i>.</div>
+<div class="block">Update the HLA attribute specified by the <i>updater</i> argument
+  to the value given by the <i>in</i> argument.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
@@ -1246,17 +1246,17 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <ul class="blockList">
 <li class="blockList">
 <h4>updateHlaAttribute</h4>
-<pre>public&nbsp;void&nbsp;updateHlaAttribute(<a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib">HlaUpdatable</a>&nbsp;hp,
+<pre>public&nbsp;void&nbsp;updateHlaAttribute(<a href="../../../org/hlacerti/lib/HlaUpdatable.html" title="interface in org.hlacerti.lib">HlaUpdatable</a>&nbsp;updater,
                                <a href="../../../ptolemy/data/Token.html" title="class in ptolemy.data">Token</a>&nbsp;in)
                         throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
-<div class="block">Update the HLA attribute <i>attributeName</i> to the value given by
-  the token <i>in</i>. The updated attribute is sent to the HLA/CERTI
-  Federation. The time stamp provided by this method depends on whether
+<div class="block">Update the HLA attribute specified by the <i>updater</i> argument
+  to the value given by the <i>in</i> argument. This method is called
+  by the updater. The updated attribute is sent to the HLA/CERTI
+  Federation. The time stamp for the update depends on whether
   TAR or NER is being used. See the class documentation.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>hp</code> - The HLA updatable actor (HLA attribute) doing the update
-   (the actor that calls this method).</dd>
+<dd><code>updater</code> - The HLA updater actor.</dd>
 <dd><code>in</code> - The updated value.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If a CERTI exception is raised.</dd>
@@ -1273,7 +1273,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
             throws <a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></pre>
 <div class="block">Manage the correct termination of the <a href="../../../org/hlacerti/lib/HlaManager.html" title="class in org.hlacerti.lib"><code>HlaManager</code></a>. Call the
   HLA services to: unsubscribe to HLA attributes, unpublish HLA attributes,
-  resign a Federation and destroy a Federation if the current Federate is
+  resign a Federation, and destroy a Federation if the current Federate is
   the last participant.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -1282,7 +1282,7 @@ implements <a href="../../../ptolemy/actor/TimeRegulator.html" title="interface 
 <dd><code><a href="../../../ptolemy/actor/AbstractInitializableAttribute.html#wrapup--">wrapup</a></code>&nbsp;in class&nbsp;<code><a href="../../../ptolemy/actor/AbstractInitializableAttribute.html" title="class in ptolemy.actor">AbstractInitializableAttribute</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../ptolemy/kernel/util/IllegalActionException.html" title="class in ptolemy.kernel.util">IllegalActionException</a></code> - If the parent class throws it
-  of if a CERTI exception is raised then displayed it to the user.</dd>
+  of if a CERTI exception is raised.</dd>
 </dl>
 </li>
 </ul>
