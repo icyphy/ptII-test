@@ -9,7 +9,6 @@
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.1]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 WARNING: Invoking send() too late (probably in a callback), so WebSocketServer is not able to send the token {socketID = 0, status = "closed"} to the output connection. Token is discarded.
@@ -75,6 +74,7 @@ io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: S
 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.lang.Thread.run(Thread.java:748)
 REST: Error: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+REST: The timeout period of 5000ms has been exceeded.
 HttpClientHelper.java: Received an error for request 0: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
 io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
 	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
@@ -110,14 +110,354 @@ io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: S
 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.lang.Thread.run(Thread.java:748)
 REST: Error: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+HttpClientHelper.java: Received an error for request 0: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 1: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 2: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 3: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 4: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 5: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 6: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 7: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 8: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+HttpClientHelper.java: Received an error for request 9: io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+io.netty.resolver.dns.DnsNameResolverContext$SearchDomainUnknownHostException: Search domain query failed. Original hostname: 'terra.eecs.berkeley.edu' failed to resolve 'terra.eecs.berkeley.edu.google.internal' after 2 queries 
+	at io.netty.resolver.dns.DnsNameResolverContext.finishResolve(DnsNameResolverContext.java:721)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:663)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:306)
+	at io.netty.resolver.dns.DnsNameResolverContext.query(DnsNameResolverContext.java:295)
+	at io.netty.resolver.dns.DnsNameResolverContext.tryToFinishResolve(DnsNameResolverContext.java:636)
+	at io.netty.resolver.dns.DnsNameResolverContext$3.operationComplete(DnsNameResolverContext.java:342)
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:507)
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:481)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:420)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:104)
+	at io.netty.resolver.dns.DnsQueryContext.setSuccess(DnsQueryContext.java:197)
+	at io.netty.resolver.dns.DnsQueryContext.finish(DnsQueryContext.java:180)
+	at io.netty.resolver.dns.DnsNameResolver$DnsResponseHandler.channelRead(DnsNameResolver.java:965)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1359)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:935)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.0]
-WARNING: VertxSubscribe: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.0]
+WARNING: VertxSubscribe: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [10.001000000000001]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.364, 14.692, 22.314, 27.233, 16.613, 19.244, 18.284, 24.758000000000003, 23.17, 19.454, 22.42, 24.968, 26.596, 16.508, 27.974, 14.91, 19.349, 20.299, 18.931, 15.442, 15.758000000000001, 23.381, 26.702, 15.016, 14.481, 22.104, 18.71, 22.209, 23.486, 14.054, 15.653, 20.937, 21.575, 20.194, 26.491, 24.547, 15.227, 16.825, 25.074, 22.845000000000002, 13.948, 27.763, 22.739, 26.808, 14.798, 16.719, 17.362000000000002, 16.296, 24.442, 12.983, 24.652, 23.064, 27.868000000000002, 12.878, 17.468, 15.547, 23.592000000000002, 24.224, 17.042, 15.121, 21.681, 16.191, 20.831, 19.139, 19.034, 13.843, 25.18, 20.726, 21.786, 13.626000000000001, 26.914, 19.771, 24.335, 18.393, 13.413, 27.552, 17.965, 25.285, 27.447000000000003, 19.877000000000002, 27.019000000000002, 13.518, 27.657, 14.372, 17.257, 21.149, 16.93, 21.892, 20.62, 23.697, 20.408, 21.254, 23.802, 19.665, 13.307, 17.148, 24.118000000000002, 25.39, 27.342000000000002, 17.859, 13.738000000000001, 15.969000000000001, 16.402, 22.526, 15.336, 21.043, 14.266, 22.954, 13.196, 13.092, 27.127000000000002, 18.072, 19.560000000000002, 19.983, 24.863, 25.496000000000002, 17.753, 18.604, 22.631, 23.908, 17.648, 21.470000000000002, 23.275000000000002, 15.864, 20.088, 24.013, 18.499000000000002, 14.587, 18.178, 21.998, 18.822, 14.161000000000001, 20.514, 16.081]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [16.916, 24.612000000000002, 26.084, 21.249000000000002, 18.837, 19.454, 18.732, 15.756, 22.942, 13.523, 17.876, 18.942, 20.717000000000002, 24.717000000000002, 18.304000000000002, 24.927, 15.862, 21.144000000000002, 13.845, 27.138, 17.554000000000002, 22.198, 17.133, 13.628, 19.048000000000002, 22.41, 20.611, 13.312000000000001, 22.515, 20.822, 17.449, 16.810000000000002, 20.506, 27.243000000000002, 13.950000000000001, 25.032, 24.092000000000002, 15.331000000000001, 19.77, 25.873, 17.77, 23.258, 28.294, 25.137, 21.566000000000003, 15.226, 25.242, 14.8, 17.343, 23.363, 13.417, 18.09, 25.979, 14.695, 19.979, 22.305, 17.238, 19.875, 16.389, 23.886, 26.507, 20.085, 15.647, 21.672, 23.468, 25.453, 23.573, 26.717000000000002, 21.777, 15.437000000000001, 16.283, 23.678, 12.996, 20.19, 15.542, 26.612000000000002, 18.415, 23.989, 23.153000000000002, 16.494, 16.178, 14.59, 25.348000000000003, 26.402, 14.906, 16.073, 22.831, 21.882, 18.196, 13.733, 20.401, 24.197, 18.626, 26.823, 16.6, 19.153000000000002, 21.46, 25.768, 26.191000000000003, 14.266, 15.117, 24.406000000000002, 26.928, 18.521, 26.297, 17.66, 22.093, 17.027, 19.664, 14.484, 13.207, 15.011000000000001, 22.62, 20.928, 19.559, 25.558, 14.056000000000001, 24.509, 21.987000000000002, 15.967, 20.296, 22.725, 23.783, 16.705000000000002, 27.033, 13.101, 14.379000000000001, 25.663, 17.981, 21.033, 24.822, 14.161000000000001, 19.258, 21.355, 23.047, 24.303]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.0, 5.3950000000000005]
+WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.4030000000000005, 5.0]
 HttpClientHelper.java: Received an error for request 0: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
 io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8077
 	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
@@ -329,12 +669,19 @@ io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: 
 Caused by: java.net.ConnectException: Connection refused
 	... 11 more
 WARNING: Clock: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [28.0]
-WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [25.006, 22.007, 28.008000000000003]
+WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [25.009, 28.011000000000003, 22.007]
 WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [23.0]
 WARNING: TestSpontaneous: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.0]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [26.228]
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
+[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
@@ -346,21 +693,12 @@ WARNING: Invoking send() too late (probably in a callback), so Camera is not abl
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.485, 20.25, 21.895, 20.461000000000002, 20.871000000000002, 21.179000000000002, 20.357, 20.564, 21.076, 20.046, 20.974, 20.667, 21.383, 21.793, 21.69, 20.148, 20.769000000000002, 21.281000000000002, 21.588]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-WARNING: Invoking send() too late (probably in a callback), so Camera is not able to send the token {type="class ptolemy.data.AWTImageToken", width="640", height="480"} to the output image. Token is discarded.
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.453, 20.556, 20.966, 21.171, 20.658, 20.351, 20.761, 21.069, 20.035, 20.864, 20.138, 20.246000000000002]
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
-[atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.673000000000002, 20.262, 20.775000000000002, 20.364, 20.057000000000002, 20.16, 20.467000000000002, 20.57]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.435000000000002, 20.025000000000002, 20.128, 20.538, 20.23, 20.64, 20.333000000000002, 20.743000000000002, 20.846]
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
@@ -369,7 +707,7 @@ WARNING: Camera: Model stopped before executing actions (e.g. producing outputs)
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamOpenTask - Opening webcam Dummy Webcam 0
 [atomic-processor-1] INFO com.github.sarxos.webcam.ds.cgt.WebcamCloseTask - Closing Dummy Webcam 0
-WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [21.649, 20.569, 22.263, 21.956, 21.853, 20.046, 20.253, 21.236, 21.547, 20.671, 21.444, 22.161, 20.364, 20.774, 21.341, 21.751, 20.148, 22.059, 20.466]
+WARNING: Camera: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [20.483, 20.69, 20.897000000000002, 20.176000000000002, 20.279, 21.0, 21.102, 20.585, 20.381, 20.795, 20.074]
 </pre>
 </body>
 </html>
