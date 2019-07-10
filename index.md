@@ -6,7 +6,7 @@ The gh-pages branch of the [ptII-test repo](https://github.com/icyphy/ptII-test)
 * [Main ptII pages](https://github.com/icyphy/ptII) - See here for downloads and instructions about how to build Ptolemy II.
 * [Javadoc documentation for Ptolemy II Java classes](doc/codeDoc/) output for Java files
 * [JsDoc documentation for JavaScript components](doc/codeDoc/js/index.html) output for Javascript
-* [Night build (using Travis](https://travis-ci.org/icyphy/ptII)
+* [Night build (using Travis)](https://travis-ci.org/icyphy/ptII)
   * [PtII specific Travis Notes](https://wiki.eecs.berkeley.edu/ptexternal/Main/Travis) 
   * [JUnit test output](reports/junit/html/index.html)
   * [Complete test reports](reports/index.html)
