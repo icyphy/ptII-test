@@ -125,31 +125,12 @@ ptdoc:
      [echo] 
      [echo]     
      [exec] Generating output files...
-     [exec] Finished running in 17.43 seconds.
+     [exec] Finished running in 17.98 seconds.
 
 build-project:
      [echo] ptII: /home/travis/build/icyphy/ptII/build.xml
     [javac] Compiling 4288 source files to /home/travis/build/icyphy/ptII
     [javac] warning: [options] bootstrap class path not set in conjunction with -source 10
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:31: error: package javafx.embed.swing does not exist
-    [javac] import javafx.embed.swing.JFXPanel;
-    [javac]                          ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:32: error: package javafx.scene.media does not exist
-    [javac] import javafx.scene.media.Media;
-    [javac]                          ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:33: error: package javafx.scene.media does not exist
-    [javac] import javafx.scene.media.MediaPlayer;
-    [javac]                          ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:150: error: cannot find symbol
-    [javac]     private static JFXPanel _fxPanel;
-    [javac]                    ^
-    [javac]   symbol:   class JFXPanel
-    [javac]   location: class ClipPlayerHelper
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:168: error: cannot find symbol
-    [javac]     private MediaPlayer _player = null;
-    [javac]             ^
-    [javac]   symbol:   class MediaPlayer
-    [javac]   location: class ClipPlayerHelper
     [javac] /home/travis/build/icyphy/ptII/ptolemy/util/StringUtilities.java:48: warning: Unsafe is internal proprietary API and may be removed in a future release
     [javac] import sun.misc.Unsafe;
     [javac]                ^
@@ -198,33 +179,6 @@ build-project:
     [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:57: warning: [removal] ScriptObjectMirror in jdk.nashorn.api.scripting has been deprecated and marked for removal
     [javac]     public ClipPlayerHelper(Object actor, ScriptObjectMirror helping) {
     [javac]                                           ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:70: error: package MediaPlayer does not exist
-    [javac]             if (_player.getStatus().equals(MediaPlayer.Status.PLAYING)) {
-    [javac]                                                       ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:83: error: package MediaPlayer does not exist
-    [javac]                 && _player.getStatus().equals(MediaPlayer.Status.PLAYING)) {
-    [javac]                                                          ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:89: error: cannot find symbol
-    [javac]             _player = new MediaPlayer(new Media(url));
-    [javac]                           ^
-    [javac]   symbol:   class MediaPlayer
-    [javac]   location: class ClipPlayerHelper
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:89: error: cannot find symbol
-    [javac]             _player = new MediaPlayer(new Media(url));
-    [javac]                                           ^
-    [javac]   symbol:   class Media
-    [javac]   location: class ClipPlayerHelper
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:102: error: package MediaPlayer does not exist
-    [javac]                         .equals(MediaPlayer.Status.PLAYING)) {
-    [javac]                                            ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:142: error: package MediaPlayer does not exist
-    [javac]                 && _player.getStatus().equals(MediaPlayer.Status.PLAYING)) {
-    [javac]                                                          ^
-    [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/ClipPlayerHelper.java:159: error: cannot find symbol
-    [javac]             _fxPanel = new JFXPanel();
-    [javac]                            ^
-    [javac]   symbol:   class JFXPanel
-    [javac]   location: class ClipPlayerHelper
     [javac] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/cameras/CameraHelper.java:107: warning: [removal] ScriptObjectMirror in jdk.nashorn.api.scripting has been deprecated and marked for removal
     [javac]     public CameraHelper(Object actor, ScriptObjectMirror currentObj)
     [javac]                                       ^
@@ -403,10 +357,1407 @@ build-project:
     [javac] Note: Recompile with -Xlint:deprecation for details.
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
-    [javac] 12 errors
     [javac] 75 warnings
 
-BUILD FAILED
-/home/travis/build/icyphy/ptII/build.xml:805: Compile failed; see the compiler error output for details.
+-check-ptII-mk-file:
 
-Total time: 58 seconds
+-check-bin-vergil:
+
+-check-make-bin-vergil:
+
+build-bin-not:
+
+build-not-bin-vergil:
+     [echo] 
+     [echo] 	$PTII/bin/vergil does not exist, perhaps (cd $PTII/bin; make) has not been run?
+     [echo] 	This can happen if the make binary cannot be found in the path or if $PTII/mk/ptII.mk
+     [echo] 	is not present.
+     [echo] 	Skipping running make in $PTII/bin, which creates scripts like $PTII/bin/vergil.
+     [echo] 	This is only an issue if you want to invoke "$PTII/bin/vergil" instead of "ant vergil".
+     [echo] 	However, $PTII/bin does include other scripts that may be of use.
+     [echo]       
+
+build-bin:
+     [exec] for file in .momllib-util .nc2moml-util .ncapp2moml-util capecode convertToLazy copernicus decompile emachine giottoc histogram homer jode mescal moml obfuscate ptcg ptcodegen ptexecute ptjacl ptjaclapp ptplot ptstartjini ptolemy ptweb pxgraph soot tinicomm tinic tiniconverter startjini.gui vergil; do \
+     [exec] 	echo "$file"; \
+     [exec] 	rm -f "$file"; \
+     [exec] 	ln -s ptinvoke "$file"; \
+     [exec] 	chmod a+x "$file"; \
+     [exec] done
+     [exec] .momllib-util
+     [exec] .nc2moml-util
+     [exec] .ncapp2moml-util
+     [exec] capecode
+     [exec] convertToLazy
+     [exec] copernicus
+     [exec] decompile
+     [exec] emachine
+     [exec] giottoc
+     [exec] histogram
+     [exec] homer
+     [exec] jode
+     [exec] mescal
+     [exec] moml
+     [exec] obfuscate
+     [exec] ptcg
+     [exec] ptcodegen
+     [exec] ptexecute
+     [exec] ptjacl
+     [exec] ptjaclapp
+     [exec] ptplot
+     [exec] ptstartjini
+     [exec] ptolemy
+     [exec] ptweb
+     [exec] pxgraph
+     [exec] soot
+     [exec] tinicomm
+     [exec] tinic
+     [exec] tiniconverter
+     [exec] startjini.gui
+     [exec] vergil
+     [exec] rm -f makebat
+     [exec] ln -s ptinvoke makebat
+     [exec] rm -f ".momllib-util.bat"
+     [exec] ./makebat -q "`basename .momllib-util.bat .bat`"
+     [exec] makefile:185: recipe for target '.momllib-util.bat' failed
+     [exec] ./makebat: 184: ./makebat: Syntax error: "fi" unexpected (expecting "then")
+     [exec] make: *** [.momllib-util.bat] Error 2
+     [exec] Result: 2
+
+build:
+
+initReports:
+    [mkdir] Created dir: /home/travis/build/icyphy/ptII/reports/doccheck
+    [mkdir] Created dir: /home/travis/build/icyphy/ptII/reports/ojdcheck
+
+test.capecode1.xml:
+     [echo] 
+     [echo]       ==test.capecode1.xml ==
+     [echo]       This target runs the first batch Cape Code accessors tests and
+     [echo]       generates JUnit xml output.
+     [echo]       timeout = 4000000 milliseconds
+     [echo]     
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/audio/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.audio.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test
+    [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test/auto/knownFailedTests/AudioError.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] Graphics Device initialization failed for :  es2, sw
+    [junit] Error initializing QuantumRenderer: no suitable pipeline found
+    [junit] java.lang.RuntimeException: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumRenderer.getInstance(QuantumRenderer.java:280)
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumToolkit.init(QuantumToolkit.java:221)
+    [junit] 	at com.sun.javafx.tk.Toolkit.getToolkit(Toolkit.java:198)
+    [junit] 	at com.sun.javafx.application.PlatformImpl.startup(PlatformImpl.java:209)
+    [junit] 	at javafx.embed.swing.JFXPanel.initFx(JFXPanel.java:215)
+    [junit] 	at javafx.embed.swing.JFXPanel.<init>(JFXPanel.java:230)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.audio.ClipPlayerHelper.<clinit>(ClipPlayerHelper.java:159)
+    [junit] 	at java.base/java.lang.Class.forName0(Native Method)
+    [junit] 	at java.base/java.lang.Class.forName(Class.java:374)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.Context.findClass(Context.java:1180)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.simpleType(NativeJava.java:546)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.type(NativeJava.java:326)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.type(NativeJava.java:318)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.type(NativeJava.java:314)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$272$1AAAAA$require$cu1$restOf.L:1(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:49)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$181$require.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:429)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$185$20024A$require.L:45#_requireClosure#L:449(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:450)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$259$1AAAAAAAAAAAAAA$\^function\_.L:1(<function>:48)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$258$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:545)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$244$2801AAA$\^eval\_.evaluateCode(<eval>:96)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+    [junit] 	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+    [junit] 	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+    [junit] 	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+    [junit] 	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+    [junit] 	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+    [junit] 	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+    [junit] 	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+    [junit] 	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1660)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1595)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1537)
+    [junit] 	at ptolemy.moml.MoMLSimpleApplication.<init>(MoMLSimpleApplication.java:123)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    [junit] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+    [junit] 	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+    [junit] Caused by: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.init(QuantumRenderer.java:94)
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.run(QuantumRenderer.java:124)
+    [junit] 	at java.base/java.lang.Thread.run(Thread.java:844)
+    [junit] Known Failure: java.lang.reflect.InvocationTargetException
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] java.lang.reflect.InvocationTargetException
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    [junit] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+    [junit] 	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+    [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+    [junit] // Copyright (c) 2016-2017 The Regents of the University of California.
+    [junit] ...
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Error evaluating expression:
+    [junit] // Copyright (c) 2016-2017 The Regents of the University of California.
+    [junit] ...
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+    [junit] 	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+    [junit] 	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+    [junit] 	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1660)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1595)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1537)
+    [junit] 	at ptolemy.moml.MoMLSimpleApplication.<init>(MoMLSimpleApplication.java:123)
+    [junit] 	... 14 more
+    [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+    [junit] // Copyright (c) 2016-2017 The Regents of the University of California.
+    [junit] ...
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+    [junit] 	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+    [junit] 	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+    [junit] 	... 21 more
+    [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+    [junit] 	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+    [junit] 	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+    [junit] 	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+    [junit] 	... 23 more
+    [junit] Caused by: javax.script.ScriptException: Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+    [junit] 	... 27 more
+    [junit] Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:437:12 Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.initException(NativeError.java:135)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.<init>(NativeError.java:101)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.<init>(NativeError.java:105)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.<init>(NativeError.java:109)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.constructor(NativeError.java:128)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$274$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:437)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$185$20024A$require.L:45#_requireClosure#L:449(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:450)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$259$1AAAAAAAAAAAAAA$\^function\_.L:1(<function>:48)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$258$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:545)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$244$2801AAA$\^eval\_.evaluateCode(<eval>:96)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+    [junit] 	... 29 more
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test/auto/SpeechSynthesisTest.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.243 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test
+    [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test/auto/knownFailedTests/AudioError.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Known Failure: java.lang.reflect.InvocationTargetException
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/test/auto/SpeechSynthesisTest.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] Error: 
+    [junit] Graphics Device initialization failed for :  es2, sw
+    [junit] Error initializing QuantumRenderer: no suitable pipeline found
+    [junit] java.lang.RuntimeException: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumRenderer.getInstance(QuantumRenderer.java:280)
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumToolkit.init(QuantumToolkit.java:221)
+    [junit] 	at com.sun.javafx.tk.Toolkit.getToolkit(Toolkit.java:198)
+    [junit] 	at com.sun.javafx.application.PlatformImpl.startup(PlatformImpl.java:209)
+    [junit] 	at javafx.embed.swing.JFXPanel.initFx(JFXPanel.java:215)
+    [junit] 	at javafx.embed.swing.JFXPanel.<init>(JFXPanel.java:230)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.audio.ClipPlayerHelper.<clinit>(ClipPlayerHelper.java:159)
+    [junit] 	at java.base/java.lang.Class.forName0(Native Method)
+    [junit] 	at java.base/java.lang.Class.forName(Class.java:374)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.Context.findClass(Context.java:1180)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.simpleType(NativeJava.java:546)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.type(NativeJava.java:326)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.type(NativeJava.java:318)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeJava.type(NativeJava.java:314)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$272$1AAAAA$require$cu1$restOf.L:1(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:49)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$181$require.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:429)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$185$20024A$require.L:45#_requireClosure#L:449(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:450)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$259$1AAAAAAAAAAAAAA$\^function\_.L:1(<function>:48)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$258$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:545)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$244$2801AAA$\^eval\_.evaluateCode(<eval>:96)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+    [junit] 	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+    [junit] 	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+    [junit] 	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+    [junit] 	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+    [junit] 	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+    [junit] 	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+    [junit] 	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+    [junit] 	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1660)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1595)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1537)
+    [junit] 	at ptolemy.moml.MoMLSimpleApplication.<init>(MoMLSimpleApplication.java:123)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    [junit] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+    [junit] 	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+    [junit] Caused by: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.init(QuantumRenderer.java:94)
+    [junit] 	at com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.run(QuantumRenderer.java:124)
+    [junit] 	at java.base/java.lang.Thread.run(Thread.java:844)
+    [junit] java.lang.reflect.InvocationTargetException
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    [junit] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+    [junit] 	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+    [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+    [junit] // Copyright (c) 2016-2017 The Regents of the University of California.
+    [junit] ...
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Error evaluating expression:
+    [junit] // Copyright (c) 2016-2017 The Regents of the University of California.
+    [junit] ...
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+    [junit] 	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+    [junit] 	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+    [junit] 	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1660)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1595)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1537)
+    [junit] 	at ptolemy.moml.MoMLSimpleApplication.<init>(MoMLSimpleApplication.java:123)
+    [junit] 	... 14 more
+    [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+    [junit] // Copyright (c) 2016-2017 The Regents of the University of California.
+    [junit] ...
+    [junit]   in .AudioError.ClipPlayer.script
+    [junit] Because:
+    [junit] Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+    [junit] 	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+    [junit] 	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+    [junit] 	... 21 more
+    [junit] Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+    [junit]   in .AudioError.ClipPlayer
+    [junit] Because:
+    [junit] Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+    [junit] 	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+    [junit] 	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+    [junit] 	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+    [junit] 	... 23 more
+    [junit] Caused by: javax.script.ScriptException: Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 437 at column number 12
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+    [junit] 	... 27 more
+    [junit] Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:437:12 Error: Error executing module audio line #undefined : java.lang.ExceptionInInitializerError
+    [junit] In file: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/audio/audio.js
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.initException(NativeError.java:135)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.<init>(NativeError.java:101)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.<init>(NativeError.java:105)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.<init>(NativeError.java:109)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.constructor(NativeError.java:128)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$274$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:437)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$185$20024A$require.L:45#_requireClosure#L:449(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:450)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$259$1AAAAAAAAAAAAAA$\^function\_.L:1(<function>:48)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$258$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:545)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$244$2801AAA$\^eval\_.evaluateCode(<eval>:96)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+    [junit] 	... 29 more
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.contextAware.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test/auto/knownFailedTests/ContextAware.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] ContextAware: Making an HTTP request. (Thread[ContextAware,1,main])
+    [junit] The total body: {
+    [junit]   "error" : "Firebase error. Please ensure that you spelled the name of your Firebase correctly"
+    [junit] }
+    [junit] 
+    [junit] 9815 ms. Memory: 337920K Free: 103542K (31%)
+    [junit] Known Failure: java.lang.reflect.InvocationTargetException
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] WARNING: ContextAware: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.0]
+    [junit] java.lang.RuntimeException: Execution failed
+    [junit] 	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
+    [junit] Caused by: java.lang.RuntimeException: ContextAware: Request failed with code 404: Not Found
+    [junit] 	at ptolemy.util.SimpleMessageHandler._error(SimpleMessageHandler.java:53)
+    [junit] 	at ptolemy.util.MessageHandler.error(MessageHandler.java:84)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.error(JavaScript.java:862)
+    [junit] 	at ptolemy.actor.lib.jjs.RestrictedJavaScriptInterface.error(RestrictedJavaScriptInterface.java:123)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1775$3453A$\^eval\_.error(<eval>:98)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1773$16305A$require.L:1#_handleError(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:383)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1748$17932AA$require.L:1#_errorResponse(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:420)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:659)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.httpClient.HttpClientHelper$HttpClientResponseHandler$2.run(HttpClientHelper.java:343)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.fire(JavaScript.java:1086)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector._fire(DEDirector.java:1949)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.fire(DEDirector.java:502)
+    [junit] 	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+    [junit] 	at ptolemy.actor.Manager.iterate(Manager.java:851)
+    [junit] 	at ptolemy.actor.Manager.execute(Manager.java:369)
+    [junit] 	at ptolemy.actor.Manager.run(Manager.java:1263)
+    [junit] 	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
+    [junit] 
+    [junit] Exception: java.lang.RuntimeException thrown from the UncaughtExceptionHandler in thread "Thread-3"
+    [junit] java.lang.reflect.InvocationTargetException
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    [junit] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+    [junit] 	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+    [junit] Caused by: java.lang.RuntimeException: ContextAware: Request failed with code 404: Not Found
+    [junit] 	at ptolemy.util.SimpleMessageHandler._error(SimpleMessageHandler.java:53)
+    [junit] 	at ptolemy.util.MessageHandler.error(MessageHandler.java:84)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.error(JavaScript.java:862)
+    [junit] 	at ptolemy.actor.lib.jjs.RestrictedJavaScriptInterface.error(RestrictedJavaScriptInterface.java:123)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1775$3453A$\^eval\_.error(<eval>:98)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1773$16305A$require.L:1#_handleError(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:383)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1748$17932AA$require.L:1#_errorResponse(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:420)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:659)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.httpClient.HttpClientHelper$HttpClientResponseHandler$2.run(HttpClientHelper.java:343)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.fire(JavaScript.java:1086)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector._fire(DEDirector.java:1949)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.fire(DEDirector.java:502)
+    [junit] 	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+    [junit] 	at ptolemy.actor.Manager.iterate(Manager.java:851)
+    [junit] 	at ptolemy.actor.Manager.execute(Manager.java:369)
+    [junit] 	at ptolemy.actor.Manager.run(Manager.java:1263)
+    [junit] 	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.396 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] ----------------- testing (KnownFailure) /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test/auto/knownFailedTests/ContextAware.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] ContextAware: Making an HTTP request. (Thread[ContextAware,1,main])
+    [junit] The total body: {
+    [junit]   "error" : "Firebase error. Please ensure that you spelled the name of your Firebase correctly"
+    [junit] }
+    [junit] 
+    [junit] 9815 ms. Memory: 337920K Free: 103542K (31%)
+    [junit] Known Failure: java.lang.reflect.InvocationTargetException
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/contextAware/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] Error: 
+    [junit] WARNING: ContextAware: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [5.0]
+    [junit] java.lang.RuntimeException: Execution failed
+    [junit] 	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
+    [junit] Caused by: java.lang.RuntimeException: ContextAware: Request failed with code 404: Not Found
+    [junit] 	at ptolemy.util.SimpleMessageHandler._error(SimpleMessageHandler.java:53)
+    [junit] 	at ptolemy.util.MessageHandler.error(MessageHandler.java:84)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.error(JavaScript.java:862)
+    [junit] 	at ptolemy.actor.lib.jjs.RestrictedJavaScriptInterface.error(RestrictedJavaScriptInterface.java:123)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1775$3453A$\^eval\_.error(<eval>:98)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1773$16305A$require.L:1#_handleError(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:383)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1748$17932AA$require.L:1#_errorResponse(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:420)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:659)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.httpClient.HttpClientHelper$HttpClientResponseHandler$2.run(HttpClientHelper.java:343)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.fire(JavaScript.java:1086)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector._fire(DEDirector.java:1949)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.fire(DEDirector.java:502)
+    [junit] 	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+    [junit] 	at ptolemy.actor.Manager.iterate(Manager.java:851)
+    [junit] 	at ptolemy.actor.Manager.execute(Manager.java:369)
+    [junit] 	at ptolemy.actor.Manager.run(Manager.java:1263)
+    [junit] 	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
+    [junit] java.lang.reflect.InvocationTargetException
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    [junit] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+    [junit] 	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    [junit] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    [junit] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+    [junit] Caused by: java.lang.RuntimeException: ContextAware: Request failed with code 404: Not Found
+    [junit] 	at ptolemy.util.SimpleMessageHandler._error(SimpleMessageHandler.java:53)
+    [junit] 	at ptolemy.util.MessageHandler.error(MessageHandler.java:84)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.error(JavaScript.java:862)
+    [junit] 	at ptolemy.actor.lib.jjs.RestrictedJavaScriptInterface.error(RestrictedJavaScriptInterface.java:123)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1775$3453A$\^eval\_.error(<eval>:98)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1773$16305A$require.L:1#_handleError(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:383)
+    [junit] 	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$1748$17932AA$require.L:1#_errorResponse(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30<eval>:420)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:659)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+    [junit] 	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.httpClient.HttpClientHelper$HttpClientResponseHandler$2.run(HttpClientHelper.java:343)
+    [junit] 	at ptolemy.actor.lib.jjs.JavaScript.fire(JavaScript.java:1086)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector._fire(DEDirector.java:1949)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.fire(DEDirector.java:502)
+    [junit] 	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+    [junit] 	at ptolemy.actor.Manager.iterate(Manager.java:851)
+    [junit] 	at ptolemy.actor.Manager.execute(Manager.java:369)
+    [junit] 	at ptolemy.actor.Manager.run(Manager.java:1263)
+    [junit] 	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.discovery.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:06:00 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] ----------------- Wed Jul 10 15:06:00 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Manager.initialize() finished: 11294 ms. Memory: 488448K Free: 340574K (70%)
+    [junit] {{IPAddress = "172.17.0.1", mac = "Host machine", name = "Host machine"}}
+    [junit] "172.17.0.1"
+    [junit] 24262 ms. Memory: 488448K Free: 193120K (40%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5bd4d6c2
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5bd4d6c2
+    [junit] reloadAllAccessors: .DiscoveryJSStdout
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:06:45 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.396 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:06:00 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] ----------------- Wed Jul 10 15:06:00 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Manager.initialize() finished: 11294 ms. Memory: 488448K Free: 340574K (70%)
+    [junit] {{IPAddress = "172.17.0.1", mac = "Host machine", name = "Host machine"}}
+    [junit] "172.17.0.1"
+    [junit] 24262 ms. Memory: 488448K Free: 193120K (40%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5bd4d6c2
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5bd4d6c2
+    [junit] reloadAllAccessors: .DiscoveryJSStdout
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:06:45 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/discovery/test/auto/DiscoveryJSStdout.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.eventbus.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:06:47 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/SmokeTest.xml
+    [junit] ----------------- Wed Jul 10 15:06:47 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/SmokeTest.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/SmokeTest.xml
+    [junit] 6408 ms. Memory: 317440K Free: 160256K (50%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@63aa4eeb
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@63aa4eeb
+    [junit] reloadAllAccessors: .SmokeTest
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:07:06 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] ----------------- Wed Jul 10 15:07:06 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Manager.initialize() finished: 14335 ms. Memory: 661504K Free: 181116K (27%)
+    [junit] 15434 ms. Memory: 661504K Free: 483326K (73%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@728c802b
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@728c802b
+    [junit] reloadAllAccessors: .VertxEventBus1
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:07:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:07:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] ----------------- Wed Jul 10 15:07:41 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] Manager.initialize() finished: 15406 ms. Memory: 1241088K Free: 948222K (76%)
+    [junit] 16541 ms. Memory: 1241088K Free: 887806K (72%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2e77f81f
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2e77f81f
+    [junit] reloadAllAccessors: .VertxEventBus2
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:08:19 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:08:19 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] ----------------- Wed Jul 10 15:08:19 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] Manager.initialize() finished: 13751 ms. Memory: 1241088K Free: 624640K (50%)
+    [junit] 14827 ms. Memory: 1241088K Free: 561152K (45%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@508f993c
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@508f993c
+    [junit] reloadAllAccessors: .VertxEventBus3
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:08:53 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:08:53 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] ----------------- Wed Jul 10 15:08:53 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] preinitialize() finished: 10643 ms. Memory: 1396736K Free: 1006642K (72%)
+    [junit] Manager.initialize() finished: 18202 ms. Memory: 1396736K Free: 706558K (51%)
+    [junit] 19412 ms. Memory: 1396736K Free: 575486K (41%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@65c58f01
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@65c58f01
+    [junit] reloadAllAccessors: .VertxEventBus4
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:09:35 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 169.63 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:06:47 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/SmokeTest.xml
+    [junit] ----------------- Wed Jul 10 15:06:47 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/SmokeTest.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/SmokeTest.xml
+    [junit] 6408 ms. Memory: 317440K Free: 160256K (50%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@63aa4eeb
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@63aa4eeb
+    [junit] reloadAllAccessors: .SmokeTest
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:07:06 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] ----------------- Wed Jul 10 15:07:06 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Manager.initialize() finished: 14335 ms. Memory: 661504K Free: 181116K (27%)
+    [junit] 15434 ms. Memory: 661504K Free: 483326K (73%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@728c802b
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@728c802b
+    [junit] reloadAllAccessors: .VertxEventBus1
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:07:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus1.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:07:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] ----------------- Wed Jul 10 15:07:41 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] Manager.initialize() finished: 15406 ms. Memory: 1241088K Free: 948222K (76%)
+    [junit] 16541 ms. Memory: 1241088K Free: 887806K (72%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2e77f81f
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2e77f81f
+    [junit] reloadAllAccessors: .VertxEventBus2
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:08:19 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus2.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:08:19 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] ----------------- Wed Jul 10 15:08:19 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] Manager.initialize() finished: 13751 ms. Memory: 1241088K Free: 624640K (50%)
+    [junit] 14827 ms. Memory: 1241088K Free: 561152K (45%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@508f993c
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@508f993c
+    [junit] reloadAllAccessors: .VertxEventBus3
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:08:53 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus3.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:08:53 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] ----------------- Wed Jul 10 15:08:53 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] preinitialize() finished: 10643 ms. Memory: 1396736K Free: 1006642K (72%)
+    [junit] Manager.initialize() finished: 18202 ms. Memory: 1396736K Free: 706558K (51%)
+    [junit] 19412 ms. Memory: 1396736K Free: 575486K (41%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@65c58f01
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@65c58f01
+    [junit] reloadAllAccessors: .VertxEventBus4
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:09:35 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/eventbus/test/auto/VertxEventBus4.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.faceDetector.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:09:37 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] ----------------- Wed Jul 10 15:09:37 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] preinitialize() finished: 11628 ms. Memory: 724992K Free: 421098K (58%)
+    [junit] Manager.initialize() finished: 19742 ms. Memory: 988160K Free: 718449K (73%)
+    [junit] 21803 ms. Memory: 988160K Free: 611953K (62%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1a0ed5cb
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1a0ed5cb
+    [junit] reloadAllAccessors: .TestFaceDetector
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:10:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 52.92 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:09:37 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] ----------------- Wed Jul 10 15:09:37 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] preinitialize() finished: 11628 ms. Memory: 724992K Free: 421098K (58%)
+    [junit] Manager.initialize() finished: 19742 ms. Memory: 988160K Free: 718449K (73%)
+    [junit] 21803 ms. Memory: 988160K Free: 611953K (62%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1a0ed5cb
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1a0ed5cb
+    [junit] reloadAllAccessors: .TestFaceDetector
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:10:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/faceDetector/test/auto/TestFaceDetector.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.httpClient.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:10:31 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] ----------------- Wed Jul 10 15:10:31 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] preinitialize() finished: 19652 ms. Memory: 1022976K Free: 619275K (61%)
+    [junit] Manager.initialize() finished: 31560 ms. Memory: 1022976K Free: 395656K (39%)
+    [junit] GeoCoder: Making an HTTP request. (Thread[GeoCoderWeather,1,main])
+    [junit] true
+    [junit] Weather: Making an HTTP request. (Thread[GeoCoderWeather,1,main])
+    [junit] true
+    [junit] WARNING: GeoCoder: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.0]
+    [junit] WARNING: Weather: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [12.512]
+    [junit] 35971 ms. Memory: 1187840K Free: 843774K (71%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2326c37e
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2326c37e
+    [junit] reloadAllAccessors: .GeoCoderWeather
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:11:49 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTComposite.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTGet.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTGetCompleteResponseOnly.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTPost.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTPostDataTypes.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTPut.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTReceiveImage.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTSendImage.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTStringURL.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTTimeout.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:11:49 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] ----------------- Wed Jul 10 15:11:49 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] REST: Making an HTTP request. (Thread[RESTWithTimeout,1,main])
+    [junit] 4848 ms. Memory: 1345536K Free: 423936K (32%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ccb7d65
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ccb7d65
+    [junit] reloadAllAccessors: .RESTWithTimeout
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:12:03 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] HttpClientHelper.java: Received an error for request 0: io.vertx.core.VertxException: Connection was closed
+    [junit] io.vertx.core.VertxException: Connection was closed
+    [junit] Jul 10, 2019 3:12:03 PM io.vertx.core.impl.ContextImpl
+    [junit] SEVERE: Unhandled exception
+    [junit] java.lang.IllegalStateException: Client is closed
+    [junit] 	at io.vertx.core.http.impl.HttpClientImpl.checkClosed(HttpClientImpl.java:1035)
+    [junit] 	at io.vertx.core.http.impl.HttpClientImpl.close(HttpClientImpl.java:901)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.httpClient.HttpClientHelper$HttpClientExceptionHandler.handle(HttpClientHelper.java:288)
+    [junit] 	at ptolemy.actor.lib.jjs.modules.httpClient.HttpClientHelper$HttpClientExceptionHandler.handle(HttpClientHelper.java:240)
+    [junit] 	at io.vertx.core.http.impl.HttpClientRequestBase.handleException(HttpClientRequestBase.java:130)
+    [junit] 	at io.vertx.core.http.impl.HttpClientRequestImpl.handleException(HttpClientRequestImpl.java:50)
+    [junit] 	at io.vertx.core.http.impl.Http1xClientConnection.handleClosed(Http1xClientConnection.java:730)
+    [junit] 	at io.vertx.core.impl.ContextImpl.lambda$wrapTask$2(ContextImpl.java:337)
+    [junit] 	at io.vertx.core.impl.ContextImpl.executeFromIO(ContextImpl.java:195)
+    [junit] 	at io.vertx.core.net.impl.VertxHandler.channelInactive(VertxHandler.java:130)
+    [junit] 	at io.vertx.core.http.impl.Http1xClientHandler.channelInactive(Http1xClientHandler.java:91)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224)
+    [junit] 	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelInactive(CombinedChannelDuplexHandler.java:420)
+    [junit] 	at io.netty.handler.codec.ByteToMessageDecoder.channelInputClosed(ByteToMessageDecoder.java:377)
+    [junit] 	at io.netty.handler.codec.ByteToMessageDecoder.channelInactive(ByteToMessageDecoder.java:342)
+    [junit] 	at io.netty.handler.codec.http.HttpClientCodec$Decoder.channelInactive(HttpClientCodec.java:282)
+    [junit] 	at io.netty.channel.CombinedChannelDuplexHandler.channelInactive(CombinedChannelDuplexHandler.java:223)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelInactive(DefaultChannelPipeline.java:1354)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245)
+    [junit] 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231)
+    [junit] 	at io.netty.channel.DefaultChannelPipeline.fireChannelInactive(DefaultChannelPipeline.java:917)
+    [junit] 	at io.netty.channel.AbstractChannel$AbstractUnsafe$8.run(AbstractChannel.java:822)
+    [junit] 	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404)
+    [junit] 	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:463)
+    [junit] 	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+    [junit] 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    [junit] 	at java.base/java.lang.Thread.run(Thread.java:844)
+    [junit] 
+    [junit] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 92.455 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:10:31 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] ----------------- Wed Jul 10 15:10:31 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] preinitialize() finished: 19652 ms. Memory: 1022976K Free: 619275K (61%)
+    [junit] Manager.initialize() finished: 31560 ms. Memory: 1022976K Free: 395656K (39%)
+    [junit] GeoCoder: Making an HTTP request. (Thread[GeoCoderWeather,1,main])
+    [junit] true
+    [junit] Weather: Making an HTTP request. (Thread[GeoCoderWeather,1,main])
+    [junit] true
+    [junit] 35971 ms. Memory: 1187840K Free: 843774K (71%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2326c37e
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2326c37e
+    [junit] reloadAllAccessors: .GeoCoderWeather
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:11:49 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/GeoCoderWeather.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTComposite.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTGet.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTGetCompleteResponseOnly.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTPost.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTPostDataTypes.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTPut.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTReceiveImage.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTSendImage.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTStringURL.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTTimeout.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:11:49 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] ----------------- Wed Jul 10 15:11:49 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] REST: Making an HTTP request. (Thread[RESTWithTimeout,1,main])
+    [junit] 4848 ms. Memory: 1345536K Free: 423936K (32%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ccb7d65
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ccb7d65
+    [junit] reloadAllAccessors: .RESTWithTimeout
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:12:03 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpClient/test/auto/RESTWithTimeout.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] Error: 
+    [junit] WARNING: GeoCoder: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.0]
+    [junit] WARNING: Weather: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [12.512]
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.httpServer.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/KeyValueStoreClient.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:12:04 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] ----------------- Wed Jul 10 15:12:04 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] preinitialize() finished: 24659 ms. Memory: 1196032K Free: 876032K (73%)
+    [junit] WebServer: WebServer: Creating new server. (Thread[WebServer,1,main])
+    [junit] WebServer: WebServer: Listening for requests. (Thread[vert.x-eventloop-thread-0,1,main])
+    [junit] Manager.initialize() finished: 41586 ms. Memory: 1353728K Free: 682496K (50%)
+    [junit] REST: Making an HTTP request. (Thread[WebServer,1,main])
+    [junit] WebServer: Server received request. (Thread[WebServer,1,main])
+    [junit] true
+    [junit] WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.542]
+    [junit] WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [29.0]
+    [junit] WebServer: WebServer: Stopping the server. (Thread[WebServer,1,main])
+    [junit] WARNING: JavaScriptBarrier: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [18.0]
+    [junit] 44643 ms. Memory: 1353728K Free: 416766K (31%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5c0ac4a8
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5c0ac4a8
+    [junit] reloadAllAccessors: .WebServer
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:13:40 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServerBasic.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServerTimeout.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 96.137 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/KeyValueStoreClient.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:12:04 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] ----------------- Wed Jul 10 15:12:04 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] preinitialize() finished: 24659 ms. Memory: 1196032K Free: 876032K (73%)
+    [junit] WebServer: WebServer: Creating new server. (Thread[WebServer,1,main])
+    [junit] WebServer: WebServer: Listening for requests. (Thread[vert.x-eventloop-thread-0,1,main])
+    [junit] Manager.initialize() finished: 41586 ms. Memory: 1353728K Free: 682496K (50%)
+    [junit] REST: Making an HTTP request. (Thread[WebServer,1,main])
+    [junit] WebServer: Server received request. (Thread[WebServer,1,main])
+    [junit] true
+    [junit] WebServer: WebServer: Stopping the server. (Thread[WebServer,1,main])
+    [junit] 44643 ms. Memory: 1353728K Free: 416766K (31%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5c0ac4a8
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5c0ac4a8
+    [junit] reloadAllAccessors: .WebServer
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:13:40 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServer.xml
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServerBasic.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- *** Skipping testing of /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/httpServer/test/auto/WebServerTimeout.xml because it does fails under Travis.  To updated this list, edit ptolemy/util/test/junit/AutoTests.java
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] Error: 
+    [junit] WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.542]
+    [junit] WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [29.0]
+    [junit] WARNING: JavaScriptBarrier: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [18.0]
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.mapManager.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:13:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntity.xml
+    [junit] ----------------- Wed Jul 10 15:13:41 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntity.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntity.xml
+    [junit] 7138 ms. Memory: 247808K Free: 143246K (58%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ae0cb8f
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ae0cb8f
+    [junit] reloadAllAccessors: .createEntity
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:02 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntityAliases.xml
+    [junit] ----------------- Wed Jul 10 15:14:02 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntityAliases.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntityAliases.xml
+    [junit] 5273 ms. Memory: 444416K Free: 189168K (43%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5374438a
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5374438a
+    [junit] reloadAllAccessors: .createEntityAliases
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:15 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createMap.xml
+    [junit] ----------------- Wed Jul 10 15:14:15 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createMap.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createMap.xml
+    [junit] 4986 ms. Memory: 533504K Free: 270848K (51%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4c59168f
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4c59168f
+    [junit] reloadAllAccessors: .createMap
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:28 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityOccupancy.xml
+    [junit] ----------------- Wed Jul 10 15:14:28 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityOccupancy.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityOccupancy.xml
+    [junit] 5150 ms. Memory: 647168K Free: 292350K (45%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5338e935
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5338e935
+    [junit] reloadAllAccessors: .entityOccupancy
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityPlacement.xml
+    [junit] ----------------- Wed Jul 10 15:14:41 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityPlacement.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityPlacement.xml
+    [junit] 4717 ms. Memory: 647168K Free: 313428K (48%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@677bd0af
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@677bd0af
+    [junit] reloadAllAccessors: .entityPlacement
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 72.855 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:13:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntity.xml
+    [junit] ----------------- Wed Jul 10 15:13:41 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntity.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntity.xml
+    [junit] 7138 ms. Memory: 247808K Free: 143246K (58%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ae0cb8f
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ae0cb8f
+    [junit] reloadAllAccessors: .createEntity
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:02 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntityAliases.xml
+    [junit] ----------------- Wed Jul 10 15:14:02 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntityAliases.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createEntityAliases.xml
+    [junit] 5273 ms. Memory: 444416K Free: 189168K (43%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5374438a
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5374438a
+    [junit] reloadAllAccessors: .createEntityAliases
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:15 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createMap.xml
+    [junit] ----------------- Wed Jul 10 15:14:15 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createMap.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/createMap.xml
+    [junit] 4986 ms. Memory: 533504K Free: 270848K (51%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4c59168f
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4c59168f
+    [junit] reloadAllAccessors: .createMap
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:28 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityOccupancy.xml
+    [junit] ----------------- Wed Jul 10 15:14:28 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityOccupancy.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityOccupancy.xml
+    [junit] 5150 ms. Memory: 647168K Free: 292350K (45%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5338e935
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5338e935
+    [junit] reloadAllAccessors: .entityOccupancy
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:41 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityPlacement.xml
+    [junit] ----------------- Wed Jul 10 15:14:41 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityPlacement.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mapManager/test/auto/entityPlacement.xml
+    [junit] 4717 ms. Memory: 647168K Free: 313428K (48%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@677bd0af
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@677bd0af
+    [junit] reloadAllAccessors: .entityPlacement
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.mqtt.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:55 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] ----------------- Wed Jul 10 15:14:55 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Manager.initialize() finished: 11119 ms. Memory: 678912K Free: 359015K (53%)
+    [junit] 41169 ms. Memory: 678912K Free: 317541K (47%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3fc6fb80
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3fc6fb80
+    [junit] reloadAllAccessors: .MQTTPubSub
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:15:56 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 62.26 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] ===========================================================================================
+    [junit] ----------------- testing Wed Jul 10 15:14:55 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] ----------------- Wed Jul 10 15:14:55 UTC 2019 About to sleep for 5.0 seconds before running or rerunning.  Test is: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] Done sleeping
+    [junit] ----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+    [junit] Manager.initialize() finished: 11119 ms. Memory: 678912K Free: 359015K (53%)
+    [junit] 41169 ms. Memory: 678912K Free: 317541K (47%)
+    [junit] ----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3fc6fb80
+    [junit] ----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3fc6fb80
+    [junit] reloadAllAccessors: .MQTTPubSub
+    [junit] This is the first time that the reloadAllAccessors method has been invoked in this JVM, so the the accessors repo will be checked out or updated and JSDoc invoked. Note that running the tests may end up invoking a new JVM for each directory, so the repo may be checked out or updated and JSDoc invoked more than once when the tests are run.
+    [junit] -------------- Reloaded accessors, but skipping rerun for now. Wed Jul 10 15:15:56 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/mqtt/test/auto/MQTTPubSub.xml
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.objectAssign.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.609 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/objectAssign/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/os/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.os.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.653 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/os/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+    [junit] javachdir: directory = ptolemy/actor/lib/jjs/modules/process/test
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] Running ptolemy.actor.lib.jjs.modules.process.test.junit.JUnitTclTest
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] WARNING: An illegal reflective access operation has occurred
+    [junit] WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)
+    [junit] WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+    [junit] WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    [junit] WARNING: All illegal access operations will be denied in a future release
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.612 sec
+    [junit] Output:
+    [junit] No tcl tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/modules/process/test
+    [junit] AutoTests.java: About to close Vertx.
+    [junit] AutoTests.java: Vertx closed.
+    [junit] 
+
+BUILD SUCCESSFUL
+Total time: 11 minutes 50 seconds
