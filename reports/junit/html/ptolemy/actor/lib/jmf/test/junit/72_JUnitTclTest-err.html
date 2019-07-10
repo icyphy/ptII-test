@@ -1,0 +1,147 @@
+<html xmlns:string="xalan://java.lang.String" xmlns:lxslt="http://xml.apache.org/xslt">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Standard Error from JUnitTclTest</title>
+    </head>
+    <body>
+        <pre>java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+$TMPDIR/movieOut.mov
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov'
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov' or '/tmp/movieOut.mov'
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Error evaluating expression:
+$TMPDIR/movieOut.mov
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov'
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov' or '/tmp/movieOut.mov'
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1660)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1595)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1537)
+	at ptolemy.moml.MoMLSimpleApplication.&lt;init&gt;(MoMLSimpleApplication.java:123)
+	... 14 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+$TMPDIR/movieOut.mov
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov'
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov' or '/tmp/movieOut.mov'
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 21 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Cannot read file '/tmp/movieOut.mov'
+  in .MovieReader.MovieReader.fileOrURL
+Because:
+Cannot read file '/tmp/movieOut.mov' or '/tmp/movieOut.mov'
+	at ptolemy.data.expr.FileParameter.asURL(FileParameter.java:255)
+	at ptolemy.actor.lib.jmf.MovieReader.attributeChanged(MovieReader.java:118)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 23 more
+Caused by: java.io.IOException: Cannot read file '/tmp/movieOut.mov' or '/tmp/movieOut.mov'
+	at ptolemy.util.FileUtilities.nameToURL(FileUtilities.java:692)
+	at ptolemy.data.expr.FileParameter.asURL(FileParameter.java:252)
+	... 26 more
+java.lang.RuntimeException: Execution failed
+	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
+Caused by: ptolemy.kernel.util.IllegalActionException:   in .StreamLoader.MoMLSimpleApplication
+Because:
+java.awt.Component.getPeer()Ljava/awt/peer/ComponentPeer;
+	at ptolemy.actor.Manager.execute(Manager.java:505)
+	at ptolemy.actor.Manager.run(Manager.java:1263)
+	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
+Caused by: java.lang.NoSuchMethodError: java.awt.Component.getPeer()Ljava/awt/peer/ComponentPeer;
+	at com.sun.media.ui.DefaultControlPanel.addNotify(DefaultControlPanel.java:115)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/javax.swing.JComponent.addNotify(JComponent.java:4783)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/javax.swing.JComponent.addNotify(JComponent.java:4783)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/javax.swing.JComponent.addNotify(JComponent.java:4783)
+	at java.desktop/javax.swing.JRootPane.addNotify(JRootPane.java:733)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/java.awt.Window.addNotify(Window.java:786)
+	at java.desktop/java.awt.Frame.addNotify(Frame.java:490)
+	at java.desktop/java.awt.Window.pack(Window.java:824)
+	at ptolemy.actor.lib.jmf.VideoPlayer.postfire(VideoPlayer.java:146)
+	at ptolemy.actor.AtomicActor.iterate(AtomicActor.java:518)
+	at ptolemy.actor.sched.StaticSchedulingDirector.fire(StaticSchedulingDirector.java:216)
+	at ptolemy.domains.sdf.kernel.SDFDirector.fire(SDFDirector.java:500)
+	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+	at ptolemy.actor.Manager.iterate(Manager.java:851)
+	at ptolemy.actor.Manager.execute(Manager.java:369)
+	... 2 more
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at ptolemy.util.test.junit.AutoKnownFailedTests.RunModel(AutoKnownFailedTests.java:105)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at org.junit.internal.runners.statements.FailOnTimeout$1.run(FailOnTimeout.java:28)
+Caused by: ptolemy.kernel.util.IllegalActionException:   in .StreamLoader.MoMLSimpleApplication
+Because:
+java.awt.Component.getPeer()Ljava/awt/peer/ComponentPeer;
+	at ptolemy.actor.Manager.execute(Manager.java:505)
+	at ptolemy.actor.Manager.run(Manager.java:1263)
+	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
+Caused by: java.lang.NoSuchMethodError: java.awt.Component.getPeer()Ljava/awt/peer/ComponentPeer;
+	at com.sun.media.ui.DefaultControlPanel.addNotify(DefaultControlPanel.java:115)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/javax.swing.JComponent.addNotify(JComponent.java:4783)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/javax.swing.JComponent.addNotify(JComponent.java:4783)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/javax.swing.JComponent.addNotify(JComponent.java:4783)
+	at java.desktop/javax.swing.JRootPane.addNotify(JRootPane.java:733)
+	at java.desktop/java.awt.Container.addNotify(Container.java:2798)
+	at java.desktop/java.awt.Window.addNotify(Window.java:786)
+	at java.desktop/java.awt.Frame.addNotify(Frame.java:490)
+	at java.desktop/java.awt.Window.pack(Window.java:824)
+	at ptolemy.actor.lib.jmf.VideoPlayer.postfire(VideoPlayer.java:146)
+	at ptolemy.actor.AtomicActor.iterate(AtomicActor.java:518)
+	at ptolemy.actor.sched.StaticSchedulingDirector.fire(StaticSchedulingDirector.java:216)
+	at ptolemy.domains.sdf.kernel.SDFDirector.fire(SDFDirector.java:500)
+	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+	at ptolemy.actor.Manager.iterate(Manager.java:851)
+	at ptolemy.actor.Manager.execute(Manager.java:369)
+	... 2 more
+</pre>
+    </body>
+</html>

@@ -1,0 +1,2106 @@
+<html xmlns:string="xalan://java.lang.String" xmlns:lxslt="http://xml.apache.org/xslt">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Standard Output from JUnitTclTest</title>
+    </head>
+    <body>
+        <pre>/home/travis/build/icyphy/ptII/doc/test/docManager.tcl
+testDefs.tcl: setting time out to 9000 seconds at Wed Jul 10 19:48:04 UTC 2019
+Skipping jxta/configuration.xml, running vergil -jxta brings up a window
+ Force everything to get expanded ptolemy/configs/full/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+JSAccessor: PT_NO_NET environment variable is set, so git pull and ptdoc are not being run.
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/adapters/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+No physical cameras found, using WebcamDummyDriver.
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+Loading accessor failed: AudioCapture.js
+
+
+==== $PTII/doc/test/docManager.tcl: full/configuration.xml-6.1 Test docClassNameToURL
+==== Contents of test case:
+
+	# In general, if we call getName on a public field in an actor,
+	# then the name that is returned should be the same as the name
+	# of the field.
+	set entityList [$configuration allAtomicEntityList]
+	set results {}
+	for {set iterator [$entityList iterator]}  {[$iterator hasNext] == 1} {} {
+		set entity [$iterator next]
+		if [java::instanceof $entity ptolemy.actor.TypedAtomicActor] {
+		    set actor [java::cast ptolemy.actor.TypedAtomicActor $entity]
+		    set className [$actor getClassName]
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  true false false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find ptdoc for $className.  Try doing (cd $PTII/doc; rm codeDoc/ptolemy/actor/lib/Ramp.xml codeDoc/ptolemy/actor/lib/RampIdx.xml; make docs)"
+		    }
+
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find javadoc for $className"
+		    }
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find source for $className"
+		    }
+
+
+		    # For actor index, it is ok to return null
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false false false true]
+		}
+	    }
+    list $results	
+    
+==== Test generated error:
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.MoreLibraries.Accessors.audio
+Because:
+Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.MoreLibraries.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:307)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.MoreLibraries.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	... 81 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	... 81 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 88 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 90 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 94 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2282$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2193$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2267$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2266$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2252$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 96 more
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.MoreLibraries.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	... 81 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 88 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 90 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 94 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2282$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2193$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2267$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2266$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2252$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 96 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 88 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 90 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 94 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2282$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2193$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2267$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2266$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2252$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 96 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 90 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 94 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2282$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2193$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2267$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2266$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2252$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 96 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 94 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2282$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2193$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2267$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2266$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2252$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 96 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2282$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2193$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2267$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2266$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$2252$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 96 more
+
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.MoreLibraries.Accessors.audio
+Because:
+Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.MoreLibraries.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.MoreLibraries.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+    while executing
+"$configuration allAtomicEntityList"
+    invoked from within
+"set entityList [$configuration allAtomicEntityList]"
+    ("uplevel" body line 5)
+    invoked from within
+"uplevel $contents_of_test"
+ Force everything to get expanded ptolemy/configs/space/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/pn/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+Skipping viptos because TOSROOT is not set in the environment, so we are assuming that TinyOS is not installed.
+ Force everything to get expanded ptolemy/configs/capecode/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/adapters/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/audio/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/cameras/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/dashboard/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/devices/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/image/index.json
+CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+CharacterRecognition: The tesseract module was not present.  The CharacterRecognition accessor is not supported on this accessor host. (Thread[main,5,main])
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/net/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/robotics/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/geodesy/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/services/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/signals/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/test/index.json
+Retrieving library from file:/home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/utilities/index.json
+The Mutable accessor original file has no documentation, so we are not running jsdoc on https://accessors.org/utilities/Mutable.js
+Loading accessor failed: AudioCapture.js
+
+
+==== $PTII/doc/test/docManager.tcl: capecode/configuration.xml-6.1 Test docClassNameToURL
+==== Contents of test case:
+
+	# In general, if we call getName on a public field in an actor,
+	# then the name that is returned should be the same as the name
+	# of the field.
+	set entityList [$configuration allAtomicEntityList]
+	set results {}
+	for {set iterator [$entityList iterator]}  {[$iterator hasNext] == 1} {} {
+		set entity [$iterator next]
+		if [java::instanceof $entity ptolemy.actor.TypedAtomicActor] {
+		    set actor [java::cast ptolemy.actor.TypedAtomicActor $entity]
+		    set className [$actor getClassName]
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  true false false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find ptdoc for $className.  Try doing (cd $PTII/doc; rm codeDoc/ptolemy/actor/lib/Ramp.xml codeDoc/ptolemy/actor/lib/RampIdx.xml; make docs)"
+		    }
+
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find javadoc for $className"
+		    }
+
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false true false false]
+		    if [java::isnull $url] {
+			lappend results "\nFailed to find source for $className"
+		    }
+
+
+		    # For actor index, it is ok to return null
+		    set url [java::call ptolemy.vergil.actor.DocManager  docClassNameToURL  $configuration $className  false false false true]
+		}
+	    }
+    list $results	
+    
+==== Test generated error:
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.Accessors.audio
+Because:
+Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:307)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	... 78 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	... 78 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 85 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 87 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 91 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53736$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53648$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53722$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53721$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53707$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 93 more
+Caused by: ptolemy.kernel.util.InternalErrorException: Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:224)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	... 78 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 85 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 87 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 91 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53736$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53648$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53722$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53721$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53707$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 93 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable.validate(Variable.java:1619)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	... 85 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 87 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 91 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53736$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53648$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53722$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53721$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53707$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 93 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1891)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	... 87 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 91 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53736$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53648$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53722$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53721$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53707$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 93 more
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2497)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	... 91 more
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53736$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53648$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53722$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53721$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53707$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 93 more
+Caused by: javax.script.ScriptException: ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:469)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:391)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeFunction(NashornScriptEngine.java:189)
+	at ptolemy.actor.lib.jjs.JavaScript._createEngineAndEvaluateSetup(JavaScript.java:2493)
+	at ptolemy.actor.lib.jjs.JavaScript.attributeChanged(JavaScript.java:548)
+	at org.terraswarm.accessor.JSAccessor.attributeChanged(JSAccessor.java:312)
+	at ptolemy.data.expr.Variable._setTokenAndNotify(Variable.java:2271)
+	at ptolemy.data.expr.Variable._evaluate(Variable.java:1873)
+	at ptolemy.data.expr.Variable._propagate(Variable.java:1984)
+	at ptolemy.data.expr.Variable.validate(Variable.java:1596)
+	at ptolemy.moml.MoMLParser.endDocument(MoMLParser.java:867)
+	at com.microstar.xml.XmlParser.doParse(XmlParser.java:162)
+	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1676)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+	at org.terraswarm.accessor.AccessorLibrary.populate(AccessorLibrary.java:194)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:349)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.moml.EntityLibrary.deepEntityList(EntityLibrary.java:350)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.deepEntityList(CompositeEntity.java:714)
+	at ptolemy.kernel.CompositeEntity.allAtomicEntityList(CompositeEntity.java:188)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at tcl.lang.reflect.PkgInvoker.invokeMethod(PkgInvoker.java:129)
+	at tcl.lang.JavaInvoke.call(JavaInvoke.java:253)
+	at tcl.lang.JavaInvoke.callMethod(JavaInvoke.java:116)
+	at tcl.lang.ReflectObject.cmdProc(ReflectObject.java:727)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.UplevelCmd.cmdProc(UplevelCmd.java:93)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.CatchCmd.cmdProc(CatchCmd.java:42)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Parser.evalTokens(Parser.java:930)
+	at tcl.lang.Parser.eval2(Parser.java:1125)
+	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.eval(Interp.java:1841)
+	at tcl.lang.ForeachCmd.cmdProc(ForeachCmd.java:116)
+	at tcl.lang.AutoloadStub.cmdProc(Extension.java:144)
+	at tcl.lang.Parser.evalObjv(Parser.java:740)
+	at tcl.lang.Parser.eval2(Parser.java:1138)
+	at tcl.lang.Interp.eval(Interp.java:1782)
+	at tcl.lang.Interp.evalFile(Interp.java:1880)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+Caused by: /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439 ReferenceError: "exception" is not defined
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1615)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53736$require$cu1$restOf.L:45#_require(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:439)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53648$21089A$require.L:45#_requireClosure#L:466(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js:467)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53722$1AAAAAAAAAAAAAA$\^function\_.L:1(&lt;function&gt;:97)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53721$17933AAAAAA$require$cu1$restOf.L:1#Accessor(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:545)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$53707$2801AAA$\^eval\_.evaluateCode(&lt;eval&gt;:96)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:661)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:198)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:385)
+	... 93 more
+
+    while executing
+ptolemy.kernel.util.InvalidStateException: Failed to populate Library
+  in .configuration.actor library.Accessors.audio
+Because:
+Loading accessor failed: AudioCapture.js
+  in .configuration.actor library.Accessors.audio
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Error evaluating expression:
+// Copyright (c) 2015-2017 The Regents of the University of California.
+...
+  in .configuration.actor library.Accessors.audio.AudioCapture.script
+Because:
+Failed to evaluate script.
+  in .configuration.actor library.Accessors.audio.AudioCapture
+Because:
+ReferenceError: "exception" is not defined in /home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js at line number 439
+    while executing
+"$configuration allAtomicEntityList"
+    invoked from within
+"set entityList [$configuration allAtomicEntityList]"
+    ("uplevel" body line 5)
+    invoked from within
+"uplevel $contents_of_test"
+ Force everything to get expanded ptolemy/configs/ptiny/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/fullViewer/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/ptinyKepler/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/cyphysim/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/bcvtb/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/visualsense/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/hyvisual/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/ptinyViewer/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/dsp/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+ Force everything to get expanded ptolemy/configs/ptserver/configuration.xml
+    (Skipping certain optional packages)
+    If you get a 'X connection to xxx:11.0 broken' message, then
+    see $PTII/ptolemy/moml/filter/RemoveGraphicalClasses.java
+    Or, under Solaris, run java -verbose -classpath 
+           ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
+           tcl.lang.Shell xxx.tcl
+07/10/19 07:59:45
+Failed: 2  Total Tests: 14  ((Passed: 12, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/doc/test
+No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/doc/test
+No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/doc/test
+AutoTests.java: About to close Vertx.
+AutoTests.java: Vertx closed.
+No auto/*.xml tests in /home/travis/build/icyphy/ptII/doc/test
+AutoTests.java: About to close Vertx.
+AutoTests.java: Vertx closed.
+</pre>
+    </body>
+</html>
