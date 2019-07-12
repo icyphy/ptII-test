@@ -5,23 +5,23 @@
     </head>
     <body>
         <pre>/home/travis/build/icyphy/ptII/ptolemy/moml/test/ConvertToLazy.tcl
-testDefs.tcl: setting time out to 9000 seconds at Thu Jul 11 02:05:17 UTC 2019
-390 ms. Memory: 166912K Free: 77814K (47%)
+testDefs.tcl: setting time out to 9000 seconds at Fri Jul 12 06:05:02 UTC 2019
+316 ms. Memory: 172032K Free: 156003K (91%)
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/Documentation.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/EntityLibrary.tcl
 This test will print an error message to stderr which can be ignored
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/ImportAttribute.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/LevelCrossingLinkTest.tcl
-5 ms. Memory: 166912K Free: 61130K (37%)
-3 ms. Memory: 166912K Free: 58058K (35%)
-3 ms. Memory: 166912K Free: 57034K (34%)
-4 ms. Memory: 166912K Free: 148801K (89%)
+6 ms. Memory: 172032K Free: 141511K (82%)
+4 ms. Memory: 172032K Free: 138454K (80%)
+4 ms. Memory: 172032K Free: 137415K (80%)
+4 ms. Memory: 172032K Free: 134872K (78%)
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/LibraryAttribute.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/LibraryBuilder.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/Location.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/MoMLAttribute.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/MoMLChangeRequest.tcl
-6 ms. Memory: 166912K Free: 141633K (85%)
+2 ms. Memory: 172032K Free: 127175K (74%)
 
 
 ==== $PTII/ptolemy/moml/test/MoMLChangeRequest.tcl: MoMLChangeRequest-4.1 Call two arg constructor (Originator, request)
@@ -84,18 +84,54 @@ This test will print an error message to stderr which can be ignored
     Or, under Solaris, run java -verbose -classpath 
            ${PTII}/lib/ptjacl.jar:${PTII}/lib/diva.jar:${PTII}
            tcl.lang.Shell xxx.tcl
-10 ms. Memory: 166912K Free: 57665K (35%)
-4 ms. Memory: 206848K Free: 188743K (91%)
-3 ms. Memory: 206848K Free: 187719K (91%)
-3 ms. Memory: 206848K Free: 187205K (91%)
-8 ms. Memory: 206848K Free: 186167K (90%)
-3 ms. Memory: 206848K Free: 185157K (90%)
-7 ms. Memory: 206848K Free: 184119K (89%)
+7 ms. Memory: 229376K Free: 197079K (86%)
+13 ms. Memory: 229376K Free: 194007K (85%)
+4 ms. Memory: 229376K Free: 192983K (84%)
+10 ms. Memory: 229376K Free: 191959K (84%)
+4 ms. Memory: 229376K Free: 190935K (83%)
+7 ms. Memory: 229376K Free: 189911K (83%)
+8 ms. Memory: 229376K Free: 189367K (83%)
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/MoMLParserNoPackage.tcl
+
+
+==== $PTII/ptolemy/moml/test/MoMLParserNoPackage.tcl: MoMLParserNoPackage-30.1 If an actor has no package, then we should be able to have two of them in a model
+==== Contents of test case:
+
+
+    # This test fails under JUnit/Ant because JUnit/Ant does not like java classes with no package
+
+    # Eclipse complains if we have a .java file that is not in a package
+    file copy -force NoPackageActor.java.in NoPackageActor.java
+    exec make NoPackageActor.class
+
+    set parser [java::new ptolemy.moml.MoMLParser]
+    $parser reset
+    # The list of filters is static, so we reset it in case there
+    # filters were already added.
+    java::call ptolemy.moml.MoMLParser setMoMLFilters [java::null]
+    java::call ptolemy.moml.MoMLParser addMoMLFilters  [java::call ptolemy.moml.filter.BackwardCompatibility allFilters]
+
+    java::call ptolemy.moml.MoMLParser addMoMLFilter [java::new  ptolemy.moml.filter.RemoveGraphicalClasses]
+    set toplevel [$parser parseFile "NoPackageActors.xml"]
+    set compositeEntity [java::cast ptolemy.kernel.CompositeEntity $toplevel]
+
+    # Remove the .java file so that Eclipse does not complain
+    file delete -force NoPackageActor.java
+
+    # Success is reading the file
+    list  [[$compositeEntity getEntity {NoPackageActor}] getFullName]  [[$compositeEntity getEntity {NoPackageActor2}] getFullName]
+
+==== Test generated error:
+../../../mk/ptII.mk:245: *** unterminated variable reference.  Stop.
+    while executing
+"exec make NoPackageActor.class"
+    ("uplevel" body line 7)
+    invoked from within
+"uplevel $contents_of_test"
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/MoMLUndoChangeRequest.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/MoMLUndoEntry.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/MoMLVariableChecker.tcl
-14 ms. Memory: 206848K Free: 118777K (57%)
+27 ms. Memory: 229376K Free: 127089K (55%)
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/ParserAttribute.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/StreamErrorHandler.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/UndoContext.tcl
@@ -115,8 +151,8 @@ This test will print an error message to stderr which can be ignored
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/Vertex.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/_aJVMBug.tcl
 /home/travis/build/icyphy/ptII/ptolemy/moml/test/parseMoML.tcl
-07/11/19 02:05:27
-Failed: 0  Total Tests: 440  ((Passed: 439, Newly Passed: 0)  Known Failed: 1) /home/travis/build/icyphy/ptII/ptolemy/moml/test
+07/12/19 06:05:12
+Failed: 1  Total Tests: 440  ((Passed: 438, Newly Passed: 0)  Known Failed: 1) /home/travis/build/icyphy/ptII/ptolemy/moml/test
 No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/moml/test
 No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/moml/test
 AutoTests.java: About to close Vertx.
