@@ -18,61 +18,15 @@
                 <th>Class</th><th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
             </tr>
             <tr valign="top" class="Error">
-                <td><a href="ptolemy/actor/lib/test/junit/80_JUnitTclTest.html">JUnitTclTest</a></td><td><a name="[147] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/test/auto/ExecRunDemos.xml (RunModel)"></a><a href="ptolemy/actor/lib/test/junit/80_JUnitTclTest.html#[147] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/test/auto/ExecRunDemos.xml (RunModel)">[147] /home/travis/build/icyphy/ptII/ptolemy/actor/lib/test/auto/ExecRunDemos.xml (RunModel)</a></td><td>Error</td><td>N/A
-                    <br>
-                    <br>
-                    <code>java.lang.reflect.InvocationTargetException
-                        <br>
-                        	at jdk.internal.reflect.GeneratedConstructorAccessor36.newInstance(Unknown Source)
-                        <br>
-                        	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-                        <br>
-                        	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-                        <br>
-                        	at ptolemy.util.test.junit.AutoTests.RunModel(AutoTests.java:193)
-                        <br>
-                        	at jdk.internal.reflect.GeneratedMethodAccessor43.invoke(Unknown Source)
-                        <br>
-                        	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                        <br>
-                        	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
-                        <br>
-                        Caused by: ptolemy.kernel.util.IllegalActionException: Test fails in iteration 0.
-                        <br>
-                        Value was: "WARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar) to constructor java.nio.DirectByteBuffer(long,int)\nWARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release\n". Should have been: ""
-                        <br>
-                          in .ExecRunDemos.Test
-                        <br>
-                        	at ptolemy.actor.lib.Test.fire(Test.java:268)
-                        <br>
-                        	at ptolemy.actor.AtomicActor.iterate(AtomicActor.java:512)
-                        <br>
-                        	at ptolemy.actor.sched.StaticSchedulingDirector.fire(StaticSchedulingDirector.java:216)
-                        <br>
-                        	at ptolemy.domains.sdf.kernel.SDFDirector.fire(SDFDirector.java:500)
-                        <br>
-                        	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
-                        <br>
-                        	at ptolemy.actor.Manager.iterate(Manager.java:851)
-                        <br>
-                        	at ptolemy.actor.Manager.execute(Manager.java:369)
-                        <br>
-                        	at ptolemy.actor.Manager.run(Manager.java:1263)
-                        <br>
-                        	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1915)
-                        <br>
-                    </code></td><td>10.577</td>
-            </tr>
-            <tr valign="top" class="Error">
                 <td><a href="ptolemy/configs/test/junit/105_JUnitTclTest.html">JUnitTclTest</a></td><td><a name="[0] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl (RunTclFile)"></a><a href="ptolemy/configs/test/junit/105_JUnitTclTest.html#[0] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl (RunTclFile)">[0] /home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl (RunTclFile)</a></td><td>Error</td><td>Evaluating the Tcl file "/home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl"resulted in a TclException being thrown.
 The Tcl errorInfo variable could not be obtained.
 java.lang.Exception: Evaluating the Tcl file "/home/travis/build/icyphy/ptII/ptolemy/configs/test/allConfigs.tcl"resulted in a TclException being thrown.
 The Tcl errorInfo global variable has the value:
-invalid command name "date"
+can't read "systemTime": no such variable
     while executing
-"date"
+"clock format $systemTime -format %H:%M:%S"
     invoked from within
-"puts "[date]""
+"puts "The time is [clock format $systemTime -format %H:%M:%S]""
     ("foreach" body line 290)
     invoked from within
 "foreach i $configs {
@@ -95,15 +49,15 @@ invalid command name "date"
                         <br>
                         The Tcl errorInfo global variable has the value:
                         <br>
-                        invalid command name "date"
+                        can't read "systemTime": no such variable
                         <br>
                             while executing
                         <br>
-                        "date"
+                        "clock format $systemTime -format %H:%M:%S"
                         <br>
                             invoked from within
                         <br>
-                        "puts "[date]""
+                        "puts "The time is [clock format $systemTime -format %H:%M:%S]""
                         <br>
                             ("foreach" body line 290)
                         <br>
@@ -157,21 +111,17 @@ invalid command name "date"
                         <br>
                         	at ptolemy.util.test.junit.TclTests.RunTclFile(TclTests.java:233)
                         <br>
-                        Caused by: tcl.lang.TclException
+                        Caused by: tcl.lang.TclVarException
                         <br>
-                        	at tcl.lang.ReturnCmd.cmdProc(ReturnCmd.java:99)
+                        	at tcl.lang.CallFrame.lookupVar(CallFrame.java:305)
                         <br>
-                        	at tcl.lang.Parser.evalObjv(Parser.java:740)
+                        	at tcl.lang.CallFrame.getVar(CallFrame.java:588)
                         <br>
-                        	at tcl.lang.Parser.eval2(Parser.java:1138)
+                        	at tcl.lang.Interp.getVar(Interp.java:1117)
                         <br>
-                        	at tcl.lang.Procedure.cmdProc(Procedure.java:175)
+                        	at tcl.lang.Parser.evalTokens(Parser.java:966)
                         <br>
-                        	at tcl.lang.Parser.evalObjv(Parser.java:740)
-                        <br>
-                        	at tcl.lang.Parser.evalObjv(Parser.java:724)
-                        <br>
-                        	at tcl.lang.Parser.eval2(Parser.java:1138)
+                        	at tcl.lang.Parser.eval2(Parser.java:1125)
                         <br>
                         	at tcl.lang.Parser.evalTokens(Parser.java:930)
                         <br>
@@ -193,10 +143,10 @@ invalid command name "date"
                         <br>
                         	at tcl.lang.Interp.evalFile(Interp.java:1880)
                         <br>
-                    </code></td><td>460.227</td>
+                    </code></td><td>480.350</td>
             </tr>
             <tr valign="top" class="Error">
-                <td><a href="ptolemy/domains/rendezvous/test/junit/165_JUnitTclTest.html">JUnitTclTest</a></td><td><a name="[14] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/Sequencing3.xml (RunModel)"></a><a href="ptolemy/domains/rendezvous/test/junit/165_JUnitTclTest.html#[14] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/Sequencing3.xml (RunModel)">[14] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/Sequencing3.xml (RunModel)</a></td><td>Error</td><td>test timed out after 900000 milliseconds
+                <td><a href="ptolemy/domains/rendezvous/test/junit/165_JUnitTclTest.html">JUnitTclTest</a></td><td><a name="[9] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/ResourcePool2.xml (RunModel)"></a><a href="ptolemy/domains/rendezvous/test/junit/165_JUnitTclTest.html#[9] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/ResourcePool2.xml (RunModel)">[9] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/ResourcePool2.xml (RunModel)</a></td><td>Error</td><td>test timed out after 900000 milliseconds
                     <br>
                     <br>
                     <code>java.lang.Exception: test timed out after 900000 milliseconds
@@ -227,7 +177,7 @@ invalid command name "date"
                         <br>
                         	at app//junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
                         <br>
-                    </code></td><td>900.014</td>
+                    </code></td><td>900.017</td>
             </tr>
             <tr valign="top" class="Error">
                 <td><a href="ptolemy/domains/rendezvous/test/junit/165_JUnitTclTest.html">JUnitTclTest</a></td><td><a name="[15] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/Sequencing4.xml (RunModel)"></a><a href="ptolemy/domains/rendezvous/test/junit/165_JUnitTclTest.html#[15] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/Sequencing4.xml (RunModel)">[15] /home/travis/build/icyphy/ptII/ptolemy/domains/rendezvous/test/auto/Sequencing4.xml (RunModel)</a></td><td>Error</td><td>test timed out after 900000 milliseconds
@@ -261,10 +211,10 @@ invalid command name "date"
                         <br>
                         	at app//junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
                         <br>
-                    </code></td><td>900.003</td>
+                    </code></td><td>900.013</td>
             </tr>
             <tr valign="top" class="Error">
-                <td><a href="ptolemy/vergil/basic/export/test/junit/208_ExportModelJUnitTestBatch1.html">ExportModelJUnitTestBatch1</a></td><td><a name="[146] ptolemy/actor/lib/jjs/modules/aprilTags/demo/AprilTags/AprilTags.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/208_ExportModelJUnitTestBatch1.html#[146] ptolemy/actor/lib/jjs/modules/aprilTags/demo/AprilTags/AprilTags.xml (RunExportModel)">[146] ptolemy/actor/lib/jjs/modules/aprilTags/demo/AprilTags/AprilTags.xml (RunExportModel)</a></td><td>Error</td><td>Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
+                <td><a href="ptolemy/vergil/basic/export/test/junit/212_ExportModelJUnitTestBatch5.html">ExportModelJUnitTestBatch5</a></td><td><a name="[17] ptolemy/domains/continuous/demo/CartPendulum/CartPendulum.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/212_ExportModelJUnitTestBatch5.html#[17] ptolemy/domains/continuous/demo/CartPendulum/CartPendulum.xml (RunExportModel)">[17] ptolemy/domains/continuous/demo/CartPendulum/CartPendulum.xml (RunExportModel)</a></td><td>Error</td><td>Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
                     <br>
                     <br>
                     <code>junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
@@ -276,7 +226,7 @@ invalid command name "date"
                     </code></td><td>0.000</td>
             </tr>
             <tr valign="top" class="Error">
-                <td><a href="ptolemy/vergil/basic/export/test/junit/212_ExportModelJUnitTestBatch5.html">ExportModelJUnitTestBatch5</a></td><td><a name="[17] ptolemy/domains/continuous/demo/BouncingBall/BouncingBall.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/212_ExportModelJUnitTestBatch5.html#[17] ptolemy/domains/continuous/demo/BouncingBall/BouncingBall.xml (RunExportModel)">[17] ptolemy/domains/continuous/demo/BouncingBall/BouncingBall.xml (RunExportModel)</a></td><td>Error</td><td>Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
+                <td><a href="ptolemy/vergil/basic/export/test/junit/213_ExportModelJUnitTestBatch6.html">ExportModelJUnitTestBatch6</a></td><td><a name="[71] ptolemy/domains/sdf/demo/Gravitation/GravitationWithCollisionDetection.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/213_ExportModelJUnitTestBatch6.html#[71] ptolemy/domains/sdf/demo/Gravitation/GravitationWithCollisionDetection.xml (RunExportModel)">[71] ptolemy/domains/sdf/demo/Gravitation/GravitationWithCollisionDetection.xml (RunExportModel)</a></td><td>Error</td><td>Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
                     <br>
                     <br>
                     <code>junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
@@ -286,18 +236,6 @@ invalid command name "date"
                         	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
                         <br>
                     </code></td><td>0.000</td>
-            </tr>
-            <tr valign="top" class="Error">
-                <td><a href="ptolemy/vergil/basic/export/test/junit/213_ExportModelJUnitTestBatch6.html">ExportModelJUnitTestBatch6</a></td><td><a name="[74] ptolemy/domains/sdf/demo/Gravitation/Gravitation.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/213_ExportModelJUnitTestBatch6.html#[74] ptolemy/domains/sdf/demo/Gravitation/Gravitation.xml (RunExportModel)">[74] ptolemy/domains/sdf/demo/Gravitation/Gravitation.xml (RunExportModel)</a></td><td>Error</td><td>Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
-                    <br>
-                    <br>
-                    <code>junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
-                        <br>
-                        	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
-                        <br>
-                        	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                        <br>
-                    </code></td><td>0.001</td>
             </tr>
         </table>
     </body>
