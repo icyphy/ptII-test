@@ -41,10 +41,10 @@
                         <br>
                         	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
                         <br>
-                    </code></td><td>0.033</td>
+                    </code></td><td>0.026</td>
             </tr>
             <tr valign="top" class="Failure">
-                <td><a href="ptolemy/vergil/basic/export/test/junit/211_ExportModelJUnitTestBatch5.html">ExportModelJUnitTestBatch5</a></td><td><a name="[106] ptolemy/domains/gr/demo/Pendulum/Pendulum.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/211_ExportModelJUnitTestBatch5.html#[106] ptolemy/domains/gr/demo/Pendulum/Pendulum.xml (RunExportModel)">[106] ptolemy/domains/gr/demo/Pendulum/Pendulum.xml (RunExportModel)</a></td><td>Failure</td><td>Exporting HTML for ptolemy/domains/gr/demo/Pendulum/Pendulum.xml failed: 
+                <td><a href="ptolemy/vergil/basic/export/test/junit/181_ExportModelJUnitTestBatch5.html">ExportModelJUnitTestBatch5</a></td><td><a name="[106] ptolemy/domains/gr/demo/Pendulum/Pendulum.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/181_ExportModelJUnitTestBatch5.html#[106] ptolemy/domains/gr/demo/Pendulum/Pendulum.xml (RunExportModel)">[106] ptolemy/domains/gr/demo/Pendulum/Pendulum.xml (RunExportModel)</a></td><td>Failure</td><td>Exporting HTML for ptolemy/domains/gr/demo/Pendulum/Pendulum.xml failed: 
 java.lang.reflect.InvocationTargetException
 	at java.desktop/java.awt.EventQueue.invokeAndWait(EventQueue.java:1367)
 	at java.desktop/java.awt.EventQueue.invokeAndWait(EventQueue.java:1342)
@@ -74,7 +74,10 @@ java.lang.reflect.InvocationTargetException
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
-Caused by: java.lang.RuntimeException: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+Caused by: java.lang.RuntimeException: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@745290d3" and "Pendulum Model".
+  in .Pendulum.Text
+Because:
+TriangleArray: illegal vertexCount
 	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:397)
 	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:303)
 	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
@@ -89,15 +92,11 @@ Caused by: java.lang.RuntimeException: java.lang.IllegalArgumentException: Trian
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
-Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
-	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
-	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
-	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
-	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
-	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
-	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
-	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
-	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:247)
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@745290d3" and "Pendulum Model".
+  in .Pendulum.Text
+Because:
+TriangleArray: illegal vertexCount
+	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:252)
 	at ptolemy.domains.gr.lib.GRShadedShape.initialize(GRShadedShape.java:336)
 	at ptolemy.actor.Director.initialize(Director.java:938)
 	at ptolemy.actor.Director.initialize(Director.java:907)
@@ -108,6 +107,16 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
 	at ptolemy.actor.Manager.execute(Manager.java:356)
 	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:390)
 	... 13 more
+Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
+	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
+	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
+	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
+	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
+	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
+	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
+	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:248)
+	... 22 more
 
                     <br>
                     <br>
@@ -143,7 +152,13 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         <br>
                         	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
                         <br>
-                        Caused by: java.lang.RuntimeException: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+                        Caused by: java.lang.RuntimeException: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@745290d3" and "Pendulum Model".
+                        <br>
+                          in .Pendulum.Text
+                        <br>
+                        Because:
+                        <br>
+                        TriangleArray: illegal vertexCount
                         <br>
                         	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:397)
                         <br>
@@ -173,23 +188,15 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         <br>
                         	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
                         <br>
-                        Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+                        Caused by: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@745290d3" and "Pendulum Model".
                         <br>
-                        	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
+                          in .Pendulum.Text
                         <br>
-                        	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
+                        Because:
                         <br>
-                        	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
+                        TriangleArray: illegal vertexCount
                         <br>
-                        	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
-                        <br>
-                        	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
-                        <br>
-                        	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
-                        <br>
-                        	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
-                        <br>
-                        	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:247)
+                        	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:252)
                         <br>
                         	at ptolemy.domains.gr.lib.GRShadedShape.initialize(GRShadedShape.java:336)
                         <br>
@@ -208,6 +215,24 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         	at ptolemy.actor.Manager.execute(Manager.java:356)
                         <br>
                         	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:390)
+                        <br>
+                        Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+                        <br>
+                        	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
+                        <br>
+                        	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
+                        <br>
+                        	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
+                        <br>
+                        	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
+                        <br>
+                        	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
+                        <br>
+                        	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
+                        <br>
+                        	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
+                        <br>
+                        	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:248)
                         <br>
                         <br>
                         	at ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTest.RunExportModel(ExportModelJUnitTest.java:162)
@@ -230,10 +255,10 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         <br>
                         	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
                         <br>
-                    </code></td><td>2.227</td>
+                    </code></td><td>2.257</td>
             </tr>
             <tr valign="top" class="Failure">
-                <td><a href="ptolemy/vergil/basic/export/test/junit/211_ExportModelJUnitTestBatch5.html">ExportModelJUnitTestBatch5</a></td><td><a name="[108] ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/211_ExportModelJUnitTestBatch5.html#[108] ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml (RunExportModel)">[108] ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml (RunExportModel)</a></td><td>Failure</td><td>Exporting HTML for ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml failed: 
+                <td><a href="ptolemy/vergil/basic/export/test/junit/181_ExportModelJUnitTestBatch5.html">ExportModelJUnitTestBatch5</a></td><td><a name="[108] ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml (RunExportModel)"></a><a href="ptolemy/vergil/basic/export/test/junit/181_ExportModelJUnitTestBatch5.html#[108] ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml (RunExportModel)">[108] ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml (RunExportModel)</a></td><td>Failure</td><td>Exporting HTML for ptolemy/domains/gr/demo/SolarSystem/SolarSystem.xml failed: 
 java.lang.reflect.InvocationTargetException
 	at java.desktop/java.awt.EventQueue.invokeAndWait(EventQueue.java:1367)
 	at java.desktop/java.awt.EventQueue.invokeAndWait(EventQueue.java:1342)
@@ -263,7 +288,10 @@ java.lang.reflect.InvocationTargetException
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
-Caused by: java.lang.RuntimeException: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+Caused by: java.lang.RuntimeException: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@2c52ebbc" and "Pluto".
+  in .SolarSystem.TextString3D
+Because:
+TriangleArray: illegal vertexCount
 	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:397)
 	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:303)
 	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
@@ -278,15 +306,11 @@ Caused by: java.lang.RuntimeException: java.lang.IllegalArgumentException: Trian
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
-Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
-	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
-	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
-	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
-	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
-	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
-	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
-	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
-	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:247)
+Caused by: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@2c52ebbc" and "Pluto".
+  in .SolarSystem.TextString3D
+Because:
+TriangleArray: illegal vertexCount
+	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:252)
 	at ptolemy.domains.gr.lib.GRShadedShape.initialize(GRShadedShape.java:336)
 	at ptolemy.actor.Director.initialize(Director.java:938)
 	at ptolemy.actor.Director.initialize(Director.java:907)
@@ -297,6 +321,16 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
 	at ptolemy.actor.Manager.execute(Manager.java:356)
 	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:390)
 	... 13 more
+Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
+	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
+	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
+	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
+	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
+	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
+	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
+	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:248)
+	... 22 more
 
                     <br>
                     <br>
@@ -332,7 +366,13 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         <br>
                         	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
                         <br>
-                        Caused by: java.lang.RuntimeException: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+                        Caused by: java.lang.RuntimeException: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@2c52ebbc" and "Pluto".
+                        <br>
+                          in .SolarSystem.TextString3D
+                        <br>
+                        Because:
+                        <br>
+                        TriangleArray: illegal vertexCount
                         <br>
                         	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:397)
                         <br>
@@ -362,23 +402,15 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         <br>
                         	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
                         <br>
-                        Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+                        Caused by: ptolemy.kernel.util.IllegalActionException: Failed to create Text3D for font "javax.media.j3d.Font3D@2c52ebbc" and "Pluto".
                         <br>
-                        	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
+                          in .SolarSystem.TextString3D
                         <br>
-                        	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
+                        Because:
                         <br>
-                        	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
+                        TriangleArray: illegal vertexCount
                         <br>
-                        	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
-                        <br>
-                        	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
-                        <br>
-                        	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
-                        <br>
-                        	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
-                        <br>
-                        	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:247)
+                        	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:252)
                         <br>
                         	at ptolemy.domains.gr.lib.GRShadedShape.initialize(GRShadedShape.java:336)
                         <br>
@@ -397,6 +429,24 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         	at ptolemy.actor.Manager.execute(Manager.java:356)
                         <br>
                         	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:390)
+                        <br>
+                        Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCount
+                        <br>
+                        	at javax.media.j3d.TriangleArray.&lt;init&gt;(TriangleArray.java:102)
+                        <br>
+                        	at com.sun.j3d.utils.geometry.GeometryInfo.getGeometryArray(GeometryInfo.java:2574)
+                        <br>
+                        	at com.sun.j3d.utils.geometry.GeometryServiceImpl.triangulateIslands(GeometryServiceImpl.java:32)
+                        <br>
+                        	at javax.media.j3d.Font3D.triangulateGlyphs(Font3D.java:473)
+                        <br>
+                        	at javax.media.j3d.Text3DRetained.updateCharacterData(Text3DRetained.java:700)
+                        <br>
+                        	at javax.media.j3d.Text3DRetained.setString(Text3DRetained.java:254)
+                        <br>
+                        	at javax.media.j3d.Text3D.&lt;init&gt;(Text3D.java:276)
+                        <br>
+                        	at ptolemy.domains.gr.lib.TextString3D._createModel(TextString3D.java:248)
                         <br>
                         <br>
                         	at ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTest.RunExportModel(ExportModelJUnitTest.java:162)
@@ -419,7 +469,7 @@ Caused by: java.lang.IllegalArgumentException: TriangleArray: illegal vertexCoun
                         <br>
                         	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
                         <br>
-                    </code></td><td>2.949</td>
+                    </code></td><td>3.221</td>
             </tr>
         </table>
     </body>
