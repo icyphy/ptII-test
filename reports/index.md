@@ -12,7 +12,8 @@ created by [$PTII/bin/ptIITravisBuild.sh](https://github.com/icyphy/ptII/blob/ma
 * [test.core3.xml.txt](junit/test.core3.xml.txt) Output of `ant test.core3.xml`
 * [test.core4.xml.txt](junit/test.core4.xml.txt) Output of `ant test.core4.xml`
 * [test.core5.xml.txt](junit/test.core5.xml.txt) Output of `ant test.core5.xml`
-* [test.core6.xml.txt](junit/test.core5.xml.txt) Output of `ant test.core6.xml`
+* [test.core6.xml.txt](junit/test.core6.xml.txt) Output of `ant test.core6.xml`
+* [test.core7.xml.txt](junit/test.core7.xml.txt) Output of `ant test.core7.xml`
 * [test.export1.xml.txt](junit/test.export1.xml.txt) Output of `ant test.export1.xml`
 * [test.export2.xml.txt](junit/test.export2.xml.txt) Output of `ant test.export2.xml`
 * [test.export3.xml.txt](junit/test.export3.xml.txt) Output of `ant test.export3.xml`
