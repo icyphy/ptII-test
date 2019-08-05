@@ -1,0 +1,368 @@
+<html xmlns:string="xalan://java.lang.String" xmlns:lxslt="http://xml.apache.org/xslt">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Standard Output from JUnitTclTest</title>
+    </head>
+    <body>
+        <pre>/home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/PNDirector.tcl
+testDefs.tcl: setting time out to 9000 seconds at Mon Aug 05 20:09:23 UTC 2019
+88 ms. Memory: 120832K Free: 89540K (74%)
+66 ms. Memory: 120832K Free: 81862K (68%)
+/home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/TimedPNDirector.tcl
+
+
+==== $PTII/ptolemy/domains/pn/test/TimedPNDirector.tcl: TimedPNDirector-6.1 Test an application
+==== Contents of test case:
+
+
+    set e0 [java::new ptolemy.actor.TypedCompositeActor]
+    set manager [java::new ptolemy.actor.Manager]
+    set director [java::new ptolemy.domains.pn.kernel.TimedPNDirector]
+    $e0 setDirector $director
+    $e0 setName top
+    $e0 setManager $manager
+
+    # FIXME: why doesn't the getParameter option work.
+    set ramp [java::new ptolemy.actor.lib.Ramp $e0 ramp]
+    set param [java::cast ptolemy.data.expr.Parameter  [$ramp getAttribute  firingCountLimit]]
+    $param setExpression 20
+
+    set rec [java::new ptolemy.actor.lib.Recorder $e0 rec]
+    $e0 connect  [java::field [java::cast ptolemy.actor.lib.Source $ramp] output]  [java::field [java::cast ptolemy.actor.lib.Sink $rec] input]
+
+    error "Running this test sometimes causes an endless loop" 
+
+#    [$e0 getManager] execute
+#    enumToTokenValues [$rec getRecord 0]
+
+
+.... Test generated KNOWN error:
+Running this test sometimes causes an endless loop
+    while executing
+"error "Running this test sometimes causes an endless loop" "
+    ("uplevel" body line 18)
+    invoked from within
+"uplevel $contents_of_test"
+08/05/19 08:09:23
+Failed: 0  Total Tests: 3  ((Passed: 2, Newly Passed: 0)  Known Failed: 1) /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test
+No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test
+No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test
+AutoTests.java: About to close Vertx.
+AutoTests.java: Vertx closed.
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:24 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Branching-switch-PN-ptolemy-2.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Branching-switch-PN-ptolemy-2.xml
+81 ms. Memory: 120832K Free: 95389K (79%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b31a37f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b31a37f
+reloadAllAccessors: .Branching-switch-PN-ptolemy-2
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:24 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Branching-switch-PN-ptolemy.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Branching-switch-PN-ptolemy.xml
+35 ms. Memory: 120832K Free: 102432K (85%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5a736781
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5a736781
+reloadAllAccessors: .Branching-switch-PN-ptolemy
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:24 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/BrockAckermanTest.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/BrockAckermanTest.xml
+257 ms. Memory: 120832K Free: 87072K (72%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@29b4ad7
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@29b4ad7
+reloadAllAccessors: .BrockAckermanTest
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:25 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/CounterMachine.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/CounterMachine.xml
+942 ms. Memory: 147456K Free: 81848K (56%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@139a3811
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@139a3811
+reloadAllAccessors: .CounterMachine
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:26 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/CounterMachine1.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/CounterMachine1.xml
+957 ms. Memory: 147456K Free: 57035K (39%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2a19777
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@2a19777
+reloadAllAccessors: .CounterMachine1
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:28 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/CounterMachineWithException.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/CounterMachineWithException.xml
+499 ms. Memory: 177152K Free: 85311K (48%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3a5a5332
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3a5a5332
+reloadAllAccessors: .CounterMachineWithException
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:28 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/FinalState.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/FinalState.xml
+27 ms. Memory: 177152K Free: 78143K (44%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4240b37c
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4240b37c
+reloadAllAccessors: .FinalState
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/FourExpressions.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/FourExpressions.xml
+23 ms. Memory: 177152K Free: 65855K (37%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@c7a9a
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@c7a9a
+reloadAllAccessors: .FourExpressions
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Identity.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Identity.xml
+30 ms. Memory: 177152K Free: 161025K (91%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7ad1d8b7
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7ad1d8b7
+reloadAllAccessors: .Identity
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/IdentityWithFeedback.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/IdentityWithFeedback.xml
+12 ms. Memory: 177152K Free: 154630K (87%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@42ccfe10
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@42ccfe10
+reloadAllAccessors: .IdentityWithFeedback
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/NondeterministicMergeTest.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/NondeterministicMergeTest.xml
+26 ms. Memory: 177152K Free: 145416K (82%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6ca3acd7
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6ca3acd7
+reloadAllAccessors: .NondeterministicMergeTest
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/OrderedMerge.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/OrderedMerge.xml
+146 ms. Memory: 177152K Free: 132104K (75%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@84da966
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@84da966
+reloadAllAccessors: .OrderedMerge
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/PNAbstractReceiverTest.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/PNAbstractReceiverTest.xml
+7 ms. Memory: 177152K Free: 126470K (71%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@77e6ca7f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@77e6ca7f
+reloadAllAccessors: .PNAbstractReceiverTest
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/QR.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/QR.xml
+30 ms. Memory: 177152K Free: 114182K (64%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@303bf8d7
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@303bf8d7
+reloadAllAccessors: .QR
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/RemoveNilTokens.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/RemoveNilTokens.xml
+28 ms. Memory: 177152K Free: 99846K (56%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4e724957
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4e724957
+reloadAllAccessors: .RemoveNilTokens
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Stack.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/Stack.xml
+73 ms. Memory: 177152K Free: 69126K (39%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@149e2c7f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@149e2c7f
+reloadAllAccessors: .Stack
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/TestRemoveNilTokens.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/TestRemoveNilTokens.xml
+30 ms. Memory: 177152K Free: 160757K (91%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5f90f977
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@5f90f977
+reloadAllAccessors: .TestRemoveNilTokens
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/TestSeq2Array.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/TestSeq2Array.xml
+12 ms. Memory: 177152K Free: 154613K (87%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4d26c5d0
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4d26c5d0
+reloadAllAccessors: .TestSeq2Array
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/TrivialIdentity.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/TrivialIdentity.xml
+15 ms. Memory: 177152K Free: 149992K (85%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7308717c
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7308717c
+reloadAllAccessors: .TrivialIdentity
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:29 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest1.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest1.xml
+12 ms. Memory: 177152K Free: 143848K (81%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1c4f247c
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1c4f247c
+reloadAllAccessors: .1
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest2.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest2.xml
+10 ms. Memory: 177152K Free: 137966K (78%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3275b64c
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3275b64c
+reloadAllAccessors: .2
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest3.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest3.xml
+14 ms. Memory: 177152K Free: 123108K (69%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@21774c57
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@21774c57
+reloadAllAccessors: .3
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest4.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest4.xml
+25 ms. Memory: 177152K Free: 109294K (62%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@32e86f7f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@32e86f7f
+reloadAllAccessors: .WidthInferenceTest4
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest5.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/WidthInferenceTest5.xml
+27 ms. Memory: 177152K Free: 95460K (54%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ab91b1f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@ab91b1f
+reloadAllAccessors: .WidthInferenceTest5
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/controlled_kahnnet.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/controlled_kahnnet.xml
+18 ms. Memory: 177152K Free: 90601K (51%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@704102cf
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@704102cf
+reloadAllAccessors: .controlled_kahnnet
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/demandDriven.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/demandDriven.xml
+8 ms. Memory: 177152K Free: 86505K (49%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3b6e524f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3b6e524f
+reloadAllAccessors: .demandDriven
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/feedback.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/feedback.xml
+9 ms. Memory: 177152K Free: 82670K (47%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4ebbfb88
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4ebbfb88
+reloadAllAccessors: .feedback
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/helloWorld.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/helloWorld.xml
+14 ms. Memory: 177152K Free: 80361K (45%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b0a63ce
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6b0a63ce
+reloadAllAccessors: .helloWorld
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/helloWorld2.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/helloWorld2.xml
+9 ms. Memory: 177152K Free: 75765K (43%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1af5368b
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@1af5368b
+reloadAllAccessors: .helloWorld2
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/noOutput.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/noOutput.xml
+36 ms. Memory: 177152K Free: 71145K (40%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4a9effdd
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@4a9effdd
+reloadAllAccessors: .noOutput
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup.xml
+10 ms. Memory: 177152K Free: 68334K (39%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7eb30f48
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7eb30f48
+reloadAllAccessors: .relationGroup
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup2.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup2.xml
+2 ms. Memory: 177152K Free: 66024K (37%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@788de871
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@788de871
+reloadAllAccessors: .relationGroup2
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup3.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup3.xml
+3 ms. Memory: 177152K Free: 63716K (36%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@249fcf63
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@249fcf63
+reloadAllAccessors: .relationGroup3
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup4.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup4.xml
+12 ms. Memory: 177152K Free: 61429K (35%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@112d9b71
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@112d9b71
+reloadAllAccessors: .relationGroup4
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup5.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup5.xml
+16 ms. Memory: 177152K Free: 163048K (92%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3106715
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@3106715
+reloadAllAccessors: .relationGroup5
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup6.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup6.xml
+9 ms. Memory: 177152K Free: 159902K (90%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@392b1b1f
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@392b1b1f
+reloadAllAccessors: .relationGroup6
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup7.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup7.xml
+7 ms. Memory: 177152K Free: 156830K (89%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6ef92e4a
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@6ef92e4a
+reloadAllAccessors: .relationGroup7
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup8.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/relationGroup8.xml
+9 ms. Memory: 177152K Free: 153448K (87%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7da08c48
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@7da08c48
+reloadAllAccessors: .relationGroup8
+
+===========================================================================================
+----------------- testing Mon Aug 05 20:09:30 UTC 2019 /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/widthTest.xml
+----------------- Instantiating /home/travis/build/icyphy/ptII/ptolemy/domains/pn/test/auto/widthTest.xml
+9 ms. Memory: 177152K Free: 149360K (84%)
+----------------- Invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@10fd6596
+----------------- Done invoking toplevel() on ptolemy.moml.MoMLSimpleApplication@10fd6596
+reloadAllAccessors: .widthTest
+AutoTests.java: About to close Vertx.
+AutoTests.java: Vertx closed.
+</pre>
+    </body>
+</html>
