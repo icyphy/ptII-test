@@ -1,4 +1,4 @@
-/home/travis/build/icyphy/ptII/bin/ant: Running /home/travis/build/icyphy/ptII/ant/bin/ant build test.travis.timeout.fail.xml
+/home/travis/build/icyphy/ptII/bin/ant: Running /home/travis/build/icyphy/ptII/ant/bin/ant build test.export7.xml
 Buildfile: /home/travis/build/icyphy/ptII/build.xml
 
 build-message:
@@ -35,31 +35,6 @@ build-subprojects:
 -check-jsdoc:
 
 jsdoc-install:
-     [exec] /home/travis/build/icyphy/ptII
-     [exec] └─┬ @terraswarm/jsdoc@3.5.1-dev 
-     [exec]   ├── bluebird@3.4.7 
-     [exec]   ├─┬ catharsis@0.8.11 
-     [exec]   │ └── lodash@4.17.15 
-     [exec]   ├── escape-string-regexp@1.0.5 
-     [exec]   ├─┬ espree@3.1.7 
-     [exec]   │ ├── acorn@3.3.0 
-     [exec]   │ └── acorn-jsx@3.0.1 
-     [exec]   ├── js2xmlparser@1.0.0 
-     [exec]   ├─┬ klaw@1.3.1 
-     [exec]   │ └── graceful-fs@4.2.4 
-     [exec]   ├── marked@0.3.19 
-     [exec]   ├─┬ mkdirp@0.5.5 
-     [exec]   │ └── minimist@1.2.5 
-     [exec]   ├── requizzle@0.2.3 
-     [exec]   ├── strip-json-comments@2.0.1 
-     [exec]   ├── taffydb@2.6.2 
-     [exec]   └── underscore@1.8.3 
-     [exec] 
-     [exec] npm WARN enoent ENOENT: no such file or directory, open '/home/travis/build/icyphy/ptII/package.json'
-     [exec] npm WARN ptII No description
-     [exec] npm WARN ptII No repository field.
-     [exec] npm WARN ptII No README data
-     [exec] npm WARN ptII No license field.
 
 jsdoc-update:
 
@@ -150,7 +125,7 @@ ptdoc:
      [echo] 
      [echo]     
      [exec] Generating output files...
-     [exec] Finished running in 14.36 seconds.
+     [exec] Finished running in 13.56 seconds.
 
 build-project:
      [echo] ptII: /home/travis/build/icyphy/ptII/build.xml
@@ -504,24 +479,647 @@ build-bin:
      [exec] ./makebat -q "`basename startjini.gui.bat .bat`"
      [exec] rm -f "vergil.bat"
      [exec] ./makebat -q "`basename vergil.bat .bat`"
-     [exec] Cloning into 'universalJavaApplicationStub'...
      [exec] rm -f makeapp
      [exec] ln -s ptinvoke makeapp
      [exec] chmod a+x ptinvoke makeapp
      [exec] ./makeapp CapeCode.app CAPECODE -capecode
      [exec] ./makeapp: /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub does not exist, creating it from GitHub.
+     [exec] Cloning into 'universalJavaApplicationStub'...
      [exec] Updating universalJavaApplicationStub from /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub
-     [exec] ./makeapp: Could not find MacJVMTar in /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz, downloading it now: Sat May  2 16:07:02 UTC 2020
-     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sat May  2 16:07:07 UTC 2020
+     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sun May  3 15:15:48 UTC 2020
      [exec] ./makeapp: Installation of /home/travis/build/icyphy/ptII/jdk succeeded.
      [exec] ./makeapp: copying /home/travis/build/icyphy/ptII/vendors/jogl to /home/travis/build/icyphy/ptII/bin
      [exec] touch CapeCode.app
      [exec] ./makeapp Vergil.app FULL -full
      [exec] Updating universalJavaApplicationStub from /home/travis/build/icyphy/ptII/vendors/universalJavaApplicationStub/src/universalJavaApplicationStub
-     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sat May  2 16:07:09 UTC 2020
+     [exec] Untaring /home/travis/build/icyphy/ptII/vendors/installer/MacJVM.tar.gz in /home/travis/build/icyphy/ptII/ now: Sun May  3 15:15:51 UTC 2020
      [exec] ./makeapp: Installation of /home/travis/build/icyphy/ptII/jdk succeeded.
      [exec] touch Vergil.app
      [exec] chmod a+x ant cyphysim hyvisual startjini mkjnlp mkl4j mkosgi mkptdemo mkptlivelinkdemo mkpttest node npm ptjunit ptIITravisBuild.sh reloadAllAccessors updateFmu viptos 
+
+build:
+
+initReports:
+    [mkdir] Created dir: /home/travis/build/icyphy/ptII/reports/doccheck
+    [mkdir] Created dir: /home/travis/build/icyphy/ptII/reports/ojdcheck
+
+test.export7.xml:
+     [echo] 
+     [echo]       ==test.export7.xml ==
+     [echo]       This target runs the seventh batch of export demo tests
+     [echo]       and generates JUnit xml output.
+     [echo]       timeout = 4000000 milliseconds
+     [echo]     
+    [junit] javachdir: directory = ptolemy/vergil/basic/export/test
+    [junit] +java --module-path /home/travis/build/icyphy/ptII/vendors/javafx/javafx-sdk-11.0.2/lib: --add-modules javafx.controls,javafx.swing,javafx.media, -Djava.net.preferIPv4Stack=true -Djavafx.verbose=true -Dprism.verbose=true -Dptolemy.ptII.dir=/home/travis/build/icyphy/ptII -Dptolemy.ptII.batchMode=true -Xmx3200m -classpath /home/travis/build/icyphy/ptII:/home/travis/build/icyphy/ptII/lib/bsh-2.0b4.jar:/home/travis/build/icyphy/ptII/lib/ptCal.jar:/home/travis/build/icyphy/ptII/lib/java_cup.jar:/home/travis/build/icyphy/ptII/lib/saxon8.jar:/home/travis/build/icyphy/ptII/lib/saxon8-dom.jar:/home/travis/build/icyphy/ptII/lib/chic.jar:/home/travis/build/icyphy/ptII/lib/ptcolt.jar:/home/travis/build/icyphy/ptII/vendors/misc/itext/iText.jar:/home/travis/build/icyphy/ptII/lib/g4ltl.jar:/home/travis/build/icyphy/ptII/lib/StructuralCoder.jar:/home/travis/build/icyphy/ptII/lib/jcerti.jar:/home/travis/build/icyphy/ptII/lib/javax.mail.jar:/home/travis/build/icyphy/ptII/vendors/JMF-2.1.1e/lib/jmf.jar:/home/travis/build/icyphy/ptII/lib/jna-4.0.0-variadic.jar:/home/travis/build/icyphy/ptII/vendors/misc/joystick/Joystick.jar:/home/travis/build/icyphy/ptII/lib/ptjacl.jar:/home/travis/build/icyphy/ptII/lib/jsoup-1.8.2.jar:/home/travis/build/icyphy/ptII/lib/junit-4.8.2.jar:/home/travis/build/icyphy/ptII/lib/JUnitParams-0.4.0.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/lib/excel/jxl.jar:/home/travis/build/icyphy/ptII/lib/jython.jar:/home/travis/build/icyphy/ptII/lib/kieler.jar:/home/travis/build/icyphy/ptII/vendors/opencv/share/OpenCV/java/opencv-341.jar:/home/travis/build/icyphy/ptII/lib/oscP5.jar:/home/travis/build/icyphy/ptII/lib/nrjavaserial-3.11.0.devel.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/j3dcore.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/j3dutils.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/vecmath.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/gluegen-rt-natives-linux-amd64.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/gluegen-rt.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/jogl-all-natives-linux-amd64.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/jogl-all.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/jini-core.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/jini-ext.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/sun-util.jar:/home/travis/build/icyphy/ptII/lib/protobuf-java-2.4.1.jar:/home/travis/build/icyphy/ptII/lib/org.eclipse.paho.client.mqttv3.jar:/home/travis/build/icyphy/ptII/lib/mapss.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/ptalon/antlr/antlr.jar:/home/travis/build/icyphy/ptII/lib/JRI.jar:/home/travis/build/icyphy/ptII/lib/commons-lang-2.6.jar:/home/travis/build/icyphy/ptII/lib/commons-logging-1.1.1.jar:/home/travis/build/icyphy/ptII/lib/sootclasses.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/lib/database/mysql-connector-java-5.1.6-bin.jar:/home/travis/build/icyphy/ptII/vendors/misc/sphinx4/sphinx4-data-5prealpha.jar:/home/travis/build/icyphy/ptII/vendors/misc/sphinx4/sphinx4-core-5prealpha.jar:/home/travis/build/icyphy/ptII/lib/PDFRenderer.jar:/home/travis/build/icyphy/ptII/lib/svgSalamander.jar:/home/travis/build/icyphy/ptII/lib/rsyntaxtextarea-2.6.0-SNAPSHOT.jar:/home/travis/build/icyphy/ptII/lib/hazelcast-3.8.2.jar:/home/travis/build/icyphy/ptII/lib/jackson-annotations-2.9.0.jar:/home/travis/build/icyphy/ptII/lib/jackson-core-2.9.3.jar:/home/travis/build/icyphy/ptII/lib/jackson-databind-2.9.3.jar:/home/travis/build/icyphy/ptII/lib/netty-buffer-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-dns-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-http-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-http2-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-handler-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-resolver-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-resolver-dns-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-transport-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/vertx-codegen-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-core-3.5.2-SNAPSHOT.jar:/home/travis/build/icyphy/ptII/lib/vertx-hazelcast-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-lang-js-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-service-proxy-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-web-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/slf4j-api-1.7.13.jar:/home/travis/build/icyphy/ptII/lib/slf4j-simple-1.7.13.jar:/home/travis/build/icyphy/ptII/lib/webcam-capture-0.3.12.jar:/home/travis/build/icyphy/ptII/lib/bridj-0.7.0.jar:/home/travis/build/icyphy/ptII/lib/xbjlib-1.1.0.nrjavaserial.jar:/home/travis/build/icyphy/ptII/ptolemy/moml/test:/home/travis/build/icyphy/ptII/ant/lib/ant-launcher.jar:/home/travis/build/icyphy/ptII/ant/lib/ant.jar:/home/travis/build/icyphy/ptII/ant/lib/ant-junit.jar:/home/travis/build/icyphy/ptII/ant/lib/ant-junit4.jar org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTestBatch7 skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/travis/build/icyphy/ptII/reports/junit/TEST-ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTestBatch7.xml crashfile=/home/travis/build/icyphy/ptII/junitvmwatcher3063057307006054964.properties propsfile=/home/travis/build/icyphy/ptII/junit7946206008901544530.properties
+    [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/vergil/basic/export/test  Invoking with -Djava.net.preferIPv4Stack=true
+    [junit] ExportModeJUnitTestBatch: There are 741 demos. Exporting demos: 691 to 830.
+    [junit] ExportModeJUnitTestBatch: There are 741 demos, which is less than the end index 691. Setting the end index to 740
+    [junit] Running ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTestBatch7
+    [junit] ####### 1 Sun May 03 15:15:54 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/taskpt/demo/SharedMemory/SharedMemory.xml $PTII/ptolemy/domains/taskpt/demo/SharedMemory/SharedMemory
+    [junit] Running .SharedMemory
+    [junit] 124 ms. Memory: 129024K Free: 106471K (83%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/taskpt/demo/SharedMemory/SharedMemory/index.html
+    [junit] 6923 ms. Memory: 155648K Free: 115409K (74%)
+    [junit] ####### 2 Sun May 03 15:16:01 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/taskpt/demo/Task/Task.xml $PTII/ptolemy/domains/taskpt/demo/Task/Task
+    [junit] Running .Task
+    [junit] 70 ms. Memory: 155648K Free: 96952K (62%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/taskpt/demo/Task/Task/index.html
+    [junit] 4673 ms. Memory: 155648K Free: 124772K (80%)
+    [junit] ####### 3 Sun May 03 15:16:06 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/tcs/demo/TCS/TCS.xml $PTII/ptolemy/domains/tcs/demo/TCS/TCS
+    [junit] Running .TCS
+    [junit] ExportHTMLTimer went off after 30000 ms., calling getDirector().finish and getDirector().stopFire()
+    [junit] 30003 ms. Memory: 225280K Free: 77312K (34%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/tcs/demo/TCS/TCS/index.html
+    [junit] 35868 ms. Memory: 225280K Free: 135031K (60%)
+    [junit] ####### 4 Sun May 03 15:16:42 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/tm/demo/Controllers/Controllers.xml $PTII/ptolemy/domains/tm/demo/Controllers/Controllers
+    [junit] Running .Controllers
+    [junit] 1448 ms. Memory: 225280K Free: 181688K (81%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/tm/demo/Controllers/Controllers/index.html
+    [junit] 6591 ms. Memory: 225280K Free: 44888K (20%)
+    [junit] ####### 5 Sun May 03 15:16:48 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/tm/demo/FFT/FFT.xml $PTII/ptolemy/domains/tm/demo/FFT/FFT
+    [junit] Running .FFT
+    [junit] 10076 ms. Memory: 225280K Free: 173406K (77%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/tm/demo/FFT/FFT/index.html
+    [junit] 14589 ms. Memory: 225280K Free: 39680K (18%)
+    [junit] ####### 6 Sun May 03 15:17:03 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/tm/demo/MergedEvents/MergedEvents.xml $PTII/ptolemy/domains/tm/demo/MergedEvents/MergedEvents
+    [junit] Running .MergedEvents
+    [junit] ExportHTMLTimer went off after 30000 ms., calling getDirector().finish and getDirector().stopFire()
+    [junit] 30045 ms. Memory: 225280K Free: 75836K (34%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/tm/demo/MergedEvents/MergedEvents/index.html
+    [junit] 34402 ms. Memory: 225280K Free: 103946K (46%)
+    [junit] ####### 7 Sun May 03 15:17:37 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/tm/demo/SimpleTasks/SimpleTasks.xml $PTII/ptolemy/domains/tm/demo/SimpleTasks/SimpleTasks
+    [junit] Running .SimpleTasks
+    [junit] 26 ms. Memory: 225280K Free: 156185K (69%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/tm/demo/SimpleTasks/SimpleTasks/index.html
+    [junit] 4246 ms. Memory: 225280K Free: 115753K (51%)
+    [junit] ####### 8 Sun May 03 15:17:41 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/AntennaPattern/AntennaGainTest.xml $PTII/ptolemy/domains/wireless/demo/AntennaPattern/AntennaGainTest
+    [junit] Running .AntennaGainTest
+    [junit] 348 ms. Memory: 225280K Free: 116736K (52%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/AntennaPattern/AntennaGainTest/index.html
+    [junit] 4913 ms. Memory: 225280K Free: 98213K (44%)
+    [junit] ####### 9 Sun May 03 15:17:46 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm  -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/AntennaPattern/AntennaModel.xml $PTII/ptolemy/domains/wireless/demo/AntennaPattern/AntennaModel
+    [junit] Warning: not running ptolemy/domains/wireless/demo/AntennaPattern/AntennaModel.xml. See ptolemy/vergil/basic/export/test/junit/ExportModelJUnitTest.java
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/AntennaPattern/AntennaModel/index.html
+    [junit] 3390 ms. Memory: 225280K Free: 109553K (49%)
+    [junit] ####### 10 Sun May 03 15:17:50 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm  -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/AntennaPattern/AntennaPattern.xml $PTII/ptolemy/domains/wireless/demo/AntennaPattern/AntennaPattern
+    [junit] Warning: not running ptolemy/domains/wireless/demo/AntennaPattern/AntennaPattern.xml. See ptolemy/vergil/basic/export/test/junit/ExportModelJUnitTest.java
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/AntennaPattern/AntennaPattern/index.html
+    [junit] 3202 ms. Memory: 225280K Free: 129950K (58%)
+    [junit] ####### 11 Sun May 03 15:17:53 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm  -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/AntennaPattern/ReceiveAntennaPattern.xml $PTII/ptolemy/domains/wireless/demo/AntennaPattern/ReceiveAntennaPattern
+    [junit] Warning: not running ptolemy/domains/wireless/demo/AntennaPattern/ReceiveAntennaPattern.xml. See ptolemy/vergil/basic/export/test/junit/ExportModelJUnitTest.java
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/AntennaPattern/ReceiveAntennaPattern/index.html
+    [junit] 3836 ms. Memory: 225280K Free: 154596K (69%)
+    [junit] ####### 12 Sun May 03 15:17:57 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm  -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/AntennaPattern/TransmitAntennaPattern.xml $PTII/ptolemy/domains/wireless/demo/AntennaPattern/TransmitAntennaPattern
+    [junit] Warning: not running ptolemy/domains/wireless/demo/AntennaPattern/TransmitAntennaPattern.xml. See ptolemy/vergil/basic/export/test/junit/ExportModelJUnitTest.java
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/AntennaPattern/TransmitAntennaPattern/index.html
+    [junit] 3637 ms. Memory: 225280K Free: 51725K (23%)
+    [junit] ####### 13 Sun May 03 15:18:00 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/CircularRange/CircularRange.xml $PTII/ptolemy/domains/wireless/demo/CircularRange/CircularRange
+    [junit] Running .CircularRange
+    [junit] ExportHTMLTimer went off after 30000 ms., calling getDirector().finish and getDirector().stopFire()
+    [junit] 29999 ms. Memory: 225280K Free: 50596K (22%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/CircularRange/CircularRange/index.html
+    [junit] 34406 ms. Memory: 225280K Free: 138778K (62%)
+    [junit] ####### 14 Sun May 03 15:18:35 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/Collisions/Collisions.xml $PTII/ptolemy/domains/wireless/demo/Collisions/Collisions
+    [junit] Running .Collisions
+    [junit] 20052 ms. Memory: 225280K Free: 75300K (33%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/Collisions/Collisions/index.html
+    [junit] 24725 ms. Memory: 225280K Free: 110202K (49%)
+    [junit] ####### 15 Sun May 03 15:19:00 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/Collisions/CollisionsDeterministic.xml $PTII/ptolemy/domains/wireless/demo/Collisions/CollisionsDeterministic
+    [junit] Running .CollisionsDeterministic
+    [junit] 50 ms. Memory: 225280K Free: 98154K (44%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/Collisions/CollisionsDeterministic/index.html
+    [junit] 4622 ms. Memory: 225280K Free: 68200K (30%)
+    [junit] ####### 16 Sun May 03 15:19:04 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/EvaderAndPursuer/EvaderAndPursuer.xml $PTII/ptolemy/domains/wireless/demo/EvaderAndPursuer/EvaderAndPursuer
+    [junit] Running .EvaderAndPursuer
+    [junit] ExportHTMLTimer went off after 30000 ms., calling getDirector().finish and getDirector().stopFire()
+    [junit] 30001 ms. Memory: 225280K Free: 116086K (52%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/EvaderAndPursuer/EvaderAndPursuer/index.html
+    [junit] 34840 ms. Memory: 225280K Free: 33070K (15%)
+    [junit] ####### 17 Sun May 03 15:19:39 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/Intersections/Intersections.xml $PTII/ptolemy/domains/wireless/demo/Intersections/Intersections
+    [junit] Running .Intersections
+    [junit] ExportHTMLTimer went off after 30000 ms., calling getDirector().finish and getDirector().stopFire()
+    [junit] 30002 ms. Memory: 1280000K Free: 742018K (58%)
+    [junit] Exported /home/travis/build/icyphy/ptII/ptolemy/domains/wireless/demo/Intersections/Intersections/index.html
+    [junit] 71358 ms. Memory: 1280000K Free: 296563K (23%)
+    [junit] ####### 18 Sun May 03 15:20:50 UTC 2020 $PTII/bin/ptinvoke ptolemy.vergil.basic.export.ExportModel -force htm -run -openComposites -timeOut 30000 -whiteBackground ptolemy/domains/wireless/demo/LinkVisualizer/LinkVisualizer.xml $PTII/ptolemy/domains/wireless/demo/LinkVisualizer/LinkVisualizer
+    [junit] Running .LinkVisualizer
+    [junit] ExportHTMLTimer went off after 30000 ms., calling getDirector().finish and getDirector().stopFire()
+    [junit] ExportHTMLTimer went off after 60000 ms., calling manager.stop().
+2020-05-03 15:57:30
+Full thread dump OpenJDK 64-Bit Server VM (11.0.2+9 mixed mode):
+
+Threads class SMR info:
+_java_thread_list=0x00007fe23c9c27e0, length=13, elements={
+0x00007fe23c011000, 0x00007fe23c149000, 0x00007fe23c14d000, 0x00007fe23c15f800,
+0x00007fe23c162000, 0x00007fe23c164000, 0x00007fe23c166000, 0x00007fe23c1ec000,
+0x00007fe23c1ff800, 0x00007fe23c4c6000, 0x00007fe23c9c3000, 0x00007fe23c9a7800,
+0x00007fe23c9a8800
+}
+
+"main" #1 prio=5 os_prio=0 cpu=2395.51ms elapsed=2564.99s tid=0x00007fe23c011000 nid=0x3a75 in Object.wait()  [0x00007fe242b87000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+	- waiting on <no object reference available>
+	at java.lang.Object.wait(java.base@11.0.2/Object.java:328)
+	at java.lang.ProcessImpl.waitFor(java.base@11.0.2/ProcessImpl.java:495)
+	- waiting to re-lock in wait() <0x00000000858152f0> (a java.lang.ProcessImpl)
+	at org.apache.tools.ant.taskdefs.Execute.waitFor(Execute.java:532)
+	at org.apache.tools.ant.taskdefs.Execute.execute(Execute.java:461)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeAsForked(JUnitTask.java:1284)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:1050)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:2207)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:858)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:293)
+	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(java.base@11.0.2/DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(java.base@11.0.2/Method.java:566)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:435)
+	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1405)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1376)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1260)
+	at org.apache.tools.ant.Main.runBuild(Main.java:857)
+	at org.apache.tools.ant.Main.startAnt(Main.java:236)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:287)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:113)
+
+"Reference Handler" #2 daemon prio=10 os_prio=0 cpu=3.35ms elapsed=2564.97s tid=0x00007fe23c149000 nid=0x3a7c waiting on condition  [0x00007fe220650000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@11.0.2/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@11.0.2/Reference.java:241)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@11.0.2/Reference.java:213)
+
+"Finalizer" #3 daemon prio=8 os_prio=0 cpu=1.78ms elapsed=2564.97s tid=0x00007fe23c14d000 nid=0x3a7d in Object.wait()  [0x00007fe22054f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+	- waiting on <no object reference available>
+	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:155)
+	- waiting to re-lock in wait() <0x00000000800c7040> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:176)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@11.0.2/Finalizer.java:170)
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=0 cpu=0.20ms elapsed=2564.97s tid=0x00007fe23c15f800 nid=0x3a7e waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #5 daemon prio=9 os_prio=0 cpu=2522.81ms elapsed=2564.97s tid=0x00007fe23c162000 nid=0x3a7f waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #6 daemon prio=9 os_prio=0 cpu=940.35ms elapsed=2564.97s tid=0x00007fe23c164000 nid=0x3a80 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Sweeper thread" #7 daemon prio=9 os_prio=0 cpu=15.52ms elapsed=2564.97s tid=0x00007fe23c166000 nid=0x3a81 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #8 daemon prio=9 os_prio=0 cpu=0.05ms elapsed=2564.94s tid=0x00007fe23c1ec000 nid=0x3a82 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Common-Cleaner" #9 daemon prio=8 os_prio=0 cpu=2.83ms elapsed=2564.93s tid=0x00007fe23c1ff800 nid=0x3a84 in Object.wait()  [0x00007fe20a97f000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+	- waiting on <no object reference available>
+	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:155)
+	- waiting to re-lock in wait() <0x00000000801f6e68> (a java.lang.ref.ReferenceQueue$Lock)
+	at jdk.internal.ref.CleanerImpl.run(java.base@11.0.2/CleanerImpl.java:148)
+	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+	at jdk.internal.misc.InnocuousThread.run(java.base@11.0.2/InnocuousThread.java:134)
+
+"process reaper" #10 daemon prio=10 os_prio=0 cpu=4.60ms elapsed=2564.26s tid=0x00007fe23c4c6000 nid=0x3a88 runnable  [0x00007fe240079000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ProcessHandleImpl.waitForProcessExit0(java.base@11.0.2/Native Method)
+	at java.lang.ProcessHandleImpl$1.run(java.base@11.0.2/ProcessHandleImpl.java:138)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@11.0.2/ThreadPoolExecutor.java:1128)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@11.0.2/ThreadPoolExecutor.java:628)
+	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+
+"Thread-26" #64 daemon prio=5 os_prio=0 cpu=698.08ms elapsed=2497.05s tid=0x00007fe23c9c3000 nid=0x4046 in Object.wait()  [0x00007fe209c51000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+	- waiting on <no object reference available>
+	at org.apache.tools.ant.taskdefs.StreamPumper.waitForInput(StreamPumper.java:246)
+	- waiting to re-lock in wait() <0x000000008581b6d0> (a org.apache.tools.ant.taskdefs.StreamPumper)
+	at org.apache.tools.ant.taskdefs.StreamPumper.run(StreamPumper.java:126)
+	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+
+"Thread-27" #65 daemon prio=5 os_prio=0 cpu=702.84ms elapsed=2497.05s tid=0x00007fe23c9a7800 nid=0x4048 in Object.wait()  [0x00007fe209d52000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+	- waiting on <no object reference available>
+	at org.apache.tools.ant.taskdefs.StreamPumper.waitForInput(StreamPumper.java:246)
+	- waiting to re-lock in wait() <0x000000008581ba08> (a org.apache.tools.ant.taskdefs.StreamPumper)
+	at org.apache.tools.ant.taskdefs.StreamPumper.run(StreamPumper.java:126)
+	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+
+"WATCHDOG" #67 daemon prio=5 os_prio=0 cpu=0.10ms elapsed=2497.05s tid=0x00007fe23c9a8800 nid=0x404a in Object.wait()  [0x00007fe209e53000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+	- waiting on <no object reference available>
+	at org.apache.tools.ant.util.Watchdog.run(Watchdog.java:117)
+	- waiting to re-lock in wait() <0x0000000086177f48> (a org.apache.tools.ant.util.Watchdog)
+	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+
+"VM Thread" os_prio=0 cpu=60.20ms elapsed=2564.98s tid=0x00007fe23c141000 nid=0x3a7b runnable  
+
+"GC Thread#0" os_prio=0 cpu=86.38ms elapsed=2564.99s tid=0x00007fe23c038800 nid=0x3a76 runnable  
+
+"GC Thread#1" os_prio=0 cpu=73.86ms elapsed=2564.61s tid=0x00007fe200001000 nid=0x3a85 runnable  
+
+"G1 Main Marker" os_prio=0 cpu=0.20ms elapsed=2564.99s tid=0x00007fe23c06b000 nid=0x3a77 runnable  
+
+"G1 Conc#0" os_prio=0 cpu=0.04ms elapsed=2564.99s tid=0x00007fe23c06d000 nid=0x3a78 runnable  
+
+"G1 Refine#0" os_prio=0 cpu=3.08ms elapsed=2564.99s tid=0x00007fe23c0df000 nid=0x3a79 runnable  
+
+"G1 Refine#1" os_prio=0 cpu=0.04ms elapsed=2564.60s tid=0x00007fe210001000 nid=0x3a86 runnable  
+
+"G1 Young RemSet Sampling" os_prio=0 cpu=334.21ms elapsed=2564.99s tid=0x00007fe23c0e0800 nid=0x3a7a runnable  
+"VM Periodic Task Thread" os_prio=0 cpu=732.72ms elapsed=2564.93s tid=0x00007fe23c1ee000 nid=0x3a83 waiting on condition  
+
+JNI global refs: 16, weak refs: 0
+
+Heap
+ garbage-first heap   total 129024K, used 57355K [0x0000000080000000, 0x0000000100000000)
+  region size 1024K, 44 young (45056K), 4 survivors (4096K)
+ Metaspace       used 20324K, capacity 20693K, committed 21120K, reserved 1069056K
+  class space    used 1992K, capacity 2103K, committed 2176K, reserved 1048576K
+
+    [junit] 2020-05-03 15:57:30
+    [junit] Full thread dump OpenJDK 64-Bit Server VM (11.0.2+9 mixed mode):
+    [junit] 
+    [junit] Threads class SMR info:
+    [junit] _java_thread_list=0x00007ff6f8006490, length=18, elements={
+    [junit] 0x00007ff720013000, 0x00007ff72016a000, 0x00007ff72016e000, 0x00007ff720180800,
+    [junit] 0x00007ff720183000, 0x00007ff720185000, 0x00007ff720187000, 0x00007ff720221000,
+    [junit] 0x00007ff7202cb000, 0x00007ff720802800, 0x00007ff6e0216000, 0x00007ff6e0765800,
+    [junit] 0x00007ff720806800, 0x00007ff7206ae800, 0x00007ff6f80cb000, 0x00007ff6f81cb800,
+    [junit] 0x00007ff6f805d800, 0x00007ff6f81c7800
+    [junit] }
+    [junit] 
+    [junit] "main" #1 prio=5 os_prio=0 cpu=872.12ms elapsed=2497.04s tid=0x00007ff720013000 nid=0x404b in Object.wait()  [0x00007ff7281a4000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Object.java:328)
+    [junit] 	at java.awt.EventQueue.invokeAndWait(java.desktop@11.0.2/EventQueue.java:1361)
+    [junit] 	- waiting to re-lock in wait() <0x0000000758980000> (a java.awt.EventQueue$1AWTInvocationLock)
+    [junit] 	at java.awt.EventQueue.invokeAndWait(java.desktop@11.0.2/EventQueue.java:1342)
+    [junit] 	at javax.swing.SwingUtilities.invokeAndWait(java.desktop@11.0.2/SwingUtilities.java:1480)
+    [junit] 	at ptolemy.vergil.basic.export.ExportModel.exportModel(ExportModel.java:401)
+    [junit] 	at ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTest.RunExportModel(ExportModelJUnitTest.java:153)
+    [junit] 	at ptolemy.vergil.basic.export.test.junit.ExportModelJUnitTestBatch.RunExportModel(ExportModelJUnitTestBatch.java:84)
+    [junit] 	at jdk.internal.reflect.GeneratedMethodAccessor26.invoke(Unknown Source)
+    [junit] 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(java.base@11.0.2/DelegatingMethodAccessorImpl.java:43)
+    [junit] 	at java.lang.reflect.Method.invoke(java.base@11.0.2/Method.java:566)
+    [junit] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+    [junit] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+    [junit] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+    [junit] 	at junitparams.internal.InvokeParameterisedMethod.evaluate(InvokeParameterisedMethod.java:102)
+    [junit] 	at junitparams.internal.ParameterisedTestMethodRunner.runMethodInvoker(ParameterisedTestMethodRunner.java:47)
+    [junit] 	at junitparams.internal.ParameterisedTestMethodRunner.runTestMethod(ParameterisedTestMethodRunner.java:41)
+    [junit] 	at junitparams.internal.ParameterisedTestClassRunner.runParameterisedTest(ParameterisedTestClassRunner.java:143)
+    [junit] 	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:237)
+    [junit] 	at junitparams.JUnitParamsRunner.runChild(JUnitParamsRunner.java:215)
+    [junit] 	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+    [junit] 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+    [junit] 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+    [junit] 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+    [junit] 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+    [junit] 	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+    [junit] 	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:39)
+    [junit] 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+    [junit] 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+    [junit] 	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+    [junit] 
+    [junit] "Reference Handler" #2 daemon prio=10 os_prio=0 cpu=11.11ms elapsed=2497.02s tid=0x00007ff72016a000 nid=0x4052 waiting on condition  [0x00007ff708292000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit] 	at java.lang.ref.Reference.waitForReferencePendingList(java.base@11.0.2/Native Method)
+    [junit] 	at java.lang.ref.Reference.processPendingReferences(java.base@11.0.2/Reference.java:241)
+    [junit] 	at java.lang.ref.Reference$ReferenceHandler.run(java.base@11.0.2/Reference.java:213)
+    [junit] 
+    [junit] "Finalizer" #3 daemon prio=8 os_prio=0 cpu=1.32ms elapsed=2497.02s tid=0x00007ff72016e000 nid=0x4053 in Object.wait()  [0x00007ff708191000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:155)
+    [junit] 	- waiting to re-lock in wait() <0x00000007380220c8> (a java.lang.ref.ReferenceQueue$Lock)
+    [junit] 	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:176)
+    [junit] 	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@11.0.2/Finalizer.java:170)
+    [junit] 
+    [junit] "Signal Dispatcher" #4 daemon prio=9 os_prio=0 cpu=0.17ms elapsed=2497.01s tid=0x00007ff720180800 nid=0x4054 waiting on condition  [0x0000000000000000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit] 
+    [junit] "C2 CompilerThread0" #5 daemon prio=9 os_prio=0 cpu=67824.18ms elapsed=2497.01s tid=0x00007ff720183000 nid=0x4055 waiting on condition  [0x0000000000000000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit]    No compile task
+    [junit] 
+    [junit] "C1 CompilerThread0" #6 daemon prio=9 os_prio=0 cpu=8859.24ms elapsed=2497.01s tid=0x00007ff720185000 nid=0x4056 waiting on condition  [0x0000000000000000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit]    No compile task
+    [junit] 
+    [junit] "Sweeper thread" #7 daemon prio=9 os_prio=0 cpu=436.93ms elapsed=2497.00s tid=0x00007ff720187000 nid=0x4057 runnable  [0x0000000000000000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit] 
+    [junit] "Common-Cleaner" #8 daemon prio=8 os_prio=0 cpu=4.48ms elapsed=2496.95s tid=0x00007ff720221000 nid=0x4058 in Object.wait()  [0x00007ff6fc169000]
+    [junit]    java.lang.Thread.State: TIMED_WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:155)
+    [junit] 	- waiting to re-lock in wait() <0x0000000738567ad8> (a java.lang.ref.ReferenceQueue$Lock)
+    [junit] 	at jdk.internal.ref.CleanerImpl.run(java.base@11.0.2/CleanerImpl.java:148)
+    [junit] 	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+    [junit] 	at jdk.internal.misc.InnocuousThread.run(java.base@11.0.2/InnocuousThread.java:134)
+    [junit] 
+    [junit] "Service Thread" #9 daemon prio=9 os_prio=0 cpu=0.04ms elapsed=2496.80s tid=0x00007ff7202cb000 nid=0x4059 runnable  [0x0000000000000000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit] 
+    [junit] "AWT-XAWT" #11 daemon prio=6 os_prio=0 cpu=813.74ms elapsed=2495.94s tid=0x00007ff720802800 nid=0x4067 runnable  [0x00007ff6bf529000]
+    [junit]    java.lang.Thread.State: RUNNABLE
+    [junit] 	at sun.awt.X11.XToolkit.waitForEvents(java.desktop@11.0.2/Native Method)
+    [junit] 	at sun.awt.X11.XToolkit.run(java.desktop@11.0.2/XToolkit.java:688)
+    [junit] 	at sun.awt.X11.XToolkit.run(java.desktop@11.0.2/XToolkit.java:652)
+    [junit] 	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+    [junit] 
+    [junit] "Java2D Disposer" #14 daemon prio=10 os_prio=0 cpu=8.57ms elapsed=2494.90s tid=0x00007ff6e0216000 nid=0x406a in Object.wait()  [0x00007ff6bec26000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:155)
+    [junit] 	- waiting to re-lock in wait() <0x0000000739428158> (a java.lang.ref.ReferenceQueue$Lock)
+    [junit] 	at java.lang.ref.ReferenceQueue.remove(java.base@11.0.2/ReferenceQueue.java:176)
+    [junit] 	at sun.java2d.Disposer.run(java.desktop@11.0.2/Disposer.java:144)
+    [junit] 	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+    [junit] 
+    [junit] "TimerQueue" #17 daemon prio=5 os_prio=0 cpu=13.46ms elapsed=2493.09s tid=0x00007ff6e0765800 nid=0x406d waiting on condition  [0x00007ff6bdd23000]
+    [junit]    java.lang.Thread.State: WAITING (parking)
+    [junit] 	at jdk.internal.misc.Unsafe.park(java.base@11.0.2/Native Method)
+    [junit] 	- parking to wait for  <0x000000073965ab88> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+    [junit] 	at java.util.concurrent.locks.LockSupport.park(java.base@11.0.2/LockSupport.java:194)
+    [junit] 	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@11.0.2/AbstractQueuedSynchronizer.java:2081)
+    [junit] 	at java.util.concurrent.DelayQueue.take(java.base@11.0.2/DelayQueue.java:217)
+    [junit] 	at javax.swing.TimerQueue.run(java.desktop@11.0.2/TimerQueue.java:171)
+    [junit] 	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+    [junit] 
+    [junit] "AWT-Shutdown" #112 prio=5 os_prio=0 cpu=2.80ms elapsed=2271.25s tid=0x00007ff720806800 nid=0x40e2 in Object.wait()  [0x00007ff6bf428000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Object.java:328)
+    [junit] 	at sun.awt.AWTAutoShutdown.run(java.desktop@11.0.2/AWTAutoShutdown.java:291)
+    [junit] 	- waiting to re-lock in wait() <0x00000007380a6278> (a java.lang.Object)
+    [junit] 	at java.lang.Thread.run(java.base@11.0.2/Thread.java:834)
+    [junit] 
+    [junit] "AWT-EventQueue-0" #111 prio=6 os_prio=0 cpu=37612.02ms elapsed=2271.25s tid=0x00007ff7206ae800 nid=0x40e3 in Object.wait()  [0x00007ff6bdb1e000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Object.java:328)
+    [junit] 	at ptolemy.kernel.util.Workspace.getReadAccess(Workspace.java:439)
+    [junit] 	- waiting to re-lock in wait() <0x0000000758980270> (a ptolemy.kernel.util.Workspace)
+    [junit] 	at ptolemy.kernel.util.NamedObj.getFullName(NamedObj.java:1260)
+    [junit] 	at ptolemy.moml.MoMLParser._searchForAttribute(MoMLParser.java:7275)
+    [junit] 	at ptolemy.moml.MoMLParser._deleteProperty(MoMLParser.java:5032)
+    [junit] 	at ptolemy.moml.MoMLParser$DeleteRequest.execute(MoMLParser.java:7828)
+    [junit] 	at ptolemy.moml.MoMLParser.startElement(MoMLParser.java:2671)
+    [junit] 	at com.microstar.xml.XmlParser.parseElement(XmlParser.java:931)
+    [junit] 	at com.microstar.xml.XmlParser.parseDocument(XmlParser.java:481)
+    [junit] 	at com.microstar.xml.XmlParser.doParse(XmlParser.java:159)
+    [junit] 	- locked <0x0000000781bd67e0> (a com.microstar.xml.XmlParser)
+    [junit] 	at com.microstar.xml.XmlParser.parse(XmlParser.java:132)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1660)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1617)
+    [junit] 	at ptolemy.moml.MoMLParser.parse(MoMLParser.java:1792)
+    [junit] 	at ptolemy.moml.MoMLChangeRequest._execute(MoMLChangeRequest.java:292)
+    [junit] 	at ptolemy.domains.wireless.lib.LinkVisualizer$2._execute(LinkVisualizer.java:219)
+    [junit] 	at ptolemy.kernel.util.ChangeRequest.execute(ChangeRequest.java:171)
+    [junit] 	- locked <0x00000007825a1e78> (a ptolemy.domains.wireless.lib.LinkVisualizer$2)
+    [junit] 	at ptolemy.kernel.util.NamedObj._executeChangeRequests(NamedObj.java:2653)
+    [junit] 	at ptolemy.kernel.util.NamedObj.setDeferringChangeRequests(NamedObj.java:1920)
+    [junit] 	at ptolemy.kernel.util.NamedObj.setDeferringChangeRequests(NamedObj.java:1904)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector._getNextActorToFire(DEDirector.java:2323)
+    [junit] 	- locked <0x000000075863d248> (a java.lang.Object)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector._fire(DEDirector.java:1811)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.fire(DEDirector.java:502)
+    [junit] 	at ptolemy.actor.CompositeActor.fire(CompositeActor.java:455)
+    [junit] 	at ptolemy.actor.Manager.iterate(Manager.java:851)
+    [junit] 	at ptolemy.actor.Manager.execute(Manager.java:369)
+    [junit] 	at ptolemy.vergil.basic.export.ExportModel$2.run(ExportModel.java:390)
+    [junit] 	at java.awt.event.InvocationEvent.dispatch(java.desktop@11.0.2/InvocationEvent.java:303)
+    [junit] 	at java.awt.EventQueue.dispatchEventImpl(java.desktop@11.0.2/EventQueue.java:770)
+    [junit] 	at java.awt.EventQueue$4.run(java.desktop@11.0.2/EventQueue.java:721)
+    [junit] 	at java.awt.EventQueue$4.run(java.desktop@11.0.2/EventQueue.java:715)
+    [junit] 	at java.security.AccessController.doPrivileged(java.base@11.0.2/Native Method)
+    [junit] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(java.base@11.0.2/ProtectionDomain.java:85)
+    [junit] 	at java.awt.EventQueue.dispatchEvent(java.desktop@11.0.2/EventQueue.java:740)
+    [junit] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(java.desktop@11.0.2/EventDispatchThread.java:203)
+    [junit] 	at java.awt.EventDispatchThread.pumpEventsForFilter(java.desktop@11.0.2/EventDispatchThread.java:124)
+    [junit] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(java.desktop@11.0.2/EventDispatchThread.java:113)
+    [junit] 	at java.awt.EventDispatchThread.pumpEvents(java.desktop@11.0.2/EventDispatchThread.java:109)
+    [junit] 	at java.awt.EventDispatchThread.pumpEvents(java.desktop@11.0.2/EventDispatchThread.java:101)
+    [junit] 	at java.awt.EventDispatchThread.run(java.desktop@11.0.2/EventDispatchThread.java:90)
+    [junit] 
+    [junit] "Timer-26" #121 daemon prio=6 os_prio=0 cpu=0.36ms elapsed=2198.75s tid=0x00007ff6f80cb000 nid=0x40f4 waiting for monitor entry  [0x00007ff6bf327000]
+    [junit]    java.lang.Thread.State: BLOCKED (on object monitor)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.stopFire(DEDirector.java:1456)
+    [junit] 	- waiting to lock <0x000000075863d248> (a java.lang.Object)
+    [junit] 	at ptolemy.vergil.basic.export.ExportModel$2$1.run(ExportModel.java:360)
+    [junit] 	at java.util.TimerThread.mainLoop(java.base@11.0.2/Timer.java:556)
+    [junit] 	at java.util.TimerThread.run(java.base@11.0.2/Timer.java:506)
+    [junit] 
+    [junit] "Timer-27" #122 daemon prio=6 os_prio=0 cpu=0.88ms elapsed=2198.75s tid=0x00007ff6f81cb800 nid=0x40f5 in Object.wait()  [0x00007ff6bd51f000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Object.java:328)
+    [junit] 	at ptolemy.kernel.util.Workspace.getReadAccess(Workspace.java:439)
+    [junit] 	- waiting to re-lock in wait() <0x0000000758980270> (a ptolemy.kernel.util.Workspace)
+    [junit] 	at ptolemy.actor.CompositeActor.stop(CompositeActor.java:2245)
+    [junit] 	at ptolemy.actor.Manager.finish(Manager.java:572)
+    [junit] 	at ptolemy.actor.Manager.stop(Manager.java:1367)
+    [junit] 	at ptolemy.vergil.basic.export.ExportModel$2$2.run(ExportModel.java:383)
+    [junit] 	at java.util.TimerThread.mainLoop(java.base@11.0.2/Timer.java:556)
+    [junit] 	at java.util.TimerThread.run(java.base@11.0.2/Timer.java:506)
+    [junit] 
+    [junit] "Thread-75" #140 prio=6 os_prio=0 cpu=30.84ms elapsed=2190.74s tid=0x00007ff6f805d800 nid=0x4107 waiting for monitor entry  [0x00007ff6bd620000]
+    [junit]    java.lang.Thread.State: BLOCKED (on object monitor)
+    [junit] 	at ptolemy.domains.de.kernel.DEDirector.stopFire(DEDirector.java:1456)
+    [junit] 	- waiting to lock <0x000000075863d248> (a java.lang.Object)
+    [junit] 	at ptolemy.actor.CompositeActor.stopFire(CompositeActor.java:2321)
+    [junit] 	at ptolemy.actor.CompositeActor.requestChange(CompositeActor.java:2039)
+    [junit] 	at ptolemy.kernel.util.NamedObj.requestChange(NamedObj.java:1853)
+    [junit] 	at ptolemy.domains.wireless.lib.LinkVisualizer._removeLine(LinkVisualizer.java:225)
+    [junit] 	at ptolemy.domains.wireless.lib.LinkVisualizer$_LinkVisualizerThread.run(LinkVisualizer.java:268)
+    [junit] 
+    [junit] "Thread-76" #141 prio=6 os_prio=0 cpu=1.41ms elapsed=2190.24s tid=0x00007ff6f81c7800 nid=0x4108 in Object.wait()  [0x00007ff6bccc7000]
+    [junit]    java.lang.Thread.State: WAITING (on object monitor)
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Native Method)
+    [junit] 	- waiting on <no object reference available>
+    [junit] 	at java.lang.Object.wait(java.base@11.0.2/Object.java:328)
+    [junit] 	at ptolemy.kernel.util.Workspace.getWriteAccess(Workspace.java:569)
+    [junit] 	- waiting to re-lock in wait() <0x0000000758980270> (a ptolemy.kernel.util.Workspace)
+    [junit] 	at ptolemy.kernel.util.Attribute.setContainer(Attribute.java:403)
+    [junit] 	at ptolemy.kernel.util.SingletonAttribute.setContainer(SingletonAttribute.java:128)
+    [junit] 	at ptolemy.kernel.util.Attribute.<init>(Attribute.java:109)
+    [junit] 	at ptolemy.kernel.util.Attribute.<init>(Attribute.java:86)
+    [junit] 	at ptolemy.kernel.util.SingletonAttribute.<init>(SingletonAttribute.java:80)
+    [junit] 	at ptolemy.vergil.kernel.attributes.VisibleAttribute.moveToLast(VisibleAttribute.java:134)
+    [junit] 	at ptolemy.domains.wireless.lib.LinkVisualizer$1._execute(LinkVisualizer.java:198)
+    [junit] 	at ptolemy.kernel.util.ChangeRequest.execute(ChangeRequest.java:171)
+    [junit] 	- locked <0x0000000781da1af8> (a ptolemy.domains.wireless.lib.LinkVisualizer$1)
+    [junit] 	at ptolemy.kernel.util.NamedObj._executeChangeRequests(NamedObj.java:2653)
+    [junit] 	at ptolemy.kernel.util.NamedObj.executeChangeRequests(NamedObj.java:770)
+    [junit] 	at ptolemy.kernel.util.NamedObj.requestChange(NamedObj.java:1868)
+    [junit] 	at ptolemy.actor.CompositeActor.requestChange(CompositeActor.java:2029)
+    [junit] 	at ptolemy.kernel.util.NamedObj.requestChange(NamedObj.java:1853)
+    [junit] 	at ptolemy.domains.wireless.lib.LinkVisualizer._drawLine(LinkVisualizer.java:205)
+    [junit] 	at ptolemy.domains.wireless.lib.LinkVisualizer$_LinkVisualizerThread.run(LinkVisualizer.java:254)
+    [junit] 
+    [junit] "VM Thread" os_prio=0 cpu=297.85ms elapsed=2497.02s tid=0x00007ff720162000 nid=0x4051 runnable  
+    [junit] 
+    [junit] "GC Thread#0" os_prio=0 cpu=2336.59ms elapsed=2497.04s tid=0x00007ff72003a000 nid=0x404c runnable  
+    [junit] 
+    [junit] "GC Thread#1" os_prio=0 cpu=2371.93ms elapsed=2496.79s tid=0x00007ff6e8001000 nid=0x405b runnable  
+    [junit] 
+    [junit] "G1 Main Marker" os_prio=0 cpu=1.82ms elapsed=2497.04s tid=0x00007ff720086800 nid=0x404d runnable  
+    [junit] 
+    [junit] "G1 Conc#0" os_prio=0 cpu=830.69ms elapsed=2497.04s tid=0x00007ff720088800 nid=0x404e runnable  
+    [junit] 
+    [junit] "G1 Refine#0" os_prio=0 cpu=565.06ms elapsed=2497.04s tid=0x00007ff7200fe800 nid=0x404f runnable  
+    [junit] 
+    [junit] "G1 Refine#1" os_prio=0 cpu=117.84ms elapsed=2266.20s tid=0x00007ff6ec009000 nid=0x40e5 runnable  
+    [junit] 
+    [junit] "G1 Young RemSet Sampling" os_prio=0 cpu=701.80ms elapsed=2497.04s tid=0x00007ff720100800 nid=0x4050 runnable  
+    [junit] "VM Periodic Task Thread" os_prio=0 cpu=693.87ms elapsed=2496.80s tid=0x00007ff7202ce800 nid=0x405a waiting on condition  
+    [junit] 
+    [junit] JNI global refs: 84, weak refs: 3636
+    [junit] 
+    [junit] Heap
+    [junit]  garbage-first heap   total 1280000K, used 349061K [0x0000000738000000, 0x0000000800000000)
+    [junit]   region size 1024K, 96 young (98304K), 23 survivors (23552K)
+    [junit]  Metaspace       used 46517K, capacity 48191K, committed 48508K, reserved 1091584K
+    [junit]   class space    used 5152K, capacity 5826K, committed 5888K, reserved 1048576K
+    [junit] 
+/home/travis/build/icyphy/ptII/bin/ant: Running /home/travis/build/icyphy/ptII/ant/bin/ant build test.travis.timeout.fail.xml
+Buildfile: /home/travis/build/icyphy/ptII/build.xml
+
+build-message:
+     [echo] Use ant -p to see other targets. JAVA_HOME=/usr/local/lib/jvm/openjdk11
+     [echo] tools.jar is necessary for compilation of doc/doclets/.
+     [echo] If compilation fails, try setting JAVA_HOME to the location of the JDK.
+     [echo] For example:
+     [echo]   [bldmastr@sisyphus ptII]$ which java
+     [echo]   /usr/bin/java
+     [echo]   [bldmastr@sisyphus ptII]$ ls -l /usr/bin/java
+     [echo]   lrwxrwxrwx 1 root root 26 Jul 31 10:12 /usr/bin/java -> /usr/java/default/bin/java
+     [echo]   [bldmastr@sisyphus ptII]$ export JAVA_HOME=/usr/java/default
+     [echo]     
+
+-build-subprojects-empty:
+
+build-subprojects:
+
+-check-node:
+
+-check-node-works:
+     [exec] v7.10.1
+
+-check-npm:
+
+-check-npm-works:
+     [exec] 4.2.0
+
+-check-if-npmjs-org-is-up:
+     [echo] Check to see if https://www.npmjs.org is up.
+
+-jsdoc-no-network-message:
+
+-check-jsdoc:
+
+jsdoc-install:
+
+jsdoc-update:
+
+-ptdoc-no-node:
+
+-ptdoc-no-npm:
+
+ptdoc:
+     [echo] 
+     [echo]       If the ptdoc target fails, then try running:
+     [echo]           ant build-project build-bin
+     [echo]     
+
+-check-node:
+
+-check-node-works:
+     [exec] v7.10.1
+
+-check-npm:
+
+-check-npm-works:
+     [exec] 4.2.0
+
+-check-if-npmjs-org-is-up:
+     [echo] Check to see if https://www.npmjs.org is up or $TRAVIS is set.
+
+-jsdoc-no-network-message:
+
+-check-jsdoc:
+     [echo] To stop CapeCode from invoking jsdoc and svn, set the PT_NO_NET environment variable.  
+     [echo]     Under BASH:
+     [echo]         export PT_NO_NET=true
+     [echo]     If ptdoc fails, and you are building from $PTII, try:
+     [echo]         ant build-project build-bin
+     [echo]     
+
+jsdoc-install:
+
+jsdoc-update:
+
+-ptdoc-no-node-message:
+
+-ptdoc-no-npm-message:
+
+-check-jsdoc-again:
+
+-jsdoc-command-message:
+
+ptdoc:
+     [echo] Invoke /home/travis/build/icyphy/ptII/org/terraswarm/accessor/accessors/web/../node_modules/@terraswarm/jsdoc/jsdoc.js to read *.js files and generate *PtDoc.xml files suitable for Ptolemy.
+     [echo]     See https://chess.eecs.berkeley.edu/ptexternal/wiki/Main/JSDocSystems
+     [echo]     See jsdoc/jsdoc.json
+     [echo]     See jsdoc/plugins/accessorJSDocTags.js
+     [echo]     See jsdoc/templates/ptdoc/publish.js
+     [echo] 
+     [echo]     If the ptdoc target fails, the there is likely a problem with node or npm.  It is possible
+     [echo]     to use CapeCode even if the ptdoc target fails.
+     [echo]     
+     [echo]     If you are building from $PTII, try:
+     [echo]         ant build-project build-bin
+     [echo] 
+     [echo]     
+     [exec] Generating output files...
+     [exec] Finished running in 13.41 seconds.
+
+build-project:
+     [echo] ptII: /home/travis/build/icyphy/ptII/build.xml
+    [javac] Compiling 2 source files to /home/travis/build/icyphy/ptII
+
+-check-ptII-mk-file:
+
+-check-bin-vergil:
+
+-check-make-bin-vergil:
+
+build-bin-not:
+
+build-not-bin-vergil:
+
+build-bin:
 
 build:
 
@@ -538,12 +1136,12 @@ test.travis.timeout.fail.xml:
      [echo]       then we need to have a test failure that indicates that the other tests did not run.
      [echo] 
      [echo]     
-    [junit] +java --module-path /home/travis/build/icyphy/ptII/vendors/javafx/javafx-sdk-11.0.2/lib: --add-modules javafx.controls,javafx.swing,javafx.media, -Djava.net.preferIPv4Stack=true -Djavafx.verbose=true -Dprism.verbose=true -Dptolemy.ptII.dir=/home/travis/build/icyphy/ptII -Dptolemy.ptII.batchMode=true -Xmx3200m -classpath /home/travis/build/icyphy/ptII:/home/travis/build/icyphy/ptII/lib/bsh-2.0b4.jar:/home/travis/build/icyphy/ptII/lib/ptCal.jar:/home/travis/build/icyphy/ptII/lib/java_cup.jar:/home/travis/build/icyphy/ptII/lib/saxon8.jar:/home/travis/build/icyphy/ptII/lib/saxon8-dom.jar:/home/travis/build/icyphy/ptII/lib/chic.jar:/home/travis/build/icyphy/ptII/lib/ptcolt.jar:/home/travis/build/icyphy/ptII/vendors/misc/itext/iText.jar:/home/travis/build/icyphy/ptII/lib/g4ltl.jar:/home/travis/build/icyphy/ptII/lib/StructuralCoder.jar:/home/travis/build/icyphy/ptII/lib/jcerti.jar:/home/travis/build/icyphy/ptII/lib/javax.mail.jar:/home/travis/build/icyphy/ptII/vendors/JMF-2.1.1e/lib/jmf.jar:/home/travis/build/icyphy/ptII/lib/jna-4.0.0-variadic.jar:/home/travis/build/icyphy/ptII/vendors/misc/joystick/Joystick.jar:/home/travis/build/icyphy/ptII/lib/ptjacl.jar:/home/travis/build/icyphy/ptII/lib/jsoup-1.8.2.jar:/home/travis/build/icyphy/ptII/lib/junit-4.8.2.jar:/home/travis/build/icyphy/ptII/lib/JUnitParams-0.4.0.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/lib/excel/jxl.jar:/home/travis/build/icyphy/ptII/lib/jython.jar:/home/travis/build/icyphy/ptII/lib/kieler.jar:/home/travis/build/icyphy/ptII/vendors/opencv/share/OpenCV/java/opencv-341.jar:/home/travis/build/icyphy/ptII/lib/oscP5.jar:/home/travis/build/icyphy/ptII/lib/nrjavaserial-3.11.0.devel.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/j3dcore.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/j3dutils.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/vecmath.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/gluegen-rt-natives-linux-amd64.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/gluegen-rt.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/jogl-all-natives-linux-amd64.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/jogl-all.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/jini-core.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/jini-ext.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/sun-util.jar:/home/travis/build/icyphy/ptII/lib/protobuf-java-2.4.1.jar:/home/travis/build/icyphy/ptII/lib/org.eclipse.paho.client.mqttv3.jar:/home/travis/build/icyphy/ptII/lib/mapss.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/ptalon/antlr/antlr.jar:/home/travis/build/icyphy/ptII/lib/JRI.jar:/home/travis/build/icyphy/ptII/lib/commons-lang-2.6.jar:/home/travis/build/icyphy/ptII/lib/commons-logging-1.1.1.jar:/home/travis/build/icyphy/ptII/lib/sootclasses.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/lib/database/mysql-connector-java-5.1.6-bin.jar:/home/travis/build/icyphy/ptII/vendors/misc/sphinx4/sphinx4-data-5prealpha.jar:/home/travis/build/icyphy/ptII/vendors/misc/sphinx4/sphinx4-core-5prealpha.jar:/home/travis/build/icyphy/ptII/lib/PDFRenderer.jar:/home/travis/build/icyphy/ptII/lib/svgSalamander.jar:/home/travis/build/icyphy/ptII/lib/rsyntaxtextarea-2.6.0-SNAPSHOT.jar:/home/travis/build/icyphy/ptII/lib/hazelcast-3.8.2.jar:/home/travis/build/icyphy/ptII/lib/jackson-annotations-2.9.0.jar:/home/travis/build/icyphy/ptII/lib/jackson-core-2.9.3.jar:/home/travis/build/icyphy/ptII/lib/jackson-databind-2.9.3.jar:/home/travis/build/icyphy/ptII/lib/netty-buffer-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-dns-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-http-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-http2-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-handler-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-resolver-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-resolver-dns-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-transport-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/vertx-codegen-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-core-3.5.2-SNAPSHOT.jar:/home/travis/build/icyphy/ptII/lib/vertx-hazelcast-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-lang-js-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-service-proxy-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-web-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/slf4j-api-1.7.13.jar:/home/travis/build/icyphy/ptII/lib/slf4j-simple-1.7.13.jar:/home/travis/build/icyphy/ptII/lib/webcam-capture-0.3.12.jar:/home/travis/build/icyphy/ptII/lib/bridj-0.7.0.jar:/home/travis/build/icyphy/ptII/lib/xbjlib-1.1.0.nrjavaserial.jar:/home/travis/build/icyphy/ptII/ptolemy/moml/test:/home/travis/build/icyphy/ptII/ant/lib/ant-launcher.jar:/home/travis/build/icyphy/ptII/ant/lib/ant.jar:/home/travis/build/icyphy/ptII/ant/lib/ant-junit.jar:/home/travis/build/icyphy/ptII/ant/lib/ant-junit4.jar org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner ptolemy.util.test.travis.junit.JUnitTclTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/travis/build/icyphy/ptII/reports/junit/TEST-ptolemy.util.test.travis.junit.JUnitTclTest.xml crashfile=/home/travis/build/icyphy/ptII/junitvmwatcher17761119164479949750.properties propsfile=/home/travis/build/icyphy/ptII/junit254971764143514455.properties
     [junit] javachdir: directory = ptolemy/util/test/travis
+    [junit] +java --module-path /home/travis/build/icyphy/ptII/vendors/javafx/javafx-sdk-11.0.2/lib: --add-modules javafx.controls,javafx.swing,javafx.media, -Djava.net.preferIPv4Stack=true -Djavafx.verbose=true -Dprism.verbose=true -Dptolemy.ptII.dir=/home/travis/build/icyphy/ptII -Dptolemy.ptII.batchMode=true -Xmx3200m -classpath /home/travis/.ptolemyII:/home/travis/.ptolemyII/*:/home/travis/build/icyphy/ptII:/home/travis/build/icyphy/ptII/lib/bsh-2.0b4.jar:/home/travis/build/icyphy/ptII/lib/ptCal.jar:/home/travis/build/icyphy/ptII/lib/java_cup.jar:/home/travis/build/icyphy/ptII/lib/saxon8.jar:/home/travis/build/icyphy/ptII/lib/saxon8-dom.jar:/home/travis/build/icyphy/ptII/lib/chic.jar:/home/travis/build/icyphy/ptII/lib/ptcolt.jar:/home/travis/build/icyphy/ptII/vendors/misc/itext/iText.jar:/home/travis/build/icyphy/ptII/lib/g4ltl.jar:/home/travis/build/icyphy/ptII/lib/StructuralCoder.jar:/home/travis/build/icyphy/ptII/lib/jcerti.jar:/home/travis/build/icyphy/ptII/lib/javax.mail.jar:/home/travis/build/icyphy/ptII/vendors/JMF-2.1.1e/lib/jmf.jar:/home/travis/build/icyphy/ptII/lib/jna-4.0.0-variadic.jar:/home/travis/build/icyphy/ptII/vendors/misc/joystick/Joystick.jar:/home/travis/build/icyphy/ptII/lib/ptjacl.jar:/home/travis/build/icyphy/ptII/lib/jsoup-1.8.2.jar:/home/travis/build/icyphy/ptII/lib/junit-4.8.2.jar:/home/travis/build/icyphy/ptII/lib/JUnitParams-0.4.0.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/lib/excel/jxl.jar:/home/travis/build/icyphy/ptII/lib/jython.jar:/home/travis/build/icyphy/ptII/lib/kieler.jar:/home/travis/build/icyphy/ptII/vendors/opencv/share/OpenCV/java/opencv-341.jar:/home/travis/build/icyphy/ptII/lib/oscP5.jar:/home/travis/build/icyphy/ptII/lib/nrjavaserial-3.11.0.devel.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/j3dcore.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/j3dutils.jar:/home/travis/build/icyphy/ptII/vendors/j3d/lib/Linux/vecmath.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/gluegen-rt-natives-linux-amd64.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/gluegen-rt.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/jogl-all-natives-linux-amd64.jar:/home/travis/build/icyphy/ptII/vendors/jogl/lib/Linux/jogl-all.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/jini-core.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/jini-ext.jar:/home/travis/build/icyphy/ptII/ptolemy/distributed/jini/jar/sun-util.jar:/home/travis/build/icyphy/ptII/lib/protobuf-java-2.4.1.jar:/home/travis/build/icyphy/ptII/lib/org.eclipse.paho.client.mqttv3.jar:/home/travis/build/icyphy/ptII/lib/mapss.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/ptalon/antlr/antlr.jar:/home/travis/build/icyphy/ptII/lib/JRI.jar:/home/travis/build/icyphy/ptII/lib/commons-lang-2.6.jar:/home/travis/build/icyphy/ptII/lib/commons-logging-1.1.1.jar:/home/travis/build/icyphy/ptII/lib/sootclasses.jar:/home/travis/build/icyphy/ptII/ptolemy/actor/lib/database/mysql-connector-java-5.1.6-bin.jar:/home/travis/build/icyphy/ptII/vendors/misc/sphinx4/sphinx4-data-5prealpha.jar:/home/travis/build/icyphy/ptII/vendors/misc/sphinx4/sphinx4-core-5prealpha.jar:/home/travis/build/icyphy/ptII/lib/PDFRenderer.jar:/home/travis/build/icyphy/ptII/lib/svgSalamander.jar:/home/travis/build/icyphy/ptII/lib/rsyntaxtextarea-2.6.0-SNAPSHOT.jar:/home/travis/build/icyphy/ptII/lib/hazelcast-3.8.2.jar:/home/travis/build/icyphy/ptII/lib/jackson-annotations-2.9.0.jar:/home/travis/build/icyphy/ptII/lib/jackson-core-2.9.3.jar:/home/travis/build/icyphy/ptII/lib/jackson-databind-2.9.3.jar:/home/travis/build/icyphy/ptII/lib/netty-buffer-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-dns-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-http-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-codec-http2-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-common-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-handler-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-resolver-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-resolver-dns-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/netty-transport-4.1.19.Final.jar:/home/travis/build/icyphy/ptII/lib/vertx-codegen-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-core-3.5.2-SNAPSHOT.jar:/home/travis/build/icyphy/ptII/lib/vertx-hazelcast-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-lang-js-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-service-proxy-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/vertx-web-3.5.1.jar:/home/travis/build/icyphy/ptII/lib/slf4j-api-1.7.13.jar:/home/travis/build/icyphy/ptII/lib/slf4j-simple-1.7.13.jar:/home/travis/build/icyphy/ptII/lib/webcam-capture-0.3.12.jar:/home/travis/build/icyphy/ptII/lib/bridj-0.7.0.jar:/home/travis/build/icyphy/ptII/lib/xbjlib-1.1.0.nrjavaserial.jar:/home/travis/build/icyphy/ptII/ptolemy/moml/test:/home/travis/build/icyphy/ptII/ant/lib/ant-launcher.jar:/home/travis/build/icyphy/ptII/ant/lib/ant.jar:/home/travis/build/icyphy/ptII/ant/lib/ant-junit.jar:/home/travis/build/icyphy/ptII/ant/lib/ant-junit4.jar org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner ptolemy.util.test.travis.junit.JUnitTclTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/travis/build/icyphy/ptII/reports/junit/TEST-ptolemy.util.test.travis.junit.JUnitTclTest.xml crashfile=/home/travis/build/icyphy/ptII/junitvmwatcher2874915909775349471.properties propsfile=/home/travis/build/icyphy/ptII/junit10745744911994329282.properties
     [junit] javachdir: pwd: /home/travis/build/icyphy/ptII/ptolemy/util/test/travis  Invoking with -Djava.net.preferIPv4Stack=true
     [junit] Running ptolemy.util.test.travis.junit.JUnitTclTest
     [junit] /home/travis/build/icyphy/ptII/ptolemy/util/test/travis/TravisTimeout.tcl
-    [junit] testDefs.tcl: setting time out to 9000 seconds at Sat May 02 16:07:13 UTC 2020
+    [junit] testDefs.tcl: setting time out to 9000 seconds at Sun May 03 15:58:13 UTC 2020
     [junit] Below are the system properties. To determine which Travis test is failing, look for a property that starts with PT_TRAVIS_TEST
     [junit] 
     [junit] 
@@ -574,7 +1172,7 @@ test.travis.timeout.fail.xml:
     [junit]     ("uplevel" body line 16)
     [junit]     invoked from within
     [junit] "uplevel $contents_of_test"
-    [junit] 05/02/20 04:07:13
+    [junit] 05/03/20 03:58:13
     [junit] Failed: 1  Total Tests: 1  ((Passed: 0, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
     [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
     [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
@@ -588,10 +1186,10 @@ test.travis.timeout.fail.xml:
     [junit] No auto/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
     [junit] AutoTests.java: About to close Vertx.
     [junit] AutoTests.java: Vertx closed.
-    [junit] Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.762 sec
+    [junit] Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.713 sec
     [junit] Output:
     [junit] /home/travis/build/icyphy/ptII/ptolemy/util/test/travis/TravisTimeout.tcl
-    [junit] testDefs.tcl: setting time out to 9000 seconds at Sat May 02 16:07:13 UTC 2020
+    [junit] testDefs.tcl: setting time out to 9000 seconds at Sun May 03 15:58:13 UTC 2020
     [junit] Below are the system properties. To determine which Travis test is failing, look for a property that starts with PT_TRAVIS_TEST
     [junit] 
     [junit] 
@@ -622,7 +1220,7 @@ test.travis.timeout.fail.xml:
     [junit]     ("uplevel" body line 16)
     [junit]     invoked from within
     [junit] "uplevel $contents_of_test"
-    [junit] 05/02/20 04:07:13
+    [junit] 05/03/20 03:58:13
     [junit] Failed: 1  Total Tests: 1  ((Passed: 0, Newly Passed: 0)  Known Failed: 0) /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
     [junit] No auto/knownFailedTests/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
     [junit] No auto/linux-amd64/*.xml tests in /home/travis/build/icyphy/ptII/ptolemy/util/test/travis
@@ -635,4 +1233,4 @@ test.travis.timeout.fail.xml:
     [junit] Test ptolemy.util.test.travis.junit.JUnitTclTest FAILED
 
 BUILD SUCCESSFUL
-Total time: 1 minute 19 seconds
+Total time: 23 seconds
