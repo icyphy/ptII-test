@@ -84,25 +84,60 @@ Warning: Nashorn engine is planned to be removed from a future JDK release
 Warning: Nashorn engine is planned to be removed from a future JDK release
 Warning: Nashorn engine is planned to be removed from a future JDK release
 Warning: Nashorn engine is planned to be removed from a future JDK release
-WARNING: WebServer: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [11.401]
 WARNING: REST: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [29.0]
-WARNING: JavaScriptBarrier: Model stopped before executing actions (e.g. producing outputs) scheduled for execution at times [18.0]
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
-Warning: Nashorn engine is planned to be removed from a future JDK release
+java.lang.RuntimeException: Execution failed
+	at ptolemy.moml.MoMLSimpleApplication$UnloadThread.run(MoMLSimpleApplication.java:402)
+Caused by: ptolemy.kernel.util.IllegalActionException: Exceptions occurred during wrapup:
+ptolemy.kernel.util.IllegalActionException: Failure executing the wrapup function: Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+  in .WebServer.TrainableTest2
+Because:
+Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+ptolemy.kernel.util.IllegalActionException: Failure executing the wrapup function: Error: TrainableTest4: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+  in .WebServer.TrainableTest4
+Because:
+Error: TrainableTest4: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+
+  in .WebServer.DE Director
+Because:
+Failure executing the wrapup function: Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+  in .WebServer.TrainableTest2
+Because:
+Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+	at ptolemy.actor.Director.wrapup(Director.java:1736)
+	at ptolemy.domains.de.kernel.DEDirector.wrapup(DEDirector.java:1527)
+	at ptolemy.actor.CompositeActor.wrapup(CompositeActor.java:2755)
+	at ptolemy.actor.Manager.wrapup(Manager.java:1530)
+	at ptolemy.actor.Manager.execute(Manager.java:407)
+	at ptolemy.actor.Manager.run(Manager.java:1263)
+	at ptolemy.actor.Manager$PtolemyRunThread.run(Manager.java:1933)
+Caused by: ptolemy.kernel.util.IllegalActionException: Failure executing the wrapup function: Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+  in .WebServer.TrainableTest2
+Because:
+Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+	at ptolemy.actor.lib.jjs.JavaScript._invokeMethodInContext(JavaScript.java:2306)
+	at ptolemy.actor.lib.jjs.JavaScript.wrapup(JavaScript.java:2190)
+	at ptolemy.actor.Director.wrapup(Director.java:1722)
+	... 6 more
+Caused by: javax.script.ScriptException: Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring. in &lt;function&gt; at line number 393 at column number 16
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:477)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:399)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeMethod(NashornScriptEngine.java:206)
+	at ptolemy.actor.lib.jjs.JavaScript._invokeMethodInContext(JavaScript.java:2281)
+	... 8 more
+Caused by: &lt;function&gt;:393:16 Error: TrainableTest2: The input handler of this accessor was never invoked. Usually, this is an error indicating that starvation is occurring.
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.initException(NativeError.java:135)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.&lt;init&gt;(NativeError.java:101)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.&lt;init&gt;(NativeError.java:105)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.&lt;init&gt;(NativeError.java:109)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.objects.NativeError.constructor(NativeError.java:128)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$12421$18525$\^function\_.L:1#wrapup(&lt;function&gt;:393)
+	at jdk.scripting.nashorn.scripts/jdk.nashorn.internal.scripts.Script$Recompilation$12418$30366$require.L:1#Accessor#wrapup(/home/travis/build/icyphy/ptII/ptolemy/actor/lib/jjs/external/require.js#409:30&lt;eval&gt;:680)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:655)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:513)
+	at jdk.scripting.nashorn/jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:527)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.ScriptObjectMirror.callMember(ScriptObjectMirror.java:202)
+	at jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.invokeImpl(NashornScriptEngine.java:393)
+	... 10 more
 </pre>
     </body>
 </html>
