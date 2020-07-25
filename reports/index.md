@@ -4,7 +4,8 @@ layout: default
 # ptII Reports
 * [JUnit Test Results output](junit/html/index.html)
 created by [$PTII/bin/ptIITravisBuild.sh](https://github.com/icyphy/ptII/blob/master/bin/ptIITravisBuild.sh) via the [ptII Travis-ci build](https://travis-ci.org/icyphy/ptII)
-* [docs.txt](../doc/codeDoc/docs.txt) Output of `ant javadoc jsdoc; (cd doc; make install)``
+* [docs.txt](../doc/codeDoc/docs.txt) Output of `(cd doc; make install)``
+* [docsAnt.txt](../doc/codeDoc/docs.txt) Output of `ant javadoc jsdoc``
 * [test.capecode1.xml.txt](junit/test.capecode1.xml.txt) Output of `ant test.capecode1.xml`
 * [test.capecode2.xml.txt](junit/test.capecode2.xml.txt) Output of `ant test.capecode2.xml`
 * [test.capecode3.xml.txt](junit/test.capecode3.xml.txt) Output of `ant test.capecode3.xml`
